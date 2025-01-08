@@ -1,0 +1,49 @@
+import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
+plugins {
+    alias(libs.plugins.kotlinMultiplatform)
+    alias(libs.plugins.androidLibrary)
+}
+
+group = "io.github.kingg22"
+version = "0.0.1"
+
+kotlin {
+    androidTarget {
+        publishLibraryVariants("release")
+        @OptIn(ExperimentalKotlinGradlePluginApi::class)
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_11)
+        }
+    }
+
+    jvm()
+
+    sourceSets {
+        jvmMain.dependencies {
+            implementation(libs.logback)
+        }
+        jvmTest.dependencies {
+            implementation(libs.kotlin.test.junit)
+        }
+        commonMain.dependencies {
+            //put your multiplatform dependencies here
+        }
+        commonTest.dependencies {
+            implementation(libs.kotlin.test)
+        }
+    }
+}
+
+android {
+    namespace = "io.github.kingg22.deezer-sdk"
+    compileSdk = libs.versions.android.compileSdk.get().toInt()
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
+    defaultConfig {
+        minSdk = libs.versions.android.minSdk.get().toInt()
+    }
+}
