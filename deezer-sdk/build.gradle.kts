@@ -4,6 +4,7 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.kotlinPluginSerialization)
 }
 
 group = "io.github.kingg22"
@@ -28,16 +29,18 @@ kotlin {
             implementation(libs.kotlin.test.junit)
         }
         commonMain.dependencies {
-            //put your multiplatform dependencies here
+            implementation(libs.bundles.kotlinx.ecosystem)
+            implementation(libs.bundles.ktor.client)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
+            implementation(libs.ktor.engine.okhttp)
         }
     }
 }
 
 android {
-    namespace = "io.github.kingg22.deezer-sdk"
+    namespace = "io.github.kingg22.deezerSdk"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
