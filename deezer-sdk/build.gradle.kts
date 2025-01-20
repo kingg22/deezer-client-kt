@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinPluginSerialization)
+    alias(libs.plugins.dokka)
 }
 
 group = "io.github.kingg22"
@@ -32,7 +33,7 @@ kotlin {
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
-            implementation(libs.ktor.engine.okhttp)
+            implementation(libs.bundles.testing)
         }
     }
 }
