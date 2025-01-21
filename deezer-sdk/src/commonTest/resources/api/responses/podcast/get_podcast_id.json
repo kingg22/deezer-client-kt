@@ -1,0 +1,15 @@
+{
+  "id": 20269,
+  "title": "Explore the Symphony",
+  "description": "A classical music podcast. Join the National Arts Centre Orchestra's Marjolaine Fournier and one Canada's foremost music journalists, Jean-Jacques van Vlasselaer, as they explore the symphonic form from Haydn to Shostakovich.",
+  "available": false,
+  "fans": 60,
+  "link": "https://www.deezer.com/show/20269",
+  "share": "https://www.deezer.com/show/20269?utm_source=deezer&utm_content=show-20269&utm_term=0_1737424294&utm_medium=web",
+  "picture": "https://cdn-images.dzcdn.net/images/talk/47d1cee61486d93974cc18f4e2ecbeca/180x180-000000-80-0-0.jpg",
+  "picture_small": "https://cdn-images.dzcdn.net/images/talk/47d1cee61486d93974cc18f4e2ecbeca/56x56-000000-80-0-0.jpg",
+  "picture_medium": "https://cdn-images.dzcdn.net/images/talk/47d1cee61486d93974cc18f4e2ecbeca/250x250-000000-80-0-0.jpg",
+  "picture_big": "https://cdn-images.dzcdn.net/images/talk/47d1cee61486d93974cc18f4e2ecbeca/500x500-000000-80-0-0.jpg",
+  "picture_xl": "https://cdn-images.dzcdn.net/images/talk/47d1cee61486d93974cc18f4e2ecbeca/1000x1000-000000-80-0-0.jpg",
+  "type": "podcast"
+}
