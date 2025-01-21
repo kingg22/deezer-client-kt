@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinPluginSerialization)
     alias(libs.plugins.dokka)
+    alias(libs.plugins.kotlinKover)
 }
 
 group = "io.github.kingg22"
