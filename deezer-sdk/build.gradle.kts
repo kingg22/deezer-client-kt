@@ -32,6 +32,7 @@ kotlin {
         commonMain.dependencies {
             implementation(libs.bundles.kotlinx.ecosystem)
             implementation(libs.bundles.ktor.client)
+            implementation(libs.kermit)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
