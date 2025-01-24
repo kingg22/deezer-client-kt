@@ -22,23 +22,15 @@ kotlin {
 
     jvm()
     linuxX64()
-    linuxArm64()
     mingwX64()
 
     sourceSets {
-        jvmMain.dependencies {
-            implementation(libs.logback)
-        }
-        jvmTest.dependencies {
-            implementation(libs.kotlin.test.junit)
-        }
         commonMain.dependencies {
             implementation(libs.bundles.kotlinx.ecosystem)
             implementation(libs.bundles.ktor.client)
             implementation(libs.kermit)
         }
         commonTest.dependencies {
-            implementation(libs.kotlin.test)
             implementation(libs.bundles.testing)
         }
     }
