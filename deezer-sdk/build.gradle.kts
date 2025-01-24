@@ -7,6 +7,8 @@ plugins {
     alias(libs.plugins.dokka)
     alias(libs.plugins.kotlinKover)
     alias(libs.plugins.kotlinxResources)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.ktorfit)
 }
 
 group = "io.github.kingg22"
@@ -27,7 +29,7 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             implementation(libs.bundles.kotlinx.ecosystem)
-            implementation(libs.bundles.ktor.client)
+            implementation(libs.bundles.ktorfit)
             implementation(libs.kermit)
         }
         commonTest.dependencies {
