@@ -1,3 +1,4 @@
+import de.jensklingenberg.ktorfit.gradle.ErrorCheckingMode
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
@@ -35,7 +36,14 @@ kotlin {
         commonTest.dependencies {
             implementation(libs.bundles.testing)
         }
+        jvmTest.dependencies {
+            implementation(libs.ktorfit)
+        }
     }
+}
+
+ktorfit {
+    errorCheckingMode = ErrorCheckingMode.ERROR
 }
 
 android {
