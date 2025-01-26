@@ -48,8 +48,20 @@ ktorfit {
 
 kover {
     reports.filters.excludes {
-        classes("api.routes.*Provider", "api.routes.*Impl", "api.routes.*ImplKt")
-        inheritedFrom("api.routes.*")
+        inheritedFrom("io.github.kingg22.deezerSdk.api.routes.*")
+    }
+}
+
+dokka {
+    dokkaSourceSets.configureEach {
+        skipEmptyPackages = true
+        skipDeprecated = false
+        reportUndocumented = true
+        perPackageOption {
+            // TODO find solution to include interfaces
+            matchingRegex = "io\\.github\\.kingg22\\.deezerSdk\\.api\\.routes\\.*"
+            suppress = true
+        }
     }
 }
 
