@@ -5,7 +5,6 @@
   "pop": "fr",
   "upload_token": "de98277b24d792625bacfc16bae605d1",
   "upload_token_lifetime": 14400,
-  "user_token": null,
   "hosts": {
     "stream": "http://e-cdn-proxy-{0}.deezer.com/mobile/1/",
     "images": "http://cdn-images.dzcdn.net/images"
