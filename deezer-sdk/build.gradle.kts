@@ -37,13 +37,20 @@ kotlin {
             implementation(libs.bundles.testing)
         }
         jvmTest.dependencies {
-            implementation(libs.ktorfit)
+            implementation(libs.ktor.engine.okhttp)
         }
     }
 }
 
 ktorfit {
     errorCheckingMode = ErrorCheckingMode.ERROR
+}
+
+kover {
+    reports.filters.excludes {
+        classes("api.routes.*Provider", "api.routes.*Impl", "api.routes.*ImplKt")
+        inheritedFrom("api.routes.*")
+    }
 }
 
 android {
