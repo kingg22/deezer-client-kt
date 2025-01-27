@@ -1,7 +1,9 @@
 package io.github.kingg22.deezerSdk.api.objects
 
+import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.JsonNames
 
 /**
  * Represents an Genre object of [Deezer API](https://developers.deezer.com/api/).
@@ -19,9 +21,10 @@ import kotlinx.serialization.Serializable
  * @property radios **unofficial _only on radio_** The radios of the genre
  */
 @Serializable
+@OptIn(ExperimentalSerializationApi::class)
 data class Genre(
     override val id: Long,
-    val name: String,
+    @JsonNames("title") val name: String,
     val picture: String? = null,
     @SerialName("picture_small") val pictureSmall: String? = null,
     @SerialName("picture_medium") val pictureMedium: String? = null,

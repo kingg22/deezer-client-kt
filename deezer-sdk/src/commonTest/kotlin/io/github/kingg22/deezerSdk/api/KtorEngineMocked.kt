@@ -52,6 +52,7 @@ object KtorEngineMocked {
         "/editorial/0/selection" -> readResourceFile("/api/responses/editorial/get_editorial_selection.json")
         "/editorial/0/charts" -> readResourceFile("/api/responses/editorial/get_editorial_charts.json")
         "/editorial/0/releases" -> readResourceFile("/api/responses/editorial/get_editorial_releases.json")
+        "/episode/526673645" -> readResourceFile("/api/responses/get_episode_id.json")
         "/infos" -> readResourceFile("/api/responses/get_infos.json") // WARNING: offers can be old and user_token
         "/genre" -> readResourceFile("/api/responses/genre/get_genre.json")
         "/genre/12" -> readResourceFile("/api/responses/genre/get_genre_id.json")
@@ -73,11 +74,12 @@ object KtorEngineMocked {
             readResourceFile("/api/responses/playlist/get_playlist_radio.json")
         }
 
-        "/podcast" -> readResourceFile("/api/responses/podcast/get_podcast.json")
+        "/podcast" -> readResourceFile("/api/responses/podcast/get_podcast.json") // always empty?
         "/podcast/20269" ->
             readResourceFile("/api/responses/podcast/get_podcast_id.json") // special: available = false
         "/podcast/20269/episodes" ->
-            readResourceFile("/api/responses/podcast/get_podcast_id.json") // special: data is empty and next not
+            readResourceFile("/api/responses/podcast/get_podcast_episodes.json") // special: data is empty and next not
+        "/podcast/20289/episodes" -> readResourceFile("/api/responses/podcast/get_podcast_episodes_2.json")
         "/radio" -> readResourceFile("/api/responses/radio/get_radio.json")
         "/radio/lists" -> readResourceFile("/api/responses/radio/get_radio_lists.json")
         "/radio/1236" -> readResourceFile("/api/responses/radio/get_radio_id.json")

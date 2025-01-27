@@ -39,6 +39,7 @@ import kotlinx.serialization.Serializable
  * @property album Album object
  * @property type **unofficial** The type of object, usually the name of the class.
  * @property position **only on charts** The position of the track in the charts
+ * @property timeAdd **unofficial only on playlist**
  */
 @Serializable
 data class Track(
@@ -104,6 +105,7 @@ data class Track(
     val album: Album? = null,
     override val type: String = "track",
     val position: Int? = null,
+    @SerialName("time_add") val timeAdd: Long? = null,
 ) : Resource() {
     override suspend fun reload() = client.tracks.getById(this.id)
 }

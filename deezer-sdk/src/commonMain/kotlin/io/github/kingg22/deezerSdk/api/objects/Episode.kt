@@ -1,6 +1,7 @@
 package io.github.kingg22.deezerSdk.api.objects
 
-import kotlinx.datetime.LocalDate
+import io.github.kingg22.deezerSdk.utils.LocalDateTimeSerializer
+import kotlinx.datetime.LocalDateTime
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -30,8 +31,8 @@ data class Episode(
     override val id: Long,
     val title: String,
     val description: String? = null,
-    val available: Boolean,
-    val releaseDate: LocalDate,
+    val available: Boolean? = null,
+    @Serializable(LocalDateTimeSerializer::class) @SerialName("release_date") val releaseDate: LocalDateTime,
     val duration: Int,
     val link: String? = null,
     val share: String? = null,

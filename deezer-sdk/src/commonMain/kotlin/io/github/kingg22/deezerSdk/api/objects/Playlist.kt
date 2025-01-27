@@ -1,18 +1,14 @@
 package io.github.kingg22.deezerSdk.api.objects
 
+import io.github.kingg22.deezerSdk.utils.LocalDateTimeSerializer
 import kotlinx.datetime.LocalDateTime
 import kotlinx.serialization.ExperimentalSerializationApi
-import kotlinx.serialization.KSerializer
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.descriptors.PrimitiveKind
-import kotlinx.serialization.descriptors.PrimitiveSerialDescriptor
-import kotlinx.serialization.encoding.Decoder
-import kotlinx.serialization.encoding.Encoder
 import kotlinx.serialization.json.JsonNames
 
 /**
- * Represents an Playlist object of [Deezer API](https://developers.deezer.com/api/).
+ * Represents a Playlist object of [Deezer API](https://developers.deezer.com/api/).
  *
  * @author Kingg22
  * @see <a href="https://developers.deezer.com/api/playlist">Deezer Playlist Object</a>
@@ -75,7 +71,7 @@ data class Playlist(
      */
     @JsonNames("user") val creator: User,
     val tracks: PaginatedResponse<Track>? = null,
-    @SerialName("creation_date") @Serializable(LocalDateTimeSerializer::class) val creationDate: LocalDateTime? = null,
+    @Serializable(LocalDateTimeSerializer::class) @SerialName("creation_date") val creationDate: LocalDateTime? = null,
     @SerialName("md5_image") val md5Image: String? = null,
     @SerialName("picture_type") val pictureType: String? = null,
     override val type: String = "playlist",
@@ -83,17 +79,4 @@ data class Playlist(
     val tracklist: String? = null,
 ) : Resource() {
     override suspend fun reload() = client.playlists.getById(this.id)
-
-    object LocalDateTimeSerializer : KSerializer<LocalDateTime> {
-        // format = "yyyy-MM-dd HH:mm:ss"
-
-        override val descriptor = PrimitiveSerialDescriptor("LocalDateTime", PrimitiveKind.STRING)
-
-        override fun serialize(encoder: Encoder, value: LocalDateTime) {
-            encoder.encodeString(value.toString().replace("T", " "))
-        }
-
-        override fun deserialize(decoder: Decoder): LocalDateTime =
-            LocalDateTime.parse(decoder.decodeString().replace(" ", "T"))
-    }
 }

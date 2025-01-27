@@ -21,7 +21,7 @@ interface RadioRoutes {
     @GET("radio/{id}")
     suspend fun getById(@Path id: Long): Radio
 
-    /** Retrieve a [PaginatedResponse] with [Genre.radios] splitted by [Genre] */
+    /** Retrieve a [PaginatedResponse] with [Genre.radios] split by [Genre] */
     @GET("radio/genres")
     suspend fun getAllSplitInGenres(@Query index: Int? = null, @Query limit: Int? = null): PaginatedResponse<Genre>
 

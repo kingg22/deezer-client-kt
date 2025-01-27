@@ -3,10 +3,12 @@ package io.github.kingg22.deezerSdk.api.routes
 import io.github.kingg22.deezerSdk.api.DeezerApiClientTest.Companion.client
 import io.github.kingg22.deezerSdk.api.KtorEngineMocked.getJsonFromPath
 import io.github.kingg22.deezerSdk.api.KtorEngineMocked.jsonSerializer
+import io.github.kingg22.deezerSdk.api.objects.Genre
 import io.kotest.assertions.json.shouldEqualJson
 import kotlinx.coroutines.test.runTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertNotEquals
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
@@ -29,6 +31,15 @@ class GenreRoutesTest {
         assertEquals(12, result.id)
         assertEquals("Música árabe", result.name)
         json shouldEqualJson jsonSerializer.encodeToString(result)
+    }
+
+    @Test
+    fun `Reload Genre`() = runTest {
+        val tested = Genre(12, "")
+        val genre = tested.reload()
+        val json = getJsonFromPath("/genre/12")
+        assertNotEquals(tested, genre)
+        json shouldEqualJson jsonSerializer.encodeToString(genre)
     }
 
     @Test

@@ -28,7 +28,6 @@ class AlbumRoutesTest {
         )
         val newAlbum = album.reload()
         val json = getJsonFromPath("/album/302127")
-        assertNotNull(newAlbum)
         assertNotEquals(album, newAlbum)
         json shouldEqualJson jsonSerializer.encodeToString(newAlbum)
     }

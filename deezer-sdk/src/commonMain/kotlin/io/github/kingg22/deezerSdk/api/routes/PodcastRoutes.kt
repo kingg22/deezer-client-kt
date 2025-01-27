@@ -21,7 +21,7 @@ interface PodcastRoutes {
     suspend fun getById(@Path id: Long, @Query index: Int? = null, @Query limit: Int? = null): Podcast
 
     /** Retrieve a [PaginatedResponse] with all [Episode] of the podcast */
-    @GET("podcast/{id}/episodes/")
+    @GET("podcast/{id}/episodes")
     suspend fun getEpisodes(
         @Path id: Long,
         @Query index: Int? = null,
