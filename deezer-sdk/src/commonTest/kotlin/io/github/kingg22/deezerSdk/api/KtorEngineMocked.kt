@@ -87,27 +87,28 @@ object KtorEngineMocked {
         "/radio/top" -> readResourceFile("/api/responses/radio/get_radio_top.json")
         "/radio/31061/tracks" -> readResourceFile("/api/responses/radio/get_radio_tracks.json")
         "/search?q=eminem" -> readResourceFile("/api/responses/search/get_search.json")
-        "/search?q=Not Afraid&strict=on" -> readResourceFile("/api/responses/search/get_search_strict.json")
-        "/search?q=Not Afraid&order=TRACK_ASC" -> readResourceFile("/api/responses/search/get_search_order.json")
-        "/search?q=\"Not Afraid\" artist:\"eminem\"&limit=15&index=10" ->
+        "/search?q=Not+Afraid&strict=on" -> readResourceFile("/api/responses/search/get_search_strict.json")
+        "/search?q=Not+Afraid&order=TRACK_ASC" -> readResourceFile("/api/responses/search/get_search_order.json")
+        "/search?q=%22Not+Afraid%22+artist%3A%22eminem%22&index=10&limit=15" ->
             readResourceFile("/api/responses/search/get_search_advanced.json")
 
-        "/search/album?q=\"King\" artist:\"eminem\"&order=RATING_DESC" ->
+        "/search/album?q=%22King%22+artist%3A%22eminem%22&order=RATING_DESC" ->
             readResourceFile("/api/responses/search/get_search_album.json")
 
-        "/search/artist?q=\"cat\"&order=ARTIST_DESC" ->
+        "/search/artist?q=cat&order=ARTIST_DESC" ->
             readResourceFile("/api/responses/search/get_search_artist.json")
 
-        "/search/playlist?q=\"eminem\"&order=RANKING" ->
+        "/search/playlist?q=eminem&order=RANKING" ->
             readResourceFile("/api/responses/search/get_search_playlist.json")
 
-        "/search/podcast?q=\"eminem\"&order=RATING_ASC" ->
+        "/search/podcast?q=eminem&order=RATING_ASC" ->
             readResourceFile("/api/responses/search/get_search_podcast.json")
 
-        "/search/track?q=\"eminem\"&order=DURATION_DESC" ->
+        "/search/radio?q=Electro&order=DURATION_ASC" -> readResourceFile("/api/responses/search/get_search_radio.json")
+        "/search/track?q=eminem&order=DURATION_DESC" ->
             readResourceFile("/api/responses/search/get_search_track.json")
 
-        "/search/user?q=\"eminem\"&order=RANKING" -> readResourceFile("/api/responses/search/get_search_user.json")
+        "/search/user?q=eminem&order=RANKING" -> readResourceFile("/api/responses/search/get_search_user.json")
         "/track/3135556" -> readResourceFile("/api/responses/track/get_track.json")
         "/track/isrc:GBDUW0000061" -> readResourceFile("/api/responses/track/get_track_isrc.json")
         "/user/2616835602" -> readResourceFile("/api/responses/user/get_user_id.json")
