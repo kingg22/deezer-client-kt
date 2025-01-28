@@ -1,6 +1,5 @@
 import de.jensklingenberg.ktorfit.gradle.ErrorCheckingMode
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-import org.jmailen.gradle.kotlinter.tasks.ConfigurableKtLintTask
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -15,7 +14,7 @@ plugins {
 }
 
 group = "io.github.kingg22"
-version = "0.0.1"
+version = "1.0.0"
 
 kotlin {
     androidTarget {
