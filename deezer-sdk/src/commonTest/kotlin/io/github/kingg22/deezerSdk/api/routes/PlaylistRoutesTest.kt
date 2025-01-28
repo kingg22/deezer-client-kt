@@ -28,7 +28,8 @@ class PlaylistRoutesTest {
     @Test
     fun `Reload Playlist`() = runTest {
         val tested = Playlist(
-            908622995, "",
+            908622995,
+            "",
             public = false,
             link = "",
             creator = User(0, ""),
@@ -63,9 +64,9 @@ class PlaylistRoutesTest {
         json shouldEqualJson jsonSerializer.encodeToString(result)
     }
 
+    // TODO find result with data
     @Ignore // exception tested in Deezer Api client
     @Test
-    // TODO find result with data
     fun `Fetch Playlist Radio`() = runTest {
         val result = client.playlists.getRadio(908622995)
         val json = getJsonFromPath("/playlist/908622995/radio")

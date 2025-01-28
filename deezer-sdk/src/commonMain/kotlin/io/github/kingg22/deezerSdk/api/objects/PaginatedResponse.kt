@@ -7,11 +7,10 @@ import kotlinx.serialization.Transient
 import kotlin.coroutines.cancellation.CancellationException
 
 /**
- * **Unofficial** Represent a response when search on [Deezer API](https://developers.deezer.com/api/).
+ * **Unofficial** Represent a response of [Deezer API](https://developers.deezer.com/api/).
  *
  * @author Kingg22
  * @see <a href="https://developers.deezer.com/api/explorer">Deezer API Explorer</a>
- * @see Search
  *
  * @param T The type of the items contained in the result list.
  * @property data A List containing the result of the search
@@ -45,8 +44,10 @@ data class PaginatedResponse<T : @Serializable Any>(
         if (next.isNullOrBlank()) return null
         val result = client.rawExecuteAsync<PaginatedResponse<R>> { url.takeFrom(next) }
         return if (expand) {
-            require(data.isNotEmpty())
-            require(data.first()::class == R::class)
+            require(data.isNotEmpty()) { "Requires data not empty to expand it" }
+            require(data.first()::class == R::class) {
+                "Requires type equals to expand in fetchNext. R ${R::class} and T ${data.first()::class} mismatch"
+            }
             @Suppress("UNCHECKED_CAST")
             val castedData = data as List<R>
             return result.copy(data = castedData.plus(result.data))

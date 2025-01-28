@@ -122,13 +122,13 @@ class ArtistRoutesTest {
                 103, "Pharrell Williams", "https://www.deezer.com/artist/103",
                 picture = "https://api.deezer.com/artist/103/image",
                 pictureSmall =
-                    "https://cdn-images.dzcdn.net/images/artist/1267b8781c5bff065a20dca4a3c9fda7/56x56-000000-80-0-0.jpg",
+                "https://cdn-images.dzcdn.net/images/artist/1267b8781c5bff065a20dca4a3c9fda7/56x56-000000-80-0-0.jpg",
                 pictureMedium =
-                    "https://cdn-images.dzcdn.net/images/artist/1267b8781c5bff065a20dca4a3c9fda7/250x250-000000-80-0-0.jpg",
+                "https://cdn-images.dzcdn.net/images/artist/1267b8781c5bff065a20dca4a3c9fda7/250x250-000000-80-0-0.jpg",
                 pictureBig =
-                    "https://cdn-images.dzcdn.net/images/artist/1267b8781c5bff065a20dca4a3c9fda7/500x500-000000-80-0-0.jpg",
+                "https://cdn-images.dzcdn.net/images/artist/1267b8781c5bff065a20dca4a3c9fda7/500x500-000000-80-0-0.jpg",
                 pictureXl =
-                    "https://cdn-images.dzcdn.net/images/artist/1267b8781c5bff065a20dca4a3c9fda7/1000x1000-000000-80-0-0.jpg",
+                "https://cdn-images.dzcdn.net/images/artist/1267b8781c5bff065a20dca4a3c9fda7/1000x1000-000000-80-0-0.jpg",
                 albumCount = 38, fansCount = 3121845, radio = true,
                 tracklist = "https://api.deezer.com/artist/103/top?limit=50", type = "artist",
             ),

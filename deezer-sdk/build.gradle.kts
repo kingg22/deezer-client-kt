@@ -1,5 +1,6 @@
 import de.jensklingenberg.ktorfit.gradle.ErrorCheckingMode
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jmailen.gradle.kotlinter.tasks.ConfigurableKtLintTask
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -10,6 +11,7 @@ plugins {
     alias(libs.plugins.kotlinxResources)
     alias(libs.plugins.ksp)
     alias(libs.plugins.ktorfit)
+    alias(libs.plugins.ktlint)
 }
 
 group = "io.github.kingg22"
@@ -48,8 +50,17 @@ ktorfit {
 
 kover {
     reports.filters.excludes {
-        inheritedFrom("io.github.kingg22.deezerSdk.api.routes.*")
+        classes("$group.deezerSdk.api.routes.*ImplKt", "$group.deezerSdk.api.routes.*Provider")
+        inheritedFrom("$group.deezerSdk.api.routes.*")
     }
+}
+
+tasks.named("formatKotlinCommonMain") {
+    mustRunAfter(tasks.named("kspCommonMainKotlinMetadata"))
+}
+
+tasks.named("lintKotlinCommonMain") {
+    mustRunAfter(tasks.named("kspCommonMainKotlinMetadata"))
 }
 
 dokka {
@@ -66,7 +77,7 @@ dokka {
 }
 
 android {
-    namespace = "io.github.kingg22.deezerSdk"
+    namespace = "$group.deezerSdk"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11

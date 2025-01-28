@@ -41,12 +41,14 @@ class TrackRoutesTest {
     @Test
     fun `Reload Track`() = runTest {
         val tested = Track(
-            3135556, title = "", titleShort = "",
+            3135556,
+            title = "",
+            titleShort = "",
             duration = 0,
             rank = 0,
             explicitLyrics = false,
             preview = "",
-            artist = Artist(0, "")
+            artist = Artist(0, ""),
         )
         val track = tested.reload()
         val json = getJsonFromPath("/track/3135556")

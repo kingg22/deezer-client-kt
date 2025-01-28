@@ -91,7 +91,7 @@ object DeezerApiClient {
         ktorfit.createRadioRoutes()
     }
 
-    /** All endpoints related to [io.github.kingg22.deezerSdk.api.objects.Search] */
+    /** All endpoints related to search */
     val searches: SearchRoutes by lazy {
         ktorfit.createSearchRoutes()
     }

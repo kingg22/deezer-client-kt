@@ -50,7 +50,7 @@ class EditorialRoutesTest {
         json shouldEqualJson jsonSerializer.encodeToString(result)
             .replace(
                 "\"cover\": \"\"",
-                "\"cover\": \"\", \"cover_small\": null, \"cover_medium\": null, \"cover_big\": null, \"cover_xl\": null"
+                "\"cover\": \"\", \"cover_small\": null, \"cover_medium\": null, \"cover_big\": null, \"cover_xl\": null",
             )
     }
 

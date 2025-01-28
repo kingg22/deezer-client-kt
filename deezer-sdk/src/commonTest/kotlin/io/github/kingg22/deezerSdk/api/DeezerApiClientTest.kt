@@ -43,7 +43,8 @@ class DeezerApiClientTest {
     @Test
     fun `Reload Episode`() = runTest {
         val tested = Episode(
-            526673645, "",
+            526673645,
+            "",
             releaseDate = LocalDateTime.parse("2019-09-09T00:00:00"),
             duration = 0,
         )

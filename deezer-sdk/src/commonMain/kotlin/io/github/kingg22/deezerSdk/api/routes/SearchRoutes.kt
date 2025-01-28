@@ -8,7 +8,7 @@ import io.github.kingg22.deezerSdk.api.routes.SearchRoutes.Companion.setStrict
 import kotlin.time.Duration
 
 /**
- * Defines all endpoints related to [io.github.kingg22.deezerSdk.api.objects.Search] in [Deezer API](https://developers.deezer.com/api/).
+ * Defines all endpoints related to Search in [Deezer API](https://developers.deezer.com/api/).
  *
  * Strict only can be 'on' or null.
  * Disable the fuzzy mode (strict=on)
@@ -86,7 +86,31 @@ interface SearchRoutes {
         }
     }
 
-    /** Basic Search */
+    /**
+     * Basic Search
+     *
+     * @return [PaginatedResponse] with minimal fields of [Track] described in properties
+     * @see <a href="https://developers.deezer.com/api/search">Deezer Search Fields</a>
+     *
+     * @property Track.id
+     * @property Track.readable
+     * @property Track.title
+     * @property Track.titleShort
+     * @property Track.titleVersion
+     * @property Track.link
+     * @property Track.duration
+     * @property Track.rank
+     * @property Track.explicitLyrics
+     * @property Track.explicitContentLyrics
+     * @property Track.explicitContentCover
+     * @property Track.md5Image
+     * @property Track.preview
+     * @property Track.artist Artist object containing: [Artist.id], [Artist.name], [Artist.link]
+     * [Artist.picture], [Artist.pictureSmall], [Artist.pictureMedium], [Artist.pictureBig], [Artist.pictureXl] and
+     * [Artist.type]
+     * @property Track.album Album object containing: [Album.id], [Album.title], [Album.cover], [Album.coverSmall]
+     * [Album.coverMedium], [Album.coverBig], [Album.coverXl] and [Album.type]
+     */
     @GET("search")
     suspend fun search(
         @Query q: String,
@@ -94,7 +118,7 @@ interface SearchRoutes {
         @Query order: SearchOrder? = null,
         @Query index: Int? = null,
         @Query limit: Int? = null,
-    ): PaginatedResponse<Search>
+    ): PaginatedResponse<Track>
 
     /** Search [Album] */
     @GET("search/album")

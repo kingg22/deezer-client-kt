@@ -9,8 +9,8 @@ import kotlinx.coroutines.test.runTest
 import kotlin.test.*
 
 class PodcastRoutesTest {
-    @Test
     // This endpoint always returns empty?
+    @Test
     fun `Fetch Podcast`() = runTest {
         val result = client.podcasts.getAll()
         val json = getJsonFromPath("/podcast")
