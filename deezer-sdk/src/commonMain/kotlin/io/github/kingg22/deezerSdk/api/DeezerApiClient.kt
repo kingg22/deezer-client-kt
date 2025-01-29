@@ -106,9 +106,9 @@ object DeezerApiClient {
         ktorfit.createUserRoutes()
     }
 
-    @Throws(IllegalArgumentException::class)
+    @Throws(IllegalStateException::class)
     fun initialize(block: HttpClientBuilder): DeezerApiClient {
-        require(!::httpClient.isInitialized) { "Deezer Api Client is already initialized" }
+        check(!::httpClient.isInitialized) { "Deezer Api Client is already initialized" }
         block.addCustomConfig {
             HttpResponseValidator {
                 validateResponse {

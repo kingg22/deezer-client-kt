@@ -1,7 +1,8 @@
 package io.github.kingg22.deezerSdk.api
 
-import io.github.kingg22.deezerSdk.api.KtorEngineMocked.getJsonFromPath
-import io.github.kingg22.deezerSdk.api.KtorEngineMocked.jsonSerializer
+import io.github.kingg22.deezerSdk.KtorEngineMocked
+import io.github.kingg22.deezerSdk.KtorEngineMocked.getJsonFromPath
+import io.github.kingg22.deezerSdk.KtorEngineMocked.jsonSerializer
 import io.github.kingg22.deezerSdk.api.objects.Episode
 import io.github.kingg22.deezerSdk.api.objects.Infos
 import io.github.kingg22.deezerSdk.exceptions.DeezerSdkException

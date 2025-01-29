@@ -1,4 +1,4 @@
-package io.github.kingg22.deezerSdk.api
+package io.github.kingg22.deezerSdk
 
 import co.touchlab.kermit.Logger
 import com.goncalossilva.resources.Resource
@@ -20,10 +20,10 @@ object KtorEngineMocked {
     fun readResourceFile(path: String): String =
         Resource("src/commonTest/resources/io/github/kingg22/deezerSdk/$path").readText()
 
-    fun createMockEngine(): HttpClientEngine = MockEngine {
+    fun createMockEngine(): HttpClientEngine = MockEngine.Companion {
         respond(
             content = getJsonFromPath(it.url.fullPath),
-            status = HttpStatusCode.OK,
+            status = HttpStatusCode.Companion.OK,
             headers = headersOf(HttpHeaders.ContentType, "application/json; charset=utf-8"),
         )
     }
@@ -58,7 +58,7 @@ object KtorEngineMocked {
         "/genre/12" -> readResourceFile("/api/responses/genre/get_genre_id.json")
         "/genre/0/artists" -> readResourceFile("/api/responses/genre/get_genre_artists.json")
         "/genre/0/podcasts" -> {
-            Logger.i("Json not have data")
+            Logger.Companion.i("Json not have data")
             // TODO: find with data
             readResourceFile("/api/responses/genre/get_genre_podcasts.json")
         }
@@ -69,7 +69,7 @@ object KtorEngineMocked {
         "/playlist/4341978/fans" -> readResourceFile("/api/responses/playlist/get_playlist_fans.json") // Faked
         "/playlist/908622995/tracks" -> readResourceFile("/api/responses/playlist/get_playlist_tracks.json")
         "/playlist/908622995/radio" -> {
-            Logger.i("Json not have data")
+            Logger.Companion.i("Json not have data")
             // TODO: find with data
             readResourceFile("/api/responses/playlist/get_playlist_radio.json")
         }
@@ -112,8 +112,12 @@ object KtorEngineMocked {
         "/track/3135556" -> readResourceFile("/api/responses/track/get_track.json")
         "/track/isrc:GBDUW0000061" -> readResourceFile("/api/responses/track/get_track_isrc.json")
         "/user/2616835602" -> readResourceFile("/api/responses/user/get_user_id.json")
+
+        // GW API
+        "/ajax/gw-light.php/.?method=deezer.getUserData&api_Version=1.0&input=3&api_token=null" ->
+            readResourceFile("/gw/responses/get_user_data.json")
         else -> {
-            Logger.e("Mock request not mapped $path")
+            Logger.Companion.e("Mock request not mapped $path")
             readResourceFile("/api/responses/get_error.json")
         }
     }

@@ -1,4 +1,3 @@
-import de.jensklingenberg.ktorfit.gradle.ErrorCheckingMode
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
@@ -43,14 +42,10 @@ kotlin {
     }
 }
 
-ktorfit {
-    errorCheckingMode = ErrorCheckingMode.ERROR
-}
-
 kover {
     reports.filters.excludes {
-        classes("$group.deezerSdk.api.routes.*ImplKt", "$group.deezerSdk.api.routes.*Provider")
-        inheritedFrom("$group.deezerSdk.api.routes.*")
+        classes("$group.deezerSdk.*.routes.*ImplKt", "$group.deezerSdk.*.routes.*Provider")
+        inheritedFrom("$group.deezerSdk.*.routes.*")
     }
 }
 
@@ -69,7 +64,7 @@ dokka {
         reportUndocumented = true
         perPackageOption {
             // TODO find solution to include interfaces
-            matchingRegex = "io\\.github\\.kingg22\\.deezerSdk\\.api\\.routes\\.*"
+            matchingRegex = "io\\.github\\.kingg22\\.deezerSdk\\..*\\.routes\\.*"
             suppress = true
         }
     }
