@@ -2,6 +2,7 @@ package io.github.kingg22.deezerSdk
 
 import co.touchlab.kermit.Logger
 import com.goncalossilva.resources.Resource
+import io.github.kingg22.deezerSdk.gw.DeezerGwClientTest.Companion.GW_TOKEN
 import io.ktor.client.engine.*
 import io.ktor.client.engine.mock.*
 import io.ktor.http.*
@@ -116,8 +117,10 @@ object KtorEngineMocked {
         // GW API
         "/ajax/gw-light.php/.?method=deezer.getUserData&api_version=1.0&input=3&api_token=null" ->
             readResourceFile("/gw/responses/get_user_data.json")
-        "/ajax/gw-light.php/.?api_token=vMPAW6plSgYjAeGI_NWP3dsMaEVxh7uS&method=song.getData&api_version=1.0&input=3" ->
+        "/ajax/gw-light.php/.?api_token=$GW_TOKEN&method=song.getData&api_version=1.0&input=3" ->
             readResourceFile("/gw/responses/get_song_data.json")
+        "/ajax/gw-light.php/.?api_token=$GW_TOKEN&method=song.getListByAlbum&api_version=1.0&input=3" ->
+            readResourceFile("/gw/responses/get_songs_album.json")
         else -> {
             Logger.Companion.e("Mock request not mapped $path")
             readResourceFile("/api/responses/get_error.json")
