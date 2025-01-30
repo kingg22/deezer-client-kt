@@ -114,8 +114,10 @@ object KtorEngineMocked {
         "/user/2616835602" -> readResourceFile("/api/responses/user/get_user_id.json")
 
         // GW API
-        "/ajax/gw-light.php/.?method=deezer.getUserData&api_Version=1.0&input=3&api_token=null" ->
+        "/ajax/gw-light.php/.?method=deezer.getUserData&api_version=1.0&input=3&api_token=null" ->
             readResourceFile("/gw/responses/get_user_data.json")
+        "/ajax/gw-light.php/.?api_token=vMPAW6plSgYjAeGI_NWP3dsMaEVxh7uS&method=song.getData&api_version=1.0&input=3" ->
+            readResourceFile("/gw/responses/get_song_data.json")
         else -> {
             Logger.Companion.e("Mock request not mapped $path")
             readResourceFile("/api/responses/get_error.json")
