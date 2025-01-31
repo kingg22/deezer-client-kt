@@ -5,6 +5,7 @@ import io.ktor.client.engine.*
 import io.ktor.client.plugins.*
 import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.plugins.cookies.*
+import io.ktor.client.plugins.logging.*
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
 import io.ktor.utils.io.charsets.*
@@ -58,6 +59,14 @@ internal object HttpClientProvider {
             install(HttpRequestRetry) {
                 maxRetries = maxRetryCount
                 exponentialDelay()
+            }
+            install(Logging) {
+                logger = object : Logger {
+                    override fun log(message: String) {
+                        co.touchlab.kermit.Logger.d("HttpClient") { message }
+                    }
+                }
+                level = LogLevel.INFO
             }
 
             defaultRequest {
