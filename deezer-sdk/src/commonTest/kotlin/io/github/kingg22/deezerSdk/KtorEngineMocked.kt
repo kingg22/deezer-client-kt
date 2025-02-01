@@ -123,6 +123,9 @@ object KtorEngineMocked {
             readResourceFile("/gw/responses/get_songs_album.json")
         "/ajax/gw-light.php/.?api_token=$GW_TOKEN&method=playlist.getSongs&api_version=1.0&input=3" ->
             readResourceFile("/gw/responses/get_songs_playlist.json")
+
+        // Media API
+        "/v1/get_url" -> readResourceFile("/media/responses/get_medias.json")
         else -> {
             Logger.Companion.e("Mock request not mapped $path")
             readResourceFile("/api/responses/get_error.json")
