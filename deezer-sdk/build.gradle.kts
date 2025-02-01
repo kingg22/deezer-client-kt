@@ -36,9 +36,6 @@ kotlin {
         commonTest.dependencies {
             implementation(libs.bundles.testing)
         }
-        jvmTest.dependencies {
-            implementation(libs.ktor.engine.okhttp)
-        }
     }
 }
 
