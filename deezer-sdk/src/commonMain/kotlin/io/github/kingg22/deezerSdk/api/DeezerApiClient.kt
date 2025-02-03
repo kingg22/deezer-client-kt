@@ -135,11 +135,7 @@ object DeezerApiClient {
         return this
     }
 
-    fun close() {
-        if (::httpClient.isInitialized) {
-            httpClient.close()
-        }
-    }
+    fun isInitialized(): Boolean = ::httpClient.isInitialized
 
     /**
      * Executes an HTTP request asynchronously and deserializes the response body into the specified type [T].
