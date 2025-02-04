@@ -87,7 +87,9 @@ internal object HttpClientProvider {
     enum class DeezerApiSupported(val baseUrl: String) {
         API_DEEZER("https://api.deezer.com/"),
         GW_DEEZER("https://www.deezer.com/ajax/gw-light.php/"),
-        MEDIA_DEEZER("https://media.deezer.com/v1/get_url/"),
+
+        /** **Don't contain `/` at the end** */
+        MEDIA_DEEZER("https://media.deezer.com/v1/get_url"),
         ;
 
         companion object {
