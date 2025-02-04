@@ -117,6 +117,8 @@ object KtorEngineMocked {
         // GW API
         "/ajax/gw-light.php/.?method=deezer.getUserData&api_version=1.0&input=3&api_token=null" ->
             readResourceFile("/gw/responses/get_user_data.json")
+        "/ajax/gw-light.php/.?method=deezer.getUserData&api_version=1.0&input=1&api_token=null" ->
+            readResourceFile("/gw/responses/error.json")
         "/ajax/gw-light.php/.?api_token=$GW_TOKEN&method=song.getData&api_version=1.0&input=3" ->
             readResourceFile("/gw/responses/get_song_data.json")
         "/ajax/gw-light.php/.?api_token=$GW_TOKEN&method=song.getListByAlbum&api_version=1.0&input=3" ->
