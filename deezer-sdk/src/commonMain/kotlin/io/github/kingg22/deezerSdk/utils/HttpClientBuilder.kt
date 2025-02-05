@@ -8,6 +8,7 @@ import io.github.kingg22.deezerSdk.utils.HttpClientProvider.getClient
 import io.ktor.client.*
 import io.ktor.client.engine.*
 import io.ktor.client.plugins.cookies.*
+import io.ktor.client.plugins.logging.LogLevel
 import kotlin.time.Duration
 
 class HttpClientBuilder {
@@ -28,6 +29,9 @@ class HttpClientBuilder {
     /** Specifies the HttpClientEngine to be used explicit. Default automatically set by Ktor. */
     var httpEngine: HttpClientEngine? = null
 
+    /** Defines the logging level for HTTP requests and responses. Default is [LogLevel.INFO]. */
+    var httpLogLevel: LogLevel = LogLevel.INFO
+
     /** Sets a custom user-agent for the HttpClient. */
     fun userAgent(userAgent: String) = apply {
         this.userAgent = userAgent
@@ -46,6 +50,11 @@ class HttpClientBuilder {
     /** Sets the max retry count for requests. Default 3 */
     fun maxRetryCount(count: Int) = apply {
         this.maxRetryCount = count
+    }
+
+    /** Sets the logging level for HTTP requests and responses. Default Info */
+    fun httpLogLevel(logLevel: LogLevel) = apply {
+        this.httpLogLevel = logLevel
     }
 
     /** Specifies the HttpClientEngine to be used explicit. Default automatically set by Ktor. */
@@ -75,6 +84,7 @@ class HttpClientBuilder {
         timeout,
         httpEngine,
         cookiesStorage,
+        httpLogLevel,
         customHttpConfig,
     )
 

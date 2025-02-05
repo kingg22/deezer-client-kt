@@ -33,6 +33,7 @@ internal object HttpClientProvider {
         timeout: Duration = DEFAULT_MAX_RETRY_TIMEOUT,
         engine: HttpClientEngine? = null,
         cookiesStorage: CookiesStorage = DEFAULT_COOKIE_STORAGE,
+        logLevel: LogLevel = LogLevel.INFO,
         modifiers: List<HttpClientConfig<*>.() -> Unit> = listOf(),
     ): HttpClient {
         require(userAgent.isNotBlank())
@@ -66,7 +67,7 @@ internal object HttpClientProvider {
                         co.touchlab.kermit.Logger.d("HttpClient") { message }
                     }
                 }
-                level = LogLevel.INFO
+                level = logLevel
             }
 
             defaultRequest {
