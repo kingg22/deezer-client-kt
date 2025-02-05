@@ -131,6 +131,8 @@ object KtorEngineMocked {
             readResourceFile("/gw/responses/get_album_data.json")
         "/ajax/gw-light.php/.?api_token=$GW_TOKEN&method=album.getDiscography&api_version=1.0&input=3" ->
             readResourceFile("/gw/responses/get_album_discography.json")
+        "/ajax/gw-light.php/.?api_token=$GW_TOKEN&method=song.getListData&api_version=1.0&input=3" ->
+            readResourceFile("/gw/responses/get_songs_data.json")
 
         // Media API
         "/v1/get_url" -> readResourceFile("/media/responses/get_medias.json")
