@@ -141,6 +141,8 @@ object KtorEngineMocked {
             readResourceFile("/gw/responses/artist/get_artist_top_tracks.json")
         "/ajax/gw-light.php/.?api_token=$GW_TOKEN&method=song.getFavoriteIds&api_version=1.0&input=3" ->
             readResourceFile("/gw/responses/tracks/get_tracks_favorite_id.json")
+        "/ajax/gw-light.php/.?api_token=$GW_TOKEN&method=deezer.pageProfile&api_version=1.0&input=3" ->
+            readResourceFile("/gw/responses/get_user_page.json")
 
         // Media API
         "/v1/get_url" -> readResourceFile("/media/responses/get_medias.json")
