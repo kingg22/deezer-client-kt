@@ -1,16 +1,12 @@
 package io.github.kingg22.deezerSdk.api.routes
 
+import io.github.kingg22.deezerSdk.KtorEngineMocked.getJsonFromPath
+import io.github.kingg22.deezerSdk.KtorEngineMocked.jsonSerializer
 import io.github.kingg22.deezerSdk.api.DeezerApiClientTest.Companion.client
-import io.github.kingg22.deezerSdk.api.KtorEngineMocked.getJsonFromPath
-import io.github.kingg22.deezerSdk.api.KtorEngineMocked.jsonSerializer
 import io.github.kingg22.deezerSdk.api.objects.Genre
 import io.kotest.assertions.json.shouldEqualJson
 import kotlinx.coroutines.test.runTest
-import kotlin.test.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertNotEquals
-import kotlin.test.assertNull
-import kotlin.test.assertTrue
+import kotlin.test.*
 
 class GenreRoutesTest {
     @Test

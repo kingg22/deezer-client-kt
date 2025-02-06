@@ -1,7 +1,8 @@
-package io.github.kingg22.deezerSdk.api
+package io.github.kingg22.deezerSdk
 
 import co.touchlab.kermit.Logger
 import com.goncalossilva.resources.Resource
+import io.github.kingg22.deezerSdk.gw.DeezerGwClientTest.Companion.GW_TOKEN
 import io.ktor.client.engine.*
 import io.ktor.client.engine.mock.*
 import io.ktor.http.*
@@ -20,10 +21,10 @@ object KtorEngineMocked {
     fun readResourceFile(path: String): String =
         Resource("src/commonTest/resources/io/github/kingg22/deezerSdk/$path").readText()
 
-    fun createMockEngine(): HttpClientEngine = MockEngine {
+    fun createMockEngine(): HttpClientEngine = MockEngine.Companion {
         respond(
             content = getJsonFromPath(it.url.fullPath),
-            status = HttpStatusCode.OK,
+            status = HttpStatusCode.Companion.OK,
             headers = headersOf(HttpHeaders.ContentType, "application/json; charset=utf-8"),
         )
     }
@@ -58,7 +59,7 @@ object KtorEngineMocked {
         "/genre/12" -> readResourceFile("/api/responses/genre/get_genre_id.json")
         "/genre/0/artists" -> readResourceFile("/api/responses/genre/get_genre_artists.json")
         "/genre/0/podcasts" -> {
-            Logger.i("Json not have data")
+            Logger.Companion.i("Json not have data")
             // TODO: find with data
             readResourceFile("/api/responses/genre/get_genre_podcasts.json")
         }
@@ -69,7 +70,7 @@ object KtorEngineMocked {
         "/playlist/4341978/fans" -> readResourceFile("/api/responses/playlist/get_playlist_fans.json") // Faked
         "/playlist/908622995/tracks" -> readResourceFile("/api/responses/playlist/get_playlist_tracks.json")
         "/playlist/908622995/radio" -> {
-            Logger.i("Json not have data")
+            Logger.Companion.i("Json not have data")
             // TODO: find with data
             readResourceFile("/api/responses/playlist/get_playlist_radio.json")
         }
@@ -112,8 +113,41 @@ object KtorEngineMocked {
         "/track/3135556" -> readResourceFile("/api/responses/track/get_track.json")
         "/track/isrc:GBDUW0000061" -> readResourceFile("/api/responses/track/get_track_isrc.json")
         "/user/2616835602" -> readResourceFile("/api/responses/user/get_user_id.json")
+
+        // GW API
+        "/ajax/gw-light.php/.?method=deezer.getUserData&api_version=1.0&input=3&api_token=null" ->
+            readResourceFile("/gw/responses/get_user_data.json")
+        "/ajax/gw-light.php/.?method=deezer.getUserData&api_version=1.0&input=1&api_token=null" ->
+            readResourceFile("/gw/responses/error.json")
+        "/ajax/gw-light.php/.?api_token=$GW_TOKEN&method=song.getData&api_version=1.0&input=3" ->
+            readResourceFile("/gw/responses/get_song_data.json")
+        "/ajax/gw-light.php/.?api_token=$GW_TOKEN&method=song.getListByAlbum&api_version=1.0&input=3" ->
+            readResourceFile("/gw/responses/get_songs_album.json")
+        "/ajax/gw-light.php/.?api_token=$GW_TOKEN&method=playlist.getSongs&api_version=1.0&input=3" ->
+            readResourceFile("/gw/responses/get_songs_playlist.json")
+        "/ajax/gw-light.php/.?api_token=$GW_TOKEN&method=deezer.pageSearch&api_version=1.0&input=3" ->
+            readResourceFile("/gw/responses/search_eminem.json")
+        "/ajax/gw-light.php/.?api_token=$GW_TOKEN&method=album.getData&api_version=1.0&input=3" ->
+            readResourceFile("/gw/responses/get_album_data.json")
+        "/ajax/gw-light.php/.?api_token=$GW_TOKEN&method=album.getDiscography&api_version=1.0&input=3" ->
+            readResourceFile("/gw/responses/get_album_discography.json")
+        "/ajax/gw-light.php/.?api_token=$GW_TOKEN&method=song.getListData&api_version=1.0&input=3" ->
+            readResourceFile("/gw/responses/get_songs_data.json")
+        "/ajax/gw-light.php/.?api_token=$GW_TOKEN&method=deezer.pageTrack&api_version=1.0&input=3" ->
+            readResourceFile("/gw/responses/get_track_page.json")
+        "/ajax/gw-light.php/.?api_token=$GW_TOKEN&method=artist.getData&api_version=1.0&input=3" ->
+            readResourceFile("/gw/responses/artist/get_artist_data.json")
+        "/ajax/gw-light.php/.?api_token=$GW_TOKEN&method=artist.getTopTrack&api_version=1.0&input=3" ->
+            readResourceFile("/gw/responses/artist/get_artist_top_tracks.json")
+        "/ajax/gw-light.php/.?api_token=$GW_TOKEN&method=song.getFavoriteIds&api_version=1.0&input=3" ->
+            readResourceFile("/gw/responses/tracks/get_tracks_favorite_id.json")
+        "/ajax/gw-light.php/.?api_token=$GW_TOKEN&method=deezer.pageProfile&api_version=1.0&input=3" ->
+            readResourceFile("/gw/responses/get_user_page.json")
+
+        // Media API
+        "/v1/get_url" -> readResourceFile("/media/responses/get_medias.json")
         else -> {
-            Logger.e("Mock request not mapped $path")
+            Logger.Companion.e("Mock request not mapped $path")
             readResourceFile("/api/responses/get_error.json")
         }
     }

@@ -1,4 +1,6 @@
-import de.jensklingenberg.ktorfit.gradle.ErrorCheckingMode
+import com.vanniktech.maven.publish.JavadocJar
+import com.vanniktech.maven.publish.KotlinMultiplatform
+import com.vanniktech.maven.publish.SonatypeHost
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
@@ -11,6 +13,8 @@ plugins {
     alias(libs.plugins.ksp)
     alias(libs.plugins.ktorfit)
     alias(libs.plugins.ktlint)
+    alias(libs.plugins.changelog)
+    alias(libs.plugins.vanniktechMavenPublish)
 }
 
 group = "io.github.kingg22"
@@ -26,7 +30,6 @@ kotlin {
 
     jvm()
     linuxX64()
-    mingwX64()
 
     sourceSets {
         commonMain.dependencies {
@@ -37,20 +40,13 @@ kotlin {
         commonTest.dependencies {
             implementation(libs.bundles.testing)
         }
-        jvmTest.dependencies {
-            implementation(libs.ktor.engine.okhttp)
-        }
     }
-}
-
-ktorfit {
-    errorCheckingMode = ErrorCheckingMode.ERROR
 }
 
 kover {
     reports.filters.excludes {
-        classes("$group.deezerSdk.api.routes.*ImplKt", "$group.deezerSdk.api.routes.*Provider")
-        inheritedFrom("$group.deezerSdk.api.routes.*")
+        classes("$group.deezerSdk.*.routes.*ImplKt", "$group.deezerSdk.*.routes.*Provider")
+        inheritedFrom("$group.deezerSdk.*.routes.*")
     }
 }
 
@@ -69,7 +65,7 @@ dokka {
         reportUndocumented = true
         perPackageOption {
             // TODO find solution to include interfaces
-            matchingRegex = "io\\.github\\.kingg22\\.deezerSdk\\.api\\.routes\\.*"
+            matchingRegex = "io\\.github\\.kingg22\\.deezerSdk\\..*\\.routes\\.*"
             suppress = true
         }
     }
@@ -84,5 +80,44 @@ android {
     }
     defaultConfig {
         minSdk = libs.versions.android.minSdk.get().toInt()
+    }
+}
+
+changelog {
+    version.set(project.version.toString())
+}
+
+mavenPublishing {
+    configure(KotlinMultiplatform(JavadocJar.Dokka("dokkaGenerate"), true, listOf("debug", "release")))
+    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
+    signAllPublications()
+    mavenPublishing {
+        coordinates("$group", "deezerSdk", project.version.toString())
+
+        pom {
+            name.set("Unofficial Deezer SDK")
+            description.set("An unofficial Deezer SDK for Kotlin KMP and Java")
+            inceptionYear.set("2025")
+            url.set("https://github.com/Kingg22/deemix-kt")
+            licenses {
+                license {
+                    name.set("GNU General Public License v3.0")
+                    url.set("https://github.com/Kingg22/deemix-kt/blob/main/LICENSE")
+                    distribution.set("https://www.gnu.org/licenses/gpl-3.0.html#license-text")
+                }
+            }
+            developers {
+                developer {
+                    id.set("Kingg22")
+                    name.set("Rey")
+                    url.set("https://github.com/Kingg22/")
+                }
+            }
+            scm {
+                url.set("https://github.com/Kingg22/deemix-kt")
+                connection.set("scm:git:git://github.com/Kingg22/deemix-kt.git")
+                developerConnection.set("scm:git:ssh://git@github.com/Kingg22/deemix-kt.git")
+            }
+        }
     }
 }

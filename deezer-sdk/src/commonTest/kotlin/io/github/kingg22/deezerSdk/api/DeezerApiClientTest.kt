@@ -1,7 +1,8 @@
 package io.github.kingg22.deezerSdk.api
 
-import io.github.kingg22.deezerSdk.api.KtorEngineMocked.getJsonFromPath
-import io.github.kingg22.deezerSdk.api.KtorEngineMocked.jsonSerializer
+import io.github.kingg22.deezerSdk.KtorEngineMocked
+import io.github.kingg22.deezerSdk.KtorEngineMocked.getJsonFromPath
+import io.github.kingg22.deezerSdk.KtorEngineMocked.jsonSerializer
 import io.github.kingg22.deezerSdk.api.objects.Episode
 import io.github.kingg22.deezerSdk.api.objects.Infos
 import io.github.kingg22.deezerSdk.exceptions.DeezerSdkException
@@ -9,10 +10,12 @@ import io.github.kingg22.deezerSdk.utils.HttpClientBuilder.Companion.httpClientB
 import io.kotest.assertions.json.shouldEqualJson
 import kotlinx.coroutines.test.runTest
 import kotlinx.datetime.LocalDateTime
+import kotlin.jvm.JvmStatic
 import kotlin.test.*
 
 class DeezerApiClientTest {
     companion object {
+        @JvmStatic
         val client = DeezerApiClient.initialize(
             httpClientBuilder {
                 httpEngine(KtorEngineMocked.createMockEngine())

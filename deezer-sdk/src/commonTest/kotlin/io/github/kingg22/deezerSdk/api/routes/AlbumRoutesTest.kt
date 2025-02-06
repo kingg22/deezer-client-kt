@@ -1,8 +1,8 @@
 package io.github.kingg22.deezerSdk.api.routes
 
+import io.github.kingg22.deezerSdk.KtorEngineMocked.getJsonFromPath
+import io.github.kingg22.deezerSdk.KtorEngineMocked.jsonSerializer
 import io.github.kingg22.deezerSdk.api.DeezerApiClientTest.Companion.client
-import io.github.kingg22.deezerSdk.api.KtorEngineMocked.getJsonFromPath
-import io.github.kingg22.deezerSdk.api.KtorEngineMocked.jsonSerializer
 import io.github.kingg22.deezerSdk.api.objects.Album
 import io.github.kingg22.deezerSdk.api.objects.User
 import io.kotest.assertions.json.shouldEqualJson

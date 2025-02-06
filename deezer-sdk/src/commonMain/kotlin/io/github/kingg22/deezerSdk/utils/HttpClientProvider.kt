@@ -5,6 +5,7 @@ import io.ktor.client.engine.*
 import io.ktor.client.plugins.*
 import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.plugins.cookies.*
+import io.ktor.client.plugins.logging.*
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
 import io.ktor.utils.io.charsets.*
@@ -32,6 +33,7 @@ internal object HttpClientProvider {
         timeout: Duration = DEFAULT_MAX_RETRY_TIMEOUT,
         engine: HttpClientEngine? = null,
         cookiesStorage: CookiesStorage = DEFAULT_COOKIE_STORAGE,
+        logLevel: LogLevel = LogLevel.INFO,
         modifiers: List<HttpClientConfig<*>.() -> Unit> = listOf(),
     ): HttpClient {
         require(userAgent.isNotBlank())
@@ -59,6 +61,14 @@ internal object HttpClientProvider {
                 maxRetries = maxRetryCount
                 exponentialDelay()
             }
+            install(Logging) {
+                logger = object : Logger {
+                    override fun log(message: String) {
+                        co.touchlab.kermit.Logger.d("HttpClient") { message }
+                    }
+                }
+                level = logLevel
+            }
 
             defaultRequest {
                 userAgent(userAgent)
@@ -78,7 +88,9 @@ internal object HttpClientProvider {
     enum class DeezerApiSupported(val baseUrl: String) {
         API_DEEZER("https://api.deezer.com/"),
         GW_DEEZER("https://www.deezer.com/ajax/gw-light.php/"),
-        MEDIA_DEEZER("https://media.deezer.com/v1/get_url/"),
+
+        /** **Don't contain `/` at the end** */
+        MEDIA_DEEZER("https://media.deezer.com/v1/get_url"),
         ;
 
         companion object {
