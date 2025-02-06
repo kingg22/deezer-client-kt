@@ -137,9 +137,10 @@ object KtorEngineMocked {
             readResourceFile("/gw/responses/get_track_page.json")
         "/ajax/gw-light.php/.?api_token=$GW_TOKEN&method=artist.getData&api_version=1.0&input=3" ->
             readResourceFile("/gw/responses/artist/get_artist_data.json")
-
         "/ajax/gw-light.php/.?api_token=$GW_TOKEN&method=artist.getTopTrack&api_version=1.0&input=3" ->
             readResourceFile("/gw/responses/artist/get_artist_top_tracks.json")
+        "/ajax/gw-light.php/.?api_token=$GW_TOKEN&method=song.getFavoriteIds&api_version=1.0&input=3" ->
+            readResourceFile("/gw/responses/tracks/get_tracks_favorite_id.json")
 
         // Media API
         "/v1/get_url" -> readResourceFile("/media/responses/get_medias.json")
