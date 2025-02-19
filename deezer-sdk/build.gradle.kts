@@ -8,7 +8,7 @@ plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinPluginSerialization)
     alias(libs.plugins.dokka)
-    alias(libs.plugins.kotlinKover)
+    alias(libs.plugins.kotlinxKover)
     alias(libs.plugins.kotlinxResources)
     alias(libs.plugins.ksp)
     alias(libs.plugins.ktorfit)
@@ -85,6 +85,10 @@ android {
 
 changelog {
     version.set(project.version.toString())
+}
+
+ktorfit {
+    kotlinVersion = "2.1.0"
 }
 
 mavenPublishing {
