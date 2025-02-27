@@ -5,9 +5,11 @@ import io.github.kingg22.deezerSdk.utils.HttpClientProvider.DEFAULT_MAX_RETRY_AT
 import io.github.kingg22.deezerSdk.utils.HttpClientProvider.DEFAULT_MAX_RETRY_TIMEOUT
 import io.github.kingg22.deezerSdk.utils.HttpClientProvider.DEFAULT_USER_AGENT
 import io.github.kingg22.deezerSdk.utils.HttpClientProvider.getClient
-import io.ktor.client.*
-import io.ktor.client.engine.*
-import io.ktor.client.plugins.cookies.*
+import io.ktor.client.HttpClient
+import io.ktor.client.HttpClientConfig
+import io.ktor.client.engine.HttpClientEngine
+import io.ktor.client.plugins.cookies.AcceptAllCookiesStorage
+import io.ktor.client.plugins.cookies.CookiesStorage
 import io.ktor.client.plugins.logging.LogLevel
 import kotlin.time.Duration
 

@@ -7,10 +7,10 @@ import io.github.kingg22.deezerSdk.api.routes.createAlbumRoutes
 import io.github.kingg22.deezerSdk.exceptions.DeezerApiException
 import io.github.kingg22.deezerSdk.utils.HttpClientBuilder
 import io.github.kingg22.deezerSdk.utils.HttpClientProvider
-import io.ktor.client.*
-import io.ktor.client.plugins.*
-import io.ktor.client.statement.*
-import io.ktor.http.*
+import io.ktor.client.HttpClient
+import io.ktor.client.plugins.HttpResponseValidator
+import io.ktor.client.statement.bodyAsText
+import io.ktor.http.isSuccess
 import kotlinx.coroutines.test.runTest
 import kotlinx.serialization.json.Json
 import kotlin.test.Ignore
