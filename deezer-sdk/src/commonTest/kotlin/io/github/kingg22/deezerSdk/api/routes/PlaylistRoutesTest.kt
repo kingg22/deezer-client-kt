@@ -7,7 +7,12 @@ import io.github.kingg22.deezerSdk.api.objects.Playlist
 import io.github.kingg22.deezerSdk.api.objects.User
 import io.kotest.assertions.json.shouldEqualJson
 import kotlinx.coroutines.test.runTest
-import kotlin.test.*
+import kotlin.test.Ignore
+import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertNotEquals
+import kotlin.test.assertNotNull
+import kotlin.test.assertNull
 
 class PlaylistRoutesTest {
     @Test

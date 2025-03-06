@@ -3,7 +3,12 @@ package io.github.kingg22.deezerSdk.api.routes
 import de.jensklingenberg.ktorfit.http.GET
 import de.jensklingenberg.ktorfit.http.Path
 import de.jensklingenberg.ktorfit.http.Query
-import io.github.kingg22.deezerSdk.api.objects.*
+import io.github.kingg22.deezerSdk.api.objects.Album
+import io.github.kingg22.deezerSdk.api.objects.Artist
+import io.github.kingg22.deezerSdk.api.objects.PaginatedResponse
+import io.github.kingg22.deezerSdk.api.objects.Playlist
+import io.github.kingg22.deezerSdk.api.objects.Track
+import io.github.kingg22.deezerSdk.api.objects.User
 
 /**
  * Defines all endpoints related to [io.github.kingg22.deezerSdk.api.objects.Artist]

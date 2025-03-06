@@ -6,7 +6,11 @@ import io.github.kingg22.deezerSdk.api.DeezerApiClientTest.Companion.client
 import io.github.kingg22.deezerSdk.api.objects.Genre
 import io.kotest.assertions.json.shouldEqualJson
 import kotlinx.coroutines.test.runTest
-import kotlin.test.*
+import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertNotEquals
+import kotlin.test.assertNull
+import kotlin.test.assertTrue
 
 class GenreRoutesTest {
     @Test

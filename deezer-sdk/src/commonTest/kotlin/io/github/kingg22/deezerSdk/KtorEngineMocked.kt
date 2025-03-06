@@ -3,9 +3,13 @@ package io.github.kingg22.deezerSdk
 import co.touchlab.kermit.Logger
 import com.goncalossilva.resources.Resource
 import io.github.kingg22.deezerSdk.gw.DeezerGwClientTest.Companion.GW_TOKEN
-import io.ktor.client.engine.*
-import io.ktor.client.engine.mock.*
-import io.ktor.http.*
+import io.ktor.client.engine.HttpClientEngine
+import io.ktor.client.engine.mock.MockEngine
+import io.ktor.client.engine.mock.respond
+import io.ktor.http.HttpHeaders
+import io.ktor.http.HttpStatusCode
+import io.ktor.http.fullPath
+import io.ktor.http.headersOf
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 
@@ -21,7 +25,7 @@ object KtorEngineMocked {
     fun readResourceFile(path: String): String =
         Resource("src/commonTest/resources/io/github/kingg22/deezerSdk/$path").readText()
 
-    fun createMockEngine(): HttpClientEngine = MockEngine.Companion {
+    fun createMockEngine(): HttpClientEngine = MockEngine {
         respond(
             content = getJsonFromPath(it.url.fullPath),
             status = HttpStatusCode.Companion.OK,
@@ -117,30 +121,43 @@ object KtorEngineMocked {
         // GW API
         "/ajax/gw-light.php/.?method=deezer.getUserData&api_version=1.0&input=3&api_token=null" ->
             readResourceFile("/gw/responses/get_user_data.json")
+
         "/ajax/gw-light.php/.?method=deezer.getUserData&api_version=1.0&input=1&api_token=null" ->
             readResourceFile("/gw/responses/error.json")
+
         "/ajax/gw-light.php/.?api_token=$GW_TOKEN&method=song.getData&api_version=1.0&input=3" ->
             readResourceFile("/gw/responses/get_song_data.json")
+
         "/ajax/gw-light.php/.?api_token=$GW_TOKEN&method=song.getListByAlbum&api_version=1.0&input=3" ->
             readResourceFile("/gw/responses/get_songs_album.json")
+
         "/ajax/gw-light.php/.?api_token=$GW_TOKEN&method=playlist.getSongs&api_version=1.0&input=3" ->
             readResourceFile("/gw/responses/get_songs_playlist.json")
+
         "/ajax/gw-light.php/.?api_token=$GW_TOKEN&method=deezer.pageSearch&api_version=1.0&input=3" ->
             readResourceFile("/gw/responses/search_eminem.json")
+
         "/ajax/gw-light.php/.?api_token=$GW_TOKEN&method=album.getData&api_version=1.0&input=3" ->
             readResourceFile("/gw/responses/get_album_data.json")
+
         "/ajax/gw-light.php/.?api_token=$GW_TOKEN&method=album.getDiscography&api_version=1.0&input=3" ->
             readResourceFile("/gw/responses/get_album_discography.json")
+
         "/ajax/gw-light.php/.?api_token=$GW_TOKEN&method=song.getListData&api_version=1.0&input=3" ->
             readResourceFile("/gw/responses/get_songs_data.json")
+
         "/ajax/gw-light.php/.?api_token=$GW_TOKEN&method=deezer.pageTrack&api_version=1.0&input=3" ->
             readResourceFile("/gw/responses/get_track_page.json")
+
         "/ajax/gw-light.php/.?api_token=$GW_TOKEN&method=artist.getData&api_version=1.0&input=3" ->
             readResourceFile("/gw/responses/artist/get_artist_data.json")
+
         "/ajax/gw-light.php/.?api_token=$GW_TOKEN&method=artist.getTopTrack&api_version=1.0&input=3" ->
             readResourceFile("/gw/responses/artist/get_artist_top_tracks.json")
+
         "/ajax/gw-light.php/.?api_token=$GW_TOKEN&method=song.getFavoriteIds&api_version=1.0&input=3" ->
             readResourceFile("/gw/responses/tracks/get_tracks_favorite_id.json")
+
         "/ajax/gw-light.php/.?api_token=$GW_TOKEN&method=deezer.pageProfile&api_version=1.0&input=3" ->
             readResourceFile("/gw/responses/get_user_page.json")
 

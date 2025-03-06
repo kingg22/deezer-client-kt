@@ -1,7 +1,7 @@
 package io.github.kingg22.deezerSdk.api.objects
 
 import io.github.kingg22.deezerSdk.api.DeezerApiClient
-import io.ktor.http.*
+import io.ktor.http.takeFrom
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
 import kotlin.coroutines.cancellation.CancellationException
