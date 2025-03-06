@@ -76,7 +76,3 @@ android {
         minSdk = libs.versions.android.minSdk.get().toInt()
     }
 }
-
-ktorfit {
-    kotlinVersion = "2.1.0"
-}
