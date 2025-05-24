@@ -27,7 +27,7 @@ class SearchRoutesTest {
 
     @Test
     fun `Search query with params but query is blank then throws an exception`() {
-        assertFailsWith(IllegalArgumentException::class) { buildAdvanceQuery(q = "    ") }.let {
+        assertFailsWith(IllegalStateException::class) { buildAdvanceQuery(q = "    ") }.let {
             it.message shouldBe "Query cannot be blank"
         }
     }

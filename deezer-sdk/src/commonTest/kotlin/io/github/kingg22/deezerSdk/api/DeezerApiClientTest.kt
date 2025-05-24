@@ -8,9 +8,9 @@ import io.github.kingg22.deezerSdk.api.objects.Infos
 import io.github.kingg22.deezerSdk.exceptions.DeezerSdkException
 import io.github.kingg22.deezerSdk.utils.HttpClientBuilder.Companion.httpClientBuilder
 import io.kotest.assertions.json.shouldEqualJson
+import io.kotest.matchers.string.shouldContainIgnoringCase
 import kotlinx.coroutines.test.runTest
 import kotlinx.datetime.LocalDateTime
-import kotlin.jvm.JvmStatic
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
@@ -31,13 +31,26 @@ class DeezerApiClientTest {
     }
 
     @Test
+    fun `If try to initialize when is already init throw exception`() = runTest {
+        assertFailsWith<IllegalStateException> {
+            client.initialize(
+                httpClientBuilder {
+                    httpEngine = KtorEngineMocked.createMockEngine()
+                },
+            )
+        }.let {
+            it.message shouldContainIgnoringCase "already initialized"
+        }
+    }
+
+    @Test
     fun `If API response boolean throw exception before deserialize`() = runTest {
-        assertFailsWith(DeezerSdkException::class) { client.playlists.getRadio(908622995) }
+        assertFailsWith<DeezerSdkException> { client.playlists.getRadio(908622995) }
     }
 
     @Test
     fun `If API response a error body in 2xx status code throw exception`() = runTest {
-        assertFailsWith(DeezerSdkException::class) { client.users.getById(0) }
+        assertFailsWith<DeezerSdkException> { client.users.getById(0) }
     }
 
     /* -- Episode -- */

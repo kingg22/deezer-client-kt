@@ -14,25 +14,25 @@ import io.ktor.client.plugins.logging.LogLevel
 import kotlin.time.Duration
 
 class HttpClientBuilder {
-    private val customHttpConfig: MutableList<HttpClientConfig<*>.() -> Unit> = mutableListOf()
+    private val customHttpConfig = mutableListOf<HttpClientConfig<*>.() -> Unit>()
 
     /** Sets a custom user-agent for the HttpClient. */
-    var userAgent: String = DEFAULT_USER_AGENT
+    var userAgent = DEFAULT_USER_AGENT
 
     /** Sets a custom cookies storage for the HttpClient. Default [AcceptAllCookiesStorage] */
-    var cookiesStorage: CookiesStorage = DEFAULT_COOKIE_STORAGE
+    var cookiesStorage = DEFAULT_COOKIE_STORAGE
 
     /** Sets a timeout for the HttpClient. Default 20 seg */
-    var timeout: Duration = DEFAULT_MAX_RETRY_TIMEOUT
+    var timeout = DEFAULT_MAX_RETRY_TIMEOUT
 
     /** Sets the max retry count for requests. Default 3 */
-    var maxRetryCount: Int = DEFAULT_MAX_RETRY_ATTEMPTS
+    var maxRetryCount = DEFAULT_MAX_RETRY_ATTEMPTS
 
     /** Specifies the HttpClientEngine to be used explicit. Default automatically set by Ktor. */
     var httpEngine: HttpClientEngine? = null
 
     /** Defines the logging level for HTTP requests and responses. Default is [LogLevel.INFO]. */
-    var httpLogLevel: LogLevel = LogLevel.INFO
+    var httpLogLevel = LogLevel.INFO
 
     /** Sets a custom user-agent for the HttpClient. */
     fun userAgent(userAgent: String) = apply {

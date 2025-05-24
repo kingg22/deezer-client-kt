@@ -35,7 +35,7 @@ interface SearchRoutes {
          *
          * You can mix your search to be more specific.
          * @throws IllegalArgumentException if not provided any arguments
-         * @throws IllegalArgumentException if the query is blank after built
+         * @throws IllegalStateException if the query is blank after built
          *
          * @param q A simple query
          * @param artist The artist name (example: "aloe blacc")
@@ -47,6 +47,9 @@ interface SearchRoutes {
          * @param bpmMin The track's minimum bpm (example: 120)
          * @param bpmMax The track's maximum bpm (example: 200)
          */
+        @JvmStatic
+        @Throws(IllegalArgumentException::class, IllegalStateException::class)
+        @Suppress("kotlin:S107")
         fun buildAdvanceQuery(
             q: String? = null,
             artist: String? = null,
@@ -74,22 +77,23 @@ interface SearchRoutes {
                 "Requires at least 1 parameter to search"
             }
             val query = buildString {
-                q?.let { append("\"$it\"") }
-                artist?.let { append(" artist:\"$it\"") }
-                album?.let { append(" album:\"$it\"") }
-                track?.let { append(" track:\"$it\"") }
-                label?.let { append(" label:\"$it\"") }
+                q.takeIf { !it.isNullOrBlank() }?.let { append("\"$it\"") }
+                artist.takeIf { !it.isNullOrBlank() }?.let { append(" artist:\"$it\"") }
+                album.takeIf { !it.isNullOrBlank() }?.let { append(" album:\"$it\"") }
+                track.takeIf { !it.isNullOrBlank() }?.let { append(" track:\"$it\"") }
+                label.takeIf { !it.isNullOrBlank() }?.let { append(" label:\"$it\"") }
                 durationMin?.let { append(" dur_min:${it.inWholeSeconds}") }
                 durationMax?.let { append(" dur_max:${it.inWholeSeconds}") }
                 bpmMin?.let { append(" bpm_min:$it") }
                 bpmMax?.let { append(" bpm_max:$it") }
-            }.trim().replace(Regex("\"\\s*\""), "").replace(Regex("\\s{2,}"), " ")
-            require(query.isNotEmpty() && query.isNotBlank()) { "Query cannot be blank" }
+            }.trim().replace("\"\\s*\"".toRegex(), "").replace("\\s{2,}".toRegex(), " ")
+            check(query.isNotBlank()) { "Query cannot be blank" }
             return query
         }
 
         /** Shortcut for strict */
-        fun setStrict(strict: Boolean): String? = when (strict) {
+        @JvmStatic
+        fun setStrict(strict: Boolean) = when (strict) {
             true -> "on"
             false -> null
         }

@@ -16,7 +16,7 @@ import kotlinx.serialization.Serializable
 class DeezerApiException(errorCode: Int? = null, private val errorMessage: String? = null, cause: Throwable? = null) :
     DeezerSdkException(errorMessage, cause) {
 
-    private val error: DeezerErrorCode? = errorCode?.let { DeezerErrorCode.fromCode(it) }
+    private val error = errorCode?.let { DeezerErrorCode.fromCode(it) }
 
     /**
      * Returns a more detailed error description, including the error code and message.
@@ -26,7 +26,7 @@ class DeezerApiException(errorCode: Int? = null, private val errorMessage: Strin
     override val message: String
         get() = buildString {
             append("[Deezer API Exception]")
-            // Don't call to super, more detail message
+            // Don't call to super, generate more detail message
             error?.let { append(" [Error: ${it.description} (Code: ${it.code})]") }
             if (!errorMessage.isNullOrBlank()) append(": $errorMessage")
         }
@@ -57,7 +57,8 @@ class DeezerApiException(errorCode: Int? = null, private val errorMessage: Strin
              * Searches for a code in the Deezer Error Code enum.
              * @return [DeezerErrorCode] or null if no element with the provided code is found
              */
-            fun fromCode(code: Int): DeezerErrorCode? = entries.firstOrNull { it.code == code }
+            @JvmStatic
+            fun fromCode(code: Int) = entries.firstOrNull { it.code == code }
         }
     }
 }

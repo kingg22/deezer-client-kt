@@ -25,8 +25,12 @@ import kotlin.time.Duration.Companion.seconds
 internal object HttpClientProvider {
     const val DEFAULT_USER_AGENT: String =
         "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36"
-    val DEFAULT_MAX_RETRY_TIMEOUT = 20.seconds
     const val DEFAULT_MAX_RETRY_ATTEMPTS = 3
+
+    @JvmStatic
+    val DEFAULT_MAX_RETRY_TIMEOUT = 20.seconds
+
+    @JvmStatic
     val DEFAULT_COOKIE_STORAGE: CookiesStorage = AcceptAllCookiesStorage()
 
     /**
@@ -35,6 +39,7 @@ internal object HttpClientProvider {
      * @throws IllegalArgumentException If the provided User-Agent string is empty.
      */
     @OptIn(ExperimentalSerializationApi::class)
+    @Throws(IllegalArgumentException::class)
     fun getClient(
         userAgent: String = DEFAULT_USER_AGENT,
         maxRetryCount: Int = DEFAULT_MAX_RETRY_ATTEMPTS,
@@ -88,16 +93,19 @@ internal object HttpClientProvider {
                 responseCharsetFallback = Charsets.UTF_8
             }
 
-            modifiers.forEach { it.invoke(this) }
+            modifiers.forEach { it(this) }
         }
         return if (engine != null) HttpClient(engine, clientConfig) else HttpClient(clientConfig)
     }
 
     enum class DeezerApiSupported(val baseUrl: String) {
         API_DEEZER("https://api.deezer.com/"),
+
+        @UnofficialDeezerApi
         GW_DEEZER("https://www.deezer.com/ajax/gw-light.php/"),
 
         /** **Don't contain `/` at the end** */
+        @UnofficialDeezerApi
         MEDIA_DEEZER("https://media.deezer.com/v1/get_url"),
         ;
 

@@ -2,6 +2,7 @@ package io.github.kingg22.deezerSdk.api.objects
 
 import io.github.kingg22.deezerSdk.api.DeezerApiClient
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.Transient
 
 /**
  * _Internal_ Represent a Resource of [Deezer API](https://developers.deezer.com/api/).
@@ -16,6 +17,7 @@ abstract class Resource {
 
     companion object {
         /** The [DeezerApiClient] to make operations easy */
+        @Transient
         val client: DeezerApiClient = DeezerApiClient
     }
 

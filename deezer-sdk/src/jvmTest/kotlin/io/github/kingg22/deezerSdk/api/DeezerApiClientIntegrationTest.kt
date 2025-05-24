@@ -2,12 +2,10 @@ package io.github.kingg22.deezerSdk.api
 
 import de.jensklingenberg.ktorfit.ktorfit
 import io.github.kingg22.deezerSdk.api.objects.Error
-import io.github.kingg22.deezerSdk.api.routes.AlbumRoutes
 import io.github.kingg22.deezerSdk.api.routes.createAlbumRoutes
 import io.github.kingg22.deezerSdk.exceptions.DeezerApiException
 import io.github.kingg22.deezerSdk.utils.HttpClientBuilder
 import io.github.kingg22.deezerSdk.utils.HttpClientProvider
-import io.ktor.client.HttpClient
 import io.ktor.client.plugins.HttpResponseValidator
 import io.ktor.client.statement.bodyAsText
 import io.ktor.http.isSuccess
@@ -20,31 +18,29 @@ import kotlin.test.assertEquals
 @Ignore("Prevent abuse of the API when testing")
 class DeezerApiClientIntegrationTest {
     private object DeezerTempClient {
-        val httpClient: HttpClient = HttpClientBuilder.Companion.httpClient {
-            addCustomConfig {
-                HttpResponseValidator {
-                    validateResponse {
-                        if (it.status.isSuccess()) {
-                            try {
-                                val content = Json.decodeFromString<Error>(it.bodyAsText()).error
-                                throw DeezerApiException(
-                                    errorCode = content.code,
-                                    errorMessage = content.message,
-                                )
-                            } catch (_: Exception) {
-                                null
+        private val ktorfit = ktorfit {
+            baseUrl(HttpClientProvider.DeezerApiSupported.API_DEEZER.baseUrl)
+            httpClient(
+                HttpClientBuilder.httpClient {
+                    addCustomConfig {
+                        HttpResponseValidator {
+                            validateResponse {
+                                if (it.status.isSuccess()) {
+                                    runCatching {
+                                        val content = Json.decodeFromString<Error>(it.bodyAsText()).error
+                                        throw DeezerApiException(
+                                            errorCode = content.code,
+                                            errorMessage = content.message,
+                                        )
+                                    }.getOrNull()
+                                }
                             }
                         }
                     }
-                }
-            }
+                },
+            )
         }
-        private val ktorfit =
-            ktorfit {
-                baseUrl(HttpClientProvider.DeezerApiSupported.API_DEEZER.baseUrl)
-                httpClient(httpClient)
-            }
-        val albums: AlbumRoutes = ktorfit.createAlbumRoutes()
+        val albums = ktorfit.createAlbumRoutes()
     }
 
     private val client = DeezerTempClient
