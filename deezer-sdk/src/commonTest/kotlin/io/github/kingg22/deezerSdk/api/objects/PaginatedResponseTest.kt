@@ -12,7 +12,7 @@ import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
 class PaginatedResponseTest {
-    val nextLink = "https://api.deezer.com/search?q=eminem"
+    private val nextLink = "https://api.deezer.com/search?q=eminem"
 
     @Test
     fun `Fetch Next`() = runTest {
@@ -49,8 +49,7 @@ class PaginatedResponseTest {
             artist = Artist(0, ""),
         )
 
-        var tested: PaginatedResponse<Track> =
-            PaginatedResponse(listOf(emptyTrack), next = nextLink)
+        var tested = PaginatedResponse(listOf(emptyTrack), next = nextLink)
         tested = assertNotNull(tested.fetchNext(true))
         tested.data shouldContain emptyTrack
         assertNotNull(tested.next)
@@ -59,7 +58,7 @@ class PaginatedResponseTest {
 
     @Test
     fun `Fetch Next Expand with different type throw exception`() = runTest {
-        val tested = PaginatedResponse<User>(listOf(User(0, "")), next = nextLink)
+        val tested = PaginatedResponse(listOf(User(0, "")), next = nextLink)
         assertFailsWith(IllegalArgumentException::class) { tested.fetchNext<Track>(true) }.let {
             it.message shouldContainIgnoringCase "Requires type equals to expand in fetchNext."
         }

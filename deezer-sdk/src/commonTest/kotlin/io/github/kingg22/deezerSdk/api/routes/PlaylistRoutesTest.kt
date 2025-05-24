@@ -69,8 +69,7 @@ class PlaylistRoutesTest {
         json shouldEqualJson jsonSerializer.encodeToString(result)
     }
 
-    // TODO find result with data
-    @Ignore // exception tested in Deezer Api client
+    @Ignore("TODO find result with data. Exception tested in Deezer Api client")
     @Test
     fun `Fetch Playlist Radio`() = runTest {
         val result = client.playlists.getRadio(908622995)

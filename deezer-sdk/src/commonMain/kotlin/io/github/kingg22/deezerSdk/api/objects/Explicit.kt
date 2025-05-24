@@ -52,7 +52,7 @@ enum class Explicit(val value: Int) {
         fun fromValue(value: Int): Explicit? = entries.firstOrNull { it.value == value }
     }
 
-    object ExplicitSerializer : KSerializer<Explicit> {
+    internal object ExplicitSerializer : KSerializer<Explicit> {
         override val descriptor: SerialDescriptor =
             PrimitiveSerialDescriptor("io.github.kingg22.deezerSdk.api.objects.Explicit", PrimitiveKind.INT)
 

@@ -1,0 +1,10 @@
+{
+  "id": 12,
+  "name": "Música árabe",
+  "picture": "https://api.deezer.com/genre/12/image",
+  "picture_small": "https://cdn-images.dzcdn.net/images/misc/2df05f13d3244dbdd1ae0206b4605cba/56x56-000000-80-0-0.jpg",
+  "picture_medium": "https://cdn-images.dzcdn.net/images/misc/2df05f13d3244dbdd1ae0206b4605cba/250x250-000000-80-0-0.jpg",
+  "picture_big": "https://cdn-images.dzcdn.net/images/misc/2df05f13d3244dbdd1ae0206b4605cba/500x500-000000-80-0-0.jpg",
+  "picture_xl": "https://cdn-images.dzcdn.net/images/misc/2df05f13d3244dbdd1ae0206b4605cba/1000x1000-000000-80-0-0.jpg",
+  "type": "genre"
+}

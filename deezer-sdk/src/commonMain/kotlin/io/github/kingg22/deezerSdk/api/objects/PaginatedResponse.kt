@@ -1,6 +1,7 @@
 package io.github.kingg22.deezerSdk.api.objects
 
 import io.github.kingg22.deezerSdk.api.DeezerApiClient
+import io.github.kingg22.deezerSdk.exceptions.DeezerApiException
 import io.ktor.http.takeFrom
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
@@ -28,7 +29,7 @@ data class PaginatedResponse<T : @Serializable Any>(
     val next: String? = null,
 ) {
     @Transient
-    val client: DeezerApiClient = DeezerApiClient
+    val client = DeezerApiClient
 
     /**
      * Fetch the next page of the search
@@ -39,7 +40,7 @@ data class PaginatedResponse<T : @Serializable Any>(
      * @throws IllegalArgumentException if [data] is empty and try to expand it
      * @throws IllegalArgumentException if [expand] is true and types [R] != [T]
      */
-    @Throws(IllegalArgumentException::class, CancellationException::class)
+    @Throws(IllegalArgumentException::class, DeezerApiException::class, CancellationException::class)
     suspend inline fun <reified R : @Serializable Any> fetchNext(expand: Boolean = false): PaginatedResponse<R>? {
         if (next.isNullOrBlank()) return null
         val result = client.rawExecuteAsync<PaginatedResponse<R>> { url.takeFrom(next) }
@@ -62,6 +63,7 @@ data class PaginatedResponse<T : @Serializable Any>(
      * @param R Type of the response. Required to parse the response
      * @return Null if [prev] is null else [PaginatedResponse]
      */
+    @Throws(DeezerApiException::class, CancellationException::class)
     suspend inline fun <reified R : @Serializable Any> fetchPrevious(): PaginatedResponse<R>? =
         if (prev.isNullOrBlank()) {
             null

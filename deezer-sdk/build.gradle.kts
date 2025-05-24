@@ -44,14 +44,6 @@ kover {
     }
 }
 
-tasks.named("formatKotlinCommonMain") {
-    mustRunAfter(tasks.named("kspCommonMainKotlinMetadata"))
-}
-
-tasks.named("lintKotlinCommonMain") {
-    mustRunAfter(tasks.named("kspCommonMainKotlinMetadata"))
-}
-
 dokka {
     dokkaSourceSets.configureEach {
         skipEmptyPackages = true
@@ -75,4 +67,12 @@ android {
     defaultConfig {
         minSdk = libs.versions.android.minSdk.get().toInt()
     }
+}
+
+ktlint {
+    version.set(libs.versions.ktlint.pinterest.get())
+}
+
+tasks.named("runKtlintCheckOverCommonMainSourceSet") {
+    dependsOn("kspCommonMainKotlinMetadata")
 }

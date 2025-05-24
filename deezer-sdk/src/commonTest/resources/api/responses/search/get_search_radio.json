@@ -1,0 +1,41 @@
+{
+  "data": [
+    {
+      "id": 37635,
+      "title": "Electro Swing",
+      "picture": "https://api.deezer.com/radio/37635/image",
+      "picture_small": "https://cdn-images.dzcdn.net/images/misc/34ad00fadcf9ac34c202dd9c9d1005f1/56x56-000000-80-0-0.jpg",
+      "picture_medium": "https://cdn-images.dzcdn.net/images/misc/34ad00fadcf9ac34c202dd9c9d1005f1/250x250-000000-80-0-0.jpg",
+      "picture_big": "https://cdn-images.dzcdn.net/images/misc/34ad00fadcf9ac34c202dd9c9d1005f1/500x500-000000-80-0-0.jpg",
+      "picture_xl": "https://cdn-images.dzcdn.net/images/misc/34ad00fadcf9ac34c202dd9c9d1005f1/1000x1000-000000-80-0-0.jpg",
+      "tracklist": "https://api.deezer.com/radio/37635/tracks",
+      "md5_image": "34ad00fadcf9ac34c202dd9c9d1005f1",
+      "type": "radio"
+    },
+    {
+      "id": 30621,
+      "title": "Electronic",
+      "picture": "https://api.deezer.com/radio/30621/image",
+      "picture_small": "https://cdn-images.dzcdn.net/images/misc/43cea4429365c02fac5e4cbc9bfc47ec/56x56-000000-80-0-0.jpg",
+      "picture_medium": "https://cdn-images.dzcdn.net/images/misc/43cea4429365c02fac5e4cbc9bfc47ec/250x250-000000-80-0-0.jpg",
+      "picture_big": "https://cdn-images.dzcdn.net/images/misc/43cea4429365c02fac5e4cbc9bfc47ec/500x500-000000-80-0-0.jpg",
+      "picture_xl": "https://cdn-images.dzcdn.net/images/misc/43cea4429365c02fac5e4cbc9bfc47ec/1000x1000-000000-80-0-0.jpg",
+      "tracklist": "https://api.deezer.com/radio/30621/tracks",
+      "md5_image": "43cea4429365c02fac5e4cbc9bfc47ec",
+      "type": "radio"
+    },
+    {
+      "id": 42162,
+      "title": "Techno",
+      "picture": "https://api.deezer.com/radio/42162/image",
+      "picture_small": "https://cdn-images.dzcdn.net/images/misc/cc1e1ce068b4888fcf5c562ec167dd07/56x56-000000-80-0-0.jpg",
+      "picture_medium": "https://cdn-images.dzcdn.net/images/misc/cc1e1ce068b4888fcf5c562ec167dd07/250x250-000000-80-0-0.jpg",
+      "picture_big": "https://cdn-images.dzcdn.net/images/misc/cc1e1ce068b4888fcf5c562ec167dd07/500x500-000000-80-0-0.jpg",
+      "picture_xl": "https://cdn-images.dzcdn.net/images/misc/cc1e1ce068b4888fcf5c562ec167dd07/1000x1000-000000-80-0-0.jpg",
+      "tracklist": "https://api.deezer.com/radio/42162/tracks",
+      "md5_image": "cc1e1ce068b4888fcf5c562ec167dd07",
+      "type": "radio"
+    }
+  ],
+  "total": 3
+}

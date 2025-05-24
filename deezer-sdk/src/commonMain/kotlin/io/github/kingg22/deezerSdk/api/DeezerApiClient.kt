@@ -1,23 +1,8 @@
 package io.github.kingg22.deezerSdk.api
 
-import de.jensklingenberg.ktorfit.Ktorfit
 import de.jensklingenberg.ktorfit.converter.FlowConverterFactory
 import de.jensklingenberg.ktorfit.ktorfit
 import io.github.kingg22.deezerSdk.api.objects.Error
-import io.github.kingg22.deezerSdk.api.routes.AlbumRoutes
-import io.github.kingg22.deezerSdk.api.routes.ArtistRoutes
-import io.github.kingg22.deezerSdk.api.routes.ChartRoutes
-import io.github.kingg22.deezerSdk.api.routes.EditorialRoutes
-import io.github.kingg22.deezerSdk.api.routes.EpisodeRoutes
-import io.github.kingg22.deezerSdk.api.routes.GenreRoutes
-import io.github.kingg22.deezerSdk.api.routes.InfosRoute
-import io.github.kingg22.deezerSdk.api.routes.OptionsRoute
-import io.github.kingg22.deezerSdk.api.routes.PlaylistRoutes
-import io.github.kingg22.deezerSdk.api.routes.PodcastRoutes
-import io.github.kingg22.deezerSdk.api.routes.RadioRoutes
-import io.github.kingg22.deezerSdk.api.routes.SearchRoutes
-import io.github.kingg22.deezerSdk.api.routes.TrackRoutes
-import io.github.kingg22.deezerSdk.api.routes.UserRoutes
 import io.github.kingg22.deezerSdk.api.routes.createAlbumRoutes
 import io.github.kingg22.deezerSdk.api.routes.createArtistRoutes
 import io.github.kingg22.deezerSdk.api.routes.createChartRoutes
@@ -59,7 +44,7 @@ import kotlin.coroutines.cancellation.CancellationException
 object DeezerApiClient {
     /** The current [HttpClient] using */
     lateinit var httpClient: HttpClient
-    private val ktorfit: Ktorfit by lazy {
+    private val ktorfit by lazy {
         ktorfit {
             baseUrl(HttpClientProvider.DeezerApiSupported.API_DEEZER.baseUrl)
             httpClient(httpClient)
@@ -68,79 +53,79 @@ object DeezerApiClient {
     }
 
     /** All endpoints related to [io.github.kingg22.deezerSdk.api.objects.Album] */
-    val albums: AlbumRoutes by lazy {
+    val albums by lazy {
         ktorfit.createAlbumRoutes()
     }
 
     /** All endpoints related to [io.github.kingg22.deezerSdk.api.objects.Artist] */
-    val artists: ArtistRoutes by lazy {
+    val artists by lazy {
         ktorfit.createArtistRoutes()
     }
 
     /** All endpoints related to [io.github.kingg22.deezerSdk.api.objects.Chart] */
-    val charts: ChartRoutes by lazy {
+    val charts by lazy {
         ktorfit.createChartRoutes()
     }
 
     /** All endpoints related to [io.github.kingg22.deezerSdk.api.objects.Editorial] */
-    val editorials: EditorialRoutes by lazy {
+    val editorials by lazy {
         ktorfit.createEditorialRoutes()
     }
 
     /** All endpoints related to [io.github.kingg22.deezerSdk.api.objects.Episode] */
-    val episodes: EpisodeRoutes by lazy {
+    val episodes by lazy {
         ktorfit.createEpisodeRoutes()
     }
 
     /** All endpoints related to [io.github.kingg22.deezerSdk.api.objects.Genre] */
-    val genres: GenreRoutes by lazy {
+    val genres by lazy {
         ktorfit.createGenreRoutes()
     }
 
     /** All endpoints related to [io.github.kingg22.deezerSdk.api.objects.Infos] */
-    val infos: InfosRoute by lazy {
+    val infos by lazy {
         ktorfit.createInfosRoute()
     }
 
     /** All endpoints related to [io.github.kingg22.deezerSdk.api.objects.Options] */
-    val options: OptionsRoute by lazy {
+    val options by lazy {
         ktorfit.createOptionsRoute()
     }
 
     /** All endpoints related to [io.github.kingg22.deezerSdk.api.objects.Playlist] */
-    val playlists: PlaylistRoutes by lazy {
+    val playlists by lazy {
         ktorfit.createPlaylistRoutes()
     }
 
     /** All endpoints related to [io.github.kingg22.deezerSdk.api.objects.Podcast] */
-    val podcasts: PodcastRoutes by lazy {
+    val podcasts by lazy {
         ktorfit.createPodcastRoutes()
     }
 
     /** All endpoints related to [io.github.kingg22.deezerSdk.api.objects.Radio] */
-    val radios: RadioRoutes by lazy {
+    val radios by lazy {
         ktorfit.createRadioRoutes()
     }
 
     /** All endpoints related to search */
-    val searches: SearchRoutes by lazy {
+    val searches by lazy {
         ktorfit.createSearchRoutes()
     }
 
     /** All endpoints related to [io.github.kingg22.deezerSdk.api.objects.Track] */
-    val tracks: TrackRoutes by lazy {
+    val tracks by lazy {
         ktorfit.createTrackRoutes()
     }
 
     /** All endpoints related to [io.github.kingg22.deezerSdk.api.objects.User] */
-    val users: UserRoutes by lazy {
+    val users by lazy {
         ktorfit.createUserRoutes()
     }
 
     @Throws(IllegalStateException::class)
-    fun initialize(block: HttpClientBuilder): DeezerApiClient {
+    fun initialize(builder: HttpClientBuilder): DeezerApiClient {
         check(!::httpClient.isInitialized) { "Deezer Api Client is already initialized" }
-        block.addCustomConfig {
+        builder.addCustomConfig {
             HttpResponseValidator {
                 validateResponse {
                     if (it.status.isSuccess()) {
@@ -162,11 +147,11 @@ object DeezerApiClient {
                 }
             }
         }
-        httpClient = block.build()
+        httpClient = builder.build()
         return this
     }
 
-    fun isInitialized(): Boolean = ::httpClient.isInitialized
+    fun isInitialized() = ::httpClient.isInitialized
 
     /**
      * Executes an HTTP request asynchronously and deserializes the response body into the specified type [T].
@@ -176,10 +161,9 @@ object DeezerApiClient {
      * @throws DeezerApiException If the request fails
      */
     @Throws(DeezerApiException::class, CancellationException::class)
-    suspend inline fun <reified T : @Serializable Any> rawExecuteAsync(request: HttpRequestBuilder.() -> Unit) =
-        exceptionHandler {
-            httpClient.request(request).body<T>()
-        }
+    suspend inline fun <reified T : @Serializable Any> rawExecuteAsync(
+        crossinline request: HttpRequestBuilder.() -> Unit,
+    ) = exceptionHandler { httpClient.request(request).body<T>() }
 
     /**
      * Handler an exception to Ktor client, wrap to custom [io.github.kingg22.deezerSdk.exceptions]
@@ -189,15 +173,13 @@ object DeezerApiClient {
      * @throws DeezerApiException If the request fails
      */
     @Throws(DeezerApiException::class, CancellationException::class)
-    suspend inline fun <T> exceptionHandler(block: suspend () -> T): T = try {
+    suspend inline fun <T> exceptionHandler(crossinline block: suspend () -> T): T = try {
         block()
     } catch (e: ClientRequestException) {
         // try to obtain the error code of deezer if the http status is 4xx
-        val errorBody = try {
+        val errorBody = runCatching {
             e.response.body<Error>().error
-        } catch (_: Exception) {
-            null
-        }
+        }.getOrNull()
         throw DeezerApiException(errorCode = errorBody?.code, cause = e)
     } catch (e: HttpRequestTimeoutException) {
         throw DeezerApiException(
@@ -208,9 +190,6 @@ object DeezerApiClient {
         throw DeezerApiException(errorMessage = "Deezer API unavailable", cause = e)
     }
 
-    private inline fun <reified T> decodeOrNull(json: String): T? = try {
-        Json.decodeFromString<T>(json)
-    } catch (_: Exception) {
-        null
-    }
+    private inline fun <reified T> decodeOrNull(json: String): T? =
+        runCatching { Json.decodeFromString<T>(json) }.getOrNull()
 }
