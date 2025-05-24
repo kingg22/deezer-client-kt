@@ -1,0 +1,386 @@
+{
+  "data": [
+    {
+      "id": 694057401,
+      "title": "Balloonerism",
+      "cover": "https://api.deezer.com/album/694057401/image",
+      "cover_small": "https://cdn-images.dzcdn.net/images/cover/07875c211437e1101d7e38b5a34393eb/56x56-000000-80-0-0.jpg",
+      "cover_medium": "https://cdn-images.dzcdn.net/images/cover/07875c211437e1101d7e38b5a34393eb/250x250-000000-80-0-0.jpg",
+      "cover_big": "https://cdn-images.dzcdn.net/images/cover/07875c211437e1101d7e38b5a34393eb/500x500-000000-80-0-0.jpg",
+      "cover_xl": "https://cdn-images.dzcdn.net/images/cover/07875c211437e1101d7e38b5a34393eb/1000x1000-000000-80-0-0.jpg",
+      "md5_image": "07875c211437e1101d7e38b5a34393eb",
+      "release_date": "2025-01-17",
+      "tracklist": "https://api.deezer.com/album/694057401/tracks",
+      "artist": {
+        "id": 632926,
+        "name": "MAC MILLER",
+        "tracklist": "https://api.deezer.com/artist/632926/top?limit=50",
+        "type": "artist"
+      },
+      "type": "album"
+    },
+    {
+      "id": 675199761,
+      "title": "Weill: The Seven Deadly Sins",
+      "cover": "https://api.deezer.com/album/675199761/image",
+      "cover_small": "https://cdn-images.dzcdn.net/images/cover/e430a100a63aa2cdb2f29e2ffc683d2f/56x56-000000-80-0-0.jpg",
+      "cover_medium": "https://cdn-images.dzcdn.net/images/cover/e430a100a63aa2cdb2f29e2ffc683d2f/250x250-000000-80-0-0.jpg",
+      "cover_big": "https://cdn-images.dzcdn.net/images/cover/e430a100a63aa2cdb2f29e2ffc683d2f/500x500-000000-80-0-0.jpg",
+      "cover_xl": "https://cdn-images.dzcdn.net/images/cover/e430a100a63aa2cdb2f29e2ffc683d2f/1000x1000-000000-80-0-0.jpg",
+      "md5_image": "e430a100a63aa2cdb2f29e2ffc683d2f",
+      "release_date": "2025-01-17",
+      "tracklist": "https://api.deezer.com/album/675199761/tracks",
+      "artist": {
+        "id": 211435,
+        "name": "Sir Simon Rattle",
+        "tracklist": "https://api.deezer.com/artist/211435/top?limit=50",
+        "type": "artist"
+      },
+      "type": "album"
+    },
+    {
+      "id": 661062981,
+      "title": "SECO",
+      "cover": "https://api.deezer.com/album/661062981/image",
+      "cover_small": "https://cdn-images.dzcdn.net/images/cover/50cded061ead7bd8f70af7f5fc8429ae/56x56-000000-80-0-0.jpg",
+      "cover_medium": "https://cdn-images.dzcdn.net/images/cover/50cded061ead7bd8f70af7f5fc8429ae/250x250-000000-80-0-0.jpg",
+      "cover_big": "https://cdn-images.dzcdn.net/images/cover/50cded061ead7bd8f70af7f5fc8429ae/500x500-000000-80-0-0.jpg",
+      "cover_xl": "https://cdn-images.dzcdn.net/images/cover/50cded061ead7bd8f70af7f5fc8429ae/1000x1000-000000-80-0-0.jpg",
+      "md5_image": "50cded061ead7bd8f70af7f5fc8429ae",
+      "release_date": "2025-01-17",
+      "tracklist": "https://api.deezer.com/album/661062981/tracks",
+      "artist": {
+        "id": 4938,
+        "name": "Ricardo Arjona",
+        "tracklist": "https://api.deezer.com/artist/4938/top?limit=50",
+        "type": "artist"
+      },
+      "type": "album"
+    },
+    {
+      "id": 698125151,
+      "title": "Le Vrai Cabri 2",
+      "cover": "https://api.deezer.com/album/698125151/image",
+      "cover_small": "https://cdn-images.dzcdn.net/images/cover/d094190204377cba003a1b2baff287d1/56x56-000000-80-0-0.jpg",
+      "cover_medium": "https://cdn-images.dzcdn.net/images/cover/d094190204377cba003a1b2baff287d1/250x250-000000-80-0-0.jpg",
+      "cover_big": "https://cdn-images.dzcdn.net/images/cover/d094190204377cba003a1b2baff287d1/500x500-000000-80-0-0.jpg",
+      "cover_xl": "https://cdn-images.dzcdn.net/images/cover/d094190204377cba003a1b2baff287d1/1000x1000-000000-80-0-0.jpg",
+      "md5_image": "d094190204377cba003a1b2baff287d1",
+      "release_date": "2025-01-17",
+      "tracklist": "https://api.deezer.com/album/698125151/tracks",
+      "artist": {
+        "id": 8444450,
+        "name": "Lesky",
+        "tracklist": "https://api.deezer.com/artist/8444450/top?limit=50",
+        "type": "artist"
+      },
+      "type": "album"
+    },
+    {
+      "id": 661384991,
+      "title": "Somos Un Río",
+      "cover": "https://api.deezer.com/album/661384991/image",
+      "cover_small": "https://cdn-images.dzcdn.net/images/cover/128c2ffb72ffa45674b13c00c8b47f5c/56x56-000000-80-0-0.jpg",
+      "cover_medium": "https://cdn-images.dzcdn.net/images/cover/128c2ffb72ffa45674b13c00c8b47f5c/250x250-000000-80-0-0.jpg",
+      "cover_big": "https://cdn-images.dzcdn.net/images/cover/128c2ffb72ffa45674b13c00c8b47f5c/500x500-000000-80-0-0.jpg",
+      "cover_xl": "https://cdn-images.dzcdn.net/images/cover/128c2ffb72ffa45674b13c00c8b47f5c/1000x1000-000000-80-0-0.jpg",
+      "md5_image": "128c2ffb72ffa45674b13c00c8b47f5c",
+      "release_date": "2025-01-17",
+      "tracklist": "https://api.deezer.com/album/661384991/tracks",
+      "artist": {
+        "id": 4344,
+        "name": "Pedro Guerra",
+        "tracklist": "https://api.deezer.com/artist/4344/top?limit=50",
+        "type": "artist"
+      },
+      "type": "album"
+    },
+    {
+      "id": 697666431,
+      "title": "GBP",
+      "cover": "https://api.deezer.com/album/697666431/image",
+      "cover_small": "https://cdn-images.dzcdn.net/images/cover/77dfa6061d1d39afee531ef6e277f945/56x56-000000-80-0-0.jpg",
+      "cover_medium": "https://cdn-images.dzcdn.net/images/cover/77dfa6061d1d39afee531ef6e277f945/250x250-000000-80-0-0.jpg",
+      "cover_big": "https://cdn-images.dzcdn.net/images/cover/77dfa6061d1d39afee531ef6e277f945/500x500-000000-80-0-0.jpg",
+      "cover_xl": "https://cdn-images.dzcdn.net/images/cover/77dfa6061d1d39afee531ef6e277f945/1000x1000-000000-80-0-0.jpg",
+      "md5_image": "77dfa6061d1d39afee531ef6e277f945",
+      "release_date": "2025-01-17",
+      "tracklist": "https://api.deezer.com/album/697666431/tracks",
+      "artist": {
+        "id": 12096038,
+        "name": "Central Cee",
+        "tracklist": "https://api.deezer.com/artist/12096038/top?limit=50",
+        "type": "artist"
+      },
+      "type": "album"
+    },
+    {
+      "id": 698920291,
+      "title": "Crazy Holiday",
+      "cover": "https://api.deezer.com/album/698920291/image",
+      "cover_small": "https://cdn-images.dzcdn.net/images/cover/97b98995ed50524210d15af09109541c/56x56-000000-80-0-0.jpg",
+      "cover_medium": "https://cdn-images.dzcdn.net/images/cover/97b98995ed50524210d15af09109541c/250x250-000000-80-0-0.jpg",
+      "cover_big": "https://cdn-images.dzcdn.net/images/cover/97b98995ed50524210d15af09109541c/500x500-000000-80-0-0.jpg",
+      "cover_xl": "https://cdn-images.dzcdn.net/images/cover/97b98995ed50524210d15af09109541c/1000x1000-000000-80-0-0.jpg",
+      "md5_image": "97b98995ed50524210d15af09109541c",
+      "release_date": "2025-01-17",
+      "tracklist": "https://api.deezer.com/album/698920291/tracks",
+      "artist": {
+        "id": 13612387,
+        "name": "Måneskin",
+        "tracklist": "https://api.deezer.com/artist/13612387/top?limit=50",
+        "type": "artist"
+      },
+      "type": "album"
+    },
+    {
+      "id": 690749441,
+      "title": "Préludes, Book 1, CD 125: 5. Les collines d'Anacapri",
+      "cover": "https://api.deezer.com/album/690749441/image",
+      "cover_small": "https://cdn-images.dzcdn.net/images/cover/db056d8eea218f7e48a51d6fd3a841d0/56x56-000000-80-0-0.jpg",
+      "cover_medium": "https://cdn-images.dzcdn.net/images/cover/db056d8eea218f7e48a51d6fd3a841d0/250x250-000000-80-0-0.jpg",
+      "cover_big": "https://cdn-images.dzcdn.net/images/cover/db056d8eea218f7e48a51d6fd3a841d0/500x500-000000-80-0-0.jpg",
+      "cover_xl": "https://cdn-images.dzcdn.net/images/cover/db056d8eea218f7e48a51d6fd3a841d0/1000x1000-000000-80-0-0.jpg",
+      "md5_image": "db056d8eea218f7e48a51d6fd3a841d0",
+      "release_date": "2025-01-17",
+      "tracklist": "https://api.deezer.com/album/690749441/tracks",
+      "artist": {
+        "id": 5176,
+        "name": "Claude Debussy",
+        "tracklist": "https://api.deezer.com/artist/5176/top?limit=50",
+        "type": "artist"
+      },
+      "type": "album"
+    },
+    {
+      "id": 697023901,
+      "title": "Sigma Boy",
+      "cover": "https://api.deezer.com/album/697023901/image",
+      "cover_small": "https://cdn-images.dzcdn.net/images/cover/1af984bd8afefdf896e9109064490565/56x56-000000-80-0-0.jpg",
+      "cover_medium": "https://cdn-images.dzcdn.net/images/cover/1af984bd8afefdf896e9109064490565/250x250-000000-80-0-0.jpg",
+      "cover_big": "https://cdn-images.dzcdn.net/images/cover/1af984bd8afefdf896e9109064490565/500x500-000000-80-0-0.jpg",
+      "cover_xl": "https://cdn-images.dzcdn.net/images/cover/1af984bd8afefdf896e9109064490565/1000x1000-000000-80-0-0.jpg",
+      "md5_image": "1af984bd8afefdf896e9109064490565",
+      "release_date": "2025-01-16",
+      "tracklist": "https://api.deezer.com/album/697023901/tracks",
+      "artist": {
+        "id": 85834832,
+        "name": "La Mejor Música Electrónica",
+        "tracklist": "https://api.deezer.com/artist/85834832/top?limit=50",
+        "type": "artist"
+      },
+      "type": "album"
+    },
+    {
+      "id": 694745101,
+      "title": "Cementerio de Oro",
+      "cover": "https://api.deezer.com/album/694745101/image",
+      "cover_small": "https://cdn-images.dzcdn.net/images/cover/f865fb20c8fbe18c18473b5a0485e8e2/56x56-000000-80-0-0.jpg",
+      "cover_medium": "https://cdn-images.dzcdn.net/images/cover/f865fb20c8fbe18c18473b5a0485e8e2/250x250-000000-80-0-0.jpg",
+      "cover_big": "https://cdn-images.dzcdn.net/images/cover/f865fb20c8fbe18c18473b5a0485e8e2/500x500-000000-80-0-0.jpg",
+      "cover_xl": "https://cdn-images.dzcdn.net/images/cover/f865fb20c8fbe18c18473b5a0485e8e2/1000x1000-000000-80-0-0.jpg",
+      "md5_image": "f865fb20c8fbe18c18473b5a0485e8e2",
+      "release_date": "2025-01-15",
+      "tracklist": "https://api.deezer.com/album/694745101/tracks",
+      "artist": {
+        "id": 186565647,
+        "name": "El Dios Del Trap",
+        "tracklist": "https://api.deezer.com/artist/186565647/top?limit=50",
+        "type": "artist"
+      },
+      "type": "album"
+    },
+    {
+      "id": 658652761,
+      "title": "holding space",
+      "cover": "https://api.deezer.com/album/658652761/image",
+      "cover_small": "https://cdn-images.dzcdn.net/images/cover/87ee5771d2185fe2d3c40c667961368c/56x56-000000-80-0-0.jpg",
+      "cover_medium": "https://cdn-images.dzcdn.net/images/cover/87ee5771d2185fe2d3c40c667961368c/250x250-000000-80-0-0.jpg",
+      "cover_big": "https://cdn-images.dzcdn.net/images/cover/87ee5771d2185fe2d3c40c667961368c/500x500-000000-80-0-0.jpg",
+      "cover_xl": "https://cdn-images.dzcdn.net/images/cover/87ee5771d2185fe2d3c40c667961368c/1000x1000-000000-80-0-0.jpg",
+      "md5_image": "87ee5771d2185fe2d3c40c667961368c",
+      "release_date": "2025-01-13",
+      "tracklist": "https://api.deezer.com/album/658652761/tracks",
+      "artist": {
+        "id": 102610012,
+        "name": "azayaka",
+        "tracklist": "https://api.deezer.com/artist/102610012/top?limit=50",
+        "type": "artist"
+      },
+      "type": "album"
+    },
+    {
+      "id": 693965341,
+      "title": "All Into Darling",
+      "cover": "https://api.deezer.com/album/693965341/image",
+      "cover_small": "https://cdn-images.dzcdn.net/images/cover/4711ff0e4487eac78c900ed152f1447a/56x56-000000-80-0-0.jpg",
+      "cover_medium": "https://cdn-images.dzcdn.net/images/cover/4711ff0e4487eac78c900ed152f1447a/250x250-000000-80-0-0.jpg",
+      "cover_big": "https://cdn-images.dzcdn.net/images/cover/4711ff0e4487eac78c900ed152f1447a/500x500-000000-80-0-0.jpg",
+      "cover_xl": "https://cdn-images.dzcdn.net/images/cover/4711ff0e4487eac78c900ed152f1447a/1000x1000-000000-80-0-0.jpg",
+      "md5_image": "4711ff0e4487eac78c900ed152f1447a",
+      "release_date": "2025-01-13",
+      "tracklist": "https://api.deezer.com/album/693965341/tracks",
+      "artist": {
+        "id": 804134,
+        "name": "Wing",
+        "tracklist": "https://api.deezer.com/artist/804134/top?limit=50",
+        "type": "artist"
+      },
+      "type": "album"
+    },
+    {
+      "id": 693965351,
+      "title": "Break Era",
+      "cover": "https://api.deezer.com/album/693965351/image",
+      "cover_small": "https://cdn-images.dzcdn.net/images/cover/f24b85b13d285a2ca0b6e074afa27a3a/56x56-000000-80-0-0.jpg",
+      "cover_medium": "https://cdn-images.dzcdn.net/images/cover/f24b85b13d285a2ca0b6e074afa27a3a/250x250-000000-80-0-0.jpg",
+      "cover_big": "https://cdn-images.dzcdn.net/images/cover/f24b85b13d285a2ca0b6e074afa27a3a/500x500-000000-80-0-0.jpg",
+      "cover_xl": "https://cdn-images.dzcdn.net/images/cover/f24b85b13d285a2ca0b6e074afa27a3a/1000x1000-000000-80-0-0.jpg",
+      "md5_image": "f24b85b13d285a2ca0b6e074afa27a3a",
+      "release_date": "2025-01-12",
+      "tracklist": "https://api.deezer.com/album/693965351/tracks",
+      "artist": {
+        "id": 7588148,
+        "name": "Boarding Room",
+        "tracklist": "https://api.deezer.com/artist/7588148/top?limit=50",
+        "type": "artist"
+      },
+      "type": "album"
+    },
+    {
+      "id": 693980601,
+      "title": "Last Lies",
+      "cover": "https://api.deezer.com/album/693980601/image",
+      "cover_small": "https://cdn-images.dzcdn.net/images/cover/f3415569f997abb91a04bc5493dc2024/56x56-000000-80-0-0.jpg",
+      "cover_medium": "https://cdn-images.dzcdn.net/images/cover/f3415569f997abb91a04bc5493dc2024/250x250-000000-80-0-0.jpg",
+      "cover_big": "https://cdn-images.dzcdn.net/images/cover/f3415569f997abb91a04bc5493dc2024/500x500-000000-80-0-0.jpg",
+      "cover_xl": "https://cdn-images.dzcdn.net/images/cover/f3415569f997abb91a04bc5493dc2024/1000x1000-000000-80-0-0.jpg",
+      "md5_image": "f3415569f997abb91a04bc5493dc2024",
+      "release_date": "2025-01-11",
+      "tracklist": "https://api.deezer.com/album/693980601/tracks",
+      "artist": {
+        "id": 565974,
+        "name": "Damon Blaze",
+        "tracklist": "https://api.deezer.com/artist/565974/top?limit=50",
+        "type": "artist"
+      },
+      "type": "album"
+    },
+    {
+      "id": 694030081,
+      "title": "chills.",
+      "cover": "https://api.deezer.com/album/694030081/image",
+      "cover_small": "https://cdn-images.dzcdn.net/images/cover/a17032571a372a6a5e1acea7599efac6/56x56-000000-80-0-0.jpg",
+      "cover_medium": "https://cdn-images.dzcdn.net/images/cover/a17032571a372a6a5e1acea7599efac6/250x250-000000-80-0-0.jpg",
+      "cover_big": "https://cdn-images.dzcdn.net/images/cover/a17032571a372a6a5e1acea7599efac6/500x500-000000-80-0-0.jpg",
+      "cover_xl": "https://cdn-images.dzcdn.net/images/cover/a17032571a372a6a5e1acea7599efac6/1000x1000-000000-80-0-0.jpg",
+      "md5_image": "a17032571a372a6a5e1acea7599efac6",
+      "release_date": "2025-01-10",
+      "tracklist": "https://api.deezer.com/album/694030081/tracks",
+      "artist": {
+        "id": 7307378,
+        "name": "Deep Chills",
+        "tracklist": "https://api.deezer.com/artist/7307378/top?limit=50",
+        "type": "artist"
+      },
+      "type": "album"
+    },
+    {
+      "id": 694154761,
+      "title": "WHAM (Extended Version)",
+      "cover": "https://api.deezer.com/album/694154761/image",
+      "cover_small": "https://cdn-images.dzcdn.net/images/cover/490378a8dc9763e50e5fa3b0068eeff8/56x56-000000-80-0-0.jpg",
+      "cover_medium": "https://cdn-images.dzcdn.net/images/cover/490378a8dc9763e50e5fa3b0068eeff8/250x250-000000-80-0-0.jpg",
+      "cover_big": "https://cdn-images.dzcdn.net/images/cover/490378a8dc9763e50e5fa3b0068eeff8/500x500-000000-80-0-0.jpg",
+      "cover_xl": "https://cdn-images.dzcdn.net/images/cover/490378a8dc9763e50e5fa3b0068eeff8/1000x1000-000000-80-0-0.jpg",
+      "md5_image": "490378a8dc9763e50e5fa3b0068eeff8",
+      "release_date": "2025-01-10",
+      "tracklist": "https://api.deezer.com/album/694154761/tracks",
+      "artist": {
+        "id": 398521,
+        "name": "Lil Baby",
+        "tracklist": "https://api.deezer.com/artist/398521/top?limit=50",
+        "type": "artist"
+      },
+      "type": "album"
+    },
+    {
+      "id": 693976861,
+      "title": "Closer Flow",
+      "cover": "https://api.deezer.com/album/693976861/image",
+      "cover_small": "https://cdn-images.dzcdn.net/images/cover/057fd3658ba184c0f85f0a70d52d46d1/56x56-000000-80-0-0.jpg",
+      "cover_medium": "https://cdn-images.dzcdn.net/images/cover/057fd3658ba184c0f85f0a70d52d46d1/250x250-000000-80-0-0.jpg",
+      "cover_big": "https://cdn-images.dzcdn.net/images/cover/057fd3658ba184c0f85f0a70d52d46d1/500x500-000000-80-0-0.jpg",
+      "cover_xl": "https://cdn-images.dzcdn.net/images/cover/057fd3658ba184c0f85f0a70d52d46d1/1000x1000-000000-80-0-0.jpg",
+      "md5_image": "057fd3658ba184c0f85f0a70d52d46d1",
+      "release_date": "2025-01-08",
+      "tracklist": "https://api.deezer.com/album/693976861/tracks",
+      "artist": {
+        "id": 136183592,
+        "name": "Calvin Laflewer",
+        "tracklist": "https://api.deezer.com/artist/136183592/top?limit=50",
+        "type": "artist"
+      },
+      "type": "album"
+    },
+    {
+      "id": 694743211,
+      "title": "Dusty Color",
+      "cover": "https://api.deezer.com/album/694743211/image",
+      "cover_small": "https://cdn-images.dzcdn.net/images/cover/a9600ce10b0ce57367240dbcb4803258/56x56-000000-80-0-0.jpg",
+      "cover_medium": "https://cdn-images.dzcdn.net/images/cover/a9600ce10b0ce57367240dbcb4803258/250x250-000000-80-0-0.jpg",
+      "cover_big": "https://cdn-images.dzcdn.net/images/cover/a9600ce10b0ce57367240dbcb4803258/500x500-000000-80-0-0.jpg",
+      "cover_xl": "https://cdn-images.dzcdn.net/images/cover/a9600ce10b0ce57367240dbcb4803258/1000x1000-000000-80-0-0.jpg",
+      "md5_image": "a9600ce10b0ce57367240dbcb4803258",
+      "release_date": "2025-01-08",
+      "tracklist": "https://api.deezer.com/album/694743211/tracks",
+      "artist": {
+        "id": 290196,
+        "name": "Fangs",
+        "tracklist": "https://api.deezer.com/artist/290196/top?limit=50",
+        "type": "artist"
+      },
+      "type": "album"
+    },
+    {
+      "id": 693980501,
+      "title": "Spring Destiny",
+      "cover": "https://api.deezer.com/album/693980501/image",
+      "cover_small": "https://cdn-images.dzcdn.net/images/cover/e7dbcda3435f7e2b70207fadaf62b8cb/56x56-000000-80-0-0.jpg",
+      "cover_medium": "https://cdn-images.dzcdn.net/images/cover/e7dbcda3435f7e2b70207fadaf62b8cb/250x250-000000-80-0-0.jpg",
+      "cover_big": "https://cdn-images.dzcdn.net/images/cover/e7dbcda3435f7e2b70207fadaf62b8cb/500x500-000000-80-0-0.jpg",
+      "cover_xl": "https://cdn-images.dzcdn.net/images/cover/e7dbcda3435f7e2b70207fadaf62b8cb/1000x1000-000000-80-0-0.jpg",
+      "md5_image": "e7dbcda3435f7e2b70207fadaf62b8cb",
+      "release_date": "2025-01-07",
+      "tracklist": "https://api.deezer.com/album/693980501/tracks",
+      "artist": {
+        "id": 350388,
+        "name": "Reaper",
+        "tracklist": "https://api.deezer.com/artist/350388/top?limit=50",
+        "type": "artist"
+      },
+      "type": "album"
+    },
+    {
+      "id": 693008911,
+      "title": "DeBÍ TiRAR MáS FOToS",
+      "cover": "https://api.deezer.com/album/693008911/image",
+      "cover_small": "https://cdn-images.dzcdn.net/images/cover/d98eaccfbb945bdf68241d6de7fe6a49/56x56-000000-80-0-0.jpg",
+      "cover_medium": "https://cdn-images.dzcdn.net/images/cover/d98eaccfbb945bdf68241d6de7fe6a49/250x250-000000-80-0-0.jpg",
+      "cover_big": "https://cdn-images.dzcdn.net/images/cover/d98eaccfbb945bdf68241d6de7fe6a49/500x500-000000-80-0-0.jpg",
+      "cover_xl": "https://cdn-images.dzcdn.net/images/cover/d98eaccfbb945bdf68241d6de7fe6a49/1000x1000-000000-80-0-0.jpg",
+      "md5_image": "d98eaccfbb945bdf68241d6de7fe6a49",
+      "release_date": "2025-01-05",
+      "tracklist": "https://api.deezer.com/album/693008911/tracks",
+      "artist": {
+        "id": 10583405,
+        "name": "Bad Bunny",
+        "tracklist": "https://api.deezer.com/artist/10583405/top?limit=50",
+        "type": "artist"
+      },
+      "type": "album"
+    }
+  ],
+  "total": 58,
+  "next": "https://api.deezer.com/editorial/0/releases?index=20"
+}

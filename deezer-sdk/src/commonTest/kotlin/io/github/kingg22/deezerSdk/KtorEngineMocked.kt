@@ -22,18 +22,18 @@ object KtorEngineMocked {
         prettyPrintIndent = "  "
     }
 
-    fun readResourceFile(path: String): String =
-        Resource("src/commonTest/resources/io/github/kingg22/deezerSdk/$path").readText()
+    /** Remember to add `/` at start */
+    private fun readResourceFile(path: String) = Resource("src/commonTest/resources$path").readText()
 
     fun createMockEngine(): HttpClientEngine = MockEngine {
         respond(
             content = getJsonFromPath(it.url.fullPath),
-            status = HttpStatusCode.Companion.OK,
+            status = HttpStatusCode.OK,
             headers = headersOf(HttpHeaders.ContentType, "application/json; charset=utf-8"),
         )
     }
 
-    fun getJsonFromPath(path: String): String = when (path) {
+    fun getJsonFromPath(path: String) = when (path) {
         "/album/302127" -> readResourceFile("/api/responses/album/get_album.json")
         "/album/302127/fans" -> readResourceFile("/api/responses/album/get_album_fans.json")
         "/album/302127/tracks" -> readResourceFile("/api/responses/album/get_album_tracks.json")
@@ -63,7 +63,7 @@ object KtorEngineMocked {
         "/genre/12" -> readResourceFile("/api/responses/genre/get_genre_id.json")
         "/genre/0/artists" -> readResourceFile("/api/responses/genre/get_genre_artists.json")
         "/genre/0/podcasts" -> {
-            Logger.Companion.i("Json not have data")
+            Logger.i("Json not have data")
             // TODO: find with data
             readResourceFile("/api/responses/genre/get_genre_podcasts.json")
         }
@@ -74,7 +74,7 @@ object KtorEngineMocked {
         "/playlist/4341978/fans" -> readResourceFile("/api/responses/playlist/get_playlist_fans.json") // Faked
         "/playlist/908622995/tracks" -> readResourceFile("/api/responses/playlist/get_playlist_tracks.json")
         "/playlist/908622995/radio" -> {
-            Logger.Companion.i("Json not have data")
+            Logger.i("Json not have data")
             // TODO: find with data
             readResourceFile("/api/responses/playlist/get_playlist_radio.json")
         }
@@ -164,7 +164,7 @@ object KtorEngineMocked {
         // Media API
         "/v1/get_url" -> readResourceFile("/media/responses/get_medias.json")
         else -> {
-            Logger.Companion.e("Mock request not mapped $path")
+            Logger.e("Mock request not mapped $path")
             readResourceFile("/api/responses/get_error.json")
         }
     }
