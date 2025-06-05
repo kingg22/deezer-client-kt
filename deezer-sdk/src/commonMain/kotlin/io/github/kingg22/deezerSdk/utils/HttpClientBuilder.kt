@@ -5,7 +5,6 @@ import io.github.kingg22.deezerSdk.utils.HttpClientProvider.DEFAULT_MAX_RETRY_AT
 import io.github.kingg22.deezerSdk.utils.HttpClientProvider.DEFAULT_MAX_RETRY_TIMEOUT
 import io.github.kingg22.deezerSdk.utils.HttpClientProvider.DEFAULT_USER_AGENT
 import io.github.kingg22.deezerSdk.utils.HttpClientProvider.getClient
-import io.ktor.client.HttpClient
 import io.ktor.client.HttpClientConfig
 import io.ktor.client.engine.HttpClientEngine
 import io.ktor.client.plugins.cookies.AcceptAllCookiesStorage
@@ -13,26 +12,26 @@ import io.ktor.client.plugins.cookies.CookiesStorage
 import io.ktor.client.plugins.logging.LogLevel
 import kotlin.time.Duration
 
-class HttpClientBuilder {
-    private val customHttpConfig = mutableListOf<HttpClientConfig<*>.() -> Unit>()
-
+data class HttpClientBuilder @JvmOverloads constructor(
     /** Sets a custom user-agent for the HttpClient. */
-    var userAgent = DEFAULT_USER_AGENT
+    var userAgent: String = DEFAULT_USER_AGENT,
 
     /** Sets a custom cookies storage for the HttpClient. Default [AcceptAllCookiesStorage] */
-    var cookiesStorage = DEFAULT_COOKIE_STORAGE
+    var cookiesStorage: CookiesStorage = DEFAULT_COOKIE_STORAGE,
 
     /** Sets a timeout for the HttpClient. Default 20 seg */
-    var timeout = DEFAULT_MAX_RETRY_TIMEOUT
+    var timeout: Duration = DEFAULT_MAX_RETRY_TIMEOUT,
 
     /** Sets the max retry count for requests. Default 3 */
-    var maxRetryCount = DEFAULT_MAX_RETRY_ATTEMPTS
+    var maxRetryCount: Int = DEFAULT_MAX_RETRY_ATTEMPTS,
 
     /** Specifies the HttpClientEngine to be used explicit. Default automatically set by Ktor. */
-    var httpEngine: HttpClientEngine? = null
+    var httpEngine: HttpClientEngine? = null,
 
     /** Defines the logging level for HTTP requests and responses. Default is [LogLevel.INFO]. */
-    var httpLogLevel = LogLevel.INFO
+    var httpLogLevel: LogLevel = LogLevel.INFO,
+) {
+    private val customHttpConfig: MutableList<HttpClientConfig<*>.() -> Unit> = mutableListOf()
 
     /** Sets a custom user-agent for the HttpClient. */
     fun userAgent(userAgent: String) = apply {
@@ -80,7 +79,7 @@ class HttpClientBuilder {
      * @throws IllegalArgumentException If the provided User-Agent string is empty.
      */
     @Throws(IllegalArgumentException::class)
-    fun build(): HttpClient = getClient(
+    fun build() = getClient(
         userAgent,
         maxRetryCount,
         timeout,
@@ -91,9 +90,13 @@ class HttpClientBuilder {
     )
 
     companion object {
+        @JvmStatic
+        @JvmOverloads
         @Throws(IllegalArgumentException::class)
-        fun httpClient(block: HttpClientBuilder.() -> Unit) = HttpClientBuilder().apply(block).build()
+        fun httpClient(block: HttpClientBuilder.() -> Unit = {}) = HttpClientBuilder().apply(block).build()
 
-        fun httpClientBuilder(builder: HttpClientBuilder.() -> Unit) = HttpClientBuilder().apply(builder)
+        @JvmStatic
+        @JvmOverloads
+        fun httpClientBuilder(builder: HttpClientBuilder.() -> Unit = {}) = HttpClientBuilder().apply(builder)
     }
 }

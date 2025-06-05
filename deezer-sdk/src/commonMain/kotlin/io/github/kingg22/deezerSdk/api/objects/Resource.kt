@@ -18,7 +18,8 @@ abstract class Resource {
     companion object {
         /** The [DeezerApiClient] to make operations easy */
         @Transient
-        val client: DeezerApiClient = DeezerApiClient
+        @JvmStatic
+        val client = DeezerApiClient
     }
 
     /** Reloads the current resource from the API, getting all of its full properties if it was initially obtained partially */

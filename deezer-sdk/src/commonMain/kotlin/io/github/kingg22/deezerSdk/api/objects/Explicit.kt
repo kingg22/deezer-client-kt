@@ -49,10 +49,11 @@ enum class Explicit(val value: Int) {
     ;
 
     companion object {
-        fun fromValue(value: Int): Explicit? = entries.firstOrNull { it.value == value }
+        @JvmStatic
+        fun fromValue(value: Int) = entries.firstOrNull { it.value == value }
     }
 
-    internal object ExplicitSerializer : KSerializer<Explicit> {
+    internal data object ExplicitSerializer : KSerializer<Explicit> {
         override val descriptor: SerialDescriptor =
             PrimitiveSerialDescriptor("io.github.kingg22.deezerSdk.api.objects.Explicit", PrimitiveKind.INT)
 
@@ -60,10 +61,8 @@ enum class Explicit(val value: Int) {
             encoder.encodeInt(value.value)
         }
 
-        override fun deserialize(decoder: Decoder): Explicit =
-            fromValue(decoder.decodeInt()) ?: throw DeezerApiException(
-                null,
-                "Unexpected explicit value: '${decoder.decodeInt()}'",
-            )
+        override fun deserialize(decoder: Decoder) = fromValue(decoder.decodeInt()) ?: throw DeezerApiException(
+            errorMessage = "Unexpected explicit value: '${decoder.decodeInt()}'",
+        )
     }
 }

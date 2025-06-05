@@ -3,9 +3,12 @@ package io.github.kingg22.deezerSdk.utils
 import io.ktor.client.HttpClient
 import io.ktor.client.HttpClientConfig
 import io.ktor.client.engine.HttpClientEngine
+import io.ktor.client.plugins.BodyProgress
 import io.ktor.client.plugins.Charsets
 import io.ktor.client.plugins.HttpRequestRetry
 import io.ktor.client.plugins.HttpTimeout
+import io.ktor.client.plugins.SaveBodyPlugin
+import io.ktor.client.plugins.addDefaultResponseValidation
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.cookies.AcceptAllCookiesStorage
 import io.ktor.client.plugins.cookies.CookiesStorage
@@ -14,6 +17,9 @@ import io.ktor.client.plugins.defaultRequest
 import io.ktor.client.plugins.logging.LogLevel
 import io.ktor.client.plugins.logging.Logger
 import io.ktor.client.plugins.logging.Logging
+import io.ktor.client.plugins.logging.LoggingFormat
+import io.ktor.http.HttpHeaders
+import io.ktor.http.headers
 import io.ktor.http.userAgent
 import io.ktor.serialization.kotlinx.json.json
 import io.ktor.utils.io.charsets.Charsets
@@ -21,10 +27,10 @@ import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
+import co.touchlab.kermit.Logger as KermitLogger
 
-internal object HttpClientProvider {
-    const val DEFAULT_USER_AGENT: String =
-        "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36"
+internal data object HttpClientProvider {
+    const val DEFAULT_USER_AGENT = "Mozilla/5.0 (X11; Linux i686; rv:135.0) Gecko/20100101 Firefox/135.0"
     const val DEFAULT_MAX_RETRY_ATTEMPTS = 3
 
     @JvmStatic
@@ -38,6 +44,8 @@ internal object HttpClientProvider {
      * @throws IllegalArgumentException If the timeout is less than or equal to zero.
      * @throws IllegalArgumentException If the provided User-Agent string is empty.
      */
+    @JvmStatic
+    @JvmOverloads
     @OptIn(ExperimentalSerializationApi::class)
     @Throws(IllegalArgumentException::class)
     fun getClient(
@@ -47,23 +55,31 @@ internal object HttpClientProvider {
         engine: HttpClientEngine? = null,
         cookiesStorage: CookiesStorage = DEFAULT_COOKIE_STORAGE,
         logLevel: LogLevel = LogLevel.INFO,
-        modifiers: List<HttpClientConfig<*>.() -> Unit> = listOf(),
+        modifiers: List<HttpClientConfig<*>.() -> Unit> = emptyList(),
     ): HttpClient {
         require(userAgent.isNotBlank())
         require(timeout >= 0.seconds)
         require(maxRetryCount > 0)
+
         val clientConfig: HttpClientConfig<*>.() -> Unit = {
+            install(SaveBodyPlugin)
             install(HttpCookies) {
                 storage = cookiesStorage
             }
+            install(BodyProgress)
             install(ContentNegotiation) {
                 json(
                     Json {
-                        prettyPrint = true
+                        encodeDefaults = true
                         isLenient = true
+                        allowSpecialFloatingPointValues = true
+                        allowStructuredMapKeys = true
+
+                        prettyPrint = true
                         ignoreUnknownKeys = true
                         explicitNulls = false
                         decodeEnumsCaseInsensitive = true
+                        useArrayPolymorphism = true
                     },
                 )
             }
@@ -75,16 +91,34 @@ internal object HttpClientProvider {
                 exponentialDelay()
             }
             install(Logging) {
+                format = LoggingFormat.OkHttp
                 logger = object : Logger {
                     override fun log(message: String) {
-                        co.touchlab.kermit.Logger.d("HttpClient") { message }
+                        KermitLogger.d("HttpClient") { message }
                     }
                 }
                 level = logLevel
             }
+            addDefaultResponseValidation()
+            expectSuccess = true
 
             defaultRequest {
                 userAgent(userAgent)
+                headers {
+                    append(HttpHeaders.Pragma, "no-cache")
+                    append(HttpHeaders.Origin, "https://www.deezer.com")
+                    append(HttpHeaders.AcceptEncoding, "gzip, deflate, br")
+                    append(HttpHeaders.AcceptLanguage, "en-US,en;q=0.9")
+                    append(HttpHeaders.Accept, "*/*")
+                    append(HttpHeaders.CacheControl, "no-cache")
+                    append(HttpHeaders.Connection, "keep-alive")
+                    append(HttpHeaders.Referrer, "https://www.deezer.com")
+                    append("X-Requested-With", "XMLHttpRequest")
+                    append("DNT", "1")
+                    append("Sec-Fetch-Dest", "empty")
+                    append("Sec-Fetch-Mode", "cors")
+                    append("Sec-Fetch-Site", "same-site")
+                }
             }
 
             Charsets {
@@ -98,20 +132,13 @@ internal object HttpClientProvider {
         return if (engine != null) HttpClient(engine, clientConfig) else HttpClient(clientConfig)
     }
 
-    enum class DeezerApiSupported(val baseUrl: String) {
+    internal enum class DeezerApiSupported(val baseUrl: String) {
         API_DEEZER("https://api.deezer.com/"),
 
         @UnofficialDeezerApi
-        GW_DEEZER("https://www.deezer.com/ajax/gw-light.php/"),
+        GW_DEEZER("https://www.deezer.com/ajax/gw-light.php"),
 
-        /** **Don't contain `/` at the end** */
         @UnofficialDeezerApi
         MEDIA_DEEZER("https://media.deezer.com/v1/get_url"),
-        ;
-
-        companion object {
-            /** Include `https://` and finish with `/` */
-            fun fromBaseUrl(baseUrl: String) = entries.firstOrNull { it.baseUrl == baseUrl }
-        }
     }
 }
