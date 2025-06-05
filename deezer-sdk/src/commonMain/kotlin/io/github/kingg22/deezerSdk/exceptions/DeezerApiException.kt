@@ -13,23 +13,19 @@ import kotlinx.serialization.Serializable
  * @param errorMessage The messages to logger. Default description of the error code
  * @param cause The cause of the exception
  */
-class DeezerApiException(errorCode: Int? = null, private val errorMessage: String? = null, cause: Throwable? = null) :
-    DeezerSdkException(errorMessage, cause) {
-
+data class DeezerApiException(
+    val errorCode: Int? = null,
+    private val errorMessage: String? = null,
+    override val cause: Throwable? = null,
+) : DeezerSdkException(errorMessage, cause) {
     private val error = errorCode?.let { DeezerErrorCode.fromCode(it) }
 
-    /**
-     * Returns a more detailed error description, including the error code and message.
-     *
-     * @return Assembled response code and reason.
-     */
-    override val message: String
-        get() = buildString {
-            append("[Deezer API Exception]")
-            // Don't call to super, generate more detail message
-            error?.let { append(" [Error: ${it.description} (Code: ${it.code})]") }
-            if (!errorMessage.isNullOrBlank()) append(": $errorMessage")
-        }
+    override val message = buildString {
+        append("[Deezer API Exception]")
+        // Don't call to super, generate more detail message
+        error?.let { append(" [Error: ${it.description} (Code: ${it.code})]") }
+        if (!errorMessage.isNullOrBlank()) append(": $errorMessage")
+    }
 
     /**
      * [Deezer API](https://developers.deezer.com/api/) returns some error codes if the request failed.

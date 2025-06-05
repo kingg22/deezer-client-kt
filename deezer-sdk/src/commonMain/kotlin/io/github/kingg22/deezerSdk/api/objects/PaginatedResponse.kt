@@ -21,15 +21,18 @@ import kotlin.coroutines.cancellation.CancellationException
  * @property next Link to the next page of the search
  */
 @Serializable
-data class PaginatedResponse<T : @Serializable Any>(
+data class PaginatedResponse<out T : @Serializable Any>(
     val data: List<T>,
     val checksum: String? = null,
     val total: Int? = null,
     val prev: String? = null,
     val next: String? = null,
 ) {
-    @Transient
-    val client = DeezerApiClient
+    companion object {
+        @Transient
+        @JvmStatic
+        val client = DeezerApiClient
+    }
 
     /**
      * Fetch the next page of the search
