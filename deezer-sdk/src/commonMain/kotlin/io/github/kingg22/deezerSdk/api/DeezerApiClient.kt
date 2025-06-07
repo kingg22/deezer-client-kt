@@ -15,18 +15,18 @@ import io.github.kingg22.deezerSdk.api.routes.createSearchRoutes
 import io.github.kingg22.deezerSdk.api.routes.createTrackRoutes
 import io.github.kingg22.deezerSdk.api.routes.createUserRoutes
 import io.github.kingg22.deezerSdk.exceptions.DeezerApiException
+import io.github.kingg22.deezerSdk.utils.ExperimentalDeezerSdk
 import io.github.kingg22.deezerSdk.utils.HttpClientBuilder
 import io.github.kingg22.deezerSdk.utils.HttpClientProvider
 import io.github.kingg22.deezerSdk.utils.LateInitClient
 import io.github.kingg22.deezerSdk.utils.createKtorfit
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
-import io.ktor.client.call.save
 import io.ktor.client.plugins.ClientRequestException
+import io.ktor.client.plugins.HttpCallValidatorConfig
 import io.ktor.client.plugins.HttpRequestTimeoutException
 import io.ktor.client.plugins.HttpResponseValidator
 import io.ktor.client.plugins.ServerResponseException
-import io.ktor.client.plugins.isSaved
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.request
 import io.ktor.http.isSuccess
@@ -47,6 +47,9 @@ data object DeezerApiClient : LateInitClient {
     @PublishedApi
     internal lateinit var httpClient: HttpClient
         private set
+
+    @JvmStatic
+    private lateinit var builder: HttpClientBuilder
 
     @JvmStatic
     private val ktorfit by lazy {
@@ -138,46 +141,22 @@ data object DeezerApiClient : LateInitClient {
     }
 
     /**
-     * Initialize an unique instance of [DeezerApiClient]
+     * Initialize a unique instance of [DeezerApiClient].
+     * Is safe to call multiple times.
      *
-     * @param builder Builder to create [io.ktor.client.HttpClient]
-     * @throws IllegalStateException If the client has already been previously initialized
+     * @param builder Builder to create [io.ktor.client.HttpClient].
      */
     @JvmStatic
     @JvmOverloads
-    @Throws(IllegalStateException::class)
+    @OptIn(ExperimentalDeezerSdk::class)
     fun initialize(builder: HttpClientBuilder = HttpClientBuilder()): DeezerApiClient {
-        check(!::httpClient.isInitialized) { "Deezer Api Client is already initialized" }
+        if (::builder.isInitialized && builder == this.builder) return this
+        if (::httpClient.isInitialized) httpClient.close()
 
-        httpClient = builder.addCustomConfig {
-            HttpResponseValidator {
-                handleResponseException { exception, _ ->
-                    if (exception is DeezerApiException || exception is CancellationException) {
-                        throw exception
-                    }
-                    throw DeezerApiException(cause = exception)
-                }
-                validateResponse {
-                    if (it.status.isSuccess() && it.isSaved) {
-                        val saved = it.call.save()
-                        // Validate errors as they are received with http code 2xx
-                        // This can cause [DoubleReceiveException], keep an eye on
-                        val content = decodeOrNull<io.github.kingg22.deezerSdk.api.objects.Error>(saved.body())?.error
-                        val booleano = content?.let { decodeOrNull<Boolean>(saved.body()) }
-                        when {
-                            booleano != null -> throw DeezerApiException(
-                                errorMessage = "API response a boolean: $booleano",
-                            )
-
-                            content != null -> throw DeezerApiException(
-                                errorCode = content.code,
-                                errorMessage = content.message,
-                            )
-                        }
-                    }
-                }
-            }
+        this.httpClient = builder.copy().addCustomConfig {
+            HttpResponseValidator(customValidators())
         }.build()
+        this.builder = builder
 
         return this
     }
@@ -232,4 +211,33 @@ data object DeezerApiClient : LateInitClient {
     @JvmStatic
     private inline fun <reified T : @Serializable Any> decodeOrNull(json: String): T? =
         runCatching { Json.decodeFromString<T>(json) }.getOrNull()
+
+    @JvmStatic
+    private fun customValidators(): HttpCallValidatorConfig.() -> Unit = {
+        handleResponseException { exception, _ ->
+            if (exception is DeezerApiException || exception is CancellationException) {
+                throw exception
+            }
+            throw DeezerApiException(cause = exception)
+        }
+        validateResponse {
+            if (it.status.isSuccess()) {
+                val saved = it.call
+                // Validate errors as they are received with http code 2xx
+                // This can cause [DoubleReceiveException], keep an eye on
+                val content = decodeOrNull<io.github.kingg22.deezerSdk.api.objects.Error>(saved.body())?.error
+                val booleano = content?.let { decodeOrNull<Boolean>(saved.body()) }
+                when {
+                    booleano != null -> throw DeezerApiException(
+                        errorMessage = "API response a boolean: $booleano",
+                    )
+
+                    content != null -> throw DeezerApiException(
+                        errorCode = content.code,
+                        errorMessage = content.message,
+                    )
+                }
+            }
+        }
+    }
 }
