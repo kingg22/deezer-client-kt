@@ -1,9 +1,11 @@
 package io.github.kingg22.deezerSdk.api
 
+import de.jensklingenberg.ktorfit.Ktorfit
 import io.github.kingg22.deezerSdk.api.routes.AlbumRoutes
 import io.github.kingg22.deezerSdk.api.routes.ArtistRoutes
 import io.github.kingg22.deezerSdk.api.routes.ChartRoutes
 import io.github.kingg22.deezerSdk.api.routes.EditorialRoutes
+import io.github.kingg22.deezerSdk.api.routes.EpisodeRoutes
 import io.github.kingg22.deezerSdk.api.routes.GenreRoutes
 import io.github.kingg22.deezerSdk.api.routes.InfosRoute
 import io.github.kingg22.deezerSdk.api.routes.OptionsRoute
@@ -66,106 +68,90 @@ data object DeezerApiClient : LateInitClient {
     private lateinit var builder: HttpClientBuilder
 
     @JvmStatic
-    private val ktorfit by lazy {
-        createKtorfit(HttpClientProvider.DeezerApiSupported.API_DEEZER.baseUrl, httpClient)
-    }
+    private lateinit var ktorfit: Ktorfit
 
     /** All endpoints related to [io.github.kingg22.deezerSdk.api.objects.Album] */
     @AfterInitialize
     @JvmStatic
-    val albums: AlbumRoutes by lazy {
-        ktorfit.createAlbumRoutes()
-    }
+    lateinit var albums: AlbumRoutes
+        private set
 
     /** All endpoints related to [io.github.kingg22.deezerSdk.api.objects.Artist] */
     @AfterInitialize
     @JvmStatic
-    val artists: ArtistRoutes by lazy {
-        ktorfit.createArtistRoutes()
-    }
+    lateinit var artists: ArtistRoutes
+        private set
 
     /** All endpoints related to [io.github.kingg22.deezerSdk.api.objects.Chart] */
     @AfterInitialize
     @JvmStatic
-    val charts: ChartRoutes by lazy {
-        ktorfit.createChartRoutes()
-    }
+    lateinit var charts: ChartRoutes
+        private set
 
     /** All endpoints related to [io.github.kingg22.deezerSdk.api.objects.Editorial] */
     @AfterInitialize
     @JvmStatic
-    val editorials: EditorialRoutes by lazy {
-        ktorfit.createEditorialRoutes()
-    }
+    lateinit var editorials: EditorialRoutes
+        private set
 
     /** All endpoints related to [io.github.kingg22.deezerSdk.api.objects.Episode] */
     @JvmStatic
-    val episodes by lazy {
-        ktorfit.createEpisodeRoutes()
-    }
+    lateinit var episodes: EpisodeRoutes
+        private set
 
     /** All endpoints related to [io.github.kingg22.deezerSdk.api.objects.Genre] */
     @AfterInitialize
     @JvmStatic
-    val genres: GenreRoutes by lazy {
-        ktorfit.createGenreRoutes()
-    }
+    lateinit var genres: GenreRoutes
+        private set
 
     /** All endpoints related to [io.github.kingg22.deezerSdk.api.objects.Infos] */
     @AfterInitialize
     @JvmStatic
-    val infos: InfosRoute by lazy {
-        ktorfit.createInfosRoute()
-    }
+    lateinit var infos: InfosRoute
+        private set
 
     /** All endpoints related to [io.github.kingg22.deezerSdk.api.objects.Options] */
     @AfterInitialize
     @JvmStatic
-    val options: OptionsRoute by lazy {
-        ktorfit.createOptionsRoute()
-    }
+    lateinit var options: OptionsRoute
+        private set
 
     /** All endpoints related to [io.github.kingg22.deezerSdk.api.objects.Playlist] */
     @AfterInitialize
     @JvmStatic
-    val playlists: PlaylistRoutes by lazy {
-        ktorfit.createPlaylistRoutes()
-    }
+    lateinit var playlists: PlaylistRoutes
+        private set
 
     /** All endpoints related to [io.github.kingg22.deezerSdk.api.objects.Podcast] */
     @AfterInitialize
     @JvmStatic
-    val podcasts: PodcastRoutes by lazy {
-        ktorfit.createPodcastRoutes()
-    }
+    lateinit var podcasts: PodcastRoutes
+        private set
 
     /** All endpoints related to [io.github.kingg22.deezerSdk.api.objects.Radio] */
     @AfterInitialize
     @JvmStatic
-    val radios: RadioRoutes by lazy {
-        ktorfit.createRadioRoutes()
-    }
+    lateinit var radios: RadioRoutes
+        private set
 
     /** All endpoints related to search */
     @AfterInitialize
     @JvmStatic
-    val searches: SearchRoutes by lazy {
-        ktorfit.createSearchRoutes()
-    }
+    lateinit var searches: SearchRoutes
+        private set
 
     /** All endpoints related to [io.github.kingg22.deezerSdk.api.objects.Track] */
     @AfterInitialize
     @JvmStatic
-    val tracks: TrackRoutes by lazy {
-        ktorfit.createTrackRoutes()
-    }
+    lateinit var tracks: TrackRoutes
+        private set
 
     /** All endpoints related to [io.github.kingg22.deezerSdk.api.objects.User] */
     @AfterInitialize
     @JvmStatic
-    val users: UserRoutes by lazy {
-        ktorfit.createUserRoutes()
-    }
+    lateinit var users: UserRoutes
+        private set
 
     /**
      * Initialize a unique instance of [DeezerApiClient].
@@ -184,6 +170,8 @@ data object DeezerApiClient : LateInitClient {
             HttpResponseValidator(customValidators())
         }.build()
         this.builder = builder
+        this.ktorfit = createKtorfit(HttpClientProvider.DeezerApiSupported.API_DEEZER.baseUrl, httpClient)
+        this.initializeAll()
 
         return this
     }
@@ -266,5 +254,23 @@ data object DeezerApiClient : LateInitClient {
                 }
             }
         }
+    }
+
+    @JvmStatic
+    private fun initializeAll() {
+        albums = ktorfit.createAlbumRoutes()
+        artists = ktorfit.createArtistRoutes()
+        charts = ktorfit.createChartRoutes()
+        editorials = ktorfit.createEditorialRoutes()
+        episodes = ktorfit.createEpisodeRoutes()
+        genres = ktorfit.createGenreRoutes()
+        infos = ktorfit.createInfosRoute()
+        options = ktorfit.createOptionsRoute()
+        playlists = ktorfit.createPlaylistRoutes()
+        podcasts = ktorfit.createPodcastRoutes()
+        radios = ktorfit.createRadioRoutes()
+        searches = ktorfit.createSearchRoutes()
+        tracks = ktorfit.createTrackRoutes()
+        users = ktorfit.createUserRoutes()
     }
 }
