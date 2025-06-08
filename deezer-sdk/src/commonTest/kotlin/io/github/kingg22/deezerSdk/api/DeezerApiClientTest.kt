@@ -22,7 +22,7 @@ import kotlin.test.assertTrue
 
 class DeezerApiClientTest {
     companion object {
-        @JvmStatic
+        @JvmField
         val client = DeezerApiClient.initialize(KtorEngineMocked.createHttpBuilderMock())
     }
 

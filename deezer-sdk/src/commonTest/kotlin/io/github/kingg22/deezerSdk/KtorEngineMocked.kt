@@ -9,7 +9,6 @@ import io.ktor.client.engine.HttpClientEngine
 import io.ktor.client.engine.mock.MockEngine
 import io.ktor.client.engine.mock.respond
 import io.ktor.client.engine.mock.toByteArray
-import io.ktor.client.plugins.logging.LogLevel
 import io.ktor.http.HttpHeaders
 import io.ktor.http.HttpStatusCode
 import io.ktor.http.fullPath
@@ -19,6 +18,7 @@ import kotlinx.serialization.json.Json
 
 data object KtorEngineMocked {
     @OptIn(ExperimentalSerializationApi::class)
+    @JvmField
     val jsonSerializer = Json {
         explicitNulls = false
         prettyPrint = true
@@ -27,10 +27,13 @@ data object KtorEngineMocked {
     }
 
     /** Remember to add `/` at start */
+    @JvmStatic
     private fun readResourceFile(path: String) = Resource("src/commonTest/resources$path").readText()
 
-    fun createHttpBuilderMock() = HttpClientBuilder().httpEngine(createMockEngine()).httpLogLevel(LogLevel.ALL)
+    @JvmStatic
+    fun createHttpBuilderMock() = HttpClientBuilder().httpEngine(createMockEngine())
 
+    @JvmStatic
     private fun createMockEngine(): HttpClientEngine = MockEngine {
         val body = it.body.toByteArray().decodeToString()
         val fullPath = it.url.fullPath
@@ -63,6 +66,8 @@ data object KtorEngineMocked {
         }
     }
 
+    @JvmStatic
+    @JvmOverloads
     fun getJsonFromPath(path: String, mockServer: Boolean = false) = when (path) {
         "/album/302127" -> readResourceFile("/api/responses/album/get_album.json")
         "/album/302127/fans" -> readResourceFile("/api/responses/album/get_album_fans.json")
