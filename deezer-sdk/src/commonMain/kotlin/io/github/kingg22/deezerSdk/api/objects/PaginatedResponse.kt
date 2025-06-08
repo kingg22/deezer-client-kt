@@ -22,7 +22,7 @@ import kotlin.coroutines.cancellation.CancellationException
  */
 @Serializable
 data class PaginatedResponse<out T : @Serializable Any>(
-    val data: List<T>,
+    val data: List<T> = emptyList(),
     val checksum: String? = null,
     val total: Int? = null,
     val prev: String? = null,
