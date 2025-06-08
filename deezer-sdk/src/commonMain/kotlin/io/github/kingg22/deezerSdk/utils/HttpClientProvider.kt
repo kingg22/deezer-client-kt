@@ -15,7 +15,6 @@ import io.ktor.client.plugins.cookies.CookiesStorage
 import io.ktor.client.plugins.cookies.HttpCookies
 import io.ktor.client.plugins.defaultRequest
 import io.ktor.client.plugins.logging.LogLevel
-import io.ktor.client.plugins.logging.Logger
 import io.ktor.client.plugins.logging.Logging
 import io.ktor.client.plugins.logging.LoggingFormat
 import io.ktor.http.HttpHeaders
@@ -25,9 +24,10 @@ import io.ktor.serialization.kotlinx.json.json
 import io.ktor.utils.io.charsets.Charsets
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
+import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
-import co.touchlab.kermit.Logger as KermitLogger
 
 internal data object HttpClientProvider {
     const val DEFAULT_USER_AGENT = "Mozilla/5.0 (X11; Linux i686; rv:135.0) Gecko/20100101 Firefox/135.0"
@@ -92,11 +92,6 @@ internal data object HttpClientProvider {
             }
             install(Logging) {
                 format = LoggingFormat.OkHttp
-                logger = object : Logger {
-                    override fun log(message: String) {
-                        KermitLogger.d("HttpClient") { message }
-                    }
-                }
                 level = logLevel
             }
             addDefaultResponseValidation()

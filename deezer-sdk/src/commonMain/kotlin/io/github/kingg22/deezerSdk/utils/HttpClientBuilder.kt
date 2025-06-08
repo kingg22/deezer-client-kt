@@ -10,8 +10,11 @@ import io.ktor.client.engine.HttpClientEngine
 import io.ktor.client.plugins.cookies.AcceptAllCookiesStorage
 import io.ktor.client.plugins.cookies.CookiesStorage
 import io.ktor.client.plugins.logging.LogLevel
+import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 import kotlin.time.Duration
 
+/** Builder for the HttpClient. */
 data class HttpClientBuilder @JvmOverloads constructor(
     /** Sets a custom user-agent for the HttpClient. */
     var userAgent: String = DEFAULT_USER_AGENT,
@@ -53,7 +56,7 @@ data class HttpClientBuilder @JvmOverloads constructor(
         this.maxRetryCount = count
     }
 
-    /** Sets the logging level for HTTP requests and responses. Default Info */
+    /** Sets the logging level for HTTP requests and responses. Default [LogLevel.INFO] */
     fun httpLogLevel(logLevel: LogLevel) = apply {
         this.httpLogLevel = logLevel
     }
@@ -68,6 +71,7 @@ data class HttpClientBuilder @JvmOverloads constructor(
      * You don't have to specify the HTTP client engine, it will be automatically set by Ktor.
      * @see [httpEngine]
      */
+    @ExperimentalDeezerSdk
     fun addCustomConfig(config: HttpClientConfig<*>.() -> Unit) = apply {
         this.customHttpConfig.add(config)
     }
@@ -90,11 +94,13 @@ data class HttpClientBuilder @JvmOverloads constructor(
     )
 
     companion object {
+        /** Builds the HttpClient with the default options. */
         @JvmStatic
         @JvmOverloads
         @Throws(IllegalArgumentException::class)
         fun httpClient(block: HttpClientBuilder.() -> Unit = {}) = HttpClientBuilder().apply(block).build()
 
+        /** Builds the HttpClientBuilder with the default options. */
         @JvmStatic
         @JvmOverloads
         fun httpClientBuilder(builder: HttpClientBuilder.() -> Unit = {}) = HttpClientBuilder().apply(builder)

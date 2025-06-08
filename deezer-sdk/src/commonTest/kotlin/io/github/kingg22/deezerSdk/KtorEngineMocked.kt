@@ -2,19 +2,28 @@ package io.github.kingg22.deezerSdk
 
 import co.touchlab.kermit.Logger
 import com.goncalossilva.resources.Resource
+import io.github.kingg22.deezerSdk.gw.DeezerGwClientTest.Companion.GW_ARL
 import io.github.kingg22.deezerSdk.gw.DeezerGwClientTest.Companion.GW_TOKEN
+import io.github.kingg22.deezerSdk.utils.ExperimentalDeezerSdk
+import io.github.kingg22.deezerSdk.utils.HttpClientBuilder
 import io.ktor.client.engine.HttpClientEngine
 import io.ktor.client.engine.mock.MockEngine
 import io.ktor.client.engine.mock.respond
+import io.ktor.client.engine.mock.toByteArray
+import io.ktor.client.plugins.logging.Logging
 import io.ktor.http.HttpHeaders
 import io.ktor.http.HttpStatusCode
 import io.ktor.http.fullPath
 import io.ktor.http.headersOf
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
+import kotlin.jvm.JvmField
+import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 data object KtorEngineMocked {
     @OptIn(ExperimentalSerializationApi::class)
+    @JvmField
     val jsonSerializer = Json {
         explicitNulls = false
         prettyPrint = true
@@ -23,16 +32,56 @@ data object KtorEngineMocked {
     }
 
     /** Remember to add `/` at start */
+    @JvmStatic
     private fun readResourceFile(path: String) = Resource("src/commonTest/resources$path").readText()
 
-    fun createMockEngine(): HttpClientEngine = MockEngine {
-        respond(
-            content = getJsonFromPath(it.url.fullPath, true),
-            status = HttpStatusCode.OK,
-            headers = headersOf(HttpHeaders.ContentType, "application/json; charset=utf-8"),
-        )
+    @OptIn(ExperimentalDeezerSdk::class)
+    @JvmStatic
+    fun createHttpBuilderMock() = HttpClientBuilder().httpEngine(createMockEngine()).addCustomConfig {
+        Logging {
+            logger = object : io.ktor.client.plugins.logging.Logger {
+                override fun log(message: String) {
+                    Logger.d("HttpClient") { message }
+                }
+            }
+        }
     }
 
+    @JvmStatic
+    private fun createMockEngine(): HttpClientEngine = MockEngine {
+        val body = it.body.toByteArray().decodeToString()
+        val fullPath = it.url.fullPath
+        when {
+            body.contains("license_token", true) &&
+                body.contains("\"\"") &&
+                fullPath.contains("get_url") -> {
+                respond(
+                    content = readResourceFile("/media/responses/error.json"),
+                    status = HttpStatusCode.Forbidden,
+                    headers = headersOf(HttpHeaders.ContentType, "application/json; charset=utf-8"),
+                )
+            }
+
+            fullPath.contains("deezer.getUserData&api_version=1.0&input=3") &&
+                it.headers[HttpHeaders.Cookie]?.contains("arl=$GW_ARL") == false -> {
+                respond(
+                    content = readResourceFile("/gw/responses/get_user_data_invalid.json"),
+                    status = HttpStatusCode.OK,
+                    headers = headersOf(HttpHeaders.ContentType, "application/json; charset=utf-8"),
+                )
+            }
+
+            else ->
+                respond(
+                    content = getJsonFromPath(fullPath, true),
+                    status = HttpStatusCode.OK,
+                    headers = headersOf(HttpHeaders.ContentType, "application/json; charset=utf-8"),
+                )
+        }
+    }
+
+    @JvmStatic
+    @JvmOverloads
     fun getJsonFromPath(path: String, mockServer: Boolean = false) = when (path) {
         "/album/302127" -> readResourceFile("/api/responses/album/get_album.json")
         "/album/302127/fans" -> readResourceFile("/api/responses/album/get_album_fans.json")
@@ -124,6 +173,9 @@ data object KtorEngineMocked {
 
         "/ajax/gw-light.php?method=deezer.getUserData&api_version=1.0&input=1&api_token=" ->
             readResourceFile("/gw/responses/error.json")
+
+        "/ajax/gw-light.php?method=deezer.ping&api_version=1.0&input=3&api_token=" ->
+            readResourceFile("/gw/responses/get_ping.json")
 
         "/ajax/gw-light.php?api_token=$GW_TOKEN&method=song.getData&api_version=1.0&input=3" ->
             readResourceFile("/gw/responses/get_song_data.json")

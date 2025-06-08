@@ -13,9 +13,14 @@ plugins {
 }
 
 group = "io.github.kingg22"
-version = "1.0.0"
+version = "2.0.0"
 
 kotlin {
+    compilerOptions {
+        extraWarnings.set(true)
+        allWarningsAsErrors.set(true)
+    }
+
     androidTarget {
         publishLibraryVariants("release")
         compilerOptions {
@@ -23,16 +28,20 @@ kotlin {
         }
     }
 
-    jvm()
+    jvm {
+        testRuns["test"].executionTask.configure {
+            useJUnitPlatform()
+        }
+    }
 
     sourceSets {
         commonMain.dependencies {
             implementation(libs.bundles.kotlinx.ecosystem)
             implementation(libs.bundles.ktorfit)
-            implementation(libs.kermit)
         }
         commonTest.dependencies {
             implementation(libs.bundles.testing)
+            implementation(libs.kermit)
         }
     }
 }
@@ -49,10 +58,35 @@ dokka {
         skipEmptyPackages = true
         skipDeprecated = false
         reportUndocumented = true
+        enableJdkDocumentationLink = true
+        enableKotlinStdLibDocumentationLink = true
+        suppressedFiles.from(layout.buildDirectory.dir("generated"))
+        externalDocumentationLinks {
+            register("kotlinx.coroutines") {
+                url("https://kotlinlang.org/api/kotlinx.coroutines/")
+            }
+            register("kotlinx.serialization") {
+                url("https://kotlinlang.org/api/kotlinx.serialization/")
+            }
+            register("kotlinx-datetime") {
+                url("https://kotlinlang.org/api/kotlinx-datetime/")
+                packageListUrl("https://kotlinlang.org/api/kotlinx-datetime/kotlinx-datetime/package-list")
+            }
+            register("ktor-client") {
+                url("https://api.ktor.io/ktor-client/")
+                packageListUrl("https://api.ktor.io/package-list")
+            }
+            register("kermit-logger") {
+                url("https://kermit.touchlab.co/htmlMultiModule/")
+            }
+        }
         perPackageOption {
-            // TODO find solution to include interfaces
-            matchingRegex = "io\\.github\\.kingg22\\.deezerSdk\\..*\\.routes\\.*"
-            suppress = true
+            matchingRegex = """io\.github\.kingg22\.deezerSdk\.gw\.objects"""
+            reportUndocumented = false
+        }
+        perPackageOption {
+            matchingRegex = """io\.github\.kingg22\.deezerSdk\.gw\.objects\.media"""
+            reportUndocumented = false
         }
     }
 }
