@@ -6,7 +6,7 @@ package io.github.kingg22.deezerSdk.utils
  * Define an `initialize` and [isInitialized] method.
  * @author Kingg22
  */
-internal interface LateInitClient {
+interface LateInitClient {
     /**
      * Indicate if the client is already initialized.
      * @return `true` if the client is initialized, `false` otherwise.

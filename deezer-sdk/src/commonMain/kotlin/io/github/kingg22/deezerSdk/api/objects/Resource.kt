@@ -1,8 +1,11 @@
 package io.github.kingg22.deezerSdk.api.objects
 
 import io.github.kingg22.deezerSdk.api.DeezerApiClient
+import io.github.kingg22.deezerSdk.exceptions.DeezerApiException
+import io.github.kingg22.deezerSdk.utils.AfterInitialize
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
+import kotlin.coroutines.cancellation.CancellationException
 
 /**
  * _Internal_ Represent a Resource of [Deezer API](https://developers.deezer.com/api/).
@@ -17,11 +20,14 @@ abstract class Resource {
 
     companion object {
         /** The [DeezerApiClient] to make operations easy */
+        @AfterInitialize
         @Transient
         @JvmStatic
         val client = DeezerApiClient
     }
 
     /** Reloads the current resource from the API, getting all of its full properties if it was initially obtained partially */
+    @AfterInitialize
+    @Throws(DeezerApiException::class, CancellationException::class)
     abstract suspend fun reload(): Resource
 }

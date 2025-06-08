@@ -12,6 +12,7 @@ import io.ktor.client.plugins.cookies.CookiesStorage
 import io.ktor.client.plugins.logging.LogLevel
 import kotlin.time.Duration
 
+/** Builder for the HttpClient. */
 data class HttpClientBuilder @JvmOverloads constructor(
     /** Sets a custom user-agent for the HttpClient. */
     var userAgent: String = DEFAULT_USER_AGENT,
@@ -91,11 +92,13 @@ data class HttpClientBuilder @JvmOverloads constructor(
     )
 
     companion object {
+        /** Builds the HttpClient with the default options. */
         @JvmStatic
         @JvmOverloads
         @Throws(IllegalArgumentException::class)
         fun httpClient(block: HttpClientBuilder.() -> Unit = {}) = HttpClientBuilder().apply(block).build()
 
+        /** Builds the HttpClientBuilder with the default options. */
         @JvmStatic
         @JvmOverloads
         fun httpClientBuilder(builder: HttpClientBuilder.() -> Unit = {}) = HttpClientBuilder().apply(builder)
