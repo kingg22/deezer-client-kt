@@ -1,5 +1,18 @@
 package io.github.kingg22.deezerSdk.api
 
+import io.github.kingg22.deezerSdk.api.routes.AlbumRoutes
+import io.github.kingg22.deezerSdk.api.routes.ArtistRoutes
+import io.github.kingg22.deezerSdk.api.routes.ChartRoutes
+import io.github.kingg22.deezerSdk.api.routes.EditorialRoutes
+import io.github.kingg22.deezerSdk.api.routes.GenreRoutes
+import io.github.kingg22.deezerSdk.api.routes.InfosRoute
+import io.github.kingg22.deezerSdk.api.routes.OptionsRoute
+import io.github.kingg22.deezerSdk.api.routes.PlaylistRoutes
+import io.github.kingg22.deezerSdk.api.routes.PodcastRoutes
+import io.github.kingg22.deezerSdk.api.routes.RadioRoutes
+import io.github.kingg22.deezerSdk.api.routes.SearchRoutes
+import io.github.kingg22.deezerSdk.api.routes.TrackRoutes
+import io.github.kingg22.deezerSdk.api.routes.UserRoutes
 import io.github.kingg22.deezerSdk.api.routes.createAlbumRoutes
 import io.github.kingg22.deezerSdk.api.routes.createArtistRoutes
 import io.github.kingg22.deezerSdk.api.routes.createChartRoutes
@@ -15,6 +28,7 @@ import io.github.kingg22.deezerSdk.api.routes.createSearchRoutes
 import io.github.kingg22.deezerSdk.api.routes.createTrackRoutes
 import io.github.kingg22.deezerSdk.api.routes.createUserRoutes
 import io.github.kingg22.deezerSdk.exceptions.DeezerApiException
+import io.github.kingg22.deezerSdk.utils.AfterInitialize
 import io.github.kingg22.deezerSdk.utils.ExperimentalDeezerSdk
 import io.github.kingg22.deezerSdk.utils.HttpClientBuilder
 import io.github.kingg22.deezerSdk.utils.HttpClientProvider
@@ -57,26 +71,30 @@ data object DeezerApiClient : LateInitClient {
     }
 
     /** All endpoints related to [io.github.kingg22.deezerSdk.api.objects.Album] */
+    @AfterInitialize
     @JvmStatic
-    val albums by lazy {
+    val albums: AlbumRoutes by lazy {
         ktorfit.createAlbumRoutes()
     }
 
     /** All endpoints related to [io.github.kingg22.deezerSdk.api.objects.Artist] */
+    @AfterInitialize
     @JvmStatic
-    val artists by lazy {
+    val artists: ArtistRoutes by lazy {
         ktorfit.createArtistRoutes()
     }
 
     /** All endpoints related to [io.github.kingg22.deezerSdk.api.objects.Chart] */
+    @AfterInitialize
     @JvmStatic
-    val charts by lazy {
+    val charts: ChartRoutes by lazy {
         ktorfit.createChartRoutes()
     }
 
     /** All endpoints related to [io.github.kingg22.deezerSdk.api.objects.Editorial] */
+    @AfterInitialize
     @JvmStatic
-    val editorials by lazy {
+    val editorials: EditorialRoutes by lazy {
         ktorfit.createEditorialRoutes()
     }
 
@@ -87,56 +105,65 @@ data object DeezerApiClient : LateInitClient {
     }
 
     /** All endpoints related to [io.github.kingg22.deezerSdk.api.objects.Genre] */
+    @AfterInitialize
     @JvmStatic
-    val genres by lazy {
+    val genres: GenreRoutes by lazy {
         ktorfit.createGenreRoutes()
     }
 
     /** All endpoints related to [io.github.kingg22.deezerSdk.api.objects.Infos] */
+    @AfterInitialize
     @JvmStatic
-    val infos by lazy {
+    val infos: InfosRoute by lazy {
         ktorfit.createInfosRoute()
     }
 
     /** All endpoints related to [io.github.kingg22.deezerSdk.api.objects.Options] */
+    @AfterInitialize
     @JvmStatic
-    val options by lazy {
+    val options: OptionsRoute by lazy {
         ktorfit.createOptionsRoute()
     }
 
     /** All endpoints related to [io.github.kingg22.deezerSdk.api.objects.Playlist] */
+    @AfterInitialize
     @JvmStatic
-    val playlists by lazy {
+    val playlists: PlaylistRoutes by lazy {
         ktorfit.createPlaylistRoutes()
     }
 
     /** All endpoints related to [io.github.kingg22.deezerSdk.api.objects.Podcast] */
+    @AfterInitialize
     @JvmStatic
-    val podcasts by lazy {
+    val podcasts: PodcastRoutes by lazy {
         ktorfit.createPodcastRoutes()
     }
 
     /** All endpoints related to [io.github.kingg22.deezerSdk.api.objects.Radio] */
+    @AfterInitialize
     @JvmStatic
-    val radios by lazy {
+    val radios: RadioRoutes by lazy {
         ktorfit.createRadioRoutes()
     }
 
     /** All endpoints related to search */
+    @AfterInitialize
     @JvmStatic
-    val searches by lazy {
+    val searches: SearchRoutes by lazy {
         ktorfit.createSearchRoutes()
     }
 
     /** All endpoints related to [io.github.kingg22.deezerSdk.api.objects.Track] */
+    @AfterInitialize
     @JvmStatic
-    val tracks by lazy {
+    val tracks: TrackRoutes by lazy {
         ktorfit.createTrackRoutes()
     }
 
     /** All endpoints related to [io.github.kingg22.deezerSdk.api.objects.User] */
+    @AfterInitialize
     @JvmStatic
-    val users by lazy {
+    val users: UserRoutes by lazy {
         ktorfit.createUserRoutes()
     }
 
@@ -144,7 +171,7 @@ data object DeezerApiClient : LateInitClient {
      * Initialize a unique instance of [DeezerApiClient].
      * Is safe to call multiple times.
      *
-     * @param builder Builder to create [io.ktor.client.HttpClient].
+     * @param builder Builder to create [HttpClient].
      */
     @JvmStatic
     @JvmOverloads
@@ -170,6 +197,7 @@ data object DeezerApiClient : LateInitClient {
      * @return The deserialized response body of type [T].
      * @throws DeezerApiException If the request fails
      */
+    @AfterInitialize
     @JvmStatic
     @PublishedApi
     @Throws(DeezerApiException::class, CancellationException::class)
@@ -202,9 +230,8 @@ data object DeezerApiClient : LateInitClient {
         )
     } catch (e: ServerResponseException) {
         throw DeezerApiException(errorMessage = "Deezer API unavailable", cause = e)
-    } catch (e: CancellationException) {
-        throw e
     } catch (e: Throwable) {
+        if (e is CancellationException) throw e
         throw DeezerApiException(cause = e)
     }
 
