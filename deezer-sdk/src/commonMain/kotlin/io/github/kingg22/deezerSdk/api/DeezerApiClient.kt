@@ -45,10 +45,14 @@ import io.ktor.client.plugins.HttpResponseValidator
 import io.ktor.client.plugins.ServerResponseException
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.request
+import io.ktor.http.ContentType
+import io.ktor.http.contentType
 import io.ktor.http.isSuccess
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import kotlin.coroutines.cancellation.CancellationException
+import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * Client for the official [Deezer API](https://developers.deezer.com/api/).
@@ -233,10 +237,11 @@ data object DeezerApiClient : LateInitClient {
             if (exception is DeezerApiException || exception is CancellationException) {
                 throw exception
             }
-            throw DeezerApiException(cause = exception)
+            throw DeezerApiException(errorMessage = "Ktor", cause = exception)
         }
         validateResponse {
-            if (it.status.isSuccess()) {
+            val contentType = it.contentType()
+            if (it.status.isSuccess() && contentType != null && contentType == ContentType.Application.Json) {
                 val saved = it.call
                 // Validate errors as they are received with http code 2xx
                 // This can cause [DoubleReceiveException], keep an eye on

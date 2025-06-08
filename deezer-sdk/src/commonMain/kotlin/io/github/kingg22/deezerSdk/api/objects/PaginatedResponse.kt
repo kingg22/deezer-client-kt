@@ -7,6 +7,7 @@ import io.ktor.http.takeFrom
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
 import kotlin.coroutines.cancellation.CancellationException
+import kotlin.jvm.JvmStatic
 
 /**
  * **Unofficial** Represent a response of [Deezer API](https://developers.deezer.com/api/).

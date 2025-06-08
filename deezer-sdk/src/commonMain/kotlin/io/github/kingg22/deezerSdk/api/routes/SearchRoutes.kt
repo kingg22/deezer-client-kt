@@ -12,8 +12,7 @@ import io.github.kingg22.deezerSdk.api.objects.SearchOrder
 import io.github.kingg22.deezerSdk.api.objects.SearchUserHistory
 import io.github.kingg22.deezerSdk.api.objects.Track
 import io.github.kingg22.deezerSdk.api.objects.User
-import io.github.kingg22.deezerSdk.api.routes.SearchRoutes.Companion.buildAdvanceQuery
-import io.github.kingg22.deezerSdk.api.routes.SearchRoutes.Companion.setStrict
+import kotlin.jvm.JvmStatic
 import kotlin.time.Duration
 
 /**
@@ -25,8 +24,8 @@ import kotlin.time.Duration
  * @author Kingg22
  * @see <a href="https://developers.deezer.com/api/search#infos">Deezer Search</a>
  * @see <a href="https://developers.deezer.com/api/search#connections">Deezer Search Methods</a>
- * @see buildAdvanceQuery
- * @see setStrict
+ * @see SearchRoutes.buildAdvanceQuery
+ * @see SearchRoutes.setStrict
  */
 interface SearchRoutes {
     companion object {

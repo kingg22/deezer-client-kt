@@ -16,6 +16,11 @@ group = "io.github.kingg22"
 version = "2.0.0"
 
 kotlin {
+    compilerOptions {
+        extraWarnings.set(true)
+        allWarningsAsErrors.set(true)
+    }
+
     androidTarget {
         publishLibraryVariants("release")
         compilerOptions {
@@ -23,16 +28,20 @@ kotlin {
         }
     }
 
-    jvm()
+    jvm {
+        testRuns["test"].executionTask.configure {
+            useJUnitPlatform()
+        }
+    }
 
     sourceSets {
         commonMain.dependencies {
             implementation(libs.bundles.kotlinx.ecosystem)
             implementation(libs.bundles.ktorfit)
-            implementation(libs.kermit)
         }
         commonTest.dependencies {
             implementation(libs.bundles.testing)
+            implementation(libs.kermit)
         }
     }
 }

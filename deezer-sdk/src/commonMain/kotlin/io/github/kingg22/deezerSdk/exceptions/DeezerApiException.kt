@@ -1,6 +1,7 @@
 package io.github.kingg22.deezerSdk.exceptions
 
 import kotlinx.serialization.Serializable
+import kotlin.jvm.JvmStatic
 
 /**
  * Represents an exception specific to the [Deezer API](https://developers.deezer.com/api/).

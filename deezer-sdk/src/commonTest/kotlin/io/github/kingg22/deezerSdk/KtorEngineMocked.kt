@@ -4,17 +4,22 @@ import co.touchlab.kermit.Logger
 import com.goncalossilva.resources.Resource
 import io.github.kingg22.deezerSdk.gw.DeezerGwClientTest.Companion.GW_ARL
 import io.github.kingg22.deezerSdk.gw.DeezerGwClientTest.Companion.GW_TOKEN
+import io.github.kingg22.deezerSdk.utils.ExperimentalDeezerSdk
 import io.github.kingg22.deezerSdk.utils.HttpClientBuilder
 import io.ktor.client.engine.HttpClientEngine
 import io.ktor.client.engine.mock.MockEngine
 import io.ktor.client.engine.mock.respond
 import io.ktor.client.engine.mock.toByteArray
+import io.ktor.client.plugins.logging.Logging
 import io.ktor.http.HttpHeaders
 import io.ktor.http.HttpStatusCode
 import io.ktor.http.fullPath
 import io.ktor.http.headersOf
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
+import kotlin.jvm.JvmField
+import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 data object KtorEngineMocked {
     @OptIn(ExperimentalSerializationApi::class)
@@ -30,8 +35,17 @@ data object KtorEngineMocked {
     @JvmStatic
     private fun readResourceFile(path: String) = Resource("src/commonTest/resources$path").readText()
 
+    @OptIn(ExperimentalDeezerSdk::class)
     @JvmStatic
-    fun createHttpBuilderMock() = HttpClientBuilder().httpEngine(createMockEngine())
+    fun createHttpBuilderMock() = HttpClientBuilder().httpEngine(createMockEngine()).addCustomConfig {
+        Logging {
+            logger = object : io.ktor.client.plugins.logging.Logger {
+                override fun log(message: String) {
+                    Logger.d("HttpClient") { message }
+                }
+            }
+        }
+    }
 
     @JvmStatic
     private fun createMockEngine(): HttpClientEngine = MockEngine {

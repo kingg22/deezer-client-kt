@@ -10,6 +10,7 @@ import io.kotest.assertions.json.shouldEqualJson
 import io.kotest.matchers.string.shouldContainIgnoringCase
 import kotlinx.coroutines.test.runTest
 import kotlinx.datetime.LocalDateTime
+import kotlin.jvm.JvmField
 import kotlin.test.Ignore
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -26,8 +27,9 @@ class DeezerApiClientTest {
         val client = DeezerApiClient.initialize(KtorEngineMocked.createHttpBuilderMock())
     }
 
+    // Now the client can re initialized
     @Test
-    @Ignore("Now the client can re initialized")
+    @Ignore
     fun `If try to initialize when is already init throw exception`() = runTest {
         assertFailsWith<IllegalStateException> {
             client.initialize(KtorEngineMocked.createHttpBuilderMock())

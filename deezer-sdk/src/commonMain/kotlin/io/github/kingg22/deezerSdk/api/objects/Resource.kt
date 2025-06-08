@@ -6,6 +6,7 @@ import io.github.kingg22.deezerSdk.utils.AfterInitialize
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
 import kotlin.coroutines.cancellation.CancellationException
+import kotlin.jvm.JvmStatic
 
 /**
  * _Internal_ Represent a Resource of [Deezer API](https://developers.deezer.com/api/).
