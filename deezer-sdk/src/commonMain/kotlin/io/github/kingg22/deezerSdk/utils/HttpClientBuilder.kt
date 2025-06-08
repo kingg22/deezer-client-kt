@@ -53,7 +53,7 @@ data class HttpClientBuilder @JvmOverloads constructor(
         this.maxRetryCount = count
     }
 
-    /** Sets the logging level for HTTP requests and responses. Default Info */
+    /** Sets the logging level for HTTP requests and responses. Default [LogLevel.INFO] */
     fun httpLogLevel(logLevel: LogLevel) = apply {
         this.httpLogLevel = logLevel
     }
@@ -68,6 +68,7 @@ data class HttpClientBuilder @JvmOverloads constructor(
      * You don't have to specify the HTTP client engine, it will be automatically set by Ktor.
      * @see [httpEngine]
      */
+    @ExperimentalDeezerSdk
     fun addCustomConfig(config: HttpClientConfig<*>.() -> Unit) = apply {
         this.customHttpConfig.add(config)
     }

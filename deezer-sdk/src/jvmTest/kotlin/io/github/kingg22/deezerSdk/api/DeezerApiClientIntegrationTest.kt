@@ -4,6 +4,7 @@ import de.jensklingenberg.ktorfit.ktorfit
 import io.github.kingg22.deezerSdk.api.objects.Error
 import io.github.kingg22.deezerSdk.api.routes.createAlbumRoutes
 import io.github.kingg22.deezerSdk.exceptions.DeezerApiException
+import io.github.kingg22.deezerSdk.utils.ExperimentalDeezerSdk
 import io.github.kingg22.deezerSdk.utils.HttpClientBuilder
 import io.github.kingg22.deezerSdk.utils.HttpClientProvider
 import io.ktor.client.plugins.HttpResponseValidator
@@ -17,7 +18,8 @@ import kotlin.test.assertEquals
 
 @Ignore("Prevent abuse of the API when testing")
 class DeezerApiClientIntegrationTest {
-    private object DeezerTempClient {
+    private data object DeezerTempClient {
+        @OptIn(ExperimentalDeezerSdk::class)
         private val ktorfit = ktorfit {
             baseUrl(HttpClientProvider.DeezerApiSupported.API_DEEZER.baseUrl)
             httpClient(
