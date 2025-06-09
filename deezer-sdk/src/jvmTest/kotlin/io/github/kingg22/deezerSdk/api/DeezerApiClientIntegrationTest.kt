@@ -10,8 +10,10 @@ import io.github.kingg22.deezerSdk.utils.HttpClientProvider
 import io.ktor.client.plugins.HttpResponseValidator
 import io.ktor.client.statement.bodyAsText
 import io.ktor.http.isSuccess
+import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.test.runTest
 import kotlinx.serialization.json.Json
+import kotlin.coroutines.coroutineContext
 import kotlin.test.Ignore
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -34,7 +36,7 @@ class DeezerApiClientIntegrationTest {
                                             errorCode = content.code,
                                             errorMessage = content.message,
                                         )
-                                    }.getOrNull()
+                                    }.onFailure { coroutineContext.ensureActive() }.getOrNull()
                                 }
                             }
                         }

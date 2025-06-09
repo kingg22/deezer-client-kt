@@ -48,9 +48,11 @@ import io.ktor.client.request.request
 import io.ktor.http.ContentType
 import io.ktor.http.contentType
 import io.ktor.http.isSuccess
+import kotlinx.coroutines.ensureActive
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import kotlin.coroutines.cancellation.CancellationException
+import kotlin.coroutines.coroutineContext
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
@@ -213,7 +215,7 @@ data object DeezerApiClient : LateInitClient {
         // try to obtain the error code of deezer if the http status is 4xx
         val errorBody = runCatching {
             e.response.body<io.github.kingg22.deezerSdk.api.objects.Error>().error
-        }.getOrNull()
+        }.onFailure { coroutineContext.ensureActive() }.getOrNull()
         throw DeezerApiException(errorCode = errorBody?.code, cause = e)
     } catch (e: HttpRequestTimeoutException) {
         throw DeezerApiException(
@@ -223,7 +225,7 @@ data object DeezerApiClient : LateInitClient {
     } catch (e: ServerResponseException) {
         throw DeezerApiException(errorMessage = "Deezer API unavailable", cause = e)
     } catch (e: Throwable) {
-        if (e is CancellationException) throw e
+        coroutineContext.ensureActive()
         throw DeezerApiException(cause = e)
     }
 
