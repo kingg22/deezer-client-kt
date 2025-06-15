@@ -9,11 +9,13 @@ import kotlinx.serialization.json.JsonObject
  * Represent the information about the [Deezer API](https://developers.deezer.com/api/) in the current country.
  *
  * @author Kingg22
+ * @see <a href="https://developers.deezer.com/api/infos">Deezer Infos Object</a>
  *
  * @property countryIso The current [country ISO code](https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes)
  * @property country The current country name
  * @property open Indicates if Deezer is open in the current country or not
  * @property offers An array of available offers in the current country. _Note_: Unknown content of Array
+ * @property hosts **unofficial** Links of each service on Deezer. See [HostDetails]
  * @property pop **unofficial** Default language for popular content in this country
  * @property uploadToken **unofficial** Token generated to authenticate the loading of country-related data
  * @property uploadTokenLifetime **unofficial** Lifetime of the charging token, expressed in seconds
