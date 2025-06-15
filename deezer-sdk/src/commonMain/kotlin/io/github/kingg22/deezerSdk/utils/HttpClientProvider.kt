@@ -7,7 +7,6 @@ import io.ktor.client.plugins.BodyProgress
 import io.ktor.client.plugins.Charsets
 import io.ktor.client.plugins.HttpRequestRetry
 import io.ktor.client.plugins.HttpTimeout
-import io.ktor.client.plugins.SaveBodyPlugin
 import io.ktor.client.plugins.addDefaultResponseValidation
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.cookies.AcceptAllCookiesStorage
@@ -62,7 +61,6 @@ internal data object HttpClientProvider {
         require(maxRetryCount > 0)
 
         val clientConfig: HttpClientConfig<*>.() -> Unit = {
-            install(SaveBodyPlugin)
             install(HttpCookies) {
                 storage = cookiesStorage
             }
