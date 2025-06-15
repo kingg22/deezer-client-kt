@@ -36,8 +36,9 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            implementation(libs.bundles.ktorfit)
-            implementation(libs.bundles.kotlinx.ecosystem)
+            api(libs.bundles.ktor.client)
+            api(libs.bundles.kotlinx.ecosystem)
+            implementation(libs.ktorfit.light)
         }
         commonTest.dependencies {
             implementation(libs.bundles.testing)
