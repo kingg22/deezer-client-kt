@@ -7,11 +7,9 @@ import io.github.kingg22.deezerSdk.api.objects.Episode
 import io.github.kingg22.deezerSdk.api.objects.Infos
 import io.github.kingg22.deezerSdk.exceptions.DeezerSdkException
 import io.kotest.assertions.json.shouldEqualJson
-import io.kotest.matchers.string.shouldContainIgnoringCase
 import kotlinx.coroutines.test.runTest
 import kotlinx.datetime.LocalDateTime
 import kotlin.jvm.JvmField
-import kotlin.test.Ignore
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
@@ -25,17 +23,6 @@ class DeezerApiClientTest {
     companion object {
         @JvmField
         val client = DeezerApiClient.initialize(KtorEngineMocked.createHttpBuilderMock())
-    }
-
-    // Now the client can re initialized
-    @Test
-    @Ignore
-    fun `If try to initialize when is already init throw exception`() = runTest {
-        assertFailsWith<IllegalStateException> {
-            client.initialize(KtorEngineMocked.createHttpBuilderMock())
-        }.let {
-            it.message shouldContainIgnoringCase "already initialized"
-        }
     }
 
     @Test

@@ -1,6 +1,6 @@
 package io.github.kingg22.deezerSdk.api.objects
 
-import io.github.kingg22.deezerSdk.api.DeezerApiClient
+import io.github.kingg22.deezerSdk.api.GlobalDeezerApiClient
 import io.github.kingg22.deezerSdk.exceptions.DeezerApiException
 import io.github.kingg22.deezerSdk.utils.AfterInitialize
 import io.ktor.http.takeFrom
@@ -31,11 +31,11 @@ data class PaginatedResponse<out T : @Serializable Any>(
     val next: String? = null,
 ) {
     companion object {
-        /** Instance of [DeezerApiClient] to make requests easy. */
+        /** Instance of [io.github.kingg22.deezerSdk.api.DeezerApiClient] to make requests easy. */
         @AfterInitialize
         @Transient
         @JvmStatic
-        val client = DeezerApiClient
+        val client by lazy { GlobalDeezerApiClient.requireInstance() }
     }
 
     /**

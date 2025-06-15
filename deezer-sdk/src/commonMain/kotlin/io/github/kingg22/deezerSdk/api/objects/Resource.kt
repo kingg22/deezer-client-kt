@@ -1,6 +1,6 @@
 package io.github.kingg22.deezerSdk.api.objects
 
-import io.github.kingg22.deezerSdk.api.DeezerApiClient
+import io.github.kingg22.deezerSdk.api.GlobalDeezerApiClient
 import io.github.kingg22.deezerSdk.exceptions.DeezerApiException
 import io.github.kingg22.deezerSdk.utils.AfterInitialize
 import kotlinx.serialization.Serializable
@@ -20,11 +20,11 @@ abstract class Resource {
     abstract val type: String
 
     companion object {
-        /** The [DeezerApiClient] to make operations easy */
+        /** The [io.github.kingg22.deezerSdk.api.DeezerApiClient] to make operations easy */
         @AfterInitialize
         @Transient
         @JvmStatic
-        val client = DeezerApiClient
+        val client by lazy { GlobalDeezerApiClient.requireInstance() }
     }
 
     /** Reloads the current resource from the API, getting all of its full properties if it was initially obtained partially */

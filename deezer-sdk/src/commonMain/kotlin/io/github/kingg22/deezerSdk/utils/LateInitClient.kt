@@ -12,10 +12,4 @@ interface LateInitClient {
      * @return `true` if the client is initialized, `false` otherwise.
      */
     fun isInitialized(): Boolean
-
-    /**
-     * Indicate if the client is partially initialized.
-     * @return `true` if the client is partially initialized, `false` otherwise.
-     */
-    fun isPartialInitialized() = isInitialized()
 }

@@ -1,6 +1,5 @@
 package io.github.kingg22.deezerSdk.api
 
-import de.jensklingenberg.ktorfit.Ktorfit
 import io.github.kingg22.deezerSdk.api.routes.AlbumRoutes
 import io.github.kingg22.deezerSdk.api.routes.ArtistRoutes
 import io.github.kingg22.deezerSdk.api.routes.ChartRoutes
@@ -30,11 +29,9 @@ import io.github.kingg22.deezerSdk.api.routes.createSearchRoutes
 import io.github.kingg22.deezerSdk.api.routes.createTrackRoutes
 import io.github.kingg22.deezerSdk.api.routes.createUserRoutes
 import io.github.kingg22.deezerSdk.exceptions.DeezerApiException
-import io.github.kingg22.deezerSdk.utils.AfterInitialize
 import io.github.kingg22.deezerSdk.utils.ExperimentalDeezerSdk
 import io.github.kingg22.deezerSdk.utils.HttpClientBuilder
 import io.github.kingg22.deezerSdk.utils.HttpClientProvider
-import io.github.kingg22.deezerSdk.utils.LateInitClient
 import io.github.kingg22.deezerSdk.utils.createKtorfit
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
@@ -49,6 +46,7 @@ import io.ktor.http.ContentType
 import io.ktor.http.contentType
 import io.ktor.http.isSuccess
 import kotlinx.coroutines.ensureActive
+import kotlinx.coroutines.isActive
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import kotlin.coroutines.cancellation.CancellationException
@@ -59,130 +57,69 @@ import kotlin.jvm.JvmStatic
 /**
  * Client for the official [Deezer API](https://developers.deezer.com/api/).
  *
- * Start with [DeezerApiClient.initialize]
+ * You can start with [DeezerApiClient.initialize] or constructor.
  *
  * @author Kingg22
  */
-data object DeezerApiClient : LateInitClient {
+data class DeezerApiClient @JvmOverloads constructor(
+    /** Builder to create [HttpClient].*/
+    private val builder: HttpClientBuilder = HttpClientBuilder(),
+) {
     /** The current [HttpClient] using */
-    @JvmStatic
     @PublishedApi
-    internal lateinit var httpClient: HttpClient
-        private set
+    @OptIn(ExperimentalDeezerSdk::class)
+    internal val httpClient = builder.copy().addCustomConfig {
+        HttpResponseValidator(customValidators())
+    }.build()
 
-    @JvmStatic
-    private lateinit var builder: HttpClientBuilder
-
-    @JvmStatic
-    private lateinit var ktorfit: Ktorfit
+    private val ktorfit = createKtorfit(HttpClientProvider.DeezerApiSupported.API_DEEZER.baseUrl, httpClient)
 
     /** All endpoints related to [io.github.kingg22.deezerSdk.api.objects.Album] */
-    @AfterInitialize
-    @JvmStatic
-    lateinit var albums: AlbumRoutes
-        private set
+    val albums: AlbumRoutes = ktorfit.createAlbumRoutes()
 
     /** All endpoints related to [io.github.kingg22.deezerSdk.api.objects.Artist] */
-    @AfterInitialize
-    @JvmStatic
-    lateinit var artists: ArtistRoutes
-        private set
+    val artists: ArtistRoutes = ktorfit.createArtistRoutes()
 
     /** All endpoints related to [io.github.kingg22.deezerSdk.api.objects.Chart] */
-    @AfterInitialize
-    @JvmStatic
-    lateinit var charts: ChartRoutes
-        private set
+    val charts: ChartRoutes = ktorfit.createChartRoutes()
 
     /** All endpoints related to [io.github.kingg22.deezerSdk.api.objects.Editorial] */
-    @AfterInitialize
-    @JvmStatic
-    lateinit var editorials: EditorialRoutes
-        private set
+    val editorials: EditorialRoutes = ktorfit.createEditorialRoutes()
 
     /** All endpoints related to [io.github.kingg22.deezerSdk.api.objects.Episode] */
-    @JvmStatic
-    lateinit var episodes: EpisodeRoutes
-        private set
+    val episodes: EpisodeRoutes = ktorfit.createEpisodeRoutes()
 
     /** All endpoints related to [io.github.kingg22.deezerSdk.api.objects.Genre] */
-    @AfterInitialize
-    @JvmStatic
-    lateinit var genres: GenreRoutes
-        private set
+    val genres: GenreRoutes = ktorfit.createGenreRoutes()
 
     /** All endpoints related to [io.github.kingg22.deezerSdk.api.objects.Infos] */
-    @AfterInitialize
-    @JvmStatic
-    lateinit var infos: InfosRoute
-        private set
+    val infos: InfosRoute = ktorfit.createInfosRoute()
 
     /** All endpoints related to [io.github.kingg22.deezerSdk.api.objects.Options] */
-    @AfterInitialize
-    @JvmStatic
-    lateinit var options: OptionsRoute
-        private set
+    val options: OptionsRoute = ktorfit.createOptionsRoute()
 
     /** All endpoints related to [io.github.kingg22.deezerSdk.api.objects.Playlist] */
-    @AfterInitialize
-    @JvmStatic
-    lateinit var playlists: PlaylistRoutes
-        private set
+    val playlists: PlaylistRoutes = ktorfit.createPlaylistRoutes()
 
     /** All endpoints related to [io.github.kingg22.deezerSdk.api.objects.Podcast] */
-    @AfterInitialize
-    @JvmStatic
-    lateinit var podcasts: PodcastRoutes
-        private set
+    val podcasts: PodcastRoutes = ktorfit.createPodcastRoutes()
 
     /** All endpoints related to [io.github.kingg22.deezerSdk.api.objects.Radio] */
-    @AfterInitialize
-    @JvmStatic
-    lateinit var radios: RadioRoutes
-        private set
+    val radios: RadioRoutes = ktorfit.createRadioRoutes()
 
     /** All endpoints related to search */
-    @AfterInitialize
-    @JvmStatic
-    lateinit var searches: SearchRoutes
-        private set
+    val searches: SearchRoutes = ktorfit.createSearchRoutes()
 
     /** All endpoints related to [io.github.kingg22.deezerSdk.api.objects.Track] */
-    @AfterInitialize
-    @JvmStatic
-    lateinit var tracks: TrackRoutes
-        private set
+    val tracks: TrackRoutes = ktorfit.createTrackRoutes()
 
     /** All endpoints related to [io.github.kingg22.deezerSdk.api.objects.User] */
-    @AfterInitialize
-    @JvmStatic
-    lateinit var users: UserRoutes
-        private set
+    val users: UserRoutes = ktorfit.createUserRoutes()
 
-    /**
-     * Initialize a unique instance of [DeezerApiClient].
-     * Is safe to call multiple times.
-     *
-     * @param builder Builder to create [HttpClient].
-     */
-    @JvmStatic
-    @JvmOverloads
-    @OptIn(ExperimentalDeezerSdk::class)
-    fun initialize(builder: HttpClientBuilder = HttpClientBuilder()): DeezerApiClient {
-        if (::builder.isInitialized && builder == this.builder) return this
-        if (::httpClient.isInitialized) httpClient.close()
-
-        this.httpClient = builder.copy().addCustomConfig {
-            HttpResponseValidator(customValidators())
-        }.build()
-        this.builder = builder
-        this.ktorfit = createKtorfit(HttpClientProvider.DeezerApiSupported.API_DEEZER.baseUrl, httpClient)
-        this.initializeAll()
-
-        return this
+    init {
+        require(httpClient.isActive) { "HttpClient is not active" }
+        GlobalDeezerApiClient.initIfNeeded(this)
     }
-
-    override fun isInitialized() = ::httpClient.isInitialized
 
     /**
      * Executes an HTTP request asynchronously and deserializes the response body into the specified type [T].
@@ -191,8 +128,6 @@ data object DeezerApiClient : LateInitClient {
      * @return The deserialized response body of type [T].
      * @throws DeezerApiException If the request fails
      */
-    @AfterInitialize
-    @JvmStatic
     @PublishedApi
     @Throws(DeezerApiException::class, CancellationException::class)
     internal suspend inline fun <reified T : @Serializable Any> rawExecuteAsync(
@@ -206,7 +141,6 @@ data object DeezerApiClient : LateInitClient {
      * @return T the expected type of the request
      * @throws DeezerApiException If the request fails
      */
-    @JvmStatic
     @PublishedApi
     @Throws(DeezerApiException::class, CancellationException::class)
     internal suspend inline fun <T> exceptionHandler(crossinline block: suspend () -> T): T = try {
@@ -229,11 +163,9 @@ data object DeezerApiClient : LateInitClient {
         throw DeezerApiException(cause = e)
     }
 
-    @JvmStatic
     private inline fun <reified T : @Serializable Any> decodeOrNull(json: String): T? =
         runCatching { Json.decodeFromString<T>(json) }.getOrNull()
 
-    @JvmStatic
     private fun customValidators(): HttpCallValidatorConfig.() -> Unit = {
         handleResponseException { exception, _ ->
             if (exception is DeezerApiException || exception is CancellationException) {
@@ -263,21 +195,14 @@ data object DeezerApiClient : LateInitClient {
         }
     }
 
-    @JvmStatic
-    private fun initializeAll() {
-        albums = ktorfit.createAlbumRoutes()
-        artists = ktorfit.createArtistRoutes()
-        charts = ktorfit.createChartRoutes()
-        editorials = ktorfit.createEditorialRoutes()
-        episodes = ktorfit.createEpisodeRoutes()
-        genres = ktorfit.createGenreRoutes()
-        infos = ktorfit.createInfosRoute()
-        options = ktorfit.createOptionsRoute()
-        playlists = ktorfit.createPlaylistRoutes()
-        podcasts = ktorfit.createPodcastRoutes()
-        radios = ktorfit.createRadioRoutes()
-        searches = ktorfit.createSearchRoutes()
-        tracks = ktorfit.createTrackRoutes()
-        users = ktorfit.createUserRoutes()
+    companion object {
+        /**
+         * Initialize an instance of [DeezerApiClient].
+         *
+         * @param builder Builder to create [HttpClient].
+         */
+        @JvmStatic
+        @JvmOverloads
+        fun initialize(builder: HttpClientBuilder = HttpClientBuilder()) = DeezerApiClient(builder)
     }
 }
