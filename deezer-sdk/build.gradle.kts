@@ -36,11 +36,12 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            implementation(libs.bundles.kotlinx.ecosystem)
             implementation(libs.bundles.ktorfit)
+            implementation(libs.bundles.kotlinx.ecosystem)
         }
         commonTest.dependencies {
             implementation(libs.bundles.testing)
+            implementation(libs.bundles.testing.ktor)
             implementation(libs.kermit)
         }
     }
