@@ -1,15 +1,15 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
-    alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
-    alias(libs.plugins.kotlinPluginSerialization)
     alias(libs.plugins.dokka)
+    alias(libs.plugins.kotlinMultiplatform)
+    alias(libs.plugins.kotlinSerialization)
     alias(libs.plugins.kotlinxKover)
     alias(libs.plugins.kotlinxResources)
     alias(libs.plugins.ksp)
-    alias(libs.plugins.ktorfit)
     alias(libs.plugins.ktlint)
+    alias(libs.plugins.ktorfit)
 }
 
 group = "io.github.kingg22"
