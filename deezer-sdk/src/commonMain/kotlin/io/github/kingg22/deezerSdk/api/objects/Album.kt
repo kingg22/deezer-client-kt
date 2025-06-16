@@ -43,7 +43,7 @@ import kotlinx.serialization.Serializable
  * @property type **unofficial** The type of object, usually the name of the class.
  */
 @Serializable
-data class Album(
+data class Album @JvmOverloads constructor(
     override val id: Long,
     val title: String,
     val upc: String? = null,
@@ -104,5 +104,8 @@ data class Album(
     val tracks: PaginatedResponse<Track>? = null,
     override val type: String = "album",
 ) : Resource() {
+    @JvmSynthetic
     override suspend fun reload() = client.albums.getById(this.id)
+
+    companion object
 }

@@ -22,7 +22,7 @@ import kotlinx.serialization.json.JsonNames
  */
 @Serializable
 @OptIn(ExperimentalSerializationApi::class)
-data class Genre(
+data class Genre @JvmOverloads constructor(
     override val id: Long,
     @JsonNames("title") val name: String,
     val picture: String? = null,
@@ -33,5 +33,8 @@ data class Genre(
     override val type: String = "genre",
     val radios: List<Radio>? = null,
 ) : Resource() {
+    @JvmSynthetic
     override suspend fun reload() = client.genres.getById(this.id)
+
+    companion object
 }

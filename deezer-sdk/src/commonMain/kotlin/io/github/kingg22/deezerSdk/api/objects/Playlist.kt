@@ -42,7 +42,7 @@ import kotlinx.serialization.json.JsonNames
  */
 @Serializable
 @OptIn(ExperimentalSerializationApi::class)
-data class Playlist(
+data class Playlist @JvmOverloads constructor(
     override val id: Long,
     val title: String,
     val description: String? = null,
@@ -78,5 +78,8 @@ data class Playlist(
     val position: Int? = null,
     val tracklist: String? = null,
 ) : Resource() {
+    @JvmSynthetic
     override suspend fun reload() = client.playlists.getById(this.id)
+
+    companion object
 }

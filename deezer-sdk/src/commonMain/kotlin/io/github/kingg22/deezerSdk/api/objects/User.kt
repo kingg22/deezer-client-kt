@@ -33,7 +33,7 @@ import kotlinx.serialization.Serializable
  * @property type **unofficial** The type of object, usually the name of the class.
  */
 @Serializable
-data class User(
+data class User @JvmOverloads constructor(
     override val id: Long,
     val name: String,
     val lastname: String? = null,
@@ -80,5 +80,9 @@ data class User(
         EXPLICIT_HIDE,
     }
 
+    @JvmSynthetic
     override suspend fun reload() = client.users.getById(this.id)
+
+    // Needed to Java access to serializer of this and not abstract class
+    companion object
 }

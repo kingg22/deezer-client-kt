@@ -22,7 +22,7 @@ import kotlinx.serialization.Serializable
  * @property md5Image The MD5 hash of the album's cover image
  */
 @Serializable
-data class Radio(
+data class Radio @JvmOverloads constructor(
     override val id: Long,
     val title: String,
     val description: String? = null,
@@ -36,5 +36,8 @@ data class Radio(
     @SerialName("md5_image") val md5Image: String? = null,
     override val type: String = "radio",
 ) : Resource() {
+    @JvmSynthetic
     override suspend fun reload() = client.radios.getById(this.id)
+
+    companion object
 }

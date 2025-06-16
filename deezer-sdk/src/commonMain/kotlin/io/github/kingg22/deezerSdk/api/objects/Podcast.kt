@@ -23,7 +23,7 @@ import kotlinx.serialization.Serializable
  * @property pictureXl The url of the podcast's cover in size xl
  */
 @Serializable
-data class Podcast(
+data class Podcast @JvmOverloads constructor(
     override val id: Long,
     val title: String? = null,
     val description: String? = null,
@@ -38,5 +38,8 @@ data class Podcast(
     @SerialName("picture_xl") val pictureXl: String? = null,
     override val type: String = "podcast",
 ) : Resource() {
+    @JvmSynthetic
     override suspend fun reload() = client.podcasts.getById(this.id)
+
+    companion object
 }

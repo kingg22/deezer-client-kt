@@ -18,7 +18,7 @@ import kotlinx.serialization.Serializable
  * @property pictureXl The url of the editorial picture in size xl
  */
 @Serializable
-data class Editorial(
+data class Editorial @JvmOverloads constructor(
     override val id: Long,
     val name: String,
     val picture: String? = null,
@@ -28,5 +28,8 @@ data class Editorial(
     @SerialName("picture_xl") val pictureXl: String? = null,
     override val type: String = "editorial",
 ) : Resource() {
+    @JvmSynthetic
     override suspend fun reload() = client.editorials.getById(this.id)
+
+    companion object
 }

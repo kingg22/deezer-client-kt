@@ -27,7 +27,7 @@ import kotlinx.serialization.Serializable
  * @property position **unofficial _only on charts_** The position of the artist in the charts
  */
 @Serializable
-data class Artist(
+data class Artist @JvmOverloads constructor(
     override val id: Long,
     val name: String,
     val link: String? = null,
@@ -45,5 +45,8 @@ data class Artist(
     val role: String? = null,
     val position: Int? = null,
 ) : Resource() {
+    @JvmSynthetic
     override suspend fun reload() = client.artists.getById(this.id)
+
+    companion object
 }

@@ -13,6 +13,7 @@ import io.ktor.client.plugins.logging.LogLevel
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 import kotlin.time.Duration
+import kotlin.time.Duration.Companion.seconds
 
 /** Builder for the HttpClient. */
 data class HttpClientBuilder @JvmOverloads constructor(
@@ -23,7 +24,7 @@ data class HttpClientBuilder @JvmOverloads constructor(
     var cookiesStorage: CookiesStorage = DEFAULT_COOKIE_STORAGE,
 
     /** Sets a timeout for the HttpClient. Default 20 seg */
-    var timeout: Duration = DEFAULT_MAX_RETRY_TIMEOUT,
+    var timeout: Long = DEFAULT_MAX_RETRY_TIMEOUT.inWholeSeconds,
 
     /** Sets the max retry count for requests. Default 3 */
     var maxRetryCount: Int = DEFAULT_MAX_RETRY_ATTEMPTS,
@@ -48,7 +49,12 @@ data class HttpClientBuilder @JvmOverloads constructor(
 
     /** Sets a timeout for the HttpClient. Default 20 seg */
     fun timeout(duration: Duration) = apply {
-        this.timeout = duration
+        this.timeout = duration.inWholeSeconds
+    }
+
+    /** Sets a timeout for the HttpClient. Default 20 seg */
+    fun timeout(durationSeconds: Long) = apply {
+        this.timeout = durationSeconds
     }
 
     /** Sets the max retry count for requests. Default 3 */
@@ -86,7 +92,7 @@ data class HttpClientBuilder @JvmOverloads constructor(
     fun build() = getClient(
         userAgent,
         maxRetryCount,
-        timeout,
+        timeout.seconds,
         httpEngine,
         cookiesStorage,
         httpLogLevel,

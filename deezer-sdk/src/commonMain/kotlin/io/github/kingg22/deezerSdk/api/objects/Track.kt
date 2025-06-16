@@ -42,7 +42,7 @@ import kotlinx.serialization.Serializable
  * @property timeAdd **unofficial only on playlist**
  */
 @Serializable
-data class Track(
+data class Track @JvmOverloads constructor(
     override val id: Long,
     val readable: Boolean? = null,
     val title: String,
@@ -107,5 +107,8 @@ data class Track(
     val position: Int? = null,
     @SerialName("time_add") val timeAdd: Long? = null,
 ) : Resource() {
+    @JvmSynthetic
     override suspend fun reload() = client.tracks.getById(this.id)
+
+    companion object
 }

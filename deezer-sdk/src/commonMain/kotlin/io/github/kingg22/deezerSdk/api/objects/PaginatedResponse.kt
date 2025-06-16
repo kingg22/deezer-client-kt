@@ -3,11 +3,24 @@ package io.github.kingg22.deezerSdk.api.objects
 import io.github.kingg22.deezerSdk.api.GlobalDeezerApiClient
 import io.github.kingg22.deezerSdk.exceptions.DeezerApiException
 import io.github.kingg22.deezerSdk.utils.AfterInitialize
-import io.ktor.http.takeFrom
+import io.github.kingg22.deezerSdk.utils.ForJavaDeezerSdk
+import io.github.kingg22.deezerSdk.utils.HttpClientProvider
+import io.ktor.client.call.body
+import io.ktor.client.request.get
+import io.ktor.client.statement.bodyAsText
+import io.ktor.http.Url
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.future.future
+import kotlinx.coroutines.runBlocking
+import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
+import kotlin.coroutines.CoroutineContext
+import kotlin.coroutines.EmptyCoroutineContext
 import kotlin.coroutines.cancellation.CancellationException
 import kotlin.jvm.JvmStatic
+import kotlin.jvm.Throws
+import kotlin.reflect.KClass
 
 /**
  * **Unofficial** Represent a response of [Deezer API](https://developers.deezer.com/api/).
@@ -23,7 +36,7 @@ import kotlin.jvm.JvmStatic
  * @property next Link to the next page of the search
  */
 @Serializable
-data class PaginatedResponse<out T : @Serializable Any>(
+data class PaginatedResponse<out T : @Serializable Any> @JvmOverloads constructor(
     val data: List<T> = emptyList(),
     val checksum: String? = null,
     val total: Int? = null,
@@ -41,25 +54,24 @@ data class PaginatedResponse<out T : @Serializable Any>(
     /**
      * Fetch the next page of the search
      *
-     * @param R Type of the response. Required to parse the response.
+     * @param N Type of the response. Required to parse the response, and expand the [data] with a new result.
      * @param expand true to expand [data] with a new result
      * @return Null if [next] is null else [PaginatedResponse]
-     * @throws IllegalArgumentException if [data] is empty and try to expand it
-     * @throws IllegalArgumentException if [expand] is true and types [R] != [T]
+     * @throws IllegalArgumentException if [data] is not empty and types [N] != [T]
      */
     @AfterInitialize
     @Throws(IllegalArgumentException::class, DeezerApiException::class, CancellationException::class)
-    suspend inline fun <reified R : @Serializable Any> fetchNext(expand: Boolean = false): PaginatedResponse<R>? {
+    suspend inline fun <reified N : @Serializable Any> fetchNext(expand: Boolean = false): PaginatedResponse<N>? {
         if (next.isNullOrBlank()) return null
-        val result = client.rawExecuteAsync<PaginatedResponse<R>> { url.takeFrom(next) }
-        return if (expand) {
-            require(data.isNotEmpty()) { "Requires data not empty to expand it" }
-            require(data.first()::class == R::class) {
-                "Requires type equals to expand in fetchNext. R ${R::class} and T ${data.first()::class} mismatch"
+        if (data.isNotEmpty()) {
+            require(N::class == data.first()::class) {
+                "Requires type equals to fetchNext. ${N::class} != ${data.first()::class}"
             }
+        }
+        val result = client.httpClient.get(Url(next)).body<PaginatedResponse<N>>()
+        return if (expand && data.isNotEmpty()) {
             @Suppress("UNCHECKED_CAST")
-            val castedData = data as List<R>
-            return result.copy(data = castedData.plus(result.data))
+            return result.copy(data = data as List<N> + result.data)
         } else {
             result
         }
@@ -68,15 +80,117 @@ data class PaginatedResponse<out T : @Serializable Any>(
     /**
      * Fetch the previous page of the search
      *
-     * @param R Type of the response. Required to parse the response
+     * @param P Type of the response. Required to parse the response, and expand the [data] with a new result.
+     * @param expand true to expand [data] with a new result
      * @return Null if [prev] is null else [PaginatedResponse]
+     * @throws IllegalArgumentException if [data] is not empty and types [P] != [T]
      */
     @AfterInitialize
     @Throws(DeezerApiException::class, CancellationException::class)
-    suspend inline fun <reified R : @Serializable Any> fetchPrevious(): PaginatedResponse<R>? =
-        if (prev.isNullOrBlank()) {
-            null
-        } else {
-            client.rawExecuteAsync { url.takeFrom(prev) }
+    suspend inline fun <reified P : @Serializable Any> fetchPrevious(expand: Boolean = false): PaginatedResponse<P>? {
+        if (prev.isNullOrBlank()) return null
+        if (data.isNotEmpty()) {
+            require(P::class == data.first()::class) {
+                "Requires type equals to expand in fetchPrevious. ${P::class} != ${data.first()::class}"
+            }
         }
+        val result = client.httpClient.get(Url(prev)).body<PaginatedResponse<P>>()
+        return if (expand && data.isNotEmpty()) {
+            @Suppress("UNCHECKED_CAST")
+            result.copy(data = result.data + data as List<P>)
+        } else {
+            result
+        }
+    }
+
+    // -- Java --
+    @AfterInitialize
+    @ForJavaDeezerSdk
+    @JvmName("fetchNext")
+    @JvmOverloads
+    @Throws(IllegalArgumentException::class, DeezerApiException::class, CancellationException::class)
+    fun <N : @Serializable Any> fetchNextBlocking(serializer: KSerializer<N>, expand: Boolean = false) =
+        runBlocking { fetchNextJavaInternal(expand, serializer) }
+
+    @AfterInitialize
+    @ForJavaDeezerSdk
+    @JvmName("fetchNextFuture")
+    @JvmOverloads
+    @Throws(IllegalArgumentException::class, DeezerApiException::class, CancellationException::class)
+    fun <N : @Serializable Any> fetchNextJava(
+        serializer: KSerializer<N>,
+        expand: Boolean = false,
+        coroutineContext: CoroutineContext = EmptyCoroutineContext,
+    ) = CoroutineScope(coroutineContext).future { fetchNextJavaInternal(expand, serializer) }
+
+    @ForJavaDeezerSdk
+    @JvmSynthetic
+    private suspend fun <N : @Serializable Any> fetchNextJavaInternal(
+        expand: Boolean = false,
+        serializer: KSerializer<N>,
+    ): PaginatedResponse<N>? {
+        if (next.isNullOrBlank()) return null
+        if (data.isNotEmpty()) {
+            kSerializerCheck(serializer, data.first()::class, "fetchNext")
+        }
+        val resultString = client.httpClient.get(Url(next)).bodyAsText()
+        val result = HttpClientProvider.getJson().decodeFromString(serializer(serializer), resultString)
+
+        return if (expand && data.isNotEmpty()) {
+            @Suppress("UNCHECKED_CAST")
+            result.copy(data = data as List<N> + result.data)
+        } else {
+            result
+        }
+    }
+
+    @AfterInitialize
+    @ForJavaDeezerSdk
+    @JvmName("fetchPrevious")
+    @JvmOverloads
+    @Throws(IllegalArgumentException::class, DeezerApiException::class, CancellationException::class)
+    fun <N : @Serializable Any> fetchPrevBlocking(serializer: KSerializer<N>, expand: Boolean = false) =
+        runBlocking { fetchPreviousJavaInternal(expand, serializer) }
+
+    @AfterInitialize
+    @ForJavaDeezerSdk
+    @JvmName("fetchPreviousFuture")
+    @JvmOverloads
+    @Throws(IllegalArgumentException::class, DeezerApiException::class, CancellationException::class)
+    fun <N : @Serializable Any> fetchPreviousJava(
+        serializer: KSerializer<N>,
+        expand: Boolean = false,
+        coroutineContext: CoroutineContext = EmptyCoroutineContext,
+    ) = CoroutineScope(coroutineContext).future { fetchPreviousJavaInternal(expand, serializer) }
+
+    @ForJavaDeezerSdk
+    @JvmSynthetic
+    private suspend fun <N : @Serializable Any> fetchPreviousJavaInternal(
+        expand: Boolean = false,
+        serializer: KSerializer<N>,
+    ): PaginatedResponse<N>? {
+        if (prev.isNullOrBlank()) return null
+        if (data.isNotEmpty()) {
+            kSerializerCheck(serializer, data.first()::class, "fetchPrevious")
+        }
+        val resultString = client.httpClient.get(Url(prev)).bodyAsText()
+        val result = HttpClientProvider.getJson().decodeFromString(serializer(serializer), resultString)
+
+        return if (expand && data.isNotEmpty()) {
+            @Suppress("UNCHECKED_CAST")
+            result.copy(data = result.data + data as List<N>)
+        } else {
+            result
+        }
+    }
+
+    private fun kSerializerCheck(serializer: KSerializer<*>, firstClass: KClass<*>, action: String) {
+        require(
+            serializer.descriptor.serialName.let { name ->
+                Class.forName(name.replace('/', '.')).kotlin
+            } == firstClass,
+        ) {
+            "Requires type equals to $action.  $firstClass != ${serializer.descriptor.serialName}"
+        }
+    }
 }

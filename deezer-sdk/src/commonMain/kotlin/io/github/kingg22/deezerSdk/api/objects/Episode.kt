@@ -27,7 +27,7 @@ import kotlinx.serialization.Serializable
  * @property trackToken The track token for media service
  */
 @Serializable
-data class Episode(
+data class Episode @JvmOverloads constructor(
     override val id: Long,
     val title: String,
     val description: String? = null,
@@ -58,5 +58,8 @@ data class Episode(
     val podcast: Podcast? = null,
     override val type: String = "episode",
 ) : Resource() {
+    @JvmSynthetic
     override suspend fun reload() = client.episodes.getById(this.id)
+
+    companion object
 }

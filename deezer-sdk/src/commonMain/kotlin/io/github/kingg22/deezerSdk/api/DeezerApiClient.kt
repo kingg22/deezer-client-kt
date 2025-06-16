@@ -40,8 +40,7 @@ import io.ktor.client.plugins.HttpCallValidatorConfig
 import io.ktor.client.plugins.HttpRequestTimeoutException
 import io.ktor.client.plugins.HttpResponseValidator
 import io.ktor.client.plugins.ServerResponseException
-import io.ktor.client.request.HttpRequestBuilder
-import io.ktor.client.request.request
+import io.ktor.client.statement.bodyAsText
 import io.ktor.http.ContentType
 import io.ktor.http.contentType
 import io.ktor.http.isSuccess
@@ -49,8 +48,8 @@ import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.isActive
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
-import kotlin.coroutines.cancellation.CancellationException
 import kotlin.coroutines.coroutineContext
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
@@ -66,6 +65,7 @@ data class DeezerApiClient @JvmOverloads constructor(
     private val builder: HttpClientBuilder = HttpClientBuilder(),
 ) {
     /** The current [HttpClient] using */
+    @get:JvmName("-httpClient")
     @PublishedApi
     @OptIn(ExperimentalDeezerSdk::class)
     internal val httpClient = builder.copy().addCustomConfig {
@@ -75,45 +75,59 @@ data class DeezerApiClient @JvmOverloads constructor(
     private val ktorfit = createKtorfit(HttpClientProvider.DeezerApiSupported.API_DEEZER.baseUrl, httpClient)
 
     /** All endpoints related to [io.github.kingg22.deezerSdk.api.objects.Album] */
+    @JvmField
     val albums: AlbumRoutes = ktorfit.createAlbumRoutes()
 
     /** All endpoints related to [io.github.kingg22.deezerSdk.api.objects.Artist] */
+    @JvmField
     val artists: ArtistRoutes = ktorfit.createArtistRoutes()
 
     /** All endpoints related to [io.github.kingg22.deezerSdk.api.objects.Chart] */
+    @JvmField
     val charts: ChartRoutes = ktorfit.createChartRoutes()
 
     /** All endpoints related to [io.github.kingg22.deezerSdk.api.objects.Editorial] */
+    @JvmField
     val editorials: EditorialRoutes = ktorfit.createEditorialRoutes()
 
     /** All endpoints related to [io.github.kingg22.deezerSdk.api.objects.Episode] */
+    @JvmField
     val episodes: EpisodeRoutes = ktorfit.createEpisodeRoutes()
 
     /** All endpoints related to [io.github.kingg22.deezerSdk.api.objects.Genre] */
+    @JvmField
     val genres: GenreRoutes = ktorfit.createGenreRoutes()
 
     /** All endpoints related to [io.github.kingg22.deezerSdk.api.objects.Infos] */
+    @JvmField
     val infos: InfosRoute = ktorfit.createInfosRoute()
 
     /** All endpoints related to [io.github.kingg22.deezerSdk.api.objects.Options] */
+    @JvmField
     val options: OptionsRoute = ktorfit.createOptionsRoute()
 
     /** All endpoints related to [io.github.kingg22.deezerSdk.api.objects.Playlist] */
+    @JvmField
     val playlists: PlaylistRoutes = ktorfit.createPlaylistRoutes()
 
     /** All endpoints related to [io.github.kingg22.deezerSdk.api.objects.Podcast] */
+    @JvmField
     val podcasts: PodcastRoutes = ktorfit.createPodcastRoutes()
 
     /** All endpoints related to [io.github.kingg22.deezerSdk.api.objects.Radio] */
+    @JvmField
     val radios: RadioRoutes = ktorfit.createRadioRoutes()
 
     /** All endpoints related to search */
+    @JvmField
     val searches: SearchRoutes = ktorfit.createSearchRoutes()
 
     /** All endpoints related to [io.github.kingg22.deezerSdk.api.objects.Track] */
+    @JvmField
     val tracks: TrackRoutes = ktorfit.createTrackRoutes()
 
     /** All endpoints related to [io.github.kingg22.deezerSdk.api.objects.User] */
+    @JvmField
     val users: UserRoutes = ktorfit.createUserRoutes()
 
     init {
@@ -121,74 +135,67 @@ data class DeezerApiClient @JvmOverloads constructor(
         GlobalDeezerApiClient.initIfNeeded(this)
     }
 
-    /**
-     * Executes an HTTP request asynchronously and deserializes the response body into the specified type [T].
-     *
-     * @param request A lambda that configures the HTTP request. This is passed to the [HttpRequestBuilder].
-     * @return The deserialized response body of type [T].
-     * @throws DeezerApiException If the request fails
-     */
-    @PublishedApi
-    @Throws(DeezerApiException::class, CancellationException::class)
-    internal suspend inline fun <reified T : @Serializable Any> rawExecuteAsync(
-        crossinline request: HttpRequestBuilder.() -> Unit,
-    ) = exceptionHandler { httpClient.request(request).body<T>() }
-
-    /**
-     * Handler an exception to Ktor client, wrap to custom [io.github.kingg22.deezerSdk.exceptions]
-     *
-     * @param block request of ktor client that can exception
-     * @return T the expected type of the request
-     * @throws DeezerApiException If the request fails
-     */
-    @PublishedApi
-    @Throws(DeezerApiException::class, CancellationException::class)
-    internal suspend inline fun <T> exceptionHandler(crossinline block: suspend () -> T): T = try {
-        block()
-    } catch (e: ClientRequestException) {
-        // try to obtain the error code of deezer if the http status is 4xx
-        val errorBody = runCatching {
-            e.response.body<io.github.kingg22.deezerSdk.api.objects.Error>().error
-        }.onFailure { coroutineContext.ensureActive() }.getOrNull()
-        throw DeezerApiException(errorCode = errorBody?.code, cause = e)
-    } catch (e: HttpRequestTimeoutException) {
-        throw DeezerApiException(
-            errorMessage = "Deezer API took too long to respond. Try again later.",
-            cause = e,
-        )
-    } catch (e: ServerResponseException) {
-        throw DeezerApiException(errorMessage = "Deezer API unavailable", cause = e)
-    } catch (e: Throwable) {
-        coroutineContext.ensureActive()
-        throw DeezerApiException(cause = e)
-    }
-
     private inline fun <reified T : @Serializable Any> decodeOrNull(json: String): T? =
         runCatching { Json.decodeFromString<T>(json) }.getOrNull()
 
     private fun customValidators(): HttpCallValidatorConfig.() -> Unit = {
         handleResponseException { exception, _ ->
-            if (exception is DeezerApiException || exception is CancellationException) {
-                throw exception
+            when (exception) {
+                is DeezerApiException -> throw exception
+                is ClientRequestException -> {
+                    val errorBody = runCatching {
+                        exception.response.body<io.github.kingg22.deezerSdk.api.objects.Error>().error
+                    }.onFailure { coroutineContext.ensureActive() }.getOrNull()
+
+                    throw DeezerApiException(
+                        errorCode = errorBody?.code,
+                        errorMessage = errorBody?.message,
+                        cause = exception,
+                    )
+                }
+
+                is HttpRequestTimeoutException -> {
+                    throw DeezerApiException(
+                        errorMessage = "Deezer API took too long to respond. Try again later.",
+                        cause = exception,
+                    )
+                }
+
+                is ServerResponseException -> {
+                    throw DeezerApiException(
+                        errorMessage = "Deezer API unavailable",
+                        cause = exception,
+                    )
+                }
+
+                else -> {
+                    coroutineContext.ensureActive()
+                    throw DeezerApiException(cause = exception)
+                }
             }
-            throw DeezerApiException(errorMessage = "Ktor", cause = exception)
         }
-        validateResponse {
-            val contentType = it.contentType()
-            if (it.status.isSuccess() && contentType != null && contentType == ContentType.Application.Json) {
-                val saved = it.call
-                // Validate errors as they are received with http code 2xx
-                // This can cause [DoubleReceiveException], keep an eye on
-                val content = decodeOrNull<io.github.kingg22.deezerSdk.api.objects.Error>(saved.body())?.error
-                val booleano = content?.let { decodeOrNull<Boolean>(saved.body()) }
+
+        validateResponse { response ->
+            if (!response.status.isSuccess()) return@validateResponse
+
+            val contentType = response.contentType()
+            if (contentType == ContentType.Application.Json) {
+                val body = runCatching { response.bodyAsText() }
+                    .onFailure { coroutineContext.ensureActive() }
+                    .getOrNull()
+                    ?: return@validateResponse
+
+                val error = decodeOrNull<io.github.kingg22.deezerSdk.api.objects.Error>(body)?.error
+                val asBoolean = decodeOrNull<Boolean>(body)
+
                 when {
-                    booleano != null -> throw DeezerApiException(
-                        errorMessage = "API response a boolean: $booleano",
+                    asBoolean != null -> throw DeezerApiException(
+                        errorMessage = "API responded with boolean: $asBoolean",
                     )
 
-                    content != null -> throw DeezerApiException(
-                        errorCode = content.code,
-                        errorMessage = content.message,
+                    error != null -> throw DeezerApiException(
+                        errorCode = error.code,
+                        errorMessage = error.message,
                     )
                 }
             }

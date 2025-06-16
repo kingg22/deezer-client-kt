@@ -23,19 +23,19 @@ import io.ktor.serialization.kotlinx.json.json
 import io.ktor.utils.io.charsets.Charsets
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
-import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
+import kotlin.jvm.JvmSynthetic
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 
 internal data object HttpClientProvider {
+    @JvmSynthetic
     const val DEFAULT_USER_AGENT = "Mozilla/5.0 (X11; Linux i686; rv:135.0) Gecko/20100101 Firefox/135.0"
+
+    @JvmSynthetic
     const val DEFAULT_MAX_RETRY_ATTEMPTS = 3
 
-    @JvmStatic
     val DEFAULT_MAX_RETRY_TIMEOUT = 20.seconds
 
-    @JvmStatic
     val DEFAULT_COOKIE_STORAGE: CookiesStorage = AcceptAllCookiesStorage()
 
     /**
@@ -43,9 +43,7 @@ internal data object HttpClientProvider {
      * @throws IllegalArgumentException If the timeout is less than or equal to zero.
      * @throws IllegalArgumentException If the provided User-Agent string is empty.
      */
-    @JvmStatic
-    @JvmOverloads
-    @OptIn(ExperimentalSerializationApi::class)
+    @JvmSynthetic
     @Throws(IllegalArgumentException::class)
     fun getClient(
         userAgent: String = DEFAULT_USER_AGENT,
@@ -66,20 +64,7 @@ internal data object HttpClientProvider {
             }
             install(BodyProgress)
             install(ContentNegotiation) {
-                json(
-                    Json {
-                        encodeDefaults = true
-                        isLenient = true
-                        allowSpecialFloatingPointValues = true
-                        allowStructuredMapKeys = true
-
-                        prettyPrint = true
-                        ignoreUnknownKeys = true
-                        explicitNulls = false
-                        decodeEnumsCaseInsensitive = true
-                        useArrayPolymorphism = true
-                    },
-                )
+                json(getJson())
             }
             install(HttpTimeout) {
                 requestTimeoutMillis = timeout.inWholeMilliseconds
@@ -125,13 +110,31 @@ internal data object HttpClientProvider {
         return if (engine != null) HttpClient(engine, clientConfig) else HttpClient(clientConfig)
     }
 
-    internal enum class DeezerApiSupported(val baseUrl: String) {
+    @OptIn(ExperimentalSerializationApi::class)
+    @JvmSynthetic
+    internal fun getJson() = Json {
+        encodeDefaults = true
+        isLenient = true
+        allowSpecialFloatingPointValues = true
+        allowStructuredMapKeys = true
+
+        prettyPrint = true
+        ignoreUnknownKeys = true
+        explicitNulls = false
+        decodeEnumsCaseInsensitive = true
+        useArrayPolymorphism = true
+    }
+
+    internal enum class DeezerApiSupported(@get:JvmSynthetic val baseUrl: String) {
+        @JvmSynthetic
         API_DEEZER("https://api.deezer.com/"),
 
         @UnofficialDeezerApi
+        @JvmSynthetic
         GW_DEEZER("https://www.deezer.com/ajax/gw-light.php"),
 
         @UnofficialDeezerApi
+        @JvmSynthetic
         MEDIA_DEEZER("https://media.deezer.com/v1/get_url"),
     }
 }
