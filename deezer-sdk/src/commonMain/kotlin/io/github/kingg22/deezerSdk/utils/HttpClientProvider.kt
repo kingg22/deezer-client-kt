@@ -14,6 +14,7 @@ import io.ktor.client.plugins.cookies.CookiesStorage
 import io.ktor.client.plugins.cookies.HttpCookies
 import io.ktor.client.plugins.defaultRequest
 import io.ktor.client.plugins.logging.LogLevel
+import io.ktor.client.plugins.logging.Logger
 import io.ktor.client.plugins.logging.Logging
 import io.ktor.client.plugins.logging.LoggingFormat
 import io.ktor.http.HttpHeaders
@@ -43,6 +44,7 @@ internal data object HttpClientProvider {
      * @throws IllegalArgumentException If the timeout is less than or equal to zero.
      * @throws IllegalArgumentException If the provided User-Agent string is empty.
      */
+    @Suppress("kotlin:S107")
     @JvmSynthetic
     @Throws(IllegalArgumentException::class)
     fun getClient(
@@ -52,6 +54,7 @@ internal data object HttpClientProvider {
         engine: HttpClientEngine? = null,
         cookiesStorage: CookiesStorage = DEFAULT_COOKIE_STORAGE,
         logLevel: LogLevel = LogLevel.INFO,
+        httpLogger: Logger,
         modifiers: List<HttpClientConfig<*>.() -> Unit> = emptyList(),
     ): HttpClient {
         require(userAgent.isNotBlank())
@@ -74,6 +77,7 @@ internal data object HttpClientProvider {
                 exponentialDelay()
             }
             install(Logging) {
+                logger = httpLogger
                 format = LoggingFormat.OkHttp
                 level = logLevel
             }

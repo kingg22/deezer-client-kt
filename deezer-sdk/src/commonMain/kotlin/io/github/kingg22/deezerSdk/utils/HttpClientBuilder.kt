@@ -10,6 +10,7 @@ import io.ktor.client.engine.HttpClientEngine
 import io.ktor.client.plugins.cookies.AcceptAllCookiesStorage
 import io.ktor.client.plugins.cookies.CookiesStorage
 import io.ktor.client.plugins.logging.LogLevel
+import io.ktor.client.plugins.logging.Logger
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 import kotlin.time.Duration
@@ -32,45 +33,40 @@ data class HttpClientBuilder @JvmOverloads constructor(
     /** Specifies the HttpClientEngine to be used explicit. Default automatically set by Ktor. */
     var httpEngine: HttpClientEngine? = null,
 
+    /** Sets a custom logger for the HttpClient. Default a no-op logger. */
+    var logger: Logger = object : Logger {
+        override fun log(message: String) {
+            // do nothing
+        }
+    },
+
     /** Defines the logging level for HTTP requests and responses. Default is [LogLevel.INFO]. */
     var httpLogLevel: LogLevel = LogLevel.INFO,
 ) {
     private val customHttpConfig: MutableList<HttpClientConfig<*>.() -> Unit> = mutableListOf()
 
     /** Sets a custom user-agent for the HttpClient. */
-    fun userAgent(userAgent: String) = apply {
-        this.userAgent = userAgent
-    }
+    fun userAgent(userAgent: String) = apply { this.userAgent = userAgent }
 
     /** Sets a custom cookies storage for the HttpClient. Default [AcceptAllCookiesStorage] */
-    fun cookiesStorage(storage: CookiesStorage) = apply {
-        this.cookiesStorage = storage
-    }
+    fun cookiesStorage(storage: CookiesStorage) = apply { this.cookiesStorage = storage }
 
     /** Sets a timeout for the HttpClient. Default 20 seg */
-    fun timeout(duration: Duration) = apply {
-        this.timeout = duration.inWholeSeconds
-    }
+    fun timeout(duration: Duration) = apply { this.timeout = duration.inWholeSeconds }
 
     /** Sets a timeout for the HttpClient. Default 20 seg */
-    fun timeout(durationSeconds: Long) = apply {
-        this.timeout = durationSeconds
-    }
+    fun timeout(durationSeconds: Long) = apply { this.timeout = durationSeconds }
 
     /** Sets the max retry count for requests. Default 3 */
-    fun maxRetryCount(count: Int) = apply {
-        this.maxRetryCount = count
-    }
+    fun maxRetryCount(count: Int) = apply { this.maxRetryCount = count }
 
     /** Sets the logging level for HTTP requests and responses. Default [LogLevel.INFO] */
-    fun httpLogLevel(logLevel: LogLevel) = apply {
-        this.httpLogLevel = logLevel
-    }
+    fun httpLogLevel(logLevel: LogLevel) = apply { this.httpLogLevel = logLevel }
+
+    fun logger(logger: Logger) = apply { this.logger = logger }
 
     /** Specifies the HttpClientEngine to be used explicit. Default automatically set by Ktor. */
-    fun httpEngine(engine: HttpClientEngine) = apply {
-        this.httpEngine = engine
-    }
+    fun httpEngine(engine: HttpClientEngine) = apply { this.httpEngine = engine }
 
     /**
      * **Warning:** This is an internal function and should only be used if you know what you're doing.
@@ -78,9 +74,7 @@ data class HttpClientBuilder @JvmOverloads constructor(
      * @see [httpEngine]
      */
     @ExperimentalDeezerSdk
-    fun addCustomConfig(config: HttpClientConfig<*>.() -> Unit) = apply {
-        this.customHttpConfig.add(config)
-    }
+    fun addCustomConfig(config: HttpClientConfig<*>.() -> Unit) = apply { this.customHttpConfig.add(config) }
 
     /**
      * Builds the HttpClient with the configured options.
@@ -96,6 +90,7 @@ data class HttpClientBuilder @JvmOverloads constructor(
         httpEngine,
         cookiesStorage,
         httpLogLevel,
+        logger,
         customHttpConfig,
     )
 
