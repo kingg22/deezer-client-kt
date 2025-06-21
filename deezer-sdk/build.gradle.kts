@@ -39,6 +39,7 @@ kotlin {
             api(libs.bundles.ktor.client)
             api(libs.bundles.kotlinx.ecosystem)
             implementation(libs.ktorfit.light)
+            runtimeOnly(libs.slf4j.nop)
         }
         commonTest.dependencies {
             implementation(libs.bundles.testing)
