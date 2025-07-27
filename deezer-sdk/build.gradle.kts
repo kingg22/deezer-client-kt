@@ -95,7 +95,7 @@ dokka {
 }
 
 android {
-    namespace = "$group.deezerSdk"
+    namespace = "$group.deezer.client"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
