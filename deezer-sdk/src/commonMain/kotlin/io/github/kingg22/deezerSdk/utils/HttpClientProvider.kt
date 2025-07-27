@@ -35,8 +35,10 @@ internal data object HttpClientProvider {
     @JvmSynthetic
     const val DEFAULT_MAX_RETRY_ATTEMPTS = 3
 
+    @JvmSynthetic
     val DEFAULT_MAX_RETRY_TIMEOUT = 20.seconds
 
+    @JvmSynthetic
     val DEFAULT_COOKIE_STORAGE: CookiesStorage = AcceptAllCookiesStorage()
 
     /**
@@ -132,13 +134,5 @@ internal data object HttpClientProvider {
     internal enum class DeezerApiSupported(@get:JvmSynthetic val baseUrl: String) {
         @JvmSynthetic
         API_DEEZER("https://api.deezer.com/"),
-
-        @UnofficialDeezerApi
-        @JvmSynthetic
-        GW_DEEZER("https://www.deezer.com/ajax/gw-light.php"),
-
-        @UnofficialDeezerApi
-        @JvmSynthetic
-        MEDIA_DEEZER("https://media.deezer.com/v1/get_url"),
     }
 }

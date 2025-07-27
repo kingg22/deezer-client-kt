@@ -19,13 +19,13 @@ data class DeezerApiException(
     private val errorCode: Int? = null,
     private val errorMessage: String? = null,
     override val cause: Throwable? = null,
-) : DeezerSdkException(errorMessage, cause) {
+) : Exception(errorMessage, cause) {
     val error = errorCode?.let { DeezerErrorCode.fromCode(it) }
 
     override val message = buildString {
         append("[Deezer API Exception]")
-        // Don't call to super, generate more detail message
-        error?.let { append(" [Error: ${it.description} (Code: ${it.code})]") }
+        // Don't call supper, generate a more detail message
+        error?.let { append(" [ErrorContainer: ${it.description} (Code: ${it.code})]") }
         if (!errorMessage.isNullOrBlank()) append(": $errorMessage")
     }
 
@@ -65,7 +65,7 @@ data class DeezerApiException(
         /** Data not found */
         DATA_NOT_FOUND(800, "Data not found", "DataException"),
 
-        /** Individual account not allowed */
+        /** Individual account isn't allowed */
         INDIVIDUAL_ACCOUNT_NOT_ALLOWED(
             901,
             "Individual account not allowed",

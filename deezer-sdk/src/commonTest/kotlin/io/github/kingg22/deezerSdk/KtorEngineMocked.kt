@@ -2,24 +2,14 @@ package io.github.kingg22.deezerSdk
 
 import co.touchlab.kermit.Logger
 import com.goncalossilva.resources.Resource
-import io.github.kingg22.deezerSdk.gw.DeezerGwClientTest.Companion.GW_ARL
-import io.github.kingg22.deezerSdk.gw.DeezerGwClientTest.Companion.GW_TOKEN
 import io.github.kingg22.deezerSdk.utils.ExperimentalDeezerSdk
 import io.github.kingg22.deezerSdk.utils.HttpClientBuilder
-import io.ktor.client.engine.HttpClientEngine
-import io.ktor.client.engine.mock.MockEngine
-import io.ktor.client.engine.mock.respond
-import io.ktor.client.engine.mock.toByteArray
-import io.ktor.client.plugins.logging.Logging
-import io.ktor.http.HttpHeaders
-import io.ktor.http.HttpStatusCode
-import io.ktor.http.fullPath
-import io.ktor.http.headersOf
+import io.ktor.client.engine.*
+import io.ktor.client.engine.mock.*
+import io.ktor.client.plugins.logging.*
+import io.ktor.http.*
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
-import kotlin.jvm.JvmField
-import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 data object KtorEngineMocked {
     @OptIn(ExperimentalSerializationApi::class)
@@ -49,35 +39,12 @@ data object KtorEngineMocked {
 
     @JvmStatic
     private fun createMockEngine(): HttpClientEngine = MockEngine {
-        val body = it.body.toByteArray().decodeToString()
         val fullPath = it.url.fullPath
-        when {
-            body.contains("license_token", true) &&
-                body.contains("\"\"") &&
-                fullPath.contains("get_url") -> {
-                respond(
-                    content = readResourceFile("/media/responses/error.json"),
-                    status = HttpStatusCode.Forbidden,
-                    headers = headersOf(HttpHeaders.ContentType, "application/json; charset=utf-8"),
-                )
-            }
-
-            fullPath.contains("deezer.getUserData&api_version=1.0&input=3") &&
-                it.headers[HttpHeaders.Cookie]?.contains("arl=$GW_ARL") == false -> {
-                respond(
-                    content = readResourceFile("/gw/responses/get_user_data_invalid.json"),
-                    status = HttpStatusCode.OK,
-                    headers = headersOf(HttpHeaders.ContentType, "application/json; charset=utf-8"),
-                )
-            }
-
-            else ->
-                respond(
-                    content = getJsonFromPath(fullPath, true),
-                    status = HttpStatusCode.OK,
-                    headers = headersOf(HttpHeaders.ContentType, "application/json; charset=utf-8"),
-                )
-        }
+        respond(
+            content = getJsonFromPath(fullPath, true),
+            status = HttpStatusCode.OK,
+            headers = headersOf(HttpHeaders.ContentType, "application/json; charset=utf-8"),
+        )
     }
 
     @JvmStatic
@@ -167,54 +134,6 @@ data object KtorEngineMocked {
         "/track/isrc:GBDUW0000061" -> readResourceFile("/api/responses/track/get_track_isrc.json")
         "/user/2616835602" -> readResourceFile("/api/responses/user/get_user_id.json")
 
-        // GW API
-        "/ajax/gw-light.php?method=deezer.getUserData&api_version=1.0&input=3&api_token=" ->
-            readResourceFile("/gw/responses/get_user_data.json")
-
-        "/ajax/gw-light.php?method=deezer.getUserData&api_version=1.0&input=1&api_token=" ->
-            readResourceFile("/gw/responses/error.json")
-
-        "/ajax/gw-light.php?method=deezer.ping&api_version=1.0&input=3&api_token=" ->
-            readResourceFile("/gw/responses/get_ping.json")
-
-        "/ajax/gw-light.php?api_token=$GW_TOKEN&method=song.getData&api_version=1.0&input=3" ->
-            readResourceFile("/gw/responses/get_song_data.json")
-
-        "/ajax/gw-light.php?api_token=$GW_TOKEN&method=song.getListByAlbum&api_version=1.0&input=3" ->
-            readResourceFile("/gw/responses/get_songs_album.json")
-
-        "/ajax/gw-light.php?api_token=$GW_TOKEN&method=playlist.getSongs&api_version=1.0&input=3" ->
-            readResourceFile("/gw/responses/get_songs_playlist.json")
-
-        "/ajax/gw-light.php?api_token=$GW_TOKEN&method=deezer.pageSearch&api_version=1.0&input=3" ->
-            readResourceFile("/gw/responses/search_eminem.json")
-
-        "/ajax/gw-light.php?api_token=$GW_TOKEN&method=album.getData&api_version=1.0&input=3" ->
-            readResourceFile("/gw/responses/get_album_data.json")
-
-        "/ajax/gw-light.php?api_token=$GW_TOKEN&method=album.getDiscography&api_version=1.0&input=3" ->
-            readResourceFile("/gw/responses/get_album_discography.json")
-
-        "/ajax/gw-light.php?api_token=$GW_TOKEN&method=song.getListData&api_version=1.0&input=3" ->
-            readResourceFile("/gw/responses/get_songs_data.json")
-
-        "/ajax/gw-light.php?api_token=$GW_TOKEN&method=deezer.pageTrack&api_version=1.0&input=3" ->
-            readResourceFile("/gw/responses/get_track_page.json")
-
-        "/ajax/gw-light.php?api_token=$GW_TOKEN&method=artist.getData&api_version=1.0&input=3" ->
-            readResourceFile("/gw/responses/artist/get_artist_data.json")
-
-        "/ajax/gw-light.php?api_token=$GW_TOKEN&method=artist.getTopTrack&api_version=1.0&input=3" ->
-            readResourceFile("/gw/responses/artist/get_artist_top_tracks.json")
-
-        "/ajax/gw-light.php?api_token=$GW_TOKEN&method=song.getFavoriteIds&api_version=1.0&input=3" ->
-            readResourceFile("/gw/responses/tracks/get_tracks_favorite_id.json")
-
-        "/ajax/gw-light.php?api_token=$GW_TOKEN&method=deezer.pageProfile&api_version=1.0&input=3" ->
-            readResourceFile("/gw/responses/get_user_page.json")
-
-        // Media API
-        "/v1/get_url" -> readResourceFile("/media/responses/get_medias.json")
         else -> {
             Logger.e("Mock (Server $mockServer) request not mapped $path")
             readResourceFile("/api/responses/get_error.json")
