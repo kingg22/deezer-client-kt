@@ -13,7 +13,7 @@ plugins {
 }
 
 group = "io.github.kingg22"
-version = "3.1.0"
+version = "0.1.0"
 
 kotlin {
     compilerOptions {
