@@ -1,19 +1,7 @@
 package io.github.kingg22.deezerSdk.api
 
-import io.github.kingg22.deezerSdk.api.routes.AlbumRoutes
-import io.github.kingg22.deezerSdk.api.routes.ArtistRoutes
-import io.github.kingg22.deezerSdk.api.routes.ChartRoutes
-import io.github.kingg22.deezerSdk.api.routes.EditorialRoutes
-import io.github.kingg22.deezerSdk.api.routes.EpisodeRoutes
-import io.github.kingg22.deezerSdk.api.routes.GenreRoutes
-import io.github.kingg22.deezerSdk.api.routes.InfosRoute
-import io.github.kingg22.deezerSdk.api.routes.OptionsRoute
-import io.github.kingg22.deezerSdk.api.routes.PlaylistRoutes
-import io.github.kingg22.deezerSdk.api.routes.PodcastRoutes
-import io.github.kingg22.deezerSdk.api.routes.RadioRoutes
-import io.github.kingg22.deezerSdk.api.routes.SearchRoutes
-import io.github.kingg22.deezerSdk.api.routes.TrackRoutes
-import io.github.kingg22.deezerSdk.api.routes.UserRoutes
+import io.github.kingg22.deezerSdk.api.objects.ErrorContainer
+import io.github.kingg22.deezerSdk.api.routes.*
 import io.github.kingg22.deezerSdk.api.routes.createAlbumRoutes
 import io.github.kingg22.deezerSdk.api.routes.createArtistRoutes
 import io.github.kingg22.deezerSdk.api.routes.createChartRoutes
@@ -33,25 +21,16 @@ import io.github.kingg22.deezerSdk.utils.ExperimentalDeezerSdk
 import io.github.kingg22.deezerSdk.utils.HttpClientBuilder
 import io.github.kingg22.deezerSdk.utils.HttpClientProvider
 import io.github.kingg22.deezerSdk.utils.createKtorfit
-import io.ktor.client.HttpClient
-import io.ktor.client.call.body
-import io.ktor.client.plugins.ClientRequestException
-import io.ktor.client.plugins.HttpCallValidatorConfig
-import io.ktor.client.plugins.HttpRequestTimeoutException
-import io.ktor.client.plugins.HttpResponseValidator
-import io.ktor.client.plugins.ServerResponseException
-import io.ktor.client.statement.bodyAsText
-import io.ktor.http.ContentType
-import io.ktor.http.contentType
-import io.ktor.http.isSuccess
+import io.ktor.client.*
+import io.ktor.client.call.*
+import io.ktor.client.plugins.*
+import io.ktor.client.statement.*
+import io.ktor.http.*
 import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.isActive
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import kotlin.coroutines.coroutineContext
-import kotlin.jvm.JvmField
-import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * Client for the official [Deezer API](https://developers.deezer.com/api/).
@@ -144,7 +123,7 @@ data class DeezerApiClient @JvmOverloads constructor(
                 is DeezerApiException -> throw exception
                 is ClientRequestException -> {
                     val errorBody = runCatching {
-                        exception.response.body<io.github.kingg22.deezerSdk.api.objects.Error>().error
+                        exception.response.body<ErrorContainer>().error
                     }.onFailure { coroutineContext.ensureActive() }.getOrNull()
 
                     throw DeezerApiException(
@@ -185,7 +164,7 @@ data class DeezerApiClient @JvmOverloads constructor(
                     .getOrNull()
                     ?: return@validateResponse
 
-                val error = decodeOrNull<io.github.kingg22.deezerSdk.api.objects.Error>(body)?.error
+                val error = decodeOrNull<ErrorContainer>(body)?.error
                 val asBoolean = decodeOrNull<Boolean>(body)
 
                 when {

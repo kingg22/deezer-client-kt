@@ -5,7 +5,7 @@ import io.github.kingg22.deezerSdk.KtorEngineMocked.getJsonFromPath
 import io.github.kingg22.deezerSdk.KtorEngineMocked.jsonSerializer
 import io.github.kingg22.deezerSdk.api.objects.Episode
 import io.github.kingg22.deezerSdk.api.objects.Infos
-import io.github.kingg22.deezerSdk.exceptions.DeezerSdkException
+import io.github.kingg22.deezerSdk.exceptions.DeezerApiException
 import io.kotest.assertions.json.shouldEqualJson
 import kotlinx.coroutines.test.runTest
 import kotlinx.datetime.LocalDateTime
@@ -27,12 +27,12 @@ class DeezerApiClientTest {
 
     @Test
     fun `If API response boolean throw exception before deserialize`() = runTest {
-        assertFailsWith<DeezerSdkException> { client.playlists.getRadio(908622995) }
+        assertFailsWith<DeezerApiException> { client.playlists.getRadio(908622995) }
     }
 
     @Test
     fun `If API response a error body in 2xx status code throw exception`() = runTest {
-        assertFailsWith<DeezerSdkException> { client.users.getById(0) }
+        assertFailsWith<DeezerApiException> { client.users.getById(0) }
     }
 
     /* -- Episode -- */

@@ -1,7 +1,7 @@
 package io.github.kingg22.deezerSdk.api
 
 import de.jensklingenberg.ktorfit.ktorfit
-import io.github.kingg22.deezerSdk.api.objects.Error
+import io.github.kingg22.deezerSdk.api.objects.ErrorContainer
 import io.github.kingg22.deezerSdk.api.routes.createAlbumRoutes
 import io.github.kingg22.deezerSdk.exceptions.DeezerApiException
 import io.github.kingg22.deezerSdk.utils.ExperimentalDeezerSdk
@@ -31,7 +31,7 @@ class DeezerApiClientIntegrationTest {
                             validateResponse {
                                 if (it.status.isSuccess()) {
                                     runCatching {
-                                        val content = Json.decodeFromString<Error>(it.bodyAsText()).error
+                                        val content = Json.decodeFromString<ErrorContainer>(it.bodyAsText()).error
                                         throw DeezerApiException(
                                             errorCode = content.code,
                                             errorMessage = content.message,
