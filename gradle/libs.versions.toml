@@ -36,6 +36,8 @@ ktorfit = "2.6.2"
 ktlint-pinterest = "1.6.0"
 # https://github.com/jlleitschuh/ktlint-gradle/releases
 ktlint-plugin = "13.0.0"
+# https://github.com/vanniktech/gradle-maven-publish-plugin/releases
+maven-publish = "0.34.0"
 # https://slf4j.org/download.html
 slf4jNop = "2.0.17"
 
@@ -101,3 +103,4 @@ kotlinxResources = { id = "com.goncalossilva.resources", version.ref = "kotlinx-
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint-plugin" }
 ktorfit = { id = "de.jensklingenberg.ktorfit", version.ref = "ktorfit" }
+maven-publish = { id = "com.vanniktech.maven.publish", version.ref = "maven-publish" }
