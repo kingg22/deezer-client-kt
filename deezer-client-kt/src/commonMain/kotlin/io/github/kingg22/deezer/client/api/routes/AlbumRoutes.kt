@@ -13,7 +13,7 @@ import io.github.kingg22.deezer.client.api.objects.User
  * @author Kingg22
  */
 interface AlbumRoutes {
-    /** Retrieve an [io.github.kingg22.deezer.client.api.objects.Album] by ID */
+    /** Retrieve an [Album] by ID */
     @GET("album/{id}")
     suspend fun getById(@Path id: Long): Album
 

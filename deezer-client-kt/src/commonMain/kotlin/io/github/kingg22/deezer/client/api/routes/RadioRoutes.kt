@@ -9,7 +9,7 @@ import io.github.kingg22.deezer.client.api.objects.Radio
 import io.github.kingg22.deezer.client.api.objects.Track
 
 /**
- * Defines all endpoints related to [io.github.kingg22.deezerSdk.api.objects.Radio]
+ * Defines all endpoints related to [io.github.kingg22.deezer.client.api.objects.Radio]
  * @author Kingg22
  */
 interface RadioRoutes {

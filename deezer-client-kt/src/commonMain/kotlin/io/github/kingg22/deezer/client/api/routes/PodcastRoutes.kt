@@ -8,11 +8,15 @@ import io.github.kingg22.deezer.client.api.objects.PaginatedResponse
 import io.github.kingg22.deezer.client.api.objects.Podcast
 
 /**
- * Defines all endpoints related to [io.github.kingg22.deezerSdk.api.objects.Podcast]
+ * Defines all endpoints related to [io.github.kingg22.deezer.client.api.objects.Podcast]
  * @author Kingg22
  */
 interface PodcastRoutes {
-    /** Retrieve all [Podcast]. _Note_: return Empty list */
+    /**
+     * Retrieve all [Podcast].
+     *
+     * _Dev Note_: Always return an empty list?
+     */
     @GET("podcast")
     suspend fun getAll(@Query index: Int? = null, @Query limit: Int? = null): PaginatedResponse<Podcast>
 

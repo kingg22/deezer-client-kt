@@ -10,7 +10,7 @@ import io.github.kingg22.deezer.client.api.objects.PaginatedResponse
 import kotlinx.datetime.LocalDate
 
 /**
- * Defines all endpoints related to [io.github.kingg22.deezerSdk.api.objects.Editorial]
+ * Defines all endpoints related to [io.github.kingg22.deezer.client.api.objects.Editorial]
  *
  * Editorial with id 0 (zero) is "All"
  * @author Kingg22

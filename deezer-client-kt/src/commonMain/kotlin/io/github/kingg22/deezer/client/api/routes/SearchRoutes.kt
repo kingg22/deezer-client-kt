@@ -28,6 +28,7 @@ import kotlin.time.Duration
  * @see SearchRoutes.setStrict
  */
 interface SearchRoutes {
+    /** Search utilities */
     companion object {
         /**
          * Advanced Search
@@ -90,7 +91,10 @@ interface SearchRoutes {
             return query
         }
 
-        /** Shortcut for strict */
+        /**
+         * Shortcut for strict
+         * @param strict True is 'on' else null
+         */
         @JvmStatic
         fun setStrict(strict: Boolean) = when (strict) {
             true -> "on"

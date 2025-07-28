@@ -11,7 +11,7 @@ import io.github.kingg22.deezer.client.api.objects.Track
 import io.github.kingg22.deezer.client.api.objects.User
 
 /**
- * Defines all endpoints related to [io.github.kingg22.deezerSdk.api.objects.Artist]
+ * Defines all endpoints related to [io.github.kingg22.deezer.client.api.objects.Artist]
  * @author Kingg22
  */
 interface ArtistRoutes {
@@ -39,7 +39,7 @@ interface ArtistRoutes {
         @Query limit: Int? = null,
     ): PaginatedResponse<Album>
 
-    /** Retrieve a [PaginatedResponse] with the radio [io.github.kingg22.deezerSdk.api.objects.Track]s of an [Artist] */
+    /** Retrieve a [PaginatedResponse] with the radio [io.github.kingg22.deezer.client.api.objects.Track]s of an [Artist] */
     @GET("artist/{id}/radio")
     suspend fun getRadio(@Path id: Long, @Query index: Int? = null, @Query limit: Int? = null): PaginatedResponse<Track>
 

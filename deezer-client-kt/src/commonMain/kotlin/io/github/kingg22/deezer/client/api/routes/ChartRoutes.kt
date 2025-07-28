@@ -12,7 +12,7 @@ import io.github.kingg22.deezer.client.api.objects.Podcast
 import io.github.kingg22.deezer.client.api.objects.Track
 
 /**
- * Defines all endpoints related to [io.github.kingg22.deezerSdk.api.objects.Chart]
+ * Defines all endpoints related to [io.github.kingg22.deezer.client.api.objects.Chart]
  *
  * Chart with id = 0 (zero) is "All" _maybe_
  * @author Kingg22

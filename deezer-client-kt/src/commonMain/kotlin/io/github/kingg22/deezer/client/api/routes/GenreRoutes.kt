@@ -10,13 +10,13 @@ import io.github.kingg22.deezer.client.api.objects.Podcast
 import io.github.kingg22.deezer.client.api.objects.Radio
 
 /**
- * Defines all endpoints related to [io.github.kingg22.deezerSdk.api.objects.Genre]
+ * Defines all endpoints related to [io.github.kingg22.deezer.client.api.objects.Genre]
  *
  * Genre with id 0 (zero) is "All"
  * @author Kingg22
  */
 interface GenreRoutes {
-    /** Retrieve all [io.github.kingg22.deezerSdk.api.objects.Genre] */
+    /** Retrieve all [io.github.kingg22.deezer.client.api.objects.Genre] */
     @GET("genre")
     suspend fun getAll(@Query index: Int? = null, @Query limit: Int? = null): PaginatedResponse<Genre>
 

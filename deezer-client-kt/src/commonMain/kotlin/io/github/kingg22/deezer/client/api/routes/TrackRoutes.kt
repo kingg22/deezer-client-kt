@@ -5,7 +5,7 @@ import de.jensklingenberg.ktorfit.http.Path
 import io.github.kingg22.deezer.client.api.objects.Track
 
 /**
- * Defines all endpoints related to [io.github.kingg22.deezerSdk.api.objects.Track]
+ * Defines all endpoints related to [io.github.kingg22.deezer.client.api.objects.Track]
  * @author Kingg22
  */
 interface TrackRoutes {
