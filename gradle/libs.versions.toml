@@ -4,7 +4,7 @@ agp = "8.11.0"
 
 # https://developer.android.com/tools/releases/platforms
 android-compileSdk = "36"
-android-minSdk = "30"
+android-minSdk = "21"
 
 # https://github.com/Kotlin/dokka/releases
 dokka = "2.0.0"
