@@ -1,6 +1,5 @@
 package io.github.kingg22.deezer.client.api.objects
 
-import io.github.kingg22.deezer.client.exceptions.DeezerApiException
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.descriptors.PrimitiveKind
@@ -64,8 +63,7 @@ enum class Explicit(val value: Int) {
 
         override fun deserialize(decoder: Decoder): Explicit {
             val intValue = decoder.decodeInt()
-            return fromValue(intValue)
-                ?: throw DeezerApiException(errorMessage = "Unexpected explicit value: '$intValue'")
+            return requireNotNull(fromValue(intValue)) { "Unexpected explicit value: '$intValue'" }
         }
     }
 }
