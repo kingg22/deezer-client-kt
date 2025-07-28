@@ -3,6 +3,7 @@ package io.github.kingg22.deezer.client.utils
 import de.jensklingenberg.ktorfit.ktorfit
 import io.ktor.client.HttpClient
 import kotlinx.serialization.ExperimentalSerializationApi
+import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import kotlin.jvm.JvmSynthetic
 
@@ -26,3 +27,7 @@ internal fun getJson() = Json {
     decodeEnumsCaseInsensitive = true
     useArrayPolymorphism = true
 }
+
+@JvmSynthetic
+internal inline fun <reified T : @Serializable Any> decodeOrNull(json: String): T? =
+    runCatching { Json.decodeFromString<T>(json) }.getOrNull()
