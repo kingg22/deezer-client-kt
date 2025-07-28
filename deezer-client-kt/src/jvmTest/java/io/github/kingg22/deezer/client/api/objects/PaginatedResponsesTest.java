@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -23,7 +24,7 @@ class PaginatedResponsesTest {
 
     @Test
     void fetchNextWithDataAndDifferentTypesThrowException() {
-        final var paging = new PaginatedResponse<>(List.of(new User(0, "")), null, null, null, PaginatedResponseTest.TRACK_LINK);
+        final PaginatedResponse<User> paging = new PaginatedResponse<>(List.of(new User(0, "")), null, null, null, PaginatedResponseTest.TRACK_LINK);
         Assertions.assertNotNull(paging.getData());
         Assertions.assertEquals(1, paging.getData().size());
         Assertions.assertNull(paging.getPrev());
@@ -37,43 +38,40 @@ class PaginatedResponsesTest {
 
     @Test
     void fetchNextWithoutDataAndDifferentTypesSuccess() {
-        final var paging2 = new PaginatedResponse<User>(Collections.emptyList(), null, null, null, PaginatedResponseTest.TRACK_LINK);
+        final PaginatedResponse<User> paging2 = new PaginatedResponse<>(Collections.emptyList(), null, null, null, PaginatedResponseTest.TRACK_LINK);
         Assertions.assertDoesNotThrow(() -> {
-            var newPaging = PaginatedResponses.fetchNext(paging2, ser, true);
-            Assertions.assertNotNull(newPaging);
-            Assertions.assertFalse(newPaging.getData().isEmpty());
-            Assertions.assertNull(newPaging.getPrev());
-            Assertions.assertNotNull(newPaging.getNext());
-            newPaging = Assertions.assertTimeout(Duration.ofMinutes(1), () -> PaginatedResponses.fetchNextFuture(paging2, ser, true).get());
-            Assertions.assertNotNull(newPaging);
-            Assertions.assertFalse(newPaging.getData().isEmpty());
-            Assertions.assertNull(newPaging.getPrev());
-            Assertions.assertNotNull(newPaging.getNext());
+            final List<PaginatedResponse<Track>> results = new ArrayList<>(2);
+            results.add(PaginatedResponses.fetchNext(paging2, ser, true));
+            results.add(Assertions.assertTimeout(Duration.ofMinutes(1), () -> PaginatedResponses.fetchNextFuture(paging2, ser, true).get()));
+            for (final PaginatedResponse<Track> newPaging : results) {
+                Assertions.assertNotNull(newPaging);
+                Assertions.assertFalse(newPaging.getData().isEmpty());
+                Assertions.assertNull(newPaging.getPrev());
+                Assertions.assertNotNull(newPaging.getNext());
+            }
         });
     }
 
     @Test
     void fetchNextWithDataSuccess() {
-        final var paging2 = new PaginatedResponse<>(List.of(PaginatedResponseTest.emptyTrack), null, null, null, PaginatedResponseTest.TRACK_LINK);
+        final PaginatedResponse<Track> paging2 = new PaginatedResponse<>(List.of(PaginatedResponseTest.emptyTrack), null, null, null, PaginatedResponseTest.TRACK_LINK);
         Assertions.assertDoesNotThrow(() -> {
-            var newPaging = PaginatedResponses.fetchNext(paging2, ser, true);
-            Assertions.assertNotNull(newPaging);
-            Assertions.assertFalse(newPaging.getData().isEmpty());
-            Assertions.assertTrue(newPaging.getData().contains(PaginatedResponseTest.emptyTrack));
-            Assertions.assertNull(newPaging.getPrev());
-            Assertions.assertNotNull(newPaging.getNext());
-            newPaging = Assertions.assertTimeout(Duration.ofMinutes(1), () -> PaginatedResponses.fetchNextFuture(paging2, ser, true).get());
-            Assertions.assertNotNull(newPaging);
-            Assertions.assertFalse(newPaging.getData().isEmpty());
-            Assertions.assertTrue(newPaging.getData().contains(PaginatedResponseTest.emptyTrack));
-            Assertions.assertNull(newPaging.getPrev());
-            Assertions.assertNotNull(newPaging.getNext());
+            final List<PaginatedResponse<Track>> results = new ArrayList<>(2);
+            results.add(PaginatedResponses.fetchNext(paging2, ser, true));
+            results.add(Assertions.assertTimeout(Duration.ofMinutes(1), () -> PaginatedResponses.fetchNextFuture(paging2, ser, true).get()));
+            for (final PaginatedResponse<Track> newPaging : results) {
+                Assertions.assertNotNull(newPaging);
+                Assertions.assertFalse(newPaging.getData().isEmpty());
+                Assertions.assertTrue(newPaging.getData().contains(PaginatedResponseTest.emptyTrack));
+                Assertions.assertNull(newPaging.getPrev());
+                Assertions.assertNotNull(newPaging.getNext());
+            }
         });
     }
 
     @Test
     void fetchPreviousWithDataAndDifferentTypesThrowException() {
-        final var paging = new PaginatedResponse<>(List.of(new User(0, "")), null, null, PaginatedResponseTest.TRACK_LINK);
+        final PaginatedResponse<User> paging = new PaginatedResponse<>(List.of(new User(0, "")), null, null, PaginatedResponseTest.TRACK_LINK);
         Assertions.assertNotNull(paging.getData());
         Assertions.assertEquals(1, paging.getData().size());
         Assertions.assertNull(paging.getNext());
@@ -87,34 +85,33 @@ class PaginatedResponsesTest {
 
     @Test
     void fetchPreviousWithoutDataAndDifferentTypesSuccess() {
-        final var paging2 = new PaginatedResponse<User>(Collections.emptyList(), null, null, PaginatedResponseTest.TRACK_LINK);
+        final PaginatedResponse<User> paging2 = new PaginatedResponse<>(Collections.emptyList(), null, null, PaginatedResponseTest.TRACK_LINK);
         Assertions.assertDoesNotThrow(() -> {
-            var newPaging = PaginatedResponses.fetchPrevious(paging2, ser, true);
-            Assertions.assertNotNull(newPaging);
-            Assertions.assertFalse(newPaging.getData().isEmpty());
-            Assertions.assertNotNull(newPaging.getNext());
-            Assertions.assertNull(newPaging.getPrev());
-            newPaging = Assertions.assertTimeout(Duration.ofMinutes(1), () -> PaginatedResponses.fetchPreviousFuture(paging2, ser, true).get());
-            Assertions.assertNotNull(newPaging);
-            Assertions.assertFalse(newPaging.getData().isEmpty());
-            Assertions.assertNotNull(newPaging.getNext());
-            Assertions.assertNull(newPaging.getPrev());
+            final List<PaginatedResponse<Track>> results = new ArrayList<>(2);
+            results.add(PaginatedResponses.fetchPrevious(paging2, ser, true));
+            results.add(Assertions.assertTimeout(Duration.ofMinutes(1), () -> PaginatedResponses.fetchPreviousFuture(paging2, ser, true).get()));
+            for (final PaginatedResponse<Track> newPaging : results) {
+                Assertions.assertNotNull(newPaging);
+                Assertions.assertFalse(newPaging.getData().isEmpty());
+                Assertions.assertNotNull(newPaging.getNext());
+                Assertions.assertNull(newPaging.getPrev());
+            }
         });
     }
 
     @Test
     void fetchPreviousWithDataSuccess() {
-        final var paging2 = new PaginatedResponse<>(List.of(PaginatedResponseTest.emptyTrack), null, null, PaginatedResponseTest.TRACK_LINK);
+        final PaginatedResponse<Track> paging2 = new PaginatedResponse<>(List.of(PaginatedResponseTest.emptyTrack), null, null, PaginatedResponseTest.TRACK_LINK);
 
         Assertions.assertDoesNotThrow(() -> {
-            var newPaging = PaginatedResponses.fetchPrevious(paging2, ser, true);
-            Assertions.assertNotNull(newPaging);
-            Assertions.assertFalse(newPaging.getData().isEmpty());
-            Assertions.assertTrue(newPaging.getData().contains(PaginatedResponseTest.emptyTrack));
-            newPaging = Assertions.assertTimeout(Duration.ofMinutes(1), () -> PaginatedResponses.fetchPreviousFuture(paging2, ser, true).get());
-            Assertions.assertNotNull(newPaging);
-            Assertions.assertFalse(newPaging.getData().isEmpty());
-            Assertions.assertTrue(newPaging.getData().contains(PaginatedResponseTest.emptyTrack));
+            final List<PaginatedResponse<Track>> results = new ArrayList<>(2);
+            results.add(PaginatedResponses.fetchPrevious(paging2, ser, true));
+            results.add(Assertions.assertTimeout(Duration.ofMinutes(1), () -> PaginatedResponses.fetchPreviousFuture(paging2, ser, true).get()));
+            for (final PaginatedResponse<Track> newPaging : results) {
+                Assertions.assertNotNull(newPaging);
+                Assertions.assertFalse(newPaging.getData().isEmpty());
+                Assertions.assertTrue(newPaging.getData().contains(PaginatedResponseTest.emptyTrack));
+            }
         });
     }
 }

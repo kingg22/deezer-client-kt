@@ -12,7 +12,7 @@ import kotlinx.datetime.LocalDateTime;
 class ResourcesTest {
     @Test
     void testReload() {
-        final var tested = new Episode(
+        final Episode tested = new Episode(
             526673645,
             "",
             null,
@@ -20,8 +20,8 @@ class ResourcesTest {
             LocalDateTime.Companion.parse("2019-09-09T00:00:00", LocalDateTime.Formats.INSTANCE.getISO()),
             0
         );
-        final var episode = Resources.reload(tested);
-        final var episodeFuture = Assertions.assertTimeout(Duration.ofMinutes(1), () -> Resources.reloadFuture(tested).get());
+        final Episode episode = Resources.reload(tested);
+        final Episode episodeFuture = Assertions.assertTimeout(Duration.ofMinutes(1), () -> Resources.reloadFuture(tested).get());
         assertNotEquals(tested, episode);
         assertNotEquals(tested, episodeFuture);
     }
