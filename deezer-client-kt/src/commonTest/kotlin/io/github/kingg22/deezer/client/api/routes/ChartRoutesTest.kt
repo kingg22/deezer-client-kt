@@ -1,19 +1,28 @@
 package io.github.kingg22.deezer.client.api.routes
 
+import io.github.kingg22.deezer.client.KtorEngineMocked
 import io.github.kingg22.deezer.client.KtorEngineMocked.getJsonFromPath
 import io.github.kingg22.deezer.client.KtorEngineMocked.jsonSerializer
-import io.github.kingg22.deezer.client.api.DeezerApiClientTest.Companion.client
+import io.github.kingg22.deezer.client.api.DeezerApiClient
 import io.kotest.assertions.json.shouldEqualJson
 import kotlinx.coroutines.test.runTest
+import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
-// NOTE: Chart use playlist.user and not creator
+// NOTE: Chart uses playlist.user and not creator
 class ChartRoutesTest {
+    lateinit var client: DeezerApiClient
+
+    @BeforeTest
+    fun setup() {
+        client = DeezerApiClient.initialize(KtorEngineMocked.createHttpBuilderMock())
+    }
+
     @Test
-    fun `Fetch Charts`() = runTest {
+    fun fetch_charts() = runTest {
         val result = client.charts.getAll()
         val json = getJsonFromPath("/chart")
         assertEquals(10, result.tracks.data.size)
@@ -35,7 +44,7 @@ class ChartRoutesTest {
     }
 
     @Test
-    fun `Fetch Chart by ID`() = runTest {
+    fun fetch_chart_by_id() = runTest {
         val result = client.charts.getById(2)
         val json = getJsonFromPath("/chart/2")
         assertEquals(10, result.tracks.data.size)
@@ -57,14 +66,14 @@ class ChartRoutesTest {
     }
 
     @Test
-    fun `Fetch Chart Tracks`() = runTest {
+    fun fetch_chart_tracks() = runTest {
         val result = client.charts.getTracks()
         val json = getJsonFromPath("/chart/0/tracks")
         json shouldEqualJson jsonSerializer.encodeToString(result).replace("\"creator\":", "\"user\":")
     }
 
     @Test
-    fun `Fetch Chart Albums`() = runTest {
+    fun fetch_chart_albums() = runTest {
         val result = client.charts.getAlbums()
         val json = getJsonFromPath("/chart/0/albums")
         assertEquals(9, result.total)
@@ -76,7 +85,7 @@ class ChartRoutesTest {
     }
 
     @Test
-    fun `Fetch Chart Artists`() = runTest {
+    fun fetch_chart_artists() = runTest {
         val result = client.charts.getArtists()
         val json = getJsonFromPath("/chart/0/artists")
         assertEquals(10, result.total)
@@ -88,7 +97,7 @@ class ChartRoutesTest {
     }
 
     @Test
-    fun `Fetch Chart Playlists`() = runTest {
+    fun fetch_chart_playlists() = runTest {
         val result = client.charts.getPlaylists()
         val json = getJsonFromPath("/chart/0/playlists")
         assertEquals(10, result.total)
@@ -100,7 +109,7 @@ class ChartRoutesTest {
     }
 
     @Test
-    fun `Fetch Chart Podcast`() = runTest {
+    fun fetch_chart_podcast() = runTest {
         val result = client.charts.getPodcasts()
         val json = getJsonFromPath("/chart/0/podcasts")
         assertEquals(10, result.total)

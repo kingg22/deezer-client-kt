@@ -1,11 +1,13 @@
 package io.github.kingg22.deezer.client.api.routes
 
+import io.github.kingg22.deezer.client.KtorEngineMocked
 import io.github.kingg22.deezer.client.KtorEngineMocked.getJsonFromPath
 import io.github.kingg22.deezer.client.KtorEngineMocked.jsonSerializer
-import io.github.kingg22.deezer.client.api.DeezerApiClientTest.Companion.client
+import io.github.kingg22.deezer.client.api.DeezerApiClient
 import io.github.kingg22.deezer.client.api.objects.Radio
 import io.kotest.assertions.json.shouldEqualJson
 import kotlinx.coroutines.test.runTest
+import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotEquals
@@ -13,8 +15,15 @@ import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 
 class RadioRoutesTest {
+    lateinit var client: DeezerApiClient
+
+    @BeforeTest
+    fun setup() {
+        client = DeezerApiClient.initialize(KtorEngineMocked.createHttpBuilderMock())
+    }
+
     @Test
-    fun `Fetch Radio`() = runTest {
+    fun fetch_radio() = runTest {
         val result = client.radios.getAll()
         val json = getJsonFromPath("/radio")
         assertEquals(139, result.data.size)
@@ -26,7 +35,7 @@ class RadioRoutesTest {
     }
 
     @Test
-    fun `Fetch Radio by ID`() = runTest {
+    fun fetch_radio_by_id() = runTest {
         val result = client.radios.getById(1236)
         val json = getJsonFromPath("/radio/1236")
         assertEquals(1236, result.id)
@@ -34,7 +43,7 @@ class RadioRoutesTest {
     }
 
     @Test
-    fun `Reload Radio`() = runTest {
+    fun reload_radio() = runTest {
         val tested = Radio(1236, "")
         val radio = tested.reload()
         val json = getJsonFromPath("/radio/1236")
@@ -43,7 +52,7 @@ class RadioRoutesTest {
     }
 
     @Test
-    fun `Fetch Radio split by Genre`() = runTest {
+    fun fetch_radio_split_by_genre() = runTest {
         val result = client.radios.getAllSplitInGenres()
         val json = getJsonFromPath("/radio/genres")
         assertEquals(20, result.data.size)
@@ -59,7 +68,7 @@ class RadioRoutesTest {
     }
 
     @Test
-    fun `Fetch Radio Top`() = runTest {
+    fun fetch_radio_top() = runTest {
         val result = client.radios.getTop()
         val json = getJsonFromPath("/radio/top")
         assertEquals(9, result.data.size)
@@ -71,7 +80,7 @@ class RadioRoutesTest {
     }
 
     @Test
-    fun `Fetch Radio Tracks`() = runTest {
+    fun fetch_radio_tracks() = runTest {
         val result = client.radios.getTracks(31061)
         val json = getJsonFromPath("/radio/31061/tracks")
         assertEquals(25, result.data.size)
@@ -85,7 +94,7 @@ class RadioRoutesTest {
     }
 
     @Test
-    fun `Fetch Radio Lists`() = runTest {
+    fun fetch_radio_lists() = runTest {
         val result = client.radios.getLists()
         val json = getJsonFromPath("/radio/lists")
         assertEquals(25, result.data.size)

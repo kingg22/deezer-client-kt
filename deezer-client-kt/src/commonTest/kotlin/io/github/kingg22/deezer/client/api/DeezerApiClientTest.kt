@@ -9,7 +9,7 @@ import io.github.kingg22.deezer.client.exceptions.DeezerApiException
 import io.kotest.assertions.json.shouldEqualJson
 import kotlinx.coroutines.test.runTest
 import kotlinx.datetime.LocalDateTime
-import kotlin.jvm.JvmField
+import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
@@ -20,24 +20,26 @@ import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
 class DeezerApiClientTest {
-    companion object {
-        @JvmField
-        val client = DeezerApiClient.initialize(KtorEngineMocked.createHttpBuilderMock())
+    lateinit var client: DeezerApiClient
+
+    @BeforeTest
+    fun setup() {
+        client = DeezerApiClient.initialize(KtorEngineMocked.createHttpBuilderMock())
     }
 
     @Test
-    fun `If API response boolean throw exception before deserialize`() = runTest {
+    fun test_when_api_response_boolean_throw_exception_before_deserialize() = runTest {
         assertFailsWith<DeezerApiException> { client.playlists.getRadio(908622995) }
     }
 
     @Test
-    fun `If API response a error body in 2xx status code throw exception`() = runTest {
+    fun test_when_api_response_a_error_body_in_2xx_status_code_throw_exception() = runTest {
         assertFailsWith<DeezerApiException> { client.users.getById(0) }
     }
 
     /* -- Episode -- */
     @Test
-    fun `Fetch Episode by ID`() = runTest {
+    fun fetch_episode_by_id() = runTest {
         val result = client.episodes.getById(526673645)
         val json = getJsonFromPath("/episode/526673645")
         assertEquals(526673645, result.id)
@@ -46,7 +48,7 @@ class DeezerApiClientTest {
     }
 
     @Test
-    fun `Reload Episode`() = runTest {
+    fun reload_episode() = runTest {
         val tested = Episode(
             526673645,
             "",
@@ -61,7 +63,7 @@ class DeezerApiClientTest {
 
     /* -- Infos -- */
     @Test
-    fun `Fetch Deezer Infos`() = runTest {
+    fun fetch_deezer_infos() = runTest {
         val result = client.infos.getInfos()
         val json = getJsonFromPath("/infos")
         assertEquals("PA", result.countryIso)
@@ -86,7 +88,7 @@ class DeezerApiClientTest {
 
     /* -- Options -- */
     @Test
-    fun `Fetch Deezer Options`() = runTest {
+    fun fetch_deezer_options() = runTest {
         val result = client.options.getOptions()
         assertFalse { result.streaming }
         assertEquals(0, result.streamingDuration)

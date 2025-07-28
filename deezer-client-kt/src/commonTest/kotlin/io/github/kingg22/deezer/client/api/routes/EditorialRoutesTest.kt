@@ -1,11 +1,13 @@
 package io.github.kingg22.deezer.client.api.routes
 
+import io.github.kingg22.deezer.client.KtorEngineMocked
 import io.github.kingg22.deezer.client.KtorEngineMocked.getJsonFromPath
 import io.github.kingg22.deezer.client.KtorEngineMocked.jsonSerializer
-import io.github.kingg22.deezer.client.api.DeezerApiClientTest.Companion.client
+import io.github.kingg22.deezer.client.api.DeezerApiClient
 import io.github.kingg22.deezer.client.api.objects.Editorial
 import io.kotest.assertions.json.shouldEqualJson
 import kotlinx.coroutines.test.runTest
+import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotEquals
@@ -13,8 +15,15 @@ import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 
 class EditorialRoutesTest {
+    lateinit var client: DeezerApiClient
+
+    @BeforeTest
+    fun setup() {
+        client = DeezerApiClient.initialize(KtorEngineMocked.createHttpBuilderMock())
+    }
+
     @Test
-    fun `Fetch Editorial`() = runTest {
+    fun fetch_editorial() = runTest {
         val result = client.editorials.getAll()
         val json = getJsonFromPath("/editorial")
         assertEquals(25, result.data.size)
@@ -26,7 +35,7 @@ class EditorialRoutesTest {
     }
 
     @Test
-    fun `Fetch Editorial by ID`() = runTest {
+    fun fetch_editorial_by_id() = runTest {
         val result = client.editorials.getById(3)
         val json = getJsonFromPath("/editorial/3")
         assertEquals(3, result.id)
@@ -34,7 +43,7 @@ class EditorialRoutesTest {
     }
 
     @Test
-    fun `Reload Editorial`() = runTest {
+    fun reload_editorial() = runTest {
         val tested = Editorial(3, "")
         val editorial = tested.reload()
         val json = getJsonFromPath("/editorial/3")
@@ -43,7 +52,7 @@ class EditorialRoutesTest {
     }
 
     @Test
-    fun `Fetch Editorial Selection`() = runTest {
+    fun fetch_editorial_selection() = runTest {
         val result = client.editorials.getDeezerSelection()
         val json = getJsonFromPath("/editorial/0/selection")
         assertEquals(10, result.data.size)
@@ -59,7 +68,7 @@ class EditorialRoutesTest {
     }
 
     @Test
-    fun `Fetch Editorial Charts`() = runTest {
+    fun fetch_editorial_charts() = runTest {
         val result = client.editorials.getCharts()
         val json = getJsonFromPath("/editorial/0/charts")
         assertEquals(10, result.tracks.data.size)
@@ -96,7 +105,7 @@ class EditorialRoutesTest {
     }
 
     @Test
-    fun `Fetch Editorial Releases`() = runTest {
+    fun fetch_editorial_releases() = runTest {
         val result = client.editorials.getReleases()
         val json = getJsonFromPath("/editorial/0/releases")
         assertEquals(20, result.data.size)

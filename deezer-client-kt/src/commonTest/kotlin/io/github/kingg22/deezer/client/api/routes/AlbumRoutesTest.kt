@@ -1,12 +1,14 @@
 package io.github.kingg22.deezer.client.api.routes
 
+import io.github.kingg22.deezer.client.KtorEngineMocked
 import io.github.kingg22.deezer.client.KtorEngineMocked.getJsonFromPath
 import io.github.kingg22.deezer.client.KtorEngineMocked.jsonSerializer
-import io.github.kingg22.deezer.client.api.DeezerApiClientTest.Companion.client
+import io.github.kingg22.deezer.client.api.DeezerApiClient
 import io.github.kingg22.deezer.client.api.objects.Album
 import io.github.kingg22.deezer.client.api.objects.User
 import io.kotest.assertions.json.shouldEqualJson
 import kotlinx.coroutines.test.runTest
+import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotEquals
@@ -14,8 +16,15 @@ import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 
 class AlbumRoutesTest {
+    lateinit var client: DeezerApiClient
+
+    @BeforeTest
+    fun setup() {
+        client = DeezerApiClient.initialize(KtorEngineMocked.createHttpBuilderMock())
+    }
+
     @Test
-    fun `Fetch Album by ID`() = runTest {
+    fun fetch_album_by_id() = runTest {
         val result = client.albums.getById(302127)
         val json = getJsonFromPath("/album/302127")
         assertEquals(302127, result.id)
@@ -25,7 +34,7 @@ class AlbumRoutesTest {
     }
 
     @Test
-    fun `Reload Album`() = runTest {
+    fun reload_album() = runTest {
         val album = Album(
             id = 302127,
             title = "Discovery",
@@ -37,7 +46,7 @@ class AlbumRoutesTest {
     }
 
     @Test
-    fun `Fetch Album Fans`() = runTest {
+    fun fetch_album_fans() = runTest {
         val result = client.albums.getFans(302127)
         val json = getJsonFromPath("/album/302127/fans")
         assertEquals(50, result.data.size)
@@ -57,7 +66,7 @@ class AlbumRoutesTest {
     }
 
     @Test
-    fun `Fetch Album Tracks`() = runTest {
+    fun fetch_album_tracks() = runTest {
         val result = client.albums.getTracks(302127)
         val json = getJsonFromPath("/album/302127/tracks")
         assertEquals(14, result.data.size)
@@ -70,7 +79,7 @@ class AlbumRoutesTest {
     }
 
     @Test
-    fun `Fetch Album by UPC`() = runTest {
+    fun fetch_album_by_upc() = runTest {
         val result = client.albums.getByUpc("196589221285")
         val json = getJsonFromPath("/album/upc:196589221285")
         assertEquals(327983357, result.id)

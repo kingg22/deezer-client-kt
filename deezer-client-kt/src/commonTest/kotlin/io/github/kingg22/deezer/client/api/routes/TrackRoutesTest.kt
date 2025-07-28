@@ -1,20 +1,29 @@
 package io.github.kingg22.deezer.client.api.routes
 
+import io.github.kingg22.deezer.client.KtorEngineMocked
 import io.github.kingg22.deezer.client.KtorEngineMocked.getJsonFromPath
 import io.github.kingg22.deezer.client.KtorEngineMocked.jsonSerializer
-import io.github.kingg22.deezer.client.api.DeezerApiClientTest.Companion.client
+import io.github.kingg22.deezer.client.api.DeezerApiClient
 import io.github.kingg22.deezer.client.api.objects.Artist
 import io.github.kingg22.deezer.client.api.objects.Track
 import io.kotest.assertions.json.shouldEqualJson
 import kotlinx.coroutines.test.runTest
+import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotEquals
 import kotlin.test.assertNotNull
 
 class TrackRoutesTest {
+    lateinit var client: DeezerApiClient
+
+    @BeforeTest
+    fun setup() {
+        client = DeezerApiClient.initialize(KtorEngineMocked.createHttpBuilderMock())
+    }
+
     @Test
-    fun `Fetch Track by ID`() = runTest {
+    fun fetch_track_by_id() = runTest {
         val result = client.tracks.getById(3135556)
         val json = getJsonFromPath("/track/3135556")
         assertEquals(3135556, result.id)
@@ -26,7 +35,7 @@ class TrackRoutesTest {
     }
 
     @Test
-    fun `Fetch Track by ISRC`() = runTest {
+    fun fetch_track_by_ISRC() = runTest {
         val result = client.tracks.getByIsrc("GBDUW0000061")
         val json = getJsonFromPath("/track/isrc:GBDUW0000061")
         assertEquals("GBDUW0000061", result.isrc)
@@ -39,7 +48,7 @@ class TrackRoutesTest {
     }
 
     @Test
-    fun `Reload Track`() = runTest {
+    fun reload_track() = runTest {
         val tested = Track(
             3135556,
             title = "",

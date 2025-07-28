@@ -1,12 +1,14 @@
 package io.github.kingg22.deezer.client.api.routes
 
+import io.github.kingg22.deezer.client.KtorEngineMocked
 import io.github.kingg22.deezer.client.KtorEngineMocked.getJsonFromPath
 import io.github.kingg22.deezer.client.KtorEngineMocked.jsonSerializer
-import io.github.kingg22.deezer.client.api.DeezerApiClientTest.Companion.client
+import io.github.kingg22.deezer.client.api.DeezerApiClient
 import io.github.kingg22.deezer.client.api.objects.Playlist
 import io.github.kingg22.deezer.client.api.objects.User
 import io.kotest.assertions.json.shouldEqualJson
 import kotlinx.coroutines.test.runTest
+import kotlin.test.BeforeTest
 import kotlin.test.Ignore
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -15,8 +17,15 @@ import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 
 class PlaylistRoutesTest {
+    lateinit var client: DeezerApiClient
+
+    @BeforeTest
+    fun setup() {
+        client = DeezerApiClient.initialize(KtorEngineMocked.createHttpBuilderMock())
+    }
+
     @Test
-    fun `Fetch Playlist by ID`() = runTest {
+    fun fetch_playlist_by_id() = runTest {
         val result = client.playlists.getById(908622995)
         val json = getJsonFromPath("/playlist/908622995")
         assertEquals(908622995, result.id)
@@ -31,7 +40,7 @@ class PlaylistRoutesTest {
     }
 
     @Test
-    fun `Reload Playlist`() = runTest {
+    fun reload_playlist() = runTest {
         val tested = Playlist(
             908622995,
             "",
@@ -46,7 +55,7 @@ class PlaylistRoutesTest {
     }
 
     @Test
-    fun `Fetch Playlist Fans`() = runTest {
+    fun fetch_playlist_fans() = runTest {
         val result = client.playlists.getFans(4341978)
         val json = getJsonFromPath("/playlist/4341978/fans")
         assertEquals(1, result.total)
@@ -58,7 +67,7 @@ class PlaylistRoutesTest {
     }
 
     @Test
-    fun `Fetch Playlist Tracks`() = runTest {
+    fun fetch_playlist_tracks() = runTest {
         val result = client.playlists.getTracks(908622995)
         val json = getJsonFromPath("/playlist/908622995/tracks")
         assertEquals(25, result.data.size)
@@ -72,7 +81,7 @@ class PlaylistRoutesTest {
     // "TODO find result with data. Exception tested in Deezer Api client"
     @Ignore
     @Test
-    fun `Fetch Playlist Radio`() = runTest {
+    fun fetch_playlist_radio() = runTest {
         val result = client.playlists.getRadio(908622995)
         val json = getJsonFromPath("/playlist/908622995/radio")
         json shouldEqualJson jsonSerializer.encodeToString(result)

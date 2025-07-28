@@ -1,12 +1,14 @@
 package io.github.kingg22.deezer.client.api.routes
 
+import io.github.kingg22.deezer.client.KtorEngineMocked
 import io.github.kingg22.deezer.client.KtorEngineMocked.getJsonFromPath
 import io.github.kingg22.deezer.client.KtorEngineMocked.jsonSerializer
-import io.github.kingg22.deezer.client.api.DeezerApiClientTest.Companion.client
+import io.github.kingg22.deezer.client.api.DeezerApiClient
 import io.github.kingg22.deezer.client.api.objects.Artist
 import io.github.kingg22.deezer.client.api.objects.User
 import io.kotest.assertions.json.shouldEqualJson
 import kotlinx.coroutines.test.runTest
+import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotEquals
@@ -14,8 +16,15 @@ import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 
 class ArtistRoutesTest {
+    lateinit var client: DeezerApiClient
+
+    @BeforeTest
+    fun setup() {
+        client = DeezerApiClient.initialize(KtorEngineMocked.createHttpBuilderMock())
+    }
+
     @Test
-    fun `Fetch Artist by ID`() = runTest {
+    fun fetch_artist_by_id() = runTest {
         val result = client.artists.getById(27)
         val json = getJsonFromPath("/artist/27")
         assertEquals(27, result.id)
@@ -30,7 +39,7 @@ class ArtistRoutesTest {
     }
 
     @Test
-    fun `Reload Artist`() = runTest {
+    fun reload_artist() = runTest {
         val artist = Artist(27, "Daft Punk")
         val newArtist = artist.reload()
         val json = getJsonFromPath("/artist/27")
@@ -39,7 +48,7 @@ class ArtistRoutesTest {
     }
 
     @Test
-    fun `Fetch Artist Fans`() = runTest {
+    fun fetch_artist_fans() = runTest {
         val result = client.artists.getFans(27)
         val json = getJsonFromPath("/artist/27/fans")
         assertEquals(50, result.data.size)
@@ -61,7 +70,7 @@ class ArtistRoutesTest {
     }
 
     @Test
-    fun `Fetch Artist Top`() = runTest {
+    fun fetch_artist_top() = runTest {
         val result = client.artists.getTopTracks(27)
         val json = getJsonFromPath("/artist/27/top")
         assertEquals(5, result.data.size)
@@ -74,7 +83,7 @@ class ArtistRoutesTest {
     }
 
     @Test
-    fun `Fetch Artist Albums`() = runTest {
+    fun fetch_artist_albums() = runTest {
         val result = client.artists.getAlbums(27)
         val json = getJsonFromPath("/artist/27/albums")
         assertEquals(25, result.data.size)
@@ -86,7 +95,7 @@ class ArtistRoutesTest {
     }
 
     @Test
-    fun `Fetch Artist Radio`() = runTest {
+    fun fetch_artist_radio() = runTest {
         val result = client.artists.getRadio(27)
         val json = getJsonFromPath("/artist/27/radio")
         assertEquals(25, result.data.size)
@@ -100,7 +109,7 @@ class ArtistRoutesTest {
     }
 
     @Test
-    fun `Fetch Artist Playlists`() = runTest {
+    fun fetch_artist_playlists() = runTest {
         val result = client.artists.getPlaylists(27)
         val json = getJsonFromPath("/artist/27/playlists")
         assertEquals(10, result.data.size)
@@ -113,7 +122,7 @@ class ArtistRoutesTest {
     }
 
     @Test
-    fun `Fetch Artist Related`() = runTest {
+    fun fetch_artist_related() = runTest {
         val result = client.artists.getRelated(27)
         val json = getJsonFromPath("/artist/27/related")
         assertEquals(20, result.data.size)

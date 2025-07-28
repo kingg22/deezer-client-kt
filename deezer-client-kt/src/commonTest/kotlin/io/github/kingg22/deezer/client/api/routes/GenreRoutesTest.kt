@@ -1,11 +1,13 @@
 package io.github.kingg22.deezer.client.api.routes
 
+import io.github.kingg22.deezer.client.KtorEngineMocked
 import io.github.kingg22.deezer.client.KtorEngineMocked.getJsonFromPath
 import io.github.kingg22.deezer.client.KtorEngineMocked.jsonSerializer
-import io.github.kingg22.deezer.client.api.DeezerApiClientTest.Companion.client
+import io.github.kingg22.deezer.client.api.DeezerApiClient
 import io.github.kingg22.deezer.client.api.objects.Genre
 import io.kotest.assertions.json.shouldEqualJson
 import kotlinx.coroutines.test.runTest
+import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotEquals
@@ -13,8 +15,15 @@ import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
 class GenreRoutesTest {
+    lateinit var client: DeezerApiClient
+
+    @BeforeTest
+    fun setup() {
+        client = DeezerApiClient.initialize(KtorEngineMocked.createHttpBuilderMock())
+    }
+
     @Test
-    fun `Fetch Genres`() = runTest {
+    fun fetch_genres() = runTest {
         val result = client.genres.getAll()
         val json = getJsonFromPath("/genre")
         assertNull(result.next)
@@ -25,7 +34,7 @@ class GenreRoutesTest {
     }
 
     @Test
-    fun `Fetch Genre by ID`() = runTest {
+    fun fetch_genre_by_id() = runTest {
         val result = client.genres.getById(12)
         val json = getJsonFromPath("/genre/12")
         assertEquals(12, result.id)
@@ -34,7 +43,7 @@ class GenreRoutesTest {
     }
 
     @Test
-    fun `Reload Genre`() = runTest {
+    fun reload_genre() = runTest {
         val tested = Genre(12, "")
         val genre = tested.reload()
         val json = getJsonFromPath("/genre/12")
@@ -43,7 +52,7 @@ class GenreRoutesTest {
     }
 
     @Test
-    fun `Fetch Genre Artists`() = runTest {
+    fun fetch_genre_artists() = runTest {
         val result = client.genres.getArtists()
         val json = getJsonFromPath("/genre/0/artists")
         assertEquals(49, result.data.size)
@@ -55,7 +64,7 @@ class GenreRoutesTest {
     }
 
     @Test
-    fun `Fetch Genre Podcasts Empty`() = runTest {
+    fun fetch_genre_podcasts_empty() = runTest {
         val result = client.genres.getPodcasts()
         val json = getJsonFromPath("/genre/0/podcasts")
         assertTrue(result.data.isEmpty())
@@ -67,7 +76,7 @@ class GenreRoutesTest {
     }
 
     @Test
-    fun `Fetch Genre Radios`() = runTest {
+    fun fetch_genre_radios() = runTest {
         val result = client.genres.getRadios()
         val json = getJsonFromPath("/genre/0/radios")
         assertEquals(2, result.data.size)

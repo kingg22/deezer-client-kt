@@ -11,7 +11,7 @@ import kotlin.test.assertEquals
 @Ignore("Prevent abuse of the API when testing")
 class DeezerApiClientIntegrationTest {
     @Test
-    fun `Fetch Album by UPC`() = runTest {
+    fun test_fetch_album_by_UPC() = runTest {
         val result = DeezerApiClient(
             HttpClientBuilder()
                 .maxRetryCount(1)

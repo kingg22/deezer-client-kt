@@ -1,11 +1,13 @@
 package io.github.kingg22.deezer.client.api.routes
 
+import io.github.kingg22.deezer.client.KtorEngineMocked
 import io.github.kingg22.deezer.client.KtorEngineMocked.getJsonFromPath
 import io.github.kingg22.deezer.client.KtorEngineMocked.jsonSerializer
-import io.github.kingg22.deezer.client.api.DeezerApiClientTest.Companion.client
+import io.github.kingg22.deezer.client.api.DeezerApiClient
 import io.github.kingg22.deezer.client.api.objects.Podcast
 import io.kotest.assertions.json.shouldEqualJson
 import kotlinx.coroutines.test.runTest
+import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotEquals
@@ -14,9 +16,16 @@ import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
 class PodcastRoutesTest {
+    lateinit var client: DeezerApiClient
+
+    @BeforeTest
+    fun setup() {
+        client = DeezerApiClient.initialize(KtorEngineMocked.createHttpBuilderMock())
+    }
+
     // This endpoint always returns empty?
     @Test
-    fun `Fetch Podcast`() = runTest {
+    fun fetch_podcast() = runTest {
         val result = client.podcasts.getAll()
         val json = getJsonFromPath("/podcast")
         assertTrue(result.data.isEmpty())
@@ -28,7 +37,7 @@ class PodcastRoutesTest {
     }
 
     @Test
-    fun `Fetch Podcast by ID`() = runTest {
+    fun fetch_podcast_by_id() = runTest {
         val result = client.podcasts.getById(20269)
         val json = getJsonFromPath("/podcast/20269")
         assertEquals(20269, result.id)
@@ -36,7 +45,7 @@ class PodcastRoutesTest {
     }
 
     @Test
-    fun `Reload Podcast`() = runTest {
+    fun reload_podcast() = runTest {
         val tested = Podcast(20269)
         val podcast = tested.reload()
         val json = getJsonFromPath("/podcast/20269")
@@ -45,7 +54,7 @@ class PodcastRoutesTest {
     }
 
     @Test
-    fun `Fetch Podcast Episodes Empty`() = runTest {
+    fun fetch_podcast_episodes_empty() = runTest {
         val result = client.podcasts.getEpisodes(20269)
         val json = getJsonFromPath("/podcast/20269/episodes")
         assertTrue(result.data.isEmpty())
@@ -57,7 +66,7 @@ class PodcastRoutesTest {
     }
 
     @Test
-    fun `Fetch Podcast Episodes`() = runTest {
+    fun fetch_podcast_episodes() = runTest {
         val result = client.podcasts.getEpisodes(20289)
         val json = getJsonFromPath("/podcast/20289/episodes")
         assertEquals(25, result.data.size)
