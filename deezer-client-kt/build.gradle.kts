@@ -14,6 +14,7 @@ plugins {
     alias(libs.plugins.ksp)
     alias(libs.plugins.ktlint)
     alias(libs.plugins.ktorfit)
+    alias(libs.plugins.maven.publish)
 }
 
 group = "io.github.kingg22"
@@ -138,4 +139,38 @@ ktlint {
 
 tasks.named("runKtlintCheckOverCommonMainSourceSet") {
     dependsOn("kspCommonMainKotlinMetadata")
+}
+
+mavenPublishing {
+    publishToMavenCentral()
+
+    signAllPublications()
+
+    coordinates(group.toString(), "deezer-client-kt", version.toString())
+
+    pom {
+        name = "Unofficial Deezer Client – Kotlin Multiplatform - Java library"
+        description = "A Kotlin Multiplatform library to use Deezer public API."
+        inceptionYear = "2025"
+        url = "https://github.com/kingg22/deezer-client-kt"
+        licenses {
+            license {
+                name = "GNU Affero General Public License"
+                url = "https://www.gnu.org/licenses/agpl-3.0.en.html"
+                distribution = "repo"
+            }
+        }
+        developers {
+            developer {
+                id = "kingg22"
+                name = "Rey Acosta (Kingg22)"
+                url = "https://github.com/kingg22"
+            }
+        }
+        scm {
+            url = "https://github.com/kingg22/deezer-client-kt"
+            connection = "scm:git:git://github.com/kingg22/deezer-client-kt.git"
+            developerConnection = "scm:git:ssh://git@github.com/kingg22/deezer-client-kt.git"
+        }
+    }
 }
