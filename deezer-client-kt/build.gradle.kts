@@ -22,8 +22,8 @@ group = "io.github.kingg22"
 version = "0.1.0"
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_11
-    targetCompatibility = JavaVersion.VERSION_11
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
 }
 
 kotlin {
@@ -40,13 +40,13 @@ kotlin {
     androidTarget {
         publishLibraryVariants("release")
         compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_11)
+            jvmTarget.set(JvmTarget.JVM_1_8)
         }
     }
 
     jvm {
         compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_11)
+            jvmTarget.set(JvmTarget.JVM_1_8)
         }
         testRuns["test"].executionTask.configure {
             useJUnitPlatform()
@@ -133,8 +133,8 @@ android {
     namespace = "$group.deezer.client"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
     defaultConfig {
         minSdk = libs.versions.android.minSdk.get().toInt()
