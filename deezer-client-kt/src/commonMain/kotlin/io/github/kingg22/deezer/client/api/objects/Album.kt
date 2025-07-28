@@ -105,7 +105,7 @@ data class Album @JvmOverloads constructor(
     override val type: String = "album",
 ) : Resource() {
     @JvmSynthetic
-    override suspend fun reload() = client.albums.getById(this.id)
+    override suspend fun reload() = client().albums.getById(this.id)
 
     companion object
 }

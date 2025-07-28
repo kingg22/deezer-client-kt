@@ -79,7 +79,7 @@ data class Playlist @JvmOverloads constructor(
     val tracklist: String? = null,
 ) : Resource() {
     @JvmSynthetic
-    override suspend fun reload() = client.playlists.getById(this.id)
+    override suspend fun reload() = client().playlists.getById(this.id)
 
     companion object
 }

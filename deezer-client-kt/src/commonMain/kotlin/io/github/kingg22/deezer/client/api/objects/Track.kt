@@ -108,7 +108,7 @@ data class Track @JvmOverloads constructor(
     @SerialName("time_add") val timeAdd: Long? = null,
 ) : Resource() {
     @JvmSynthetic
-    override suspend fun reload() = client.tracks.getById(this.id)
+    override suspend fun reload() = client().tracks.getById(this.id)
 
     companion object
 }

@@ -37,7 +37,7 @@ data class Radio @JvmOverloads constructor(
     override val type: String = "radio",
 ) : Resource() {
     @JvmSynthetic
-    override suspend fun reload() = client.radios.getById(this.id)
+    override suspend fun reload() = client().radios.getById(this.id)
 
     companion object
 }

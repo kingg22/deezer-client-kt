@@ -59,7 +59,7 @@ data class Episode @JvmOverloads constructor(
     override val type: String = "episode",
 ) : Resource() {
     @JvmSynthetic
-    override suspend fun reload() = client.episodes.getById(this.id)
+    override suspend fun reload() = client().episodes.getById(this.id)
 
     companion object
 }

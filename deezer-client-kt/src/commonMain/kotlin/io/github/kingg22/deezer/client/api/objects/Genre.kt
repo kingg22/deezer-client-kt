@@ -34,7 +34,7 @@ data class Genre @JvmOverloads constructor(
     val radios: List<Radio>? = null,
 ) : Resource() {
     @JvmSynthetic
-    override suspend fun reload() = client.genres.getById(this.id)
+    override suspend fun reload() = client().genres.getById(this.id)
 
     companion object
 }

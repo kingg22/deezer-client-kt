@@ -81,8 +81,7 @@ data class User @JvmOverloads constructor(
     }
 
     @JvmSynthetic
-    override suspend fun reload() = client.users.getById(this.id)
+    override suspend fun reload() = client().users.getById(this.id)
 
-    // Needed to Java access to serializer of this and not abstract class
     companion object
 }

@@ -46,7 +46,7 @@ data class Artist @JvmOverloads constructor(
     val position: Int? = null,
 ) : Resource() {
     @JvmSynthetic
-    override suspend fun reload() = client.artists.getById(this.id)
+    override suspend fun reload() = client().artists.getById(this.id)
 
     companion object
 }

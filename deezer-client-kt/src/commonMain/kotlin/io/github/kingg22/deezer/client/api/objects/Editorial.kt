@@ -29,7 +29,7 @@ data class Editorial @JvmOverloads constructor(
     override val type: String = "editorial",
 ) : Resource() {
     @JvmSynthetic
-    override suspend fun reload() = client.editorials.getById(this.id)
+    override suspend fun reload() = client().editorials.getById(this.id)
 
     companion object
 }
