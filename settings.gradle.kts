@@ -34,4 +34,4 @@ dependencyResolutionManagement {
     }
 }
 
-include(":deezer-sdk")
+include(":deezer-client-kt")
