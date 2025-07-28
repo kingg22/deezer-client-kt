@@ -4,6 +4,7 @@ import de.jensklingenberg.ktorfit.ktorfit
 import io.ktor.client.HttpClient
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
+import kotlin.jvm.JvmSynthetic
 
 @JvmSynthetic
 internal fun createKtorfit(baseUrl: String, httpClient: HttpClient) = ktorfit {

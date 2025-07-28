@@ -3,6 +3,8 @@ package io.github.kingg22.deezer.client.api.objects
 import kotlinx.datetime.LocalDate
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmSynthetic
 
 /**
  * Represents an Album object of [Deezer API](https://developers.deezer.com/api/).

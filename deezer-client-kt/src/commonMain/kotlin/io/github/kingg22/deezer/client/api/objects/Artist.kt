@@ -2,6 +2,8 @@ package io.github.kingg22.deezer.client.api.objects
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmSynthetic
 
 /**
  * Represents an Artist object of [Deezer API](https://developers.deezer.com/api/).

@@ -2,6 +2,7 @@ package io.github.kingg22.deezer.client.api.objects
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlin.jvm.JvmOverloads
 
 /**
  * Represents an User's Options of [Deezer API](https://developers.deezer.com/api/).
@@ -24,7 +25,7 @@ import kotlinx.serialization.Serializable
  * @property type **unofficial** The type of object, usually the name of the class.
  */
 @Serializable
-data class Options(
+data class Options @JvmOverloads constructor(
     val streaming: Boolean,
     @SerialName("streaming_duration") val streamingDuration: Int,
     val offline: Boolean,

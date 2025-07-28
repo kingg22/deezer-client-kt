@@ -1,6 +1,7 @@
 package io.github.kingg22.deezer.client.api.objects
 
 import kotlinx.serialization.Serializable
+import kotlin.jvm.JvmOverloads
 
 /**
  * Charts of a specified genre
@@ -16,7 +17,7 @@ import kotlinx.serialization.Serializable
  * @property podcasts List of podcast containing all properties
  */
 @Serializable
-data class Chart(
+data class Chart @JvmOverloads constructor(
     /**
      * List of track containing:
      *
@@ -35,7 +36,7 @@ data class Chart(
      * [Album.coverMedium], [Album.coverBig] and [Album.coverXl]
      * @property Track.type **unofficial**
      */
-    val tracks: PaginatedResponse<Track>,
+    val tracks: PaginatedResponse<Track> = PaginatedResponse(),
 
     /**
      * List of Album containing:
@@ -54,7 +55,7 @@ data class Chart(
      * [Artist.pictureSmall], [Artist.pictureMedium], [Artist.pictureBig], [Artist.pictureXl] and [Artist.radio]
      * @property Album.type **unofficial**
      */
-    val albums: PaginatedResponse<Album>,
+    val albums: PaginatedResponse<Album> = PaginatedResponse(),
 
     /**
      * List of Artist containing:
@@ -72,7 +73,7 @@ data class Chart(
      * @property Artist.position
      * @property Artist.type **unofficial**
      */
-    val artists: PaginatedResponse<Artist>,
+    val artists: PaginatedResponse<Artist> = PaginatedResponse(),
 
     /**
      * List of Playlist containing:
@@ -91,6 +92,6 @@ data class Chart(
      * @property Playlist.creator _alias user_ containing: [User.id] and [User.name]
      * @property Playlist.type **unofficial**
      */
-    val playlists: PaginatedResponse<Playlist>,
-    val podcasts: PaginatedResponse<Podcast>,
+    val playlists: PaginatedResponse<Playlist> = PaginatedResponse(),
+    val podcasts: PaginatedResponse<Podcast> = PaginatedResponse(),
 )

@@ -4,6 +4,8 @@ import io.github.kingg22.deezer.client.utils.LocalDateTimeSerializer
 import kotlinx.datetime.LocalDateTime
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmSynthetic
 
 /**
  * Represent an episode object of [Deezer API](https://developers.deezer.com/api/).

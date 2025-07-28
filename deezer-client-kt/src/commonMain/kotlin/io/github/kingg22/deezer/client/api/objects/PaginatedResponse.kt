@@ -13,6 +13,9 @@ import io.ktor.http.Url
 import kotlinx.serialization.Serializable
 import kotlin.collections.plus
 import kotlin.coroutines.cancellation.CancellationException
+import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
+import kotlin.jvm.JvmSynthetic
 
 /**
  * **Unofficial** Represent a response of [Deezer API](https://developers.deezer.com/api/).

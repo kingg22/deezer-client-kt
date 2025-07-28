@@ -4,6 +4,8 @@ import io.github.kingg22.deezer.client.api.GlobalDeezerApiClient
 import io.github.kingg22.deezer.client.exceptions.DeezerApiException
 import io.github.kingg22.deezer.client.utils.AfterInitialize
 import kotlin.coroutines.cancellation.CancellationException
+import kotlin.jvm.JvmStatic
+import kotlin.jvm.JvmSynthetic
 
 /**
  * _Internal_ Represents a Resource of [Deezer API](https://developers.deezer.com/api/).

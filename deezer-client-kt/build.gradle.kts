@@ -18,6 +18,11 @@ plugins {
 group = "io.github.kingg22"
 version = "0.1.0"
 
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
 kotlin {
     compilerOptions {
         extraWarnings.set(true)
@@ -36,6 +41,12 @@ kotlin {
             useJUnitPlatform()
         }
     }
+
+    // tier 2
+    linuxX64()
+    linuxArm64()
+    // tier 3
+    mingwX64()
 
     applyDefaultHierarchyTemplate {
         common {
@@ -98,9 +109,6 @@ dokka {
             register("ktor-client") {
                 url("https://api.ktor.io/ktor-client/")
                 packageListUrl("https://api.ktor.io/package-list")
-            }
-            register("kermit-logger") {
-                url("https://kermit.touchlab.co/htmlMultiModule/")
             }
         }
     }

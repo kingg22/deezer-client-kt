@@ -4,6 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.JsonObject
+import kotlin.jvm.JvmOverloads
 
 /**
  * Represent the information about the [Deezer API](https://developers.deezer.com/api/) in the current country.
@@ -24,7 +25,7 @@ import kotlinx.serialization.json.JsonObject
  * @property hasPodcast **unofficial** Indicates whether the country has support for podcasts
  */
 @Serializable
-data class Infos(
+data class Infos @JvmOverloads constructor(
     @SerialName("country_iso") val countryIso: String,
     val country: String,
     val open: Boolean,
