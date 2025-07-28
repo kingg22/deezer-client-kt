@@ -1,4 +1,4 @@
-@file:JvmName("ImageSizesExt")
+@file:JvmName("ImageSizesUtil")
 @file:JvmMultifileClass
 
 package io.github.kingg22.deezer.client.api.objects
@@ -6,7 +6,8 @@ package io.github.kingg22.deezer.client.api.objects
 import io.ktor.http.URLBuilder
 import io.ktor.http.Url
 
-private const val IMAGE_PATH_END = "-000000-80-0-0.jpg"
+@JvmSynthetic
+internal const val IMAGE_PATH_END = "-000000-80-0-0.jpg"
 
 /**
  * Retrieve the string with the size of the image.

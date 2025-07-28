@@ -1,7 +1,5 @@
 package io.github.kingg22.deezer.client.api.objects
 
-private const val IMAGE_PATH_END = "-000000-80-0-0.jpg"
-
 /**
  * _Unofficial_ Represents the size of the image.
  *
