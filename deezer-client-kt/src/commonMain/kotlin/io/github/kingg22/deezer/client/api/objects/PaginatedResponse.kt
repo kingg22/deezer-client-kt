@@ -14,7 +14,6 @@ import kotlinx.serialization.Serializable
 import kotlin.collections.plus
 import kotlin.coroutines.cancellation.CancellationException
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 import kotlin.jvm.JvmSynthetic
 
 /**
@@ -38,6 +37,12 @@ class PaginatedResponse<T : @Serializable Any> @JvmOverloads constructor(
     val prev: String? = null,
     val next: String? = null,
 ) {
+    /** The [io.github.kingg22.deezer.client.api.DeezerApiClient] to make operations easy */
+    @AfterInitialize
+    @PublishedApi
+    @JvmSynthetic
+    internal fun client() = GlobalDeezerApiClient.requireInstance()
+
     @JvmOverloads
     fun copy(
         data: List<T> = this.data,
@@ -99,14 +104,5 @@ class PaginatedResponse<T : @Serializable Any> @JvmOverloads constructor(
         } else {
             result
         }
-    }
-
-    companion object {
-        /** The [io.github.kingg22.deezer.client.api.DeezerApiClient] to make operations easy */
-        @AfterInitialize
-        @PublishedApi
-        @JvmStatic
-        @JvmSynthetic
-        internal fun client() = GlobalDeezerApiClient.requireInstance()
     }
 }

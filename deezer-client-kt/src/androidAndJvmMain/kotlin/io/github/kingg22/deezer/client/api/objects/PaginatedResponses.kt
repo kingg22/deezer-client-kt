@@ -2,7 +2,6 @@
 
 package io.github.kingg22.deezer.client.api.objects
 
-import io.github.kingg22.deezer.client.api.objects.PaginatedResponse.Companion.client
 import io.github.kingg22.deezer.client.exceptions.DeezerApiException
 import io.github.kingg22.deezer.client.utils.AfterInitialize
 import io.github.kingg22.deezer.client.utils.ExperimentalDeezerClient
