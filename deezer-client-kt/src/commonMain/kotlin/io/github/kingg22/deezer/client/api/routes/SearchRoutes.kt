@@ -12,8 +12,11 @@ import io.github.kingg22.deezer.client.api.objects.SearchOrder
 import io.github.kingg22.deezer.client.api.objects.SearchUserHistory
 import io.github.kingg22.deezer.client.api.objects.Track
 import io.github.kingg22.deezer.client.api.objects.User
+import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
+import kotlin.jvm.JvmSynthetic
 import kotlin.time.Duration
+import kotlin.time.Duration.Companion.seconds
 
 /**
  * Defines all endpoints related to Search in [Deezer API](https://developers.deezer.com/api/).
@@ -26,6 +29,7 @@ import kotlin.time.Duration
  * @see <a href="https://developers.deezer.com/api/search#connections">Deezer Search Methods</a>
  * @see SearchRoutes.buildAdvanceQuery
  * @see SearchRoutes.setStrict
+ * @see SearchRoutes.AdvancedQueryBuilder
  */
 interface SearchRoutes {
     /** Search utilities */
@@ -47,6 +51,7 @@ interface SearchRoutes {
          * @param bpmMin The track's minimum bpm (example: 120)
          * @param bpmMax The track's maximum bpm (example: 200)
          */
+        @JvmOverloads
         @JvmStatic
         @Throws(IllegalArgumentException::class, IllegalStateException::class)
         @Suppress("kotlin:S107")
@@ -90,6 +95,24 @@ interface SearchRoutes {
             check(query.isNotBlank()) { "Query cannot be blank" }
             return query
         }
+
+        /**
+         * DSL to build advanced search
+         * @throws IllegalArgumentException if not provided any arguments
+         * @throws IllegalStateException if the query is blank after built
+         */
+        @JvmSynthetic
+        @Throws(IllegalArgumentException::class, IllegalStateException::class)
+        fun buildAdvanceQuery(block: AdvancedQueryBuilder.() -> Unit) = AdvancedQueryBuilder().apply(block).build()
+
+        /**
+         * Build advanced search using builder
+         * @throws IllegalArgumentException if not provided any arguments
+         * @throws IllegalStateException if the query is blank after built
+         */
+        @JvmStatic
+        @Throws(IllegalArgumentException::class, IllegalStateException::class)
+        fun buildAdvanceQuery(builder: AdvancedQueryBuilder) = builder.build()
 
         /**
          * Shortcut for strict
@@ -219,4 +242,69 @@ interface SearchRoutes {
         @Query index: Int? = null,
         @Query limit: Int? = null,
     ): PaginatedResponse<User>
+
+    /**
+     * Builder for advanced queries
+     *
+     * @property q A simple query
+     * @property artist The artist name (example: "aloe blacc")
+     * @property album The album's title (example: "good things")
+     * @property track The track's title (example: "I need a dollar")
+     * @property label The label name (example: "because music")
+     * @property durationMin The track's minimum duration in seconds (example: 300)
+     * @property durationMax The track's maximum duration in seconds (example: 500)
+     * @property bpmMin The track's minimum bpm (example: 120)
+     * @property bpmMax The track's maximum bpm (example: 200)
+     */
+    class AdvancedQueryBuilder {
+        var q: String? = null
+        var artist: String? = null
+        var album: String? = null
+        var track: String? = null
+        var label: String? = null
+
+        @get:JvmSynthetic
+        @set:JvmSynthetic
+        var durationMin: Duration? = null
+
+        @get:JvmSynthetic
+        @set:JvmSynthetic
+        private var durationMax: Duration? = null
+        private var bpmMin: Int? = null
+        private var bpmMax: Int? = null
+
+        fun q(q: String?) = apply { this.q = q }
+        fun artist(artist: String?) = apply { this.artist = artist }
+        fun album(album: String?) = apply { this.album = album }
+        fun track(track: String?) = apply { this.track = track }
+        fun label(label: String?) = apply { this.label = label }
+
+        @JvmSynthetic
+        fun durationMin(durationMin: Duration?) = apply { this.durationMin = durationMin }
+
+        @JvmSynthetic
+        fun durationMax(durationMax: Duration?) = apply { this.durationMax = durationMax }
+        fun durationMin(durationMinSeconds: Long?) = apply { this.durationMin = durationMinSeconds?.seconds }
+        fun durationMax(durationMaxSeconds: Long?) = apply { this.durationMax = durationMaxSeconds?.seconds }
+        fun bpmMin(bpmMin: Int?) = apply { this.bpmMin = bpmMin }
+        fun bpmMax(bpmMax: Int?) = apply { this.bpmMax = bpmMax }
+
+        /**
+         * Build the advanced query
+         * @throws IllegalArgumentException if not provided any arguments
+         * @throws IllegalStateException if the query is blank after built
+         */
+        @Throws(IllegalArgumentException::class, IllegalStateException::class)
+        fun build() = buildAdvanceQuery(
+            q = q,
+            artist = artist,
+            album = album,
+            track = track,
+            label = label,
+            durationMin = durationMin,
+            durationMax = durationMax,
+            bpmMin = bpmMin,
+            bpmMax = bpmMax,
+        )
+    }
 }
