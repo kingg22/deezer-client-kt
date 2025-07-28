@@ -1,3 +1,5 @@
+@file:OptIn(ExperimentalDeezerClient::class)
+
 package io.github.kingg22.deezer.client.utils
 
 import io.github.kingg22.deezer.client.utils.HttpClientProvider.DEFAULT_COOKIE_STORAGE
@@ -12,7 +14,7 @@ import io.ktor.client.plugins.cookies.CookiesStorage
 import io.ktor.client.plugins.logging.LogLevel
 import io.ktor.client.plugins.logging.Logger
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
+import kotlin.jvm.JvmSynthetic
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 
@@ -73,7 +75,7 @@ data class HttpClientBuilder @JvmOverloads constructor(
      * You don't have to specify the HTTP client engine, it will be automatically set by Ktor.
      * @see [httpEngine]
      */
-    @ExperimentalDeezerSdk
+    @ExperimentalDeezerClient
     fun addCustomConfig(config: HttpClientConfig<*>.() -> Unit) = apply { this.customHttpConfig.add(config) }
 
     /**
@@ -96,14 +98,12 @@ data class HttpClientBuilder @JvmOverloads constructor(
 
     companion object {
         /** Builds the HttpClient with the default options. */
-        @JvmStatic
-        @JvmOverloads
+        @JvmSynthetic
         @Throws(IllegalArgumentException::class)
         fun httpClient(block: HttpClientBuilder.() -> Unit = {}) = HttpClientBuilder().apply(block).build()
 
         /** Builds the HttpClientBuilder with the default options. */
-        @JvmStatic
-        @JvmOverloads
+        @JvmSynthetic
         fun httpClientBuilder(builder: HttpClientBuilder.() -> Unit = {}) = HttpClientBuilder().apply(builder)
     }
 }

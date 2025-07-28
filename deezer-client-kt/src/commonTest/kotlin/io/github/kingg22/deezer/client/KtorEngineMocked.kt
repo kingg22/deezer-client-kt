@@ -1,7 +1,7 @@
 package io.github.kingg22.deezer.client
 
 import com.goncalossilva.resources.Resource
-import io.github.kingg22.deezer.client.utils.ExperimentalDeezerSdk
+import io.github.kingg22.deezer.client.utils.ExperimentalDeezerClient
 import io.github.kingg22.deezer.client.utils.HttpClientBuilder
 import io.ktor.client.engine.*
 import io.ktor.client.engine.mock.*
@@ -27,7 +27,7 @@ data object KtorEngineMocked {
     @JvmStatic
     private fun readResourceFile(path: String) = Resource("src/commonTest/resources$path").readText()
 
-    @OptIn(ExperimentalDeezerSdk::class)
+    @OptIn(ExperimentalDeezerClient::class)
     @JvmStatic
     fun createHttpBuilderMock() = HttpClientBuilder().httpEngine(createMockEngine()).addCustomConfig {
         Logging {

@@ -22,8 +22,6 @@ import io.ktor.http.headers
 import io.ktor.http.userAgent
 import io.ktor.serialization.kotlinx.json.json
 import io.ktor.utils.io.charsets.Charsets
-import kotlinx.serialization.ExperimentalSerializationApi
-import kotlinx.serialization.json.Json
 import kotlin.jvm.JvmSynthetic
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
@@ -46,6 +44,7 @@ internal data object HttpClientProvider {
      * @throws IllegalArgumentException If the timeout is less than or equal to zero.
      * @throws IllegalArgumentException If the provided User-Agent string is empty.
      */
+    @ExperimentalDeezerClient
     @Suppress("kotlin:S107")
     @JvmSynthetic
     @Throws(IllegalArgumentException::class)
@@ -114,21 +113,6 @@ internal data object HttpClientProvider {
             modifiers.forEach { it(this) }
         }
         return if (engine != null) HttpClient(engine, clientConfig) else HttpClient(clientConfig)
-    }
-
-    @OptIn(ExperimentalSerializationApi::class)
-    @JvmSynthetic
-    internal fun getJson() = Json {
-        encodeDefaults = true
-        isLenient = true
-        allowSpecialFloatingPointValues = true
-        allowStructuredMapKeys = true
-
-        prettyPrint = true
-        ignoreUnknownKeys = true
-        explicitNulls = false
-        decodeEnumsCaseInsensitive = true
-        useArrayPolymorphism = true
     }
 
     internal enum class DeezerApiSupported(@get:JvmSynthetic val baseUrl: String) {
