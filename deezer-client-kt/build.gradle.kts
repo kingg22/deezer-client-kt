@@ -87,19 +87,14 @@ kotlin {
 }
 
 kover {
-    reports.filters {
-        excludes {
-            classes(
-                "$group.deezer.client.api.routes.*Impl",
-                "$group.deezer.client.api.routes.*ImplKt",
-                "$group.deezer.client.api.routes.*Impl.kt",
-                "$group.deezer.client.api.routes.*Provider",
-            )
-            inheritedFrom("$group.deezer.client.api.routes.*Routes")
-        }
-        includes {
-            classes("$group.deezer.client.api.objects.PaginatedResponses", "$group.deezer.client.api.objects.Resources")
-        }
+    reports.filters.excludes {
+        classes(
+            "$group.deezer.client.api.routes.*Impl",
+            "$group.deezer.client.api.routes.*ImplKt",
+            "$group.deezer.client.api.routes.*Impl.kt",
+            "$group.deezer.client.api.routes.*Provider",
+        )
+        inheritedFrom("$group.deezer.client.api.routes.*Routes")
     }
 }
 
