@@ -1,0 +1,28 @@
+package io.github.kingg22.deezer.client.api.objects;
+
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import java.time.Duration;
+
+import kotlinx.datetime.LocalDateTime;
+
+class ResourcesTest {
+    @Test
+    void testReload() {
+        final var tested = new Episode(
+            526673645,
+            "",
+            null,
+            null,
+            LocalDateTime.Companion.parse("2019-09-09T00:00:00", LocalDateTime.Formats.INSTANCE.getISO()),
+            0
+        );
+        final var episode = Resources.reload(tested);
+        final var episodeFuture = Assertions.assertTimeout(Duration.ofMinutes(1), () -> Resources.reloadFuture(tested).get());
+        assertNotEquals(tested, episode);
+        assertNotEquals(tested, episodeFuture);
+    }
+}
