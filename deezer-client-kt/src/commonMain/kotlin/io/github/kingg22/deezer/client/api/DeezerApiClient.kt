@@ -1,3 +1,5 @@
+@file:OptIn(InternalDeezerClient::class, ExperimentalDeezerClient::class)
+
 package io.github.kingg22.deezer.client.api
 
 import io.github.kingg22.deezer.client.api.objects.ErrorContainer
@@ -30,9 +32,10 @@ import io.github.kingg22.deezer.client.api.routes.createSearchRoutes
 import io.github.kingg22.deezer.client.api.routes.createTrackRoutes
 import io.github.kingg22.deezer.client.api.routes.createUserRoutes
 import io.github.kingg22.deezer.client.exceptions.DeezerApiException
-import io.github.kingg22.deezer.client.utils.ExperimentalDeezerSdk
+import io.github.kingg22.deezer.client.utils.ExperimentalDeezerClient
 import io.github.kingg22.deezer.client.utils.HttpClientBuilder
 import io.github.kingg22.deezer.client.utils.HttpClientProvider
+import io.github.kingg22.deezer.client.utils.InternalDeezerClient
 import io.github.kingg22.deezer.client.utils.createKtorfit
 import io.ktor.client.*
 import io.ktor.client.call.*
@@ -57,10 +60,8 @@ data class DeezerApiClient @JvmOverloads constructor(
     private val builder: HttpClientBuilder = HttpClientBuilder(),
 ) {
     /** The current [HttpClient] using */
-    @get:JvmName("-httpClient")
-    @PublishedApi
-    @OptIn(ExperimentalDeezerSdk::class)
-    internal val httpClient = builder.copy().addCustomConfig {
+    @InternalDeezerClient
+    val httpClient = builder.copy().addCustomConfig {
         HttpResponseValidator(customValidators())
     }.build()
 
