@@ -1,3 +1,6 @@
+@file:OptIn(ExperimentalKotlinGradlePluginApi::class)
+
+import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
@@ -13,7 +16,7 @@ plugins {
 }
 
 group = "io.github.kingg22"
-version = libs.versions.deezer.client.version.get()
+version = "0.1.0"
 
 kotlin {
     compilerOptions {
@@ -34,6 +37,15 @@ kotlin {
         }
     }
 
+    applyDefaultHierarchyTemplate {
+        common {
+            group("androidAndJvm") {
+                withAndroidTarget()
+                withJvm()
+            }
+        }
+    }
+
     sourceSets {
         commonMain.dependencies {
             api(libs.bundles.ktor.client)
@@ -46,13 +58,21 @@ kotlin {
             implementation(libs.bundles.testing.ktor)
             implementation(libs.kermit)
         }
+        jvmTest.dependencies {
+            implementation(libs.ktor.client.engine.cio)
+        }
     }
 }
 
 kover {
     reports.filters.excludes {
-        classes("$group.deezerSdk.*.routes.*ImplKt", "$group.deezerSdk.*.routes.*Provider")
-        inheritedFrom("$group.deezerSdk.*.routes.*")
+        classes(
+            "$group.deezer.client.api.routes.*Impl",
+            "$group.deezer.client.api.routes.*ImplKt",
+            "$group.deezer.client.api.routes.*Impl.kt",
+            "$group.deezer.client.api.routes.*Provider",
+        )
+        inheritedFrom("$group.deezer.client.api.routes.*Routes")
     }
 }
 
@@ -82,14 +102,6 @@ dokka {
             register("kermit-logger") {
                 url("https://kermit.touchlab.co/htmlMultiModule/")
             }
-        }
-        perPackageOption {
-            matchingRegex = """io\.github\.kingg22\.deezerSdk\.gw\.objects"""
-            reportUndocumented = false
-        }
-        perPackageOption {
-            matchingRegex = """io\.github\.kingg22\.deezerSdk\.gw\.objects\.media"""
-            reportUndocumented = false
         }
     }
 }
