@@ -1,7 +1,8 @@
-@file:OptIn(ExperimentalKotlinGradlePluginApi::class)
+@file:OptIn(ExperimentalKotlinGradlePluginApi::class, ExperimentalAbiValidation::class)
 
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.dsl.abi.ExperimentalAbiValidation
 
 plugins {
     alias(libs.plugins.androidLibrary)
@@ -27,6 +28,11 @@ kotlin {
     compilerOptions {
         extraWarnings.set(true)
         allWarningsAsErrors.set(true)
+    }
+
+    abiValidation {
+        // until api client for java consumers is created
+        enabled.set(false)
     }
 
     androidTarget {
