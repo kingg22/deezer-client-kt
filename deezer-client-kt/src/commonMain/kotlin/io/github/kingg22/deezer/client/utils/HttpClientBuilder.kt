@@ -54,6 +54,7 @@ data class HttpClientBuilder @JvmOverloads constructor(
     fun cookiesStorage(storage: CookiesStorage) = apply { this.cookiesStorage = storage }
 
     /** Sets a timeout for the HttpClient. Default 20 seg */
+    @JvmSynthetic
     fun timeout(duration: Duration) = apply { this.timeout = duration.inWholeSeconds }
 
     /** Sets a timeout for the HttpClient. Default 20 seg */
@@ -65,6 +66,7 @@ data class HttpClientBuilder @JvmOverloads constructor(
     /** Sets the logging level for HTTP requests and responses. Default [LogLevel.INFO] */
     fun httpLogLevel(logLevel: LogLevel) = apply { this.httpLogLevel = logLevel }
 
+    /** Sets a custom logger for the HttpClient. Default NoOp. */
     fun logger(logger: Logger) = apply { this.logger = logger }
 
     /** Specifies the HttpClientEngine to be used explicit. Default automatically set by Ktor. */
