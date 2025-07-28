@@ -6,6 +6,7 @@ import io.github.kingg22.deezer.client.utils.ExperimentalDeezerClient
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.future.future
 import kotlinx.coroutines.runBlocking
+import org.jetbrains.annotations.Blocking
 import java.util.concurrent.CompletableFuture
 import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.EmptyCoroutineContext
@@ -18,17 +19,24 @@ import kotlin.coroutines.EmptyCoroutineContext
  * For Kotlin users: **You don't need this, use the member function instead, this is only for Java**
  */
 @ExperimentalDeezerClient
-object Resources {
-    /** Reloads the current resource from the API, getting all of its full properties if it was initially obtained partially, or it's outdated */
-    @JvmName("reload")
+/*
+This is internal, for kotlin consumers can't access this, but Java consumers can access avoid internal stuff.
+Is PublishedApi to maintain binary compatibility.
+ */
+@PublishedApi
+internal object Resources {
+    /** Reloads the resource from the API, getting all of its full properties if it was initially obtained partially, or it's outdated */
+    @Blocking
     @JvmStatic
-    fun <T : Resource> reloadBlocking(resource: T): T = runBlocking { resource.reload() as T }
+    fun <T : Resource> reload(resource: T): T = runBlocking { resource.reload() as T }
 
-    /** Reloads the current resource from the API, getting all of its full properties if it was initially obtained partially, or it's outdated */
-    @JvmName("reloadFuture")
+    /**
+     * Reloads the resource from the API with [CompletableFuture],
+     * getting all of its full properties if it was initially obtained partially, or it's outdated.
+     */
     @JvmOverloads
     @JvmStatic
-    fun <T : Resource> reloadJava(
+    fun <T : Resource> reloadFuture(
         resource: T,
         coroutineContext: CoroutineContext = EmptyCoroutineContext,
     ): CompletableFuture<T> = CoroutineScope(coroutineContext).future { resource.reload() as T }

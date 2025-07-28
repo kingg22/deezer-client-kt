@@ -1,5 +1,6 @@
 @file:OptIn(ExperimentalKotlinGradlePluginApi::class, ExperimentalAbiValidation::class)
 
+import org.jetbrains.dokka.gradle.engine.parameters.VisibilityModifier
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.dsl.abi.ExperimentalAbiValidation
@@ -86,14 +87,19 @@ kotlin {
 }
 
 kover {
-    reports.filters.excludes {
-        classes(
-            "$group.deezer.client.api.routes.*Impl",
-            "$group.deezer.client.api.routes.*ImplKt",
-            "$group.deezer.client.api.routes.*Impl.kt",
-            "$group.deezer.client.api.routes.*Provider",
-        )
-        inheritedFrom("$group.deezer.client.api.routes.*Routes")
+    reports.filters {
+        excludes {
+            classes(
+                "$group.deezer.client.api.routes.*Impl",
+                "$group.deezer.client.api.routes.*ImplKt",
+                "$group.deezer.client.api.routes.*Impl.kt",
+                "$group.deezer.client.api.routes.*Provider",
+            )
+            inheritedFrom("$group.deezer.client.api.routes.*Routes")
+        }
+        includes {
+            classes("$group.deezer.client.api.objects.PaginatedResponses", "$group.deezer.client.api.objects.Resources")
+        }
     }
 }
 
@@ -105,6 +111,10 @@ dokka {
         enableJdkDocumentationLink = true
         enableKotlinStdLibDocumentationLink = true
         suppressedFiles.from(layout.buildDirectory.dir("generated"))
+        perPackageOption {
+            matchingRegex.set("$group.deezer.client.api.objects")
+            documentedVisibilities.addAll(VisibilityModifier.Internal, VisibilityModifier.Public)
+        }
         externalDocumentationLinks {
             register("kotlinx.coroutines") {
                 url("https://kotlinlang.org/api/kotlinx.coroutines/")

@@ -32,7 +32,12 @@ import kotlin.reflect.KClass
  * For Kotlin users: **You don't need this, use the member function instead, this is only for Java**
  */
 @ExperimentalDeezerClient
-object PaginatedResponses {
+/*
+This is internal, for kotlin consumers can't access this, but Java consumers can access avoid internal stuff.
+Is PublishedApi to maintain binary compatibility.
+ */
+@PublishedApi
+internal object PaginatedResponses {
     /**
      * Fetch the next page of the search blocking the thread.
      *
@@ -55,14 +60,11 @@ object PaginatedResponses {
      */
     @AfterInitialize
     @Blocking
-    @JvmName("fetchNext")
     @JvmOverloads
     @JvmStatic
     @Throws(IllegalArgumentException::class, DeezerApiException::class, CancellationException::class)
-    fun <N : @Serializable Any> PaginatedResponse<*>.fetchNextBlocking(
-        serializer: KSerializer<N>,
-        expand: Boolean = false,
-    ) = runBlocking { fetchNextJavaInternal(expand, serializer) }
+    fun <N : @Serializable Any> PaginatedResponse<*>.fetchNext(serializer: KSerializer<N>, expand: Boolean = false) =
+        runBlocking { fetchNextJavaInternal(expand, serializer) }
 
     /**
      * Fetch the next page of the search blocking the thread.
@@ -87,11 +89,10 @@ object PaginatedResponses {
      * @throws IllegalArgumentException if [PaginatedResponse.data] is not empty and types [N] != `T` (original type)
      */
     @AfterInitialize
-    @JvmName("fetchNextFuture")
     @JvmOverloads
     @JvmStatic
     @Throws(IllegalArgumentException::class, DeezerApiException::class, CancellationException::class)
-    fun <N : @Serializable Any> PaginatedResponse<*>.fetchNextJava(
+    fun <N : @Serializable Any> PaginatedResponse<*>.fetchNextFuture(
         serializer: KSerializer<N>,
         expand: Boolean = false,
         coroutineContext: CoroutineContext = EmptyCoroutineContext,
@@ -140,11 +141,10 @@ object PaginatedResponses {
      */
     @AfterInitialize
     @Blocking
-    @JvmName("fetchPrevious")
     @JvmOverloads
     @JvmStatic
     @Throws(IllegalArgumentException::class, DeezerApiException::class, CancellationException::class)
-    fun <P : @Serializable Any> PaginatedResponse<*>.fetchPrevBlocking(
+    fun <P : @Serializable Any> PaginatedResponse<*>.fetchPrevious(
         serializer: KSerializer<P>,
         expand: Boolean = false,
     ) = runBlocking { fetchPreviousJavaInternal(expand, serializer) }
@@ -172,11 +172,10 @@ object PaginatedResponses {
      * @throws IllegalArgumentException if [PaginatedResponse.data] is not empty and types [P] != `T` (original type)
      */
     @AfterInitialize
-    @JvmName("fetchPreviousFuture")
     @JvmOverloads
     @JvmStatic
     @Throws(IllegalArgumentException::class, DeezerApiException::class, CancellationException::class)
-    fun <P : @Serializable Any> PaginatedResponse<*>.fetchPreviousJava(
+    fun <P : @Serializable Any> PaginatedResponse<*>.fetchPreviousFuture(
         serializer: KSerializer<P>,
         expand: Boolean = false,
         coroutineContext: CoroutineContext = EmptyCoroutineContext,
