@@ -40,7 +40,9 @@ class SearchRoutesTest {
 
     @Test
     fun `Search query with numbers without quotes`() {
-        val search = buildAdvanceQuery(durationMin = 10.seconds)
+        val search = buildAdvanceQuery {
+            durationMin = 10.seconds
+        }
         assertEquals(search, "dur_min:10")
     }
 
