@@ -33,8 +33,7 @@ kotlin {
     }
 
     abiValidation {
-        // until api client for java consumers is created
-        enabled.set(false)
+        enabled.set(true)
     }
 
     androidTarget {
