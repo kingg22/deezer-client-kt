@@ -2,16 +2,7 @@ package io.github.kingg22.deezer.client.api.routes
 
 import de.jensklingenberg.ktorfit.http.GET
 import de.jensklingenberg.ktorfit.http.Query
-import io.github.kingg22.deezer.client.api.objects.Album
-import io.github.kingg22.deezer.client.api.objects.Artist
-import io.github.kingg22.deezer.client.api.objects.PaginatedResponse
-import io.github.kingg22.deezer.client.api.objects.Playlist
-import io.github.kingg22.deezer.client.api.objects.Podcast
-import io.github.kingg22.deezer.client.api.objects.Radio
-import io.github.kingg22.deezer.client.api.objects.SearchOrder
-import io.github.kingg22.deezer.client.api.objects.SearchUserHistory
-import io.github.kingg22.deezer.client.api.objects.Track
-import io.github.kingg22.deezer.client.api.objects.User
+import io.github.kingg22.deezer.client.api.objects.*
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
@@ -44,9 +35,9 @@ interface SearchRoutes {
          *
          * @param q A simple query
          * @param artist The artist name (example: "aloe blacc")
-         * @param album    The album's title (example: "good things")
-         * @param track    The track's title (example: "I need a dollar")
-         * @param label    The label name (example: "because music")
+         * @param album The album's title (example: "good things")
+         * @param track The track's title (example: "I need a dollar")
+         * @param label The label name (example: "because music")
          * @param durationMin The track's minimum duration in seconds (example: 300)
          * @param durationMax The track's maximum duration in seconds (example: 500)
          * @param bpmMin The track's minimum bpm (example: 120)
@@ -274,20 +265,72 @@ interface SearchRoutes {
         private var bpmMin: Int? = null
         private var bpmMax: Int? = null
 
+        /**
+         * Set a simple query
+         * @param q query
+         */
         fun q(q: String?) = apply { this.q = q }
+
+        /**
+         * Set an artist name (example: "aloe blacc")
+         * @param artist name
+         */
         fun artist(artist: String?) = apply { this.artist = artist }
+
+        /**
+         * Set an album's title (example: "good things")
+         * @param album title
+         */
         fun album(album: String?) = apply { this.album = album }
+
+        /**
+         * Set a track's title (example: "I need a dollar")
+         * @param track title
+         */
         fun track(track: String?) = apply { this.track = track }
+
+        /**
+         * Set the label name (example: "because music")
+         * @param label name
+         */
         fun label(label: String?) = apply { this.label = label }
 
+        /**
+         * Set the track's minimum duration in seconds (example: 300)
+         * @param durationMin min duration in seconds
+         */
         @JvmSynthetic
         fun durationMin(durationMin: Duration?) = apply { this.durationMin = durationMin }
 
+        /**
+         * Set the track's minimum duration in seconds (example: 300)
+         * @param durationMax max duration in seconds
+         */
         @JvmSynthetic
         fun durationMax(durationMax: Duration?) = apply { this.durationMax = durationMax }
+
+        /**
+         * Set the track's minimum duration in seconds (example: 300)
+         * @param durationMin min duration in seconds
+         */
         fun durationMin(durationMinSeconds: Long?) = apply { this.durationMin = durationMinSeconds?.seconds }
+
+        /**
+         * Set the track's minimum duration in seconds (example: 300)
+         * @param durationMax max duration in seconds
+         */
         fun durationMax(durationMaxSeconds: Long?) = apply { this.durationMax = durationMaxSeconds?.seconds }
+
+        /**
+         * Set the track's minimum bpm (example: 120)
+         * @param bpmMin min bpm
+         */
         fun bpmMin(bpmMin: Int?) = apply { this.bpmMin = bpmMin }
+
+        /**
+         * Set the track's maximum bpm (example: 200)
+         * @param bpmMin max bpm
+         */
         fun bpmMax(bpmMax: Int?) = apply { this.bpmMax = bpmMax }
 
         /**

@@ -18,8 +18,8 @@ import kotlin.jvm.JvmStatic
  * By default, all new instances of [DeezerApiClient] fill this holder if needed.
  *
  * @see [io.github.kingg22.deezer.client.api.objects.Resource.reload]
- * @see [io.github.kingg22.deezer.client.api.objects.PaginatedResponse.fetchNext]
- * @see [io.github.kingg22.deezer.client.api.objects.PaginatedResponse.fetchPrevious]
+ * @see [io.github.kingg22.deezer.client.api.objects.fetchNext]
+ * @see [io.github.kingg22.deezer.client.api.objects.fetchPrevious]
  */
 object GlobalDeezerApiClient : LateInitClient {
     /**
@@ -32,9 +32,18 @@ object GlobalDeezerApiClient : LateInitClient {
 
     override fun isInitialized() = instance != null
 
+    /**
+     * Retrieve the current instance of the api client.
+     * @throws IllegalArgumentException If not there exists current instance
+     */
     @JvmStatic
+    @Throws(IllegalArgumentException::class)
     fun requireInstance() = requireNotNull(instance) { "DeezerApiClient not initialized" }
 
+    /**
+     * Evaluate the current instance and set only if needed
+     * @param client a new instance of the api client
+     */
     @JvmStatic
     fun initIfNeeded(client: DeezerApiClient) {
         if (instance == null) {
@@ -44,16 +53,25 @@ object GlobalDeezerApiClient : LateInitClient {
         if (instance?.httpClient?.isActive == false) instance = client
     }
 
+    /** Make `null` the current saved instance */
     @JvmStatic
     fun reset() {
         instance = null
     }
 
+    /**
+     * Reset only if the condition is `true`
+     * @see reset
+     */
     @JvmStatic
     fun resetIf(condition: Boolean) {
         if (condition) reset()
     }
 
+    /**
+     * Reset only if the condition is `true`
+     * @see reset
+     */
     @JvmStatic
     fun resetIf(condition: () -> Boolean) {
         resetIf(condition())

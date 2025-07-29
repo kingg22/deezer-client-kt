@@ -14,7 +14,7 @@ import kotlin.jvm.JvmStatic
  * @param errorCode The code of the exception
  * @param errorMessage The messages to logger. Default description of the error code
  * @param cause The cause of the exception
- * @property error [DeezerApiException.DeezerErrorCode]
+ * @property error The [Deezer Error Code][DeezerApiException.DeezerErrorCode] if is set
  */
 data class DeezerApiException @JvmOverloads constructor(
     private val errorCode: Int? = null,
@@ -40,6 +40,10 @@ data class DeezerApiException @JvmOverloads constructor(
     /**
      * [Deezer API](https://developers.deezer.com/api/) returns some error codes if the request failed.
      * Here is the list of all codes and their description you can encounter.
+     *
+     * @property code Number code of the exception
+     * @property description Human-readable name
+     * @property type Type of Deezer Errors
      *
      * @author Kingg22
      * @see <a href="https://developers.deezer.com/api/errors">Deezer API errors</a>
@@ -81,6 +85,7 @@ data class DeezerApiException @JvmOverloads constructor(
         ),
         ;
 
+        /** Utility for Deezer Error Code */
         companion object {
             /**
              * Searches for a code in the Deezer Error Code enum.

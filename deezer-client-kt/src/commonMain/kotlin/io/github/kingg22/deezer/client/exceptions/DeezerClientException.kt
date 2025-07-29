@@ -10,14 +10,21 @@ import kotlin.jvm.JvmOverloads
 open class DeezerClientException
 /**
  * Initialize with a message and cause if exist
- * @param message a message to help the developer find a solution
+ * @param messageString a message to help the developer find a solution
  * @param cause when a cause is external
  */
 @JvmOverloads
 constructor(
+    /** Message to help the developer find a solution */
     val messageString: String? = null,
+    /**
+     * The throwable that caused this throwable to get thrown, or null if this
+     * throwable was not caused by another throwable, or if the causative
+     * throwable is unknown.
+     */
     override val cause: Throwable? = null,
 ) : RuntimeException(messageString, cause) {
+    /** Specific details about the exception */
     override val message = buildString {
         append("[Deezer Client Exception]")
         messageString?.let { append(": $it") }
