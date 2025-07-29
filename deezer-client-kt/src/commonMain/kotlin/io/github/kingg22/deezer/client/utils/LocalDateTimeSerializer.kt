@@ -8,7 +8,8 @@ import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
 
 /** Serializer to [LocalDateTime] with this format `yyyy-MM-dd HH:mm:ss` */
-data object LocalDateTimeSerializer : KSerializer<LocalDateTime> {
+@InternalDeezerClient
+internal object LocalDateTimeSerializer : KSerializer<LocalDateTime> {
 
     override val descriptor = PrimitiveSerialDescriptor("LocalDateTime", PrimitiveKind.STRING)
 

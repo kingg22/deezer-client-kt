@@ -1,5 +1,8 @@
+@file:OptIn(InternalDeezerClient::class)
+
 package io.github.kingg22.deezer.client.api.objects
 
+import io.github.kingg22.deezer.client.utils.InternalDeezerClient
 import io.github.kingg22.deezer.client.utils.LocalDateTimeSerializer
 import kotlinx.datetime.LocalDateTime
 import kotlinx.serialization.ExperimentalSerializationApi
