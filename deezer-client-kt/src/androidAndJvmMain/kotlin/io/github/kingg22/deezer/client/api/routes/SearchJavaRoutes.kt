@@ -12,7 +12,7 @@ import kotlin.coroutines.EmptyCoroutineContext
 /**
  * Defines all endpoints related to Search in Deezer API
  * @author Kingg22
- * @see SearchRoutes.buildAdvanceQuery
+ * @see SearchRoutes.buildAdvancedQuery
  * @see SearchRoutes.setStrict
  * @see SearchRoutes.AdvancedQueryBuilder
  */

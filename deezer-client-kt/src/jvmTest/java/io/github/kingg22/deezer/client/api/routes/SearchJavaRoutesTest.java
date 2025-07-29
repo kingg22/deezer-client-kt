@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 class SearchJavaRoutesTest {
     @Test
     void testSearchBuilder() {
-        final String query = new SearchRoutes.AdvancedQueryBuilder()
+        final String query = SearchRoutes.buildAdvancedQuery()
             .durationMin(10L).build();
         assertEquals("dur_min:10", query);
     }

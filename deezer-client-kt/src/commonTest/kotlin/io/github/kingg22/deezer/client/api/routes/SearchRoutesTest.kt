@@ -5,7 +5,7 @@ import io.github.kingg22.deezer.client.KtorEngineMocked.getJsonFromPath
 import io.github.kingg22.deezer.client.KtorEngineMocked.jsonSerializer
 import io.github.kingg22.deezer.client.api.DeezerApiClient
 import io.github.kingg22.deezer.client.api.objects.SearchOrder
-import io.github.kingg22.deezer.client.api.routes.SearchRoutes.Companion.buildAdvanceQuery
+import io.github.kingg22.deezer.client.api.routes.SearchRoutes.Companion.buildAdvancedQuery
 import io.github.kingg22.deezer.client.api.routes.SearchRoutes.Companion.setStrict
 import io.kotest.assertions.json.shouldEqualJson
 import io.kotest.matchers.shouldBe
@@ -29,27 +29,27 @@ class SearchRoutesTest {
     /* Static methods */
     @Test
     fun search_query_without_params_throws_an_exception() {
-        assertFailsWith(IllegalArgumentException::class) { buildAdvanceQuery() }.let {
+        assertFailsWith(IllegalArgumentException::class) { buildAdvancedQuery() }.let {
             it.message shouldBe "Requires at least 1 parameter to search"
         }
     }
 
     @Test
     fun search_query_with_params_but_query_is_blank_then_throws_an_exception() {
-        assertFailsWith(IllegalStateException::class) { buildAdvanceQuery(q = "    ") }.let {
+        assertFailsWith(IllegalStateException::class) { buildAdvancedQuery(q = "    ") }.let {
             it.message shouldBe "Query cannot be blank"
         }
     }
 
     @Test
     fun search_query_with_multiple_params() {
-        val search = buildAdvanceQuery(artist = "aloe black", album = "i need a dollar")
+        val search = buildAdvancedQuery(artist = "aloe black", album = "i need a dollar")
         assertEquals(search, "artist:\"aloe black\" album:\"i need a dollar\"")
     }
 
     @Test
     fun search_query_with_numbers_without_quotes() {
-        val search = buildAdvanceQuery {
+        val search = buildAdvancedQuery {
             durationMin = 10.seconds
         }
         assertEquals(search, "dur_min:10")
@@ -100,7 +100,7 @@ class SearchRoutesTest {
 
     @Test
     fun fetch_search_with_multiple_params() = runTest {
-        val result = client.searches.search(buildAdvanceQuery("Not Afraid", artist = "eminem"), limit = 15, index = 10)
+        val result = client.searches.search(buildAdvancedQuery("Not Afraid", artist = "eminem"), limit = 15, index = 10)
         val json = getJsonFromPath("/search?q=%22Not+Afraid%22+artist%3A%22eminem%22&index=10&limit=15")
         assertEquals(15, result.data.size)
         assertEquals(225, result.total)
@@ -113,7 +113,7 @@ class SearchRoutesTest {
     @Test
     fun fetch_search_album_with_multiple_params() = runTest {
         val result =
-            client.searches.searchAlbum(buildAdvanceQuery("King", artist = "eminem"), order = SearchOrder.RATING_DESC)
+            client.searches.searchAlbum(buildAdvancedQuery("King", artist = "eminem"), order = SearchOrder.RATING_DESC)
         val json = getJsonFromPath("/search/album?q=%22King%22+artist%3A%22eminem%22&order=RATING_DESC")
         assertEquals(25, result.data.size)
         assertEquals(266, result.total)

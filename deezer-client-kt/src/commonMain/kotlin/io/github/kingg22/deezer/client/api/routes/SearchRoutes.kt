@@ -12,6 +12,7 @@ import io.github.kingg22.deezer.client.api.objects.SearchOrder
 import io.github.kingg22.deezer.client.api.objects.SearchUserHistory
 import io.github.kingg22.deezer.client.api.objects.Track
 import io.github.kingg22.deezer.client.api.objects.User
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 import kotlin.jvm.JvmSynthetic
@@ -27,7 +28,7 @@ import kotlin.time.Duration.Companion.seconds
  * @author Kingg22
  * @see <a href="https://developers.deezer.com/api/search#infos">Deezer Search</a>
  * @see <a href="https://developers.deezer.com/api/search#connections">Deezer Search Methods</a>
- * @see SearchRoutes.buildAdvanceQuery
+ * @see SearchRoutes.buildAdvancedQuery
  * @see SearchRoutes.setStrict
  * @see SearchRoutes.AdvancedQueryBuilder
  */
@@ -51,11 +52,10 @@ interface SearchRoutes {
          * @param bpmMin The track's minimum bpm (example: 120)
          * @param bpmMax The track's maximum bpm (example: 200)
          */
-        @JvmOverloads
-        @JvmStatic
+        @JvmSynthetic
         @Throws(IllegalArgumentException::class, IllegalStateException::class)
         @Suppress("kotlin:S107")
-        fun buildAdvanceQuery(
+        fun buildAdvancedQuery(
             q: String? = null,
             artist: String? = null,
             album: String? = null,
@@ -103,16 +103,17 @@ interface SearchRoutes {
          */
         @JvmSynthetic
         @Throws(IllegalArgumentException::class, IllegalStateException::class)
-        fun buildAdvanceQuery(block: AdvancedQueryBuilder.() -> Unit) = AdvancedQueryBuilder().apply(block).build()
+        fun buildAdvancedQuery(block: AdvancedQueryBuilder.() -> Unit) = AdvancedQueryBuilder().apply(block).build()
 
         /**
          * Build advanced search using builder
-         * @throws IllegalArgumentException if not provided any arguments
-         * @throws IllegalStateException if the query is blank after built
+         * @param q Simple query to start
+         * @see AdvancedQueryBuilder
          */
+        @JvmName("buildAdvancedQuery")
         @JvmStatic
-        @Throws(IllegalArgumentException::class, IllegalStateException::class)
-        fun buildAdvanceQuery(builder: AdvancedQueryBuilder) = builder.build()
+        @JvmOverloads
+        fun builder(q: String? = null) = AdvancedQueryBuilder().q(q)
 
         /**
          * Shortcut for strict
@@ -295,7 +296,7 @@ interface SearchRoutes {
          * @throws IllegalStateException if the query is blank after built
          */
         @Throws(IllegalArgumentException::class, IllegalStateException::class)
-        fun build() = buildAdvanceQuery(
+        fun build() = buildAdvancedQuery(
             q = q,
             artist = artist,
             album = album,
