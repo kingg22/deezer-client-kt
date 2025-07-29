@@ -1,4 +1,4 @@
-@file:OptIn(ExperimentalDeezerClient::class, InternalDeezerClient::class)
+@file:OptIn(ExperimentalDeezerClient::class, InternalDeezerClient::class, InternalSerializationApi::class)
 
 package io.github.kingg22.deezer.client.api.objects
 
@@ -13,20 +13,23 @@ import io.ktor.http.Url
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.future.future
 import kotlinx.coroutines.runBlocking
+import kotlinx.serialization.InternalSerializationApi
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.serializer
 import org.jetbrains.annotations.Blocking
 import java.util.concurrent.CompletableFuture
 import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.EmptyCoroutineContext
 import kotlin.coroutines.cancellation.CancellationException
-import kotlin.reflect.KClass
 
 /**
  * Helper that provides utilities for handling paginated responses **in Java code**.
  *
  * Includes methods to fetch the next and previous pages of a paginated resource
  * using synchronous blocking or asynchronous operations.
+ *
+ * **Is experimental** because use internal api of serialization and aren't tested with external classes, inheritance, etc.
  *
  * For Kotlin users: **You don't need this, use the member function instead, this is only for Java**
  */
@@ -62,8 +65,8 @@ internal object PaginatedResponses {
     @JvmOverloads
     @JvmStatic
     @Throws(IllegalArgumentException::class, DeezerApiException::class, CancellationException::class)
-    fun <N : @Serializable Any> PaginatedResponse<*>.fetchNext(serializer: KSerializer<N>, expand: Boolean = false) =
-        runBlocking { fetchNextJavaInternal(expand, serializer) }
+    fun <N : @Serializable Any> PaginatedResponse<N>.fetchNext(clazz: Class<N>, expand: Boolean = false) =
+        runBlocking { fetchNextJavaInternal(expand, clazz.kotlin.serializer()) }
 
     /**
      * Fetch the next page of the search blocking the thread.
@@ -91,28 +94,24 @@ internal object PaginatedResponses {
     @JvmOverloads
     @JvmStatic
     @Throws(IllegalArgumentException::class, DeezerApiException::class, CancellationException::class)
-    fun <N : @Serializable Any> PaginatedResponse<*>.fetchNextFuture(
-        serializer: KSerializer<N>,
+    fun <N : @Serializable Any> PaginatedResponse<N>.fetchNextFuture(
+        clazz: Class<N>,
         expand: Boolean = false,
         coroutineContext: CoroutineContext = EmptyCoroutineContext,
     ): CompletableFuture<PaginatedResponse<N>?> = CoroutineScope(coroutineContext).future {
-        fetchNextJavaInternal(expand, serializer)
+        fetchNextJavaInternal(expand, clazz.kotlin.serializer())
     }
 
-    private suspend fun <N : @Serializable Any> PaginatedResponse<*>.fetchNextJavaInternal(
+    private suspend fun <N : @Serializable Any> PaginatedResponse<N>.fetchNextJavaInternal(
         expand: Boolean = false,
         serializer: KSerializer<N>,
     ): PaginatedResponse<N>? {
         if (next.isNullOrBlank()) return null
-        if (data.isNotEmpty()) {
-            kSerializerCheck(serializer, data.first()::class, "fetchNext")
-        }
         val resultString = client().httpClient.get(Url(next)).bodyAsText()
         val result = getJson().decodeFromString(PaginatedResponse.serializer(serializer), resultString)
 
         return if (expand && data.isNotEmpty()) {
-            @Suppress("UNCHECKED_CAST")
-            result.copy(data = data as List<N> + result.data)
+            result.copy(data = data + result.data)
         } else {
             result
         }
@@ -143,10 +142,8 @@ internal object PaginatedResponses {
     @JvmOverloads
     @JvmStatic
     @Throws(IllegalArgumentException::class, DeezerApiException::class, CancellationException::class)
-    fun <P : @Serializable Any> PaginatedResponse<*>.fetchPrevious(
-        serializer: KSerializer<P>,
-        expand: Boolean = false,
-    ) = runBlocking { fetchPreviousJavaInternal(expand, serializer) }
+    fun <P : @Serializable Any> PaginatedResponse<P>.fetchPrevious(clazz: Class<P>, expand: Boolean = false) =
+        runBlocking { fetchPreviousJavaInternal(expand, clazz.kotlin.serializer()) }
 
     /**
      * Fetch the previous page of the search with [CompletableFuture].
@@ -174,40 +171,26 @@ internal object PaginatedResponses {
     @JvmOverloads
     @JvmStatic
     @Throws(IllegalArgumentException::class, DeezerApiException::class, CancellationException::class)
-    fun <P : @Serializable Any> PaginatedResponse<*>.fetchPreviousFuture(
-        serializer: KSerializer<P>,
+    fun <P : @Serializable Any> PaginatedResponse<P>.fetchPreviousFuture(
+        clazz: Class<P>,
         expand: Boolean = false,
         coroutineContext: CoroutineContext = EmptyCoroutineContext,
     ): CompletableFuture<PaginatedResponse<P>?> = CoroutineScope(coroutineContext).future {
-        fetchPreviousJavaInternal(expand, serializer)
+        fetchPreviousJavaInternal(expand, clazz.kotlin.serializer())
     }
 
-    private suspend fun <N : @Serializable Any> PaginatedResponse<*>.fetchPreviousJavaInternal(
+    private suspend fun <N : @Serializable Any> PaginatedResponse<N>.fetchPreviousJavaInternal(
         expand: Boolean = false,
         serializer: KSerializer<N>,
     ): PaginatedResponse<N>? {
         if (prev.isNullOrBlank()) return null
-        if (data.isNotEmpty()) {
-            kSerializerCheck(serializer, data.first()::class, "fetchPrevious")
-        }
         val resultString = client().httpClient.get(Url(prev)).bodyAsText()
         val result = getJson().decodeFromString(PaginatedResponse.serializer(serializer), resultString)
 
         return if (expand && data.isNotEmpty()) {
-            @Suppress("UNCHECKED_CAST")
-            result.copy(data = result.data + data as List<N>)
+            result.copy(data = result.data + data)
         } else {
             result
-        }
-    }
-
-    private fun kSerializerCheck(serializer: KSerializer<*>, firstClass: KClass<*>, action: String) {
-        require(
-            serializer.descriptor.serialName.let { name ->
-                Class.forName(name.replace('/', '.')).kotlin
-            } == firstClass,
-        ) {
-            "Requires type equals to $action.  $firstClass != ${serializer.descriptor.serialName}"
         }
     }
 }
