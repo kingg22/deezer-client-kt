@@ -148,6 +148,18 @@ tasks.named("runKtlintCheckOverCommonMainSourceSet") {
     dependsOn("kspCommonMainKotlinMetadata")
 }
 
+tasks.named("jvmSourcesJar") {
+    dependsOn("kspCommonMainKotlinMetadata")
+}
+
+tasks.named("sourcesJar") {
+    dependsOn("kspCommonMainKotlinMetadata")
+}
+
+tasks.named("dokkaGeneratePublicationHtml") {
+    dependsOn("compileReleaseJavaWithJavac", "releaseAssetsCopyForAGP", "compileJvmMainJava")
+}
+
 mavenPublishing {
     publishToMavenCentral()
 
