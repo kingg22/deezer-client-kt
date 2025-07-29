@@ -19,9 +19,9 @@ import io.github.kingg22.deezer.client.api.routes.createSearchRoutes
 import io.github.kingg22.deezer.client.api.routes.createTrackRoutes
 import io.github.kingg22.deezer.client.api.routes.createUserRoutes
 import io.github.kingg22.deezer.client.exceptions.DeezerApiException
+import io.github.kingg22.deezer.client.utils.API_DEEZER
 import io.github.kingg22.deezer.client.utils.ExperimentalDeezerClient
 import io.github.kingg22.deezer.client.utils.HttpClientBuilder
-import io.github.kingg22.deezer.client.utils.HttpClientProvider
 import io.github.kingg22.deezer.client.utils.InternalDeezerClient
 import io.github.kingg22.deezer.client.utils.createKtorfit
 import io.github.kingg22.deezer.client.utils.decodeOrNull
@@ -65,7 +65,7 @@ constructor(
     }.build()
 
     @get:JvmSynthetic
-    internal val ktorfit = createKtorfit(HttpClientProvider.DeezerApiSupported.API_DEEZER.baseUrl, httpClient)
+    internal val ktorfit = createKtorfit(API_DEEZER, httpClient)
 
     /** All endpoints related to [io.github.kingg22.deezer.client.api.objects.Album] */
     @get:JvmSynthetic
