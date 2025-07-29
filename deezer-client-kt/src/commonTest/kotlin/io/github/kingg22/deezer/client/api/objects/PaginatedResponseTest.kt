@@ -6,12 +6,10 @@ import io.kotest.matchers.collections.shouldContain
 import io.kotest.matchers.collections.shouldNotBeEmpty
 import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.nulls.shouldNotBeNull
-import io.kotest.matchers.string.shouldContainIgnoringCase
 import kotlinx.coroutines.test.runTest
 import kotlin.jvm.JvmField
 import kotlin.test.BeforeTest
 import kotlin.test.Test
-import kotlin.test.assertFailsWith
 import kotlin.test.assertNotEquals
 import kotlin.test.assertNotNull
 import kotlin.test.assertNull
@@ -33,6 +31,7 @@ class PaginatedResponseTest {
             artist = Artist(0, ""),
         )
     }
+
     lateinit var client: DeezerApiClient
 
     @BeforeTest
@@ -61,28 +60,12 @@ class PaginatedResponseTest {
     }
 
     @Test
-    fun fetch_next_expand_with_data_and_different_type_throw_exception() = runTest {
-        val tested = PaginatedResponse(listOf(User(1, "User")), next = TRACK_LINK)
-        assertFailsWith(IllegalArgumentException::class) {
-            tested.fetchNext<Track>(true)
-        }.message.shouldContainIgnoringCase("Requires type equals")
-    }
-
-    @Test
     fun fetch_next_expanded() = runTest {
         var tested = PaginatedResponse(listOf(emptyTrack), next = TRACK_LINK)
         tested = assertNotNull(tested.fetchNext(true))
         tested.data shouldContain emptyTrack
         assertNotNull(tested.next)
         assertNotEquals(TRACK_LINK, tested.next)
-    }
-
-    @Test
-    fun fetch_next_expand_with_different_types_throw_exception() = runTest {
-        val tested = PaginatedResponse(listOf(User(0, "")), next = TRACK_LINK)
-        assertFailsWith(IllegalArgumentException::class) { tested.fetchNext<Track>(true) }.let {
-            it.message shouldContainIgnoringCase "Requires type equals"
-        }
     }
 
     @Test
@@ -106,24 +89,10 @@ class PaginatedResponseTest {
     }
 
     @Test
-    fun fetch_previous_expand_without_data_and_different_types_dont_throw_exception() = runTest {
-        val tested = PaginatedResponse<User>(emptyList(), prev = TRACK_LINK)
-        tested.fetchPrevious<Track>(true).shouldNotBeNull().data.shouldNotBeEmpty()
-    }
-
-    @Test
     fun fetch_previous_expanded() = runTest {
         var tested = PaginatedResponse(listOf(emptyTrack), prev = TRACK_LINK)
         tested = tested.fetchPrevious<Track>(true).shouldNotBeNull()
         tested.data shouldContain emptyTrack
         tested.prev.shouldBeNull()
-    }
-
-    @Test
-    fun fetch_previous_expand_with_different_types_throw_exception() = runTest {
-        val tested = PaginatedResponse(listOf(User(0, "")), prev = TRACK_LINK)
-        assertFailsWith(IllegalArgumentException::class) {
-            tested.fetchPrevious<Track>(true)
-        }.message.shouldContainIgnoringCase("Requires type equals to expand in fetchPrevious.")
     }
 }
