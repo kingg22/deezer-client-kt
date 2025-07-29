@@ -14,7 +14,7 @@ import kotlin.jvm.JvmOverloads
  *
  * @property countryIso The current [country ISO code](https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes)
  * @property country The current country name
- * @property open Indicates if Deezer is open in the current country or not
+ * @property isOpen Indicates if Deezer is open in the current country or not
  * @property offers An array of available offers in the current country. _Note_: Unknown content of Array
  * @property hosts **unofficial** Links of each service on Deezer. See [HostDetails]
  * @property pop **unofficial** Default language for popular content in this country
@@ -28,7 +28,7 @@ import kotlin.jvm.JvmOverloads
 data class Infos @JvmOverloads constructor(
     @SerialName("country_iso") val countryIso: String,
     val country: String,
-    val open: Boolean,
+    @SerialName("open") val isOpen: Boolean,
     /**
      * Example: **Warning**: Can be old, not found new response with this
      * ```json
@@ -107,5 +107,5 @@ data class Infos @JvmOverloads constructor(
      * @property images Base URL to get images from the service, such as album covers, artists.
      */
     @Serializable
-    data class HostDetails(val stream: String? = null, val images: String? = null)
+    data class HostDetails @JvmOverloads constructor(val stream: String? = null, val images: String? = null)
 }

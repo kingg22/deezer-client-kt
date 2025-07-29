@@ -32,10 +32,10 @@ import kotlin.jvm.JvmSynthetic
  * @property rating The album's rate
  * @property releaseDate The album's release date
  * @property recordType The record type of the album (EP/ALBUM/etc) **unofficial**: ("single", "album", "compile", "ep", "bundle")
- * @property available Whether the album is available
+ * @property isAvailable Whether the album is available
  * @property alternative Return an alternative album object if the current album is not available
  * @property tracklist API Link to the tracklist of this album
- * @property explicitLyrics Whether the album contains explicit lyrics
+ * @property isExplicitLyrics Whether the album contains explicit lyrics
  * @property explicitContentLyrics The explicit content lyrics values
  * @property explicitContentCover The explicit cover values
  * @property position The position of the album in the charts
@@ -66,10 +66,10 @@ data class Album @JvmOverloads constructor(
     val rating: Int? = null,
     @SerialName("release_date") val releaseDate: LocalDate? = null,
     @SerialName("record_type") val recordType: String? = null,
-    val available: Boolean? = null,
+    @SerialName("available") val isAvailable: Boolean? = null,
     val alternative: Album? = null,
     val tracklist: String? = null,
-    @SerialName("explicit_lyrics") val explicitLyrics: Boolean? = null,
+    @SerialName("explicit_lyrics") val isExplicitLyrics: Boolean? = null,
     @SerialName("explicit_content_lyrics") val explicitContentLyrics: Explicit? = null,
     @SerialName("explicit_content_cover") val explicitContentCover: Explicit? = null,
     val position: Int? = null,
@@ -90,14 +90,14 @@ data class Album @JvmOverloads constructor(
      * List of track containing:
      *
      * @property Track.id
-     * @property Track.readable
+     * @property Track.isReadable
      * @property Track.title
      * @property Track.titleShort
      * @property Track.titleVersion
      * @property Track.link
      * @property Track.duration
      * @property Track.rank
-     * @property Track.explicitLyrics
+     * @property Track.isExplicitLyrics
      * @property Track.preview
      * @property Track.artist containing: [Artist.id] and [Artist.name]
      * @property Track.album containing: [Album.id], [Album.title], [Album.cover], [Album.coverSmall], [Album.coverMedium],

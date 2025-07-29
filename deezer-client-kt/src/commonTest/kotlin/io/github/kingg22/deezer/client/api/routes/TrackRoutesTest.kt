@@ -55,7 +55,7 @@ class TrackRoutesTest {
             titleShort = "",
             duration = 0,
             rank = 0,
-            explicitLyrics = false,
+            isExplicitLyrics = false,
             preview = "",
             artist = Artist(0, ""),
         )

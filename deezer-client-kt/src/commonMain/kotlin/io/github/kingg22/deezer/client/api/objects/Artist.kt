@@ -22,7 +22,7 @@ import kotlin.jvm.JvmSynthetic
  * @property pictureXl The url of the artist picture in size xl.
  * @property albumCount The number of artist's albums
  * @property fansCount The number of artist's fans
- * @property radio If the artist has a smart radio
+ * @property isRadio If the artist has a smart radio
  * @property tracklist API Link to the top of this artist
  * @property type **unofficial** The type of object, usually the name of the class.
  * @property role **unofficial _only on contributors_** The role of the artist on contributors ("Main", "Featured", ...)
@@ -41,7 +41,7 @@ data class Artist @JvmOverloads constructor(
     @SerialName("picture_xl") val pictureXl: String? = null,
     @SerialName("nb_album") val albumCount: Int? = null,
     @SerialName("nb_fan") val fansCount: Int? = null,
-    val radio: Boolean? = null,
+    @SerialName("radio") val isRadio: Boolean? = null,
     val tracklist: String? = null,
     override val type: String = "artist",
     val role: String? = null,

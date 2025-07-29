@@ -13,7 +13,7 @@ class ObjectsExtTest {
             titleShort = "",
             duration = 0,
             rank = 0,
-            explicitLyrics = false,
+            isExplicitLyrics = false,
             preview = "",
             artist = Artist(
                 id = 0,
@@ -24,7 +24,7 @@ class ObjectsExtTest {
             id = 1L,
             md5Image = null,
             title = "Playlist Test",
-            public = false,
+            isPublic = false,
             link = "",
             creator = User(0, ""),
         )

@@ -30,7 +30,7 @@ interface EditorialRoutes {
      * @param date Date of the selection
      *
      * @return Album with: [Album.id], [Album.title], [Album.cover], [Album.coverSmall],
-     * [Album.coverMedium], [Album.coverBig], [Album.coverXl], [Album.recordType], [Album.explicitLyrics] and [Album.artist]
+     * [Album.coverMedium], [Album.coverBig], [Album.coverXl], [Album.recordType], [Album.isExplicitLyrics] and [Album.artist]
      * (with id, name and link, **unofficial** tracklist and type).
      * **Unofficial**: [Album.md5Image], [Album.genreId], [Album.tracklist] and [Album.type]
      */

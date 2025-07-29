@@ -32,7 +32,7 @@ class ArtistRoutesTest {
         assertEquals("https://www.deezer.com/artist/27", result.link)
         assertEquals(36, result.albumCount)
         assertEquals(4802079, result.fansCount)
-        assertEquals(true, result.radio)
+        assertEquals(true, result.isRadio)
         assertEquals("https://api.deezer.com/artist/27/top?limit=50", result.tracklist)
         assertEquals("artist", result.type)
         json shouldEqualJson jsonSerializer.encodeToString(result)
@@ -142,7 +142,7 @@ class ArtistRoutesTest {
                 "https://cdn-images.dzcdn.net/images/artist/1267b8781c5bff065a20dca4a3c9fda7/500x500-000000-80-0-0.jpg",
                 pictureXl =
                 "https://cdn-images.dzcdn.net/images/artist/1267b8781c5bff065a20dca4a3c9fda7/1000x1000-000000-80-0-0.jpg",
-                albumCount = 38, fansCount = 3121845, radio = true,
+                albumCount = 38, fansCount = 3121845, isRadio = true,
                 tracklist = "https://api.deezer.com/artist/103/top?limit=50", type = "artist",
             ),
             result.data.first(),

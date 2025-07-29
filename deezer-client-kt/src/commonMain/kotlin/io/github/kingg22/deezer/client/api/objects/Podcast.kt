@@ -14,7 +14,7 @@ import kotlin.jvm.JvmSynthetic
  * @property id The podcast's Deezer id
  * @property title The podcast's title
  * @property description The podcast's description
- * @property available If the podcast is available or not
+ * @property isAvailable If the podcast is available or not
  * @property fans The number of podcast's fans
  * @property link The url of the podcast on Deezer
  * @property share The share link of the podcast on Deezer
@@ -29,7 +29,7 @@ data class Podcast @JvmOverloads constructor(
     override val id: Long,
     val title: String? = null,
     val description: String? = null,
-    val available: Boolean? = null,
+    @SerialName("available") val isAvailable: Boolean? = null,
     val fans: Int? = null,
     val link: String? = null,
     val share: String? = null,

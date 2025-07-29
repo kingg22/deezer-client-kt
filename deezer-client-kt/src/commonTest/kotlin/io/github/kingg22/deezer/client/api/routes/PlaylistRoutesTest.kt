@@ -44,7 +44,7 @@ class PlaylistRoutesTest {
         val tested = Playlist(
             908622995,
             "",
-            public = false,
+            isPublic = false,
             link = "",
             creator = User(0, ""),
         )

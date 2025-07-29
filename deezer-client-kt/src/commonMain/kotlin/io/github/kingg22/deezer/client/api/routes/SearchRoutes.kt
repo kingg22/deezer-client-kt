@@ -133,14 +133,14 @@ interface SearchRoutes {
      * @see <a href="https://developers.deezer.com/api/search">Deezer Search Fields</a>
      *
      * @property Track.id
-     * @property Track.readable
+     * @property Track.isReadable
      * @property Track.title
      * @property Track.titleShort
      * @property Track.titleVersion
      * @property Track.link
      * @property Track.duration
      * @property Track.rank
-     * @property Track.explicitLyrics
+     * @property Track.isExplicitLyrics
      * @property Track.explicitContentLyrics
      * @property Track.explicitContentCover
      * @property Track.md5Image

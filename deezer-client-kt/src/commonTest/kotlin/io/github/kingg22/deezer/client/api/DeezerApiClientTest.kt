@@ -68,7 +68,7 @@ class DeezerApiClientTest {
         val json = getJsonFromPath("/infos")
         assertEquals("PA", result.countryIso)
         assertEquals("Panamá", result.country)
-        assertTrue(result.open)
+        assertTrue(result.isOpen)
         assertEquals("fr", result.pop)
         assertEquals("de98277b24d792625bacfc16bae605d1", result.uploadToken)
         assertEquals(14400, result.uploadTokenLifetime)
@@ -90,18 +90,18 @@ class DeezerApiClientTest {
     @Test
     fun fetch_deezer_options() = runTest {
         val result = client.options.getOptions()
-        assertFalse { result.streaming }
+        assertFalse { result.isStreaming }
         assertEquals(0, result.streamingDuration)
-        assertFalse { result.offline }
-        assertFalse { result.hq }
-        assertTrue { result.adsDisplay }
-        assertTrue { result.adsAudio }
-        assertFalse { result.tooManyDevices }
-        assertFalse { result.canSubscribe }
+        assertFalse { result.isOffline }
+        assertFalse { result.isHq }
+        assertTrue { result.isAdsDisplay }
+        assertTrue { result.isAdsAudio }
+        assertFalse { result.isTooManyDevices }
+        assertFalse { result.isCanSubscribe }
         assertEquals(6, result.radioSkips)
-        assertFalse { result.lossless }
-        assertTrue { result.preview }
-        assertTrue { result.radio }
+        assertFalse { result.isLossless }
+        assertTrue { result.isPreview }
+        assertTrue { result.isRadio }
         assertEquals("options", result.type)
     }
 }

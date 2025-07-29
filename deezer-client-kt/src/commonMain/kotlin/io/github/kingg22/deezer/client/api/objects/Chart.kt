@@ -28,10 +28,10 @@ data class Chart @JvmOverloads constructor(
      * @property Track.link
      * @property Track.duration
      * @property Track.rank
-     * @property Track.explicitLyrics
+     * @property Track.isExplicitLyrics
      * @property Track.preview
      * @property Track.artist containing: [Artist.id], [Artist.name], [Artist.link], [Artist.picture],
-     * [Artist.pictureSmall], [Artist.pictureMedium], [Artist.pictureBig], [Artist.pictureXl] and [Artist.radio]
+     * [Artist.pictureSmall], [Artist.pictureMedium], [Artist.pictureBig], [Artist.pictureXl] and [Artist.isRadio]
      * @property Track.album containing: [Album.id], [Album.title], [Album.cover], [Album.coverSmall],
      * [Album.coverMedium], [Album.coverBig] and [Album.coverXl]
      * @property Track.type **unofficial**
@@ -49,10 +49,10 @@ data class Chart @JvmOverloads constructor(
      * @property Album.coverBig
      * @property Album.coverXl
      * @property Album.recordType
-     * @property Album.explicitLyrics
+     * @property Album.isExplicitLyrics
      * @property Album.position
      * @property Album.artist containing: [Artist.id], [Artist.name], [Artist.link], [Artist.picture],
-     * [Artist.pictureSmall], [Artist.pictureMedium], [Artist.pictureBig], [Artist.pictureXl] and [Artist.radio]
+     * [Artist.pictureSmall], [Artist.pictureMedium], [Artist.pictureBig], [Artist.pictureXl] and [Artist.isRadio]
      * @property Album.type **unofficial**
      */
     val albums: PaginatedResponse<Album> = PaginatedResponse(),
@@ -69,7 +69,7 @@ data class Chart @JvmOverloads constructor(
      * @property Artist.pictureMedium
      * @property Artist.pictureBig
      * @property Artist.pictureXl
-     * @property Artist.radio
+     * @property Artist.isRadio
      * @property Artist.position
      * @property Artist.type **unofficial**
      */
@@ -80,7 +80,7 @@ data class Chart @JvmOverloads constructor(
      *
      * @property Playlist.id
      * @property Playlist.title
-     * @property Playlist.public
+     * @property Playlist.isPublic
      * @property Playlist.link
      * @property Playlist.picture
      * @property Playlist.pictureSmall

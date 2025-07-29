@@ -28,7 +28,7 @@ enum class Explicit(val value: Int) {
     /**
      * Album "lyrics" only
      * @see Album
-     * @see Album.explicitLyrics
+     * @see Album.isExplicitLyrics
      * @see Album.explicitContentLyrics
      */
     PARTIALLY_EXPLICIT(4),
@@ -36,7 +36,7 @@ enum class Explicit(val value: Int) {
     /**
      * Album "lyrics" only
      * @see Album
-     * @see Album.explicitLyrics
+     * @see Album.isExplicitLyrics
      * @see Album.explicitContentLyrics
      */
     PARTIALLY_UNKNOWN(5),
@@ -45,7 +45,7 @@ enum class Explicit(val value: Int) {
     /**
      * Album "lyrics" only
      * @see Album
-     * @see Album.explicitLyrics
+     * @see Album.isExplicitLyrics
      * @see Album.explicitContentLyrics
      */
     PARTIALLY_NO_ADVICE_AVAILABLE(7),

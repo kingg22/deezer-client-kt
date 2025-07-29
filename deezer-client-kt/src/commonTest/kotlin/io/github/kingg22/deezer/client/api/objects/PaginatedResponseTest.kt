@@ -25,7 +25,7 @@ class PaginatedResponseTest {
         val emptyTrack = Track(
             0,
             title = "",
-            explicitLyrics = false,
+            isExplicitLyrics = false,
             titleShort = "",
             duration = 0,
             rank = 0,

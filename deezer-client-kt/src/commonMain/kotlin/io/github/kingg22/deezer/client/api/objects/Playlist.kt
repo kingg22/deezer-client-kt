@@ -22,9 +22,9 @@ import kotlin.jvm.JvmSynthetic
  * @property title The playlist's title
  * @property description The playlist description
  * @property duration The playlist's duration (seconds)
- * @property public If the playlist is public or not
+ * @property isPublic If the playlist is public or not
  * @property isLovedTrack If the playlist is the love tracks playlist
- * @property collaborative If the playlist is collaborative or not
+ * @property isCollaborative If the playlist is collaborative or not
  * @property rating The playlist's rate
  * @property trackCount Number of tracks in the playlist
  * @property unseenTrackCount Number of unseen tracks
@@ -52,9 +52,9 @@ data class Playlist @JvmOverloads constructor(
     val title: String,
     val description: String? = null,
     val duration: Int? = null,
-    val public: Boolean,
+    @SerialName("public") val isPublic: Boolean,
     @SerialName("is_loved_track") val isLovedTrack: Boolean? = null,
-    val collaborative: Boolean? = null,
+    @SerialName("collaborative") val isCollaborative: Boolean? = null,
     val rating: Int? = null,
     @SerialName("nb_tracks") val trackCount: Int? = null,
     @SerialName("unseen_track_count") val unseenTrackCount: Int? = null,

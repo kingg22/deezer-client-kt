@@ -19,7 +19,7 @@ import kotlin.jvm.JvmSynthetic
  * @property id The episode's Deezer id
  * @property title The episode's title
  * @property description The episode's description
- * @property available If the episode is available or not
+ * @property isAvailable If the episode is available or not
  * @property releaseDate The episode's release date
  * @property duration The episode's duration (seconds)
  * @property link The url of the episode on Deezer
@@ -36,7 +36,7 @@ data class Episode @JvmOverloads constructor(
     override val id: Long,
     val title: String,
     val description: String? = null,
-    val available: Boolean? = null,
+    @SerialName("available") val isAvailable: Boolean? = null,
     @Serializable(LocalDateTimeSerializer::class) @SerialName("release_date") val releaseDate: LocalDateTime,
     val duration: Int,
     val link: String? = null,

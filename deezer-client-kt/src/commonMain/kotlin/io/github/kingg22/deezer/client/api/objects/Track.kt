@@ -13,11 +13,11 @@ import kotlin.jvm.JvmSynthetic
  * @see <a href="https://developers.deezer.com/api/track">Deezer Track Object</a>
  *
  * @property id The track's Deezer id
- * @property readable If the track is readable in the player for the current user
+ * @property isReadable If the track is readable in the player for the current user
  * @property title The track's full title
  * @property titleShort The track's short title
  * @property titleVersion The track version
- * @property unseen The track unseen status
+ * @property isUnseen The track unseen status
  * @property isrc The track ISRC [(International Standard Recording Code)](https://isrc.ifpi.org/es/)
  * @property link The url of the track on Deezer
  * @property share The share link of the track on Deezer
@@ -26,7 +26,7 @@ import kotlin.jvm.JvmSynthetic
  * @property diskNumber The track's album's disk number
  * @property rank The track's Deezer rank
  * @property releaseDate The track's release date
- * @property explicitLyrics Whether the track contains explicit lyrics
+ * @property isExplicitLyrics Whether the track contains explicit lyrics
  * @property explicitContentLyrics The explicit content lyrics
  * @property explicitContentCover The explicit cover value
  * @property preview The url of track's preview file. This file contains the first 30 seconds of the track
@@ -46,11 +46,11 @@ import kotlin.jvm.JvmSynthetic
 @Serializable
 data class Track @JvmOverloads constructor(
     override val id: Long,
-    val readable: Boolean? = null,
+    @SerialName("readable") val isReadable: Boolean? = null,
     val title: String,
     @SerialName("title_short") val titleShort: String,
     @SerialName("title_version") val titleVersion: String? = null,
-    val unseen: Boolean? = null,
+    @SerialName("unseen") val isUnseen: Boolean? = null,
     val isrc: String? = null,
     val link: String? = null,
     val share: String? = null,
@@ -59,7 +59,7 @@ data class Track @JvmOverloads constructor(
     @SerialName("disk_number") val diskNumber: Int? = null,
     val rank: Int,
     @SerialName("release_date") val releaseDate: LocalDate? = null,
-    @SerialName("explicit_lyrics") val explicitLyrics: Boolean,
+    @SerialName("explicit_lyrics") val isExplicitLyrics: Boolean,
     @SerialName("explicit_content_lyrics") val explicitContentLyrics: Explicit? = null,
     @SerialName("explicit_content_cover") val explicitContentCover: Explicit? = null,
     val preview: String,
@@ -85,7 +85,7 @@ data class Track @JvmOverloads constructor(
      * @property Artist.pictureXl
      * @property Artist.albumCount Note: Missing in samples
      * @property Artist.fansCount Note: Missing in samples
-     * @property Artist.radio
+     * @property Artist.isRadio
      * @property Artist.tracklist
      * @property Artist.type **unofficial**
      */
