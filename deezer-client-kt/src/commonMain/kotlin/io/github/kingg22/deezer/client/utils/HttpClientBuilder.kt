@@ -1,12 +1,7 @@
-@file:OptIn(ExperimentalDeezerClient::class)
+@file:OptIn(InternalDeezerClient::class)
 
 package io.github.kingg22.deezer.client.utils
 
-import io.github.kingg22.deezer.client.utils.HttpClientProvider.DEFAULT_COOKIE_STORAGE
-import io.github.kingg22.deezer.client.utils.HttpClientProvider.DEFAULT_MAX_RETRY_ATTEMPTS
-import io.github.kingg22.deezer.client.utils.HttpClientProvider.DEFAULT_MAX_RETRY_TIMEOUT
-import io.github.kingg22.deezer.client.utils.HttpClientProvider.DEFAULT_USER_AGENT
-import io.github.kingg22.deezer.client.utils.HttpClientProvider.getClient
 import io.ktor.client.HttpClientConfig
 import io.ktor.client.engine.HttpClientEngine
 import io.ktor.client.plugins.cookies.AcceptAllCookiesStorage
@@ -98,13 +93,21 @@ data class HttpClientBuilder @JvmOverloads constructor(
         customHttpConfig,
     )
 
+    /** Utilities for HttpClientBuilder */
     companion object {
-        /** Builds the HttpClient with the default options. */
+        /**
+         * Builds the HttpClient with a DSL.
+         * @param block A DSL
+         * @throws IllegalArgumentException see [HttpClientBuilder.build]
+         */
         @JvmSynthetic
         @Throws(IllegalArgumentException::class)
         fun httpClient(block: HttpClientBuilder.() -> Unit = {}) = HttpClientBuilder().apply(block).build()
 
-        /** Builds the HttpClientBuilder with the default options. */
+        /**
+         * Builds the HttpClientBuilder using DSL.
+         * @param builder A DSL
+         */
         @JvmSynthetic
         fun httpClientBuilder(builder: HttpClientBuilder.() -> Unit = {}) = HttpClientBuilder().apply(builder)
     }

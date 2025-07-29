@@ -5,7 +5,6 @@ package io.github.kingg22.deezer.client.utils
  *
  * @author Kingg22
  * @see io.github.kingg22.deezer.client.api.DeezerApiClient.initialize
- * @see io.github.kingg22.deezerSdk.gw.DeezerGwClient.initialize
  */
 @Retention(AnnotationRetention.SOURCE)
 @MustBeDocumented

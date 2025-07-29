@@ -1,3 +1,5 @@
+@file:Suppress("kotlin:S6517")
+
 package io.github.kingg22.deezer.client.utils
 
 /**

@@ -10,10 +10,10 @@ import kotlin.jvm.JvmField
 import kotlin.jvm.JvmStatic
 
 /**
- * Fallback object to get an instance of [DeezerApiClient].
+ * Object to get an instance of [DeezerApiClient].
  *
- * This is used for [io.github.kingg22.deezer.client.api.objects.Resource.reload] and
- * [io.github.kingg22.deezer.client.api.objects.PaginatedResponse] to fetch and reload objects.
+ * This is used for [reload][io.github.kingg22.deezer.client.api.objects.Resource.reload] and
+ * [fetch][io.github.kingg22.deezer.client.api.objects.PaginatedResponse] resources.
  *
  * By default, all new instances of [DeezerApiClient] fill this holder if needed.
  *
@@ -21,7 +21,7 @@ import kotlin.jvm.JvmStatic
  * @see [io.github.kingg22.deezer.client.api.objects.PaginatedResponse.fetchNext]
  * @see [io.github.kingg22.deezer.client.api.objects.PaginatedResponse.fetchPrevious]
  */
-data object GlobalDeezerApiClient : LateInitClient {
+object GlobalDeezerApiClient : LateInitClient {
     /**
      * The actual instance of [DeezerApiClient]
      *
