@@ -1,6 +1,7 @@
 package io.github.kingg22.deezer.client.exceptions
 
 import kotlinx.serialization.Serializable
+import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
 /**
@@ -15,18 +16,25 @@ import kotlin.jvm.JvmStatic
  * @param cause The cause of the exception
  * @property error [DeezerApiException.DeezerErrorCode]
  */
-data class DeezerApiException(
+data class DeezerApiException @JvmOverloads constructor(
     private val errorCode: Int? = null,
     private val errorMessage: String? = null,
     override val cause: Throwable? = null,
-) : Exception(errorMessage, cause) {
+) : DeezerClientException(errorMessage, cause) {
     val error = errorCode?.let { DeezerErrorCode.fromCode(it) }
 
     override val message = buildString {
         append("[Deezer API Exception]")
         // Don't call supper, generate a more detail message
-        error?.let { append(" [ErrorContainer: ${it.description} (Code: ${it.code})]") }
-        if (!errorMessage.isNullOrBlank()) append(": $errorMessage")
+        error?.let {
+            append(" [Error: ${it.description} (Code: ${it.code})]")
+            appendLine()
+            append("For more detail, see: https://developers.deezer.com/api/errors")
+            appendLine()
+        }
+        if (!errorMessage.isNullOrBlank()) append("Detail: $errorMessage")
+        append("-------------")
+        append(generateLinks())
     }
 
     /**
