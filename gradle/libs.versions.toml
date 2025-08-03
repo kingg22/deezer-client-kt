@@ -1,6 +1,6 @@
 [versions]
 # https://developer.android.com/build/releases/gradle-plugin
-agp = "8.11.0"
+agp = "8.12.0"
 
 # https://developer.android.com/tools/releases/platforms
 android-compileSdk = "36"
@@ -30,14 +30,16 @@ kover = "0.9.1"
 ksp = "2.2.0-2.0.2"
 # https://github.com/ktorio/ktor/releases
 ktor = "3.2.1" # Depends on ktorfit
-# https://github.com/Foso/Ktorfit/releases
-ktorfit = "2.6.2"
+# https://github.com/kingg22/ktorgen/releases
+ktorgen = "0.1.0-SNAPSHOT"
 # https://github.com/pinterest/ktlint/releases
 ktlint-pinterest = "1.6.0"
 # https://github.com/jlleitschuh/ktlint-gradle/releases
 ktlint-plugin = "13.0.0"
 # https://github.com/vanniktech/gradle-maven-publish-plugin/releases
 maven-publish = "0.34.0"
+# https://github.com/drewhamilton/Poko/releases
+poko = "0.19.3"
 # https://slf4j.org/download.html
 slf4jNop = "2.0.17"
 
@@ -55,7 +57,7 @@ kotlinx-serialization = { group = "org.jetbrains.kotlinx", name = "kotlinx-seria
 kotlinx-resources = { group = "com.goncalossilva", name = "resources", version.ref = "kotlinx-resource" }
 
 # Ktor
-# ktor-client-core = { group = "io.ktor", name = "ktor-client-core", version.ref = "ktor" }
+ktor-client-core = { group = "io.ktor", name = "ktor-client-core", version.ref = "ktor" }
 ktor-client-content-negotiation = { group = "io.ktor", name = "ktor-client-content-negotiation", version.ref = "ktor" }
 # ktor-client-engine-okhttp = { group = "io.ktor", name = "ktor-client-okhttp", version.ref = "ktor" }
 ktor-client-engine-cio = { group = "io.ktor", name = "ktor-client-cio", version.ref = "ktor" }
@@ -63,8 +65,9 @@ ktor-client-logging = { group = "io.ktor", name = "ktor-client-logging", version
 ktor-client-mock = { group = "io.ktor", name = "ktor-client-mock", version.ref = "ktor" }
 ktor-json = { group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktor" }
 
-# Ktorfit
-ktorfit-light = { group = "de.jensklingenberg.ktorfit", name = "ktorfit-lib-light", version.ref = "ktorfit" }
+# ktorgen
+ktorgen-annotations = { group = "io.github.kingg22", name = "ktorgen-annotations", version.ref = "ktorgen" }
+ktorgen-compiler = { group = "io.github.kingg22", name = "ktorgen-compiler", version.ref = "ktorgen" }
 
 # Logger
 kermit = { group = "co.touchlab", name = "kermit", version.ref = "kermit" }
@@ -82,6 +85,7 @@ slf4j-nop = { group = "org.slf4j", name = "slf4j-nop", version.ref = "slf4jNop" 
 [bundles]
 kotlinx-ecosystem = ["kotlinx-datetime", "kotlinx-serialization", "kotlinx-coroutines"]
 ktor-client = [
+    "ktor-client-core",
     "ktor-client-content-negotiation",
     "ktor-json",
     "ktor-client-logging"
@@ -94,13 +98,13 @@ testing = [
 testing-ktor = ["ktor-client-mock", "kotlinx-resources", "kotest-assertions-json"]
 
 [plugins]
-androidLibrary = { id = "com.android.library", version.ref = "agp" }
+android-library = { id = "com.android.library", version.ref = "agp" }
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
-kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
-kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
-kotlinxKover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
-kotlinxResources = { id = "com.goncalossilva.resources", version.ref = "kotlinx-resource" }
+kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+kotlinx-kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
+kotlinx-resources = { id = "com.goncalossilva.resources", version.ref = "kotlinx-resource" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint-plugin" }
-ktorfit = { id = "de.jensklingenberg.ktorfit", version.ref = "ktorfit" }
 maven-publish = { id = "com.vanniktech.maven.publish", version.ref = "maven-publish" }
+poko = { id = "dev.drewhamilton.poko", version.ref = "poko" }
