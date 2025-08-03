@@ -6,20 +6,20 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.dsl.abi.ExperimentalAbiValidation
 
 plugins {
-    alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.android.library)
     alias(libs.plugins.dokka)
-    alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.kotlinSerialization)
-    alias(libs.plugins.kotlinxKover)
-    alias(libs.plugins.kotlinxResources)
+    alias(libs.plugins.kotlin.multiplatform)
+    alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.kotlinx.kover)
+    alias(libs.plugins.kotlinx.resources)
     alias(libs.plugins.ksp)
     alias(libs.plugins.ktlint)
-    alias(libs.plugins.ktorfit)
     alias(libs.plugins.maven.publish)
+    alias(libs.plugins.poko)
 }
 
 group = "io.github.kingg22"
-version = "1.0.0"
+version = "2.0.0"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
@@ -34,6 +34,14 @@ kotlin {
 
     abiValidation {
         enabled.set(true)
+        klib {
+            enabled.set(true)
+        }
+        filters {
+            excluded {
+                byNames.addAll("io.github.kingg22.deezer.client.api.routes._*")
+            }
+        }
     }
 
     androidTarget {
@@ -68,11 +76,15 @@ kotlin {
     }
 
     sourceSets {
-        commonMain.dependencies {
-            api(libs.bundles.ktor.client)
-            api(libs.bundles.kotlinx.ecosystem)
-            implementation(libs.ktorfit.light)
-            runtimeOnly(libs.slf4j.nop)
+        commonMain {
+            // indicate to KMP plugin compile the metadata of ksp
+            kotlin.srcDir("build/generated/ksp/metadata/commonMain/kotlin")
+            dependencies {
+                api(libs.bundles.ktor.client)
+                api(libs.bundles.kotlinx.ecosystem)
+                implementation(libs.ktorgen.annotations)
+                runtimeOnly(libs.slf4j.nop)
+            }
         }
         commonTest.dependencies {
             implementation(libs.bundles.testing)
@@ -83,6 +95,10 @@ kotlin {
             implementation(libs.ktor.client.engine.cio)
         }
     }
+}
+
+dependencies {
+    kspCommonMainMetadata(libs.ktorgen.compiler)
 }
 
 kover {
@@ -143,6 +159,12 @@ android {
 ktlint {
     version.set(libs.versions.ktlint.pinterest.get())
 }
+
+// Workaround kotlin multiplatform with ksp
+tasks.matching { it.name != "kspCommonMainKotlinMetadata" && it.name.startsWith("ksp") }
+    .configureEach {
+        dependsOn("kspCommonMainKotlinMetadata")
+    }
 
 tasks.named("runKtlintCheckOverCommonMainSourceSet") {
     dependsOn("kspCommonMainKotlinMetadata")
