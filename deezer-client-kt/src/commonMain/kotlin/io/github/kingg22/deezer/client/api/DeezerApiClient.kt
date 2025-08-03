@@ -4,26 +4,11 @@ package io.github.kingg22.deezer.client.api
 
 import io.github.kingg22.deezer.client.api.objects.ErrorContainer
 import io.github.kingg22.deezer.client.api.routes.*
-import io.github.kingg22.deezer.client.api.routes.createAlbumRoutes
-import io.github.kingg22.deezer.client.api.routes.createArtistRoutes
-import io.github.kingg22.deezer.client.api.routes.createChartRoutes
-import io.github.kingg22.deezer.client.api.routes.createEditorialRoutes
-import io.github.kingg22.deezer.client.api.routes.createEpisodeRoutes
-import io.github.kingg22.deezer.client.api.routes.createGenreRoutes
-import io.github.kingg22.deezer.client.api.routes.createInfosRoute
-import io.github.kingg22.deezer.client.api.routes.createOptionsRoute
-import io.github.kingg22.deezer.client.api.routes.createPlaylistRoutes
-import io.github.kingg22.deezer.client.api.routes.createPodcastRoutes
-import io.github.kingg22.deezer.client.api.routes.createRadioRoutes
-import io.github.kingg22.deezer.client.api.routes.createSearchRoutes
-import io.github.kingg22.deezer.client.api.routes.createTrackRoutes
-import io.github.kingg22.deezer.client.api.routes.createUserRoutes
 import io.github.kingg22.deezer.client.exceptions.DeezerApiException
 import io.github.kingg22.deezer.client.utils.API_DEEZER
 import io.github.kingg22.deezer.client.utils.ExperimentalDeezerClient
 import io.github.kingg22.deezer.client.utils.HttpClientBuilder
 import io.github.kingg22.deezer.client.utils.InternalDeezerClient
-import io.github.kingg22.deezer.client.utils.createKtorfit
 import io.github.kingg22.deezer.client.utils.decodeOrNull
 import io.ktor.client.*
 import io.ktor.client.call.*
@@ -61,67 +46,67 @@ constructor(
     /** The current [HttpClient] using */
     @InternalDeezerClient
     val httpClient = builder.copy().addCustomConfig {
+        defaultRequest {
+            url(API_DEEZER)
+        }
         HttpResponseValidator(customValidators())
     }.build()
 
-    @get:JvmSynthetic
-    internal val ktorfit = createKtorfit(API_DEEZER, httpClient)
-
     /** All endpoints related to [io.github.kingg22.deezer.client.api.objects.Album] */
     @get:JvmSynthetic
-    val albums: AlbumRoutes = ktorfit.createAlbumRoutes()
+    val albums: AlbumRoutes = _AlbumRoutesImpl(httpClient)
 
     /** All endpoints related to [io.github.kingg22.deezer.client.api.objects.Artist] */
     @get:JvmSynthetic
-    val artists: ArtistRoutes = ktorfit.createArtistRoutes()
+    val artists: ArtistRoutes = _ArtistRoutesImpl(httpClient)
 
     /** All endpoints related to [io.github.kingg22.deezer.client.api.objects.Chart] */
     @get:JvmSynthetic
-    val charts: ChartRoutes = ktorfit.createChartRoutes()
+    val charts: ChartRoutes = _ChartRoutesImpl(httpClient)
 
     /** All endpoints related to [io.github.kingg22.deezer.client.api.objects.Editorial] */
     @get:JvmSynthetic
-    val editorials: EditorialRoutes = ktorfit.createEditorialRoutes()
+    val editorials: EditorialRoutes = _EditorialRoutesImpl(httpClient)
 
     /** All endpoints related to [io.github.kingg22.deezer.client.api.objects.Episode] */
     @get:JvmSynthetic
-    val episodes: EpisodeRoutes = ktorfit.createEpisodeRoutes()
+    val episodes: EpisodeRoutes = _EpisodeRoutesImpl(httpClient)
 
     /** All endpoints related to [io.github.kingg22.deezer.client.api.objects.Genre] */
     @get:JvmSynthetic
-    val genres: GenreRoutes = ktorfit.createGenreRoutes()
+    val genres: GenreRoutes = _GenreRoutesImpl(httpClient)
 
     /** All endpoints related to [io.github.kingg22.deezer.client.api.objects.Infos] */
     @get:JvmSynthetic
-    val infos: InfosRoute = ktorfit.createInfosRoute()
+    val infos: InfosRoute = _InfosRouteImpl(httpClient)
 
     /** All endpoints related to [io.github.kingg22.deezer.client.api.objects.Options] */
     @get:JvmSynthetic
-    val options: OptionsRoute = ktorfit.createOptionsRoute()
+    val options: OptionsRoute = _OptionsRouteImpl(httpClient)
 
     /** All endpoints related to [io.github.kingg22.deezer.client.api.objects.Playlist] */
     @get:JvmSynthetic
-    val playlists: PlaylistRoutes = ktorfit.createPlaylistRoutes()
+    val playlists: PlaylistRoutes = _PlaylistRoutesImpl(httpClient)
 
     /** All endpoints related to [io.github.kingg22.deezer.client.api.objects.Podcast] */
     @get:JvmSynthetic
-    val podcasts: PodcastRoutes = ktorfit.createPodcastRoutes()
+    val podcasts: PodcastRoutes = _PodcastRoutesImpl(httpClient)
 
     /** All endpoints related to [io.github.kingg22.deezer.client.api.objects.Radio] */
     @get:JvmSynthetic
-    val radios: RadioRoutes = ktorfit.createRadioRoutes()
+    val radios: RadioRoutes = _RadioRoutesImpl(httpClient)
 
     /** All endpoints related to search */
     @get:JvmSynthetic
-    val searches: SearchRoutes = ktorfit.createSearchRoutes()
+    val searches: SearchRoutes = _SearchRoutesImpl(httpClient)
 
     /** All endpoints related to [io.github.kingg22.deezer.client.api.objects.Track] */
     @get:JvmSynthetic
-    val tracks: TrackRoutes = ktorfit.createTrackRoutes()
+    val tracks: TrackRoutes = _TrackRoutesImpl(httpClient)
 
     /** All endpoints related to [io.github.kingg22.deezer.client.api.objects.User] */
     @get:JvmSynthetic
-    val users: UserRoutes = ktorfit.createUserRoutes()
+    val users: UserRoutes = _UserRoutesImpl(httpClient)
 
     init {
         require(httpClient.isActive) { "HttpClient is not active" }

@@ -1,8 +1,8 @@
 package io.github.kingg22.deezer.client.api.routes
 
-import de.jensklingenberg.ktorfit.http.GET
-import de.jensklingenberg.ktorfit.http.Query
 import io.github.kingg22.deezer.client.api.objects.*
+import io.github.kingg22.ktorgen.http.GET
+import io.github.kingg22.ktorgen.http.Query
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic

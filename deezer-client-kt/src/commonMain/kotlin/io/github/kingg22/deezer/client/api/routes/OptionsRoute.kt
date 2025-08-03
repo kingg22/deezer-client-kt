@@ -2,8 +2,8 @@
 
 package io.github.kingg22.deezer.client.api.routes
 
-import de.jensklingenberg.ktorfit.http.GET
 import io.github.kingg22.deezer.client.api.objects.Options
+import io.github.kingg22.ktorgen.http.GET
 
 /**
  * Defines all endpoints related to [io.github.kingg22.deezer.client.api.objects.Options]

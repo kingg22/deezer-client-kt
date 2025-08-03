@@ -2,9 +2,9 @@
 
 package io.github.kingg22.deezer.client.api.routes
 
-import de.jensklingenberg.ktorfit.http.GET
-import de.jensklingenberg.ktorfit.http.Path
 import io.github.kingg22.deezer.client.api.objects.Episode
+import io.github.kingg22.ktorgen.http.GET
+import io.github.kingg22.ktorgen.http.Path
 
 /**
  * Defines all endpoints related to [io.github.kingg22.deezer.client.api.objects.Episode]
