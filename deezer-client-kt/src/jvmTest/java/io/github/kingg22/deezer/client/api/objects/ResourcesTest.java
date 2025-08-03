@@ -15,10 +15,8 @@ class ResourcesTest {
         final Episode tested = new Episode(
             526673645,
             "",
-            null,
-            null,
-            LocalDateTime.Companion.parse("2019-09-09T00:00:00", LocalDateTime.Formats.INSTANCE.getISO()),
-            0
+            0,
+            LocalDateTime.Companion.parse("2019-09-09T00:00:00", LocalDateTime.Formats.INSTANCE.getISO())
         );
         final Episode episode = Resources.reload(tested);
         final Episode episodeFuture = Assertions.assertTimeout(Duration.ofMinutes(1), () -> Resources.reloadFuture(tested).get());
