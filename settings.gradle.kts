@@ -31,6 +31,12 @@ dependencyResolutionManagement {
             }
         }
         mavenCentral()
+        maven("https://central.sonatype.com/repository/maven-snapshots/") {
+            // Only search this repository for the specific dependency
+            content {
+                includeGroup("io.github.kingg22")
+            }
+        }
     }
 }
 
