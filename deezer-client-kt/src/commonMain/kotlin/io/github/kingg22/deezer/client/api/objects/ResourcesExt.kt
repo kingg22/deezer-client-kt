@@ -3,11 +3,19 @@
 
 package io.github.kingg22.deezer.client.api.objects
 
+import io.github.kingg22.deezer.client.api.GlobalDeezerApiClient
+import io.github.kingg22.deezer.client.utils.AfterInitialize
 import kotlin.jvm.JvmMultifileClass
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmSynthetic
 
 private const val CDN_IMAGES_DEEZER = "https://cdn-images.dzcdn.net/images/cover/"
 private val MD5_NOT_FOUND_MSG = { "MD5 image not found" }
+
+/** The [io.github.kingg22.deezer.client.api.DeezerApiClient] to make operations easy in [Resource] */
+@AfterInitialize
+@JvmSynthetic
+internal fun Resource.client() = GlobalDeezerApiClient.requireInstance()
 
 /**
  * Retrieve the image url of the track.
