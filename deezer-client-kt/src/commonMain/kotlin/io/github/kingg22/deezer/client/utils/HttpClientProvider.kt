@@ -11,6 +11,9 @@ import io.ktor.client.plugins.logging.*
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
 import io.ktor.utils.io.charsets.*
+import kotlinx.serialization.ExperimentalSerializationApi
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.Json
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmSynthetic
 import kotlin.time.Duration
@@ -105,3 +108,22 @@ internal fun getClient(
 
 @JvmSynthetic
 internal const val API_DEEZER = "https://api.deezer.com/"
+
+@OptIn(ExperimentalSerializationApi::class)
+@JvmSynthetic
+internal fun getJson() = Json {
+    encodeDefaults = true
+    isLenient = true
+    allowSpecialFloatingPointValues = true
+    allowStructuredMapKeys = true
+
+    prettyPrint = true
+    ignoreUnknownKeys = true
+    explicitNulls = false
+    decodeEnumsCaseInsensitive = true
+    useArrayPolymorphism = true
+}
+
+@JvmSynthetic
+internal inline fun <reified T : @Serializable Any> decodeOrNull(json: String): T? =
+    runCatching { Json.decodeFromString<T>(json) }.getOrNull()
