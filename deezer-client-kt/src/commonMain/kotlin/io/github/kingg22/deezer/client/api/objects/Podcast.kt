@@ -1,5 +1,6 @@
 package io.github.kingg22.deezer.client.api.objects
 
+import dev.drewhamilton.poko.Poko
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlin.jvm.JvmOverloads
@@ -24,8 +25,9 @@ import kotlin.jvm.JvmSynthetic
  * @property pictureBig The url of the podcast's cover in size big
  * @property pictureXl The url of the podcast's cover in size xl
  */
+@Poko
 @Serializable
-data class Podcast @JvmOverloads constructor(
+class Podcast @JvmOverloads constructor(
     override val id: Long,
     val title: String? = null,
     val description: String? = null,
@@ -39,7 +41,7 @@ data class Podcast @JvmOverloads constructor(
     @SerialName("picture_big") val pictureBig: String? = null,
     @SerialName("picture_xl") val pictureXl: String? = null,
     override val type: String = "podcast",
-) : Resource() {
+) : Resource {
     @JvmSynthetic
     override suspend fun reload() = client().podcasts.getById(this.id)
 

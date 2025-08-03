@@ -1,5 +1,6 @@
 package io.github.kingg22.deezer.client.api.objects
 
+import dev.drewhamilton.poko.Poko
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -22,9 +23,10 @@ import kotlin.jvm.JvmSynthetic
  * @property type **unofficial** The type of object, usually the name of the class.
  * @property radios **unofficial _only on radio_** The radios of the genre
  */
+@Poko
 @Serializable
 @OptIn(ExperimentalSerializationApi::class)
-data class Genre @JvmOverloads constructor(
+class Genre @JvmOverloads constructor(
     override val id: Long,
     @JsonNames("title") val name: String,
     val picture: String? = null,
@@ -34,7 +36,7 @@ data class Genre @JvmOverloads constructor(
     @SerialName("picture_xl") val pictureXl: String? = null,
     override val type: String = "genre",
     val radios: List<Radio>? = null,
-) : Resource() {
+) : Resource {
     @JvmSynthetic
     override suspend fun reload() = client().genres.getById(this.id)
 

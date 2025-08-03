@@ -1,5 +1,6 @@
 package io.github.kingg22.deezer.client.exceptions
 
+import dev.drewhamilton.poko.Poko
 import kotlinx.serialization.Serializable
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
@@ -16,7 +17,8 @@ import kotlin.jvm.JvmStatic
  * @param cause The cause of the exception
  * @property error The [Deezer Error Code][DeezerApiException.DeezerErrorCode] if is set
  */
-data class DeezerApiException @JvmOverloads constructor(
+@Poko
+class DeezerApiException @JvmOverloads constructor(
     private val errorCode: Int? = null,
     private val errorMessage: String? = null,
     override val cause: Throwable? = null,

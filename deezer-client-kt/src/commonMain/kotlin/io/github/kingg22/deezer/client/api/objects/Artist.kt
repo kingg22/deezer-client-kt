@@ -1,5 +1,6 @@
 package io.github.kingg22.deezer.client.api.objects
 
+import dev.drewhamilton.poko.Poko
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlin.jvm.JvmOverloads
@@ -28,8 +29,9 @@ import kotlin.jvm.JvmSynthetic
  * @property role **unofficial _only on contributors_** The role of the artist on contributors ("Main", "Featured", ...)
  * @property position **unofficial _only on charts_** The position of the artist in the charts
  */
+@Poko
 @Serializable
-data class Artist @JvmOverloads constructor(
+class Artist @JvmOverloads constructor(
     override val id: Long,
     val name: String,
     val link: String? = null,
@@ -46,7 +48,7 @@ data class Artist @JvmOverloads constructor(
     override val type: String = "artist",
     val role: String? = null,
     val position: Int? = null,
-) : Resource() {
+) : Resource {
     @JvmSynthetic
     override suspend fun reload() = client().artists.getById(this.id)
 

@@ -1,5 +1,6 @@
 package io.github.kingg22.deezer.client.api.objects
 
+import dev.drewhamilton.poko.Poko
 import kotlinx.serialization.Serializable
 import kotlin.jvm.JvmOverloads
 
@@ -9,8 +10,9 @@ import kotlin.jvm.JvmOverloads
  * @author Kingg22
  * @see <a href="https://developers.deezer.com/api/search#connections">Deezer Search Methods – History</a>
  */
+@Poko
 @Serializable
-data class SearchUserHistory @JvmOverloads constructor(
+class SearchUserHistory @JvmOverloads constructor(
     val tracks: List<Track> = emptyList(),
     val albums: List<Album> = emptyList(),
     val artists: List<Artist> = emptyList(),

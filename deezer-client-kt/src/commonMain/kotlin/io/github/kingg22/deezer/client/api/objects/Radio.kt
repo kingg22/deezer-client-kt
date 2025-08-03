@@ -1,5 +1,6 @@
 package io.github.kingg22.deezer.client.api.objects
 
+import dev.drewhamilton.poko.Poko
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlin.jvm.JvmOverloads
@@ -23,8 +24,9 @@ import kotlin.jvm.JvmSynthetic
  * @property tracklist    API Link to the track list of this radio
  * @property md5Image The MD5 hash of the album's cover image
  */
+@Poko
 @Serializable
-data class Radio @JvmOverloads constructor(
+class Radio @JvmOverloads constructor(
     override val id: Long,
     val title: String,
     val description: String? = null,
@@ -37,7 +39,7 @@ data class Radio @JvmOverloads constructor(
     val tracklist: String? = null,
     @SerialName("md5_image") val md5Image: String? = null,
     override val type: String = "radio",
-) : Resource() {
+) : Resource {
     @JvmSynthetic
     override suspend fun reload() = client().radios.getById(this.id)
 

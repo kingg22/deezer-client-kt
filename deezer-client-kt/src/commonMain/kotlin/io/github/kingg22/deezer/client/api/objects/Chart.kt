@@ -1,5 +1,6 @@
 package io.github.kingg22.deezer.client.api.objects
 
+import dev.drewhamilton.poko.Poko
 import kotlinx.serialization.Serializable
 import kotlin.jvm.JvmOverloads
 
@@ -16,8 +17,9 @@ import kotlin.jvm.JvmOverloads
  * @property playlists List of playlist
  * @property podcasts List of podcast containing all properties
  */
+@Poko
 @Serializable
-data class Chart @JvmOverloads constructor(
+class Chart @JvmOverloads constructor(
     /**
      * List of track containing:
      *

@@ -1,5 +1,6 @@
 package io.github.kingg22.deezer.client.api.objects
 
+import dev.drewhamilton.poko.Poko
 import kotlinx.datetime.LocalDate
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -44,8 +45,9 @@ import kotlin.jvm.JvmSynthetic
  * @property tracks List of tracks
  * @property type **unofficial** The type of object, usually the name of the class.
  */
+@Poko
 @Serializable
-data class Album @JvmOverloads constructor(
+class Album @JvmOverloads constructor(
     override val id: Long,
     val title: String,
     val upc: String? = null,
@@ -105,7 +107,7 @@ data class Album @JvmOverloads constructor(
      */
     val tracks: PaginatedResponse<Track>? = null,
     override val type: String = "album",
-) : Resource() {
+) : Resource {
     @JvmSynthetic
     override suspend fun reload() = client().albums.getById(this.id)
 

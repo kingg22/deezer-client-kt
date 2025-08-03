@@ -1,5 +1,6 @@
 package io.github.kingg22.deezer.client.api.objects
 
+import dev.drewhamilton.poko.Poko
 import kotlinx.datetime.LocalDate
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -34,8 +35,9 @@ import kotlin.jvm.JvmSynthetic
  * @property tracklist API Link to the flow of this user
  * @property type **unofficial** The type of object, usually the name of the class.
  */
+@Poko
 @Serializable
-data class User @JvmOverloads constructor(
+class User @JvmOverloads constructor(
     override val id: Long,
     val name: String,
     val lastname: String? = null,
@@ -55,12 +57,11 @@ data class User @JvmOverloads constructor(
     val lang: String? = null,
     @SerialName("is_kid") val isKid: Boolean? = null,
     @SerialName("explicit_content_level") val explicitContentLevel: String? = null,
-    @SerialName(
-        "explicit_content_levels_available",
-    ) val explicitContentLevelsAvailable: List<ExplicitContentLevels>? = null,
+    @SerialName("explicit_content_levels_available")
+    val explicitContentLevelsAvailable: List<ExplicitContentLevels>? = null,
     val tracklist: String? = null,
     override val type: String = "user",
-) : Resource() {
+) : Resource {
     @Serializable
     enum class Gender {
         @SerialName("M")
