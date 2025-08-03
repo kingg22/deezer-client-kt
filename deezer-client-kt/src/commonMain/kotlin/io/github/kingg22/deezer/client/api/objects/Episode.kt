@@ -2,6 +2,7 @@
 
 package io.github.kingg22.deezer.client.api.objects
 
+import dev.drewhamilton.poko.Poko
 import io.github.kingg22.deezer.client.utils.InternalDeezerClient
 import io.github.kingg22.deezer.client.utils.LocalDateTimeSerializer
 import kotlinx.datetime.LocalDateTime
@@ -31,14 +32,15 @@ import kotlin.jvm.JvmSynthetic
  * @property pictureXl The url of the episode's cover in size xl
  * @property trackToken The track token for media service
  */
+@Poko
 @Serializable
-data class Episode @JvmOverloads constructor(
+class Episode @JvmOverloads constructor(
     override val id: Long,
     val title: String,
+    val duration: Int,
+    @Serializable(LocalDateTimeSerializer::class) @SerialName("release_date") val releaseDate: LocalDateTime,
     val description: String? = null,
     @SerialName("available") val isAvailable: Boolean? = null,
-    @Serializable(LocalDateTimeSerializer::class) @SerialName("release_date") val releaseDate: LocalDateTime,
-    val duration: Int,
     val link: String? = null,
     val share: String? = null,
     val picture: String? = null,
@@ -62,7 +64,7 @@ data class Episode @JvmOverloads constructor(
      */
     val podcast: Podcast? = null,
     override val type: String = "episode",
-) : Resource() {
+) : Resource {
     @JvmSynthetic
     override suspend fun reload() = client().episodes.getById(this.id)
 

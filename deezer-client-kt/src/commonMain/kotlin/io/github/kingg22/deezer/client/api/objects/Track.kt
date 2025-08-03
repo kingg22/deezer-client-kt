@@ -1,5 +1,6 @@
 package io.github.kingg22.deezer.client.api.objects
 
+import dev.drewhamilton.poko.Poko
 import kotlinx.datetime.LocalDate
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -43,33 +44,15 @@ import kotlin.jvm.JvmSynthetic
  * @property position **only on charts** The position of the track in the charts
  * @property timeAdd **unofficial only on playlist**
  */
+@Poko
 @Serializable
-data class Track @JvmOverloads constructor(
+class Track @JvmOverloads constructor(
     override val id: Long,
-    @SerialName("readable") val isReadable: Boolean? = null,
     val title: String,
     @SerialName("title_short") val titleShort: String,
-    @SerialName("title_version") val titleVersion: String? = null,
-    @SerialName("unseen") val isUnseen: Boolean? = null,
-    val isrc: String? = null,
-    val link: String? = null,
-    val share: String? = null,
     val duration: Int,
-    @SerialName("track_position") val trackPosition: Int? = null,
-    @SerialName("disk_number") val diskNumber: Int? = null,
     val rank: Int,
-    @SerialName("release_date") val releaseDate: LocalDate? = null,
-    @SerialName("explicit_lyrics") val isExplicitLyrics: Boolean,
-    @SerialName("explicit_content_lyrics") val explicitContentLyrics: Explicit? = null,
-    @SerialName("explicit_content_cover") val explicitContentCover: Explicit? = null,
     val preview: String,
-    val bpm: Float? = null,
-    val gain: Float? = null,
-    @SerialName("available_countries") val availableCountries: List<String>? = null,
-    val alternative: Track? = null,
-    val contributors: List<Artist>? = null,
-    @SerialName("md5_image") val md5Image: String? = null,
-    @SerialName("track_token") val trackToken: String? = null,
 
     /**
      * Artist object containing:
@@ -90,6 +73,25 @@ data class Track @JvmOverloads constructor(
      * @property Artist.type **unofficial**
      */
     val artist: Artist,
+    @SerialName("readable") val isReadable: Boolean? = null,
+    @SerialName("title_version") val titleVersion: String? = null,
+    @SerialName("unseen") val isUnseen: Boolean? = null,
+    val isrc: String? = null,
+    val link: String? = null,
+    val share: String? = null,
+    @SerialName("track_position") val trackPosition: Int? = null,
+    @SerialName("disk_number") val diskNumber: Int? = null,
+    @SerialName("release_date") val releaseDate: LocalDate? = null,
+    @SerialName("explicit_lyrics") val isExplicitLyrics: Boolean,
+    @SerialName("explicit_content_lyrics") val explicitContentLyrics: Explicit? = null,
+    @SerialName("explicit_content_cover") val explicitContentCover: Explicit? = null,
+    val bpm: Float? = null,
+    val gain: Float? = null,
+    @SerialName("available_countries") val availableCountries: List<String>? = null,
+    val alternative: Track? = null,
+    val contributors: List<Artist>? = null,
+    @SerialName("md5_image") val md5Image: String? = null,
+    @SerialName("track_token") val trackToken: String? = null,
 
     /**
      * Album object containing:
@@ -108,7 +110,7 @@ data class Track @JvmOverloads constructor(
     override val type: String = "track",
     val position: Int? = null,
     @SerialName("time_add") val timeAdd: Long? = null,
-) : Resource() {
+) : Resource {
     @JvmSynthetic
     override suspend fun reload() = client().tracks.getById(this.id)
 
