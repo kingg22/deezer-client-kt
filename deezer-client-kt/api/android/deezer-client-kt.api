@@ -98,39 +98,6 @@ public final class io/github/kingg22/deezer/client/api/objects/Album : io/github
 	public fun <init> (JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Lkotlinx/datetime/LocalDate;Ljava/lang/String;Ljava/lang/Boolean;Lio/github/kingg22/deezer/client/api/objects/Album;Ljava/lang/String;Ljava/lang/Boolean;Lio/github/kingg22/deezer/client/api/objects/Explicit;Lio/github/kingg22/deezer/client/api/objects/Explicit;Ljava/lang/Integer;Ljava/util/List;Lio/github/kingg22/deezer/client/api/objects/Artist;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;)V
 	public fun <init> (JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Lkotlinx/datetime/LocalDate;Ljava/lang/String;Ljava/lang/Boolean;Lio/github/kingg22/deezer/client/api/objects/Album;Ljava/lang/String;Ljava/lang/Boolean;Lio/github/kingg22/deezer/client/api/objects/Explicit;Lio/github/kingg22/deezer/client/api/objects/Explicit;Ljava/lang/Integer;Ljava/util/List;Lio/github/kingg22/deezer/client/api/objects/Artist;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Ljava/lang/String;)V
 	public synthetic fun <init> (JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Lkotlinx/datetime/LocalDate;Ljava/lang/String;Ljava/lang/Boolean;Lio/github/kingg22/deezer/client/api/objects/Album;Ljava/lang/String;Ljava/lang/Boolean;Lio/github/kingg22/deezer/client/api/objects/Explicit;Lio/github/kingg22/deezer/client/api/objects/Explicit;Ljava/lang/Integer;Ljava/util/List;Lio/github/kingg22/deezer/client/api/objects/Artist;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun component1 ()J
-	public final fun component10 ()Ljava/lang/String;
-	public final fun component11 ()Ljava/lang/String;
-	public final fun component12 ()Ljava/lang/Long;
-	public final fun component13 ()Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;
-	public final fun component14 ()Ljava/lang/String;
-	public final fun component15 ()Ljava/lang/Integer;
-	public final fun component16 ()Ljava/lang/Integer;
-	public final fun component17 ()Ljava/lang/Integer;
-	public final fun component18 ()Ljava/lang/Integer;
-	public final fun component19 ()Lkotlinx/datetime/LocalDate;
-	public final fun component2 ()Ljava/lang/String;
-	public final fun component20 ()Ljava/lang/String;
-	public final fun component21 ()Ljava/lang/Boolean;
-	public final fun component22 ()Lio/github/kingg22/deezer/client/api/objects/Album;
-	public final fun component23 ()Ljava/lang/String;
-	public final fun component24 ()Ljava/lang/Boolean;
-	public final fun component25 ()Lio/github/kingg22/deezer/client/api/objects/Explicit;
-	public final fun component26 ()Lio/github/kingg22/deezer/client/api/objects/Explicit;
-	public final fun component27 ()Ljava/lang/Integer;
-	public final fun component28 ()Ljava/util/List;
-	public final fun component29 ()Lio/github/kingg22/deezer/client/api/objects/Artist;
-	public final fun component3 ()Ljava/lang/String;
-	public final fun component30 ()Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;
-	public final fun component31 ()Ljava/lang/String;
-	public final fun component4 ()Ljava/lang/String;
-	public final fun component5 ()Ljava/lang/String;
-	public final fun component6 ()Ljava/lang/String;
-	public final fun component7 ()Ljava/lang/String;
-	public final fun component8 ()Ljava/lang/String;
-	public final fun component9 ()Ljava/lang/String;
-	public final fun copy (JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Lkotlinx/datetime/LocalDate;Ljava/lang/String;Ljava/lang/Boolean;Lio/github/kingg22/deezer/client/api/objects/Album;Ljava/lang/String;Ljava/lang/Boolean;Lio/github/kingg22/deezer/client/api/objects/Explicit;Lio/github/kingg22/deezer/client/api/objects/Explicit;Ljava/lang/Integer;Ljava/util/List;Lio/github/kingg22/deezer/client/api/objects/Artist;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Ljava/lang/String;)Lio/github/kingg22/deezer/client/api/objects/Album;
-	public static synthetic fun copy$default (Lio/github/kingg22/deezer/client/api/objects/Album;JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Lkotlinx/datetime/LocalDate;Ljava/lang/String;Ljava/lang/Boolean;Lio/github/kingg22/deezer/client/api/objects/Album;Ljava/lang/String;Ljava/lang/Boolean;Lio/github/kingg22/deezer/client/api/objects/Explicit;Lio/github/kingg22/deezer/client/api/objects/Explicit;Ljava/lang/Integer;Ljava/util/List;Lio/github/kingg22/deezer/client/api/objects/Artist;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Ljava/lang/String;ILjava/lang/Object;)Lio/github/kingg22/deezer/client/api/objects/Album;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getAlternative ()Lio/github/kingg22/deezer/client/api/objects/Album;
 	public final fun getArtist ()Lio/github/kingg22/deezer/client/api/objects/Artist;
@@ -201,24 +168,6 @@ public final class io/github/kingg22/deezer/client/api/objects/Artist : io/githu
 	public fun <init> (JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
 	public fun <init> (JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;)V
 	public synthetic fun <init> (JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun component1 ()J
-	public final fun component10 ()Ljava/lang/Integer;
-	public final fun component11 ()Ljava/lang/Integer;
-	public final fun component12 ()Ljava/lang/Boolean;
-	public final fun component13 ()Ljava/lang/String;
-	public final fun component14 ()Ljava/lang/String;
-	public final fun component15 ()Ljava/lang/String;
-	public final fun component16 ()Ljava/lang/Integer;
-	public final fun component2 ()Ljava/lang/String;
-	public final fun component3 ()Ljava/lang/String;
-	public final fun component4 ()Ljava/lang/String;
-	public final fun component5 ()Ljava/lang/String;
-	public final fun component6 ()Ljava/lang/String;
-	public final fun component7 ()Ljava/lang/String;
-	public final fun component8 ()Ljava/lang/String;
-	public final fun component9 ()Ljava/lang/String;
-	public final fun copy (JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;)Lio/github/kingg22/deezer/client/api/objects/Artist;
-	public static synthetic fun copy$default (Lio/github/kingg22/deezer/client/api/objects/Artist;JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;ILjava/lang/Object;)Lio/github/kingg22/deezer/client/api/objects/Artist;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getAlbumCount ()Ljava/lang/Integer;
 	public final fun getFansCount ()Ljava/lang/Integer;
@@ -265,13 +214,6 @@ public final class io/github/kingg22/deezer/client/api/objects/Chart {
 	public fun <init> (Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;)V
 	public fun <init> (Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;)V
 	public synthetic fun <init> (Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun component1 ()Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;
-	public final fun component2 ()Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;
-	public final fun component3 ()Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;
-	public final fun component4 ()Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;
-	public final fun component5 ()Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;
-	public final fun copy (Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;)Lio/github/kingg22/deezer/client/api/objects/Chart;
-	public static synthetic fun copy$default (Lio/github/kingg22/deezer/client/api/objects/Chart;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;ILjava/lang/Object;)Lio/github/kingg22/deezer/client/api/objects/Chart;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getAlbums ()Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;
 	public final fun getArtists ()Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;
@@ -307,16 +249,6 @@ public final class io/github/kingg22/deezer/client/api/objects/Editorial : io/gi
 	public fun <init> (JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
 	public fun <init> (JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
 	public synthetic fun <init> (JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun component1 ()J
-	public final fun component2 ()Ljava/lang/String;
-	public final fun component3 ()Ljava/lang/String;
-	public final fun component4 ()Ljava/lang/String;
-	public final fun component5 ()Ljava/lang/String;
-	public final fun component6 ()Ljava/lang/String;
-	public final fun component7 ()Ljava/lang/String;
-	public final fun component8 ()Ljava/lang/String;
-	public final fun copy (JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lio/github/kingg22/deezer/client/api/objects/Editorial;
-	public static synthetic fun copy$default (Lio/github/kingg22/deezer/client/api/objects/Editorial;JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lio/github/kingg22/deezer/client/api/objects/Editorial;
 	public fun equals (Ljava/lang/Object;)Z
 	public fun getId ()J
 	public final fun getName ()Ljava/lang/String;
@@ -348,38 +280,20 @@ public final class io/github/kingg22/deezer/client/api/objects/Editorial$Compani
 
 public final class io/github/kingg22/deezer/client/api/objects/Episode : io/github/kingg22/deezer/client/api/objects/Resource {
 	public static final field Companion Lio/github/kingg22/deezer/client/api/objects/Episode$Companion;
-	public fun <init> (JLjava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Lkotlinx/datetime/LocalDateTime;I)V
-	public fun <init> (JLjava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Lkotlinx/datetime/LocalDateTime;ILjava/lang/String;)V
-	public fun <init> (JLjava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Lkotlinx/datetime/LocalDateTime;ILjava/lang/String;Ljava/lang/String;)V
-	public fun <init> (JLjava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Lkotlinx/datetime/LocalDateTime;ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
-	public fun <init> (JLjava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Lkotlinx/datetime/LocalDateTime;ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
-	public fun <init> (JLjava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Lkotlinx/datetime/LocalDateTime;ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
-	public fun <init> (JLjava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Lkotlinx/datetime/LocalDateTime;ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
-	public fun <init> (JLjava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Lkotlinx/datetime/LocalDateTime;ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
-	public fun <init> (JLjava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Lkotlinx/datetime/LocalDateTime;ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
-	public fun <init> (JLjava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Lkotlinx/datetime/LocalDateTime;ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/Podcast;)V
-	public fun <init> (JLjava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Lkotlinx/datetime/LocalDateTime;ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/Podcast;Ljava/lang/String;)V
-	public synthetic fun <init> (JLjava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Lkotlinx/datetime/LocalDateTime;ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/Podcast;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public fun <init> (JLjava/lang/String;Ljava/lang/String;Lkotlinx/datetime/LocalDateTime;I)V
-	public fun <init> (JLjava/lang/String;Lkotlinx/datetime/LocalDateTime;I)V
-	public final fun component1 ()J
-	public final fun component10 ()Ljava/lang/String;
-	public final fun component11 ()Ljava/lang/String;
-	public final fun component12 ()Ljava/lang/String;
-	public final fun component13 ()Ljava/lang/String;
-	public final fun component14 ()Ljava/lang/String;
-	public final fun component15 ()Lio/github/kingg22/deezer/client/api/objects/Podcast;
-	public final fun component16 ()Ljava/lang/String;
-	public final fun component2 ()Ljava/lang/String;
-	public final fun component3 ()Ljava/lang/String;
-	public final fun component4 ()Ljava/lang/Boolean;
-	public final fun component5 ()Lkotlinx/datetime/LocalDateTime;
-	public final fun component6 ()I
-	public final fun component7 ()Ljava/lang/String;
-	public final fun component8 ()Ljava/lang/String;
-	public final fun component9 ()Ljava/lang/String;
-	public final fun copy (JLjava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Lkotlinx/datetime/LocalDateTime;ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/Podcast;Ljava/lang/String;)Lio/github/kingg22/deezer/client/api/objects/Episode;
-	public static synthetic fun copy$default (Lio/github/kingg22/deezer/client/api/objects/Episode;JLjava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Lkotlinx/datetime/LocalDateTime;ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/Podcast;Ljava/lang/String;ILjava/lang/Object;)Lio/github/kingg22/deezer/client/api/objects/Episode;
+	public fun <init> (JLjava/lang/String;ILkotlinx/datetime/LocalDateTime;)V
+	public fun <init> (JLjava/lang/String;ILkotlinx/datetime/LocalDateTime;Ljava/lang/String;)V
+	public fun <init> (JLjava/lang/String;ILkotlinx/datetime/LocalDateTime;Ljava/lang/String;Ljava/lang/Boolean;)V
+	public fun <init> (JLjava/lang/String;ILkotlinx/datetime/LocalDateTime;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;)V
+	public fun <init> (JLjava/lang/String;ILkotlinx/datetime/LocalDateTime;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;)V
+	public fun <init> (JLjava/lang/String;ILkotlinx/datetime/LocalDateTime;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public fun <init> (JLjava/lang/String;ILkotlinx/datetime/LocalDateTime;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public fun <init> (JLjava/lang/String;ILkotlinx/datetime/LocalDateTime;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public fun <init> (JLjava/lang/String;ILkotlinx/datetime/LocalDateTime;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public fun <init> (JLjava/lang/String;ILkotlinx/datetime/LocalDateTime;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public fun <init> (JLjava/lang/String;ILkotlinx/datetime/LocalDateTime;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public fun <init> (JLjava/lang/String;ILkotlinx/datetime/LocalDateTime;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/Podcast;)V
+	public fun <init> (JLjava/lang/String;ILkotlinx/datetime/LocalDateTime;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/Podcast;Ljava/lang/String;)V
+	public synthetic fun <init> (JLjava/lang/String;ILkotlinx/datetime/LocalDateTime;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/Podcast;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getDescription ()Ljava/lang/String;
 	public final fun getDuration ()I
@@ -417,65 +331,6 @@ public final class io/github/kingg22/deezer/client/api/objects/Episode$Companion
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
-public final class io/github/kingg22/deezer/client/api/objects/ErrorContainer {
-	public static final field Companion Lio/github/kingg22/deezer/client/api/objects/ErrorContainer$Companion;
-	public fun <init> (Lio/github/kingg22/deezer/client/api/objects/ErrorContainer$ErrorDetail;)V
-	public final fun component1 ()Lio/github/kingg22/deezer/client/api/objects/ErrorContainer$ErrorDetail;
-	public final fun copy (Lio/github/kingg22/deezer/client/api/objects/ErrorContainer$ErrorDetail;)Lio/github/kingg22/deezer/client/api/objects/ErrorContainer;
-	public static synthetic fun copy$default (Lio/github/kingg22/deezer/client/api/objects/ErrorContainer;Lio/github/kingg22/deezer/client/api/objects/ErrorContainer$ErrorDetail;ILjava/lang/Object;)Lio/github/kingg22/deezer/client/api/objects/ErrorContainer;
-	public fun equals (Ljava/lang/Object;)Z
-	public final fun getError ()Lio/github/kingg22/deezer/client/api/objects/ErrorContainer$ErrorDetail;
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
-}
-
-public final synthetic class io/github/kingg22/deezer/client/api/objects/ErrorContainer$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
-	public static final field INSTANCE Lio/github/kingg22/deezer/client/api/objects/ErrorContainer$$serializer;
-	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
-	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lio/github/kingg22/deezer/client/api/objects/ErrorContainer;
-	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
-	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
-	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lio/github/kingg22/deezer/client/api/objects/ErrorContainer;)V
-	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
-}
-
-public final class io/github/kingg22/deezer/client/api/objects/ErrorContainer$Companion {
-	public final fun serializer ()Lkotlinx/serialization/KSerializer;
-}
-
-public final class io/github/kingg22/deezer/client/api/objects/ErrorContainer$ErrorDetail {
-	public static final field Companion Lio/github/kingg22/deezer/client/api/objects/ErrorContainer$ErrorDetail$Companion;
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;I)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;IILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun component1 ()Ljava/lang/String;
-	public final fun component2 ()Ljava/lang/String;
-	public final fun component3 ()I
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;I)Lio/github/kingg22/deezer/client/api/objects/ErrorContainer$ErrorDetail;
-	public static synthetic fun copy$default (Lio/github/kingg22/deezer/client/api/objects/ErrorContainer$ErrorDetail;Ljava/lang/String;Ljava/lang/String;IILjava/lang/Object;)Lio/github/kingg22/deezer/client/api/objects/ErrorContainer$ErrorDetail;
-	public fun equals (Ljava/lang/Object;)Z
-	public final fun getCode ()I
-	public final fun getMessage ()Ljava/lang/String;
-	public final fun getType ()Ljava/lang/String;
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
-}
-
-public final synthetic class io/github/kingg22/deezer/client/api/objects/ErrorContainer$ErrorDetail$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
-	public static final field INSTANCE Lio/github/kingg22/deezer/client/api/objects/ErrorContainer$ErrorDetail$$serializer;
-	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
-	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lio/github/kingg22/deezer/client/api/objects/ErrorContainer$ErrorDetail;
-	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
-	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
-	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lio/github/kingg22/deezer/client/api/objects/ErrorContainer$ErrorDetail;)V
-	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
-}
-
-public final class io/github/kingg22/deezer/client/api/objects/ErrorContainer$ErrorDetail$Companion {
-	public final fun serializer ()Lkotlinx/serialization/KSerializer;
-}
-
 public final class io/github/kingg22/deezer/client/api/objects/Explicit : java/lang/Enum {
 	public static final field Companion Lio/github/kingg22/deezer/client/api/objects/Explicit$Companion;
 	public static final field EDITED Lio/github/kingg22/deezer/client/api/objects/Explicit;
@@ -509,17 +364,6 @@ public final class io/github/kingg22/deezer/client/api/objects/Genre : io/github
 	public fun <init> (JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
 	public fun <init> (JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;)V
 	public synthetic fun <init> (JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun component1 ()J
-	public final fun component2 ()Ljava/lang/String;
-	public final fun component3 ()Ljava/lang/String;
-	public final fun component4 ()Ljava/lang/String;
-	public final fun component5 ()Ljava/lang/String;
-	public final fun component6 ()Ljava/lang/String;
-	public final fun component7 ()Ljava/lang/String;
-	public final fun component8 ()Ljava/lang/String;
-	public final fun component9 ()Ljava/util/List;
-	public final fun copy (JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;)Lio/github/kingg22/deezer/client/api/objects/Genre;
-	public static synthetic fun copy$default (Lio/github/kingg22/deezer/client/api/objects/Genre;JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;ILjava/lang/Object;)Lio/github/kingg22/deezer/client/api/objects/Genre;
 	public fun equals (Ljava/lang/Object;)Z
 	public fun getId ()J
 	public final fun getName ()Ljava/lang/String;
@@ -582,19 +426,6 @@ public final class io/github/kingg22/deezer/client/api/objects/Infos {
 	public fun <init> (Ljava/lang/String;Ljava/lang/String;ZLjava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/Infos$HostDetails;Lkotlinx/serialization/json/JsonObject;)V
 	public fun <init> (Ljava/lang/String;Ljava/lang/String;ZLjava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/Infos$HostDetails;Lkotlinx/serialization/json/JsonObject;Ljava/lang/Boolean;)V
 	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;ZLjava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/Infos$HostDetails;Lkotlinx/serialization/json/JsonObject;Ljava/lang/Boolean;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun component1 ()Ljava/lang/String;
-	public final fun component10 ()Lkotlinx/serialization/json/JsonObject;
-	public final fun component11 ()Ljava/lang/Boolean;
-	public final fun component2 ()Ljava/lang/String;
-	public final fun component3 ()Z
-	public final fun component4 ()Ljava/util/List;
-	public final fun component5 ()Ljava/lang/String;
-	public final fun component6 ()Ljava/lang/String;
-	public final fun component7 ()Ljava/lang/Integer;
-	public final fun component8 ()Ljava/lang/String;
-	public final fun component9 ()Lio/github/kingg22/deezer/client/api/objects/Infos$HostDetails;
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;ZLjava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/Infos$HostDetails;Lkotlinx/serialization/json/JsonObject;Ljava/lang/Boolean;)Lio/github/kingg22/deezer/client/api/objects/Infos;
-	public static synthetic fun copy$default (Lio/github/kingg22/deezer/client/api/objects/Infos;Ljava/lang/String;Ljava/lang/String;ZLjava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/Infos$HostDetails;Lkotlinx/serialization/json/JsonObject;Ljava/lang/Boolean;ILjava/lang/Object;)Lio/github/kingg22/deezer/client/api/objects/Infos;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getAds ()Lkotlinx/serialization/json/JsonObject;
 	public final fun getCountry ()Ljava/lang/String;
@@ -632,10 +463,6 @@ public final class io/github/kingg22/deezer/client/api/objects/Infos$HostDetails
 	public fun <init> (Ljava/lang/String;)V
 	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
 	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun component1 ()Ljava/lang/String;
-	public final fun component2 ()Ljava/lang/String;
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;)Lio/github/kingg22/deezer/client/api/objects/Infos$HostDetails;
-	public static synthetic fun copy$default (Lio/github/kingg22/deezer/client/api/objects/Infos$HostDetails;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lio/github/kingg22/deezer/client/api/objects/Infos$HostDetails;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getImages ()Ljava/lang/String;
 	public final fun getStream ()Ljava/lang/String;
@@ -663,21 +490,6 @@ public final class io/github/kingg22/deezer/client/api/objects/Options {
 	public fun <init> (ZIZZZZZZIZZZ)V
 	public fun <init> (ZIZZZZZZIZZZLjava/lang/String;)V
 	public synthetic fun <init> (ZIZZZZZZIZZZLjava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun component1 ()Z
-	public final fun component10 ()Z
-	public final fun component11 ()Z
-	public final fun component12 ()Z
-	public final fun component13 ()Ljava/lang/String;
-	public final fun component2 ()I
-	public final fun component3 ()Z
-	public final fun component4 ()Z
-	public final fun component5 ()Z
-	public final fun component6 ()Z
-	public final fun component7 ()Z
-	public final fun component8 ()Z
-	public final fun component9 ()I
-	public final fun copy (ZIZZZZZZIZZZLjava/lang/String;)Lio/github/kingg22/deezer/client/api/objects/Options;
-	public static synthetic fun copy$default (Lio/github/kingg22/deezer/client/api/objects/Options;ZIZZZZZZIZZZLjava/lang/String;ILjava/lang/Object;)Lio/github/kingg22/deezer/client/api/objects/Options;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getRadioSkips ()I
 	public final fun getStreamingDuration ()I
@@ -773,59 +585,30 @@ public final class io/github/kingg22/deezer/client/api/objects/PaginatedResponse
 
 public final class io/github/kingg22/deezer/client/api/objects/Playlist : io/github/kingg22/deezer/client/api/objects/Resource {
 	public static final field Companion Lio/github/kingg22/deezer/client/api/objects/Playlist$Companion;
-	public fun <init> (JLjava/lang/String;Ljava/lang/String;Ljava/lang/Integer;ZLjava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/User;)V
-	public fun <init> (JLjava/lang/String;Ljava/lang/String;Ljava/lang/Integer;ZLjava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/User;)V
-	public fun <init> (JLjava/lang/String;Ljava/lang/String;Ljava/lang/Integer;ZLjava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/User;)V
-	public fun <init> (JLjava/lang/String;Ljava/lang/String;Ljava/lang/Integer;ZLjava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/User;)V
-	public fun <init> (JLjava/lang/String;Ljava/lang/String;Ljava/lang/Integer;ZLjava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/User;)V
-	public fun <init> (JLjava/lang/String;Ljava/lang/String;Ljava/lang/Integer;ZLjava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/User;)V
-	public fun <init> (JLjava/lang/String;Ljava/lang/String;Ljava/lang/Integer;ZLjava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/User;)V
-	public fun <init> (JLjava/lang/String;Ljava/lang/String;Ljava/lang/Integer;ZLjava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/User;)V
-	public fun <init> (JLjava/lang/String;Ljava/lang/String;Ljava/lang/Integer;ZLjava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/User;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;)V
-	public fun <init> (JLjava/lang/String;Ljava/lang/String;Ljava/lang/Integer;ZLjava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/User;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Lkotlinx/datetime/LocalDateTime;)V
-	public fun <init> (JLjava/lang/String;Ljava/lang/String;Ljava/lang/Integer;ZLjava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/User;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Lkotlinx/datetime/LocalDateTime;Ljava/lang/String;)V
-	public fun <init> (JLjava/lang/String;Ljava/lang/String;Ljava/lang/Integer;ZLjava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/User;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Lkotlinx/datetime/LocalDateTime;Ljava/lang/String;Ljava/lang/String;)V
-	public fun <init> (JLjava/lang/String;Ljava/lang/String;Ljava/lang/Integer;ZLjava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/User;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Lkotlinx/datetime/LocalDateTime;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
-	public fun <init> (JLjava/lang/String;Ljava/lang/String;Ljava/lang/Integer;ZLjava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/User;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Lkotlinx/datetime/LocalDateTime;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;)V
-	public fun <init> (JLjava/lang/String;Ljava/lang/String;Ljava/lang/Integer;ZLjava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/User;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Lkotlinx/datetime/LocalDateTime;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;)V
-	public synthetic fun <init> (JLjava/lang/String;Ljava/lang/String;Ljava/lang/Integer;ZLjava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/User;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Lkotlinx/datetime/LocalDateTime;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public fun <init> (JLjava/lang/String;Ljava/lang/String;Ljava/lang/Integer;ZLjava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/User;)V
-	public fun <init> (JLjava/lang/String;Ljava/lang/String;Ljava/lang/Integer;ZLjava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/User;)V
-	public fun <init> (JLjava/lang/String;Ljava/lang/String;Ljava/lang/Integer;ZLjava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/User;)V
-	public fun <init> (JLjava/lang/String;Ljava/lang/String;Ljava/lang/Integer;ZLjava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/User;)V
-	public fun <init> (JLjava/lang/String;Ljava/lang/String;Ljava/lang/Integer;ZLjava/lang/Boolean;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/User;)V
-	public fun <init> (JLjava/lang/String;Ljava/lang/String;Ljava/lang/Integer;ZLjava/lang/String;Lio/github/kingg22/deezer/client/api/objects/User;)V
-	public fun <init> (JLjava/lang/String;Ljava/lang/String;ZLjava/lang/String;Lio/github/kingg22/deezer/client/api/objects/User;)V
 	public fun <init> (JLjava/lang/String;ZLjava/lang/String;Lio/github/kingg22/deezer/client/api/objects/User;)V
-	public final fun component1 ()J
-	public final fun component10 ()Ljava/lang/Integer;
-	public final fun component11 ()Ljava/lang/Integer;
-	public final fun component12 ()Ljava/lang/String;
-	public final fun component13 ()Ljava/lang/String;
-	public final fun component14 ()Ljava/lang/String;
-	public final fun component15 ()Ljava/lang/String;
-	public final fun component16 ()Ljava/lang/String;
-	public final fun component17 ()Ljava/lang/String;
-	public final fun component18 ()Ljava/lang/String;
-	public final fun component19 ()Ljava/lang/String;
-	public final fun component2 ()Ljava/lang/String;
-	public final fun component20 ()Lio/github/kingg22/deezer/client/api/objects/User;
-	public final fun component21 ()Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;
-	public final fun component22 ()Lkotlinx/datetime/LocalDateTime;
-	public final fun component23 ()Ljava/lang/String;
-	public final fun component24 ()Ljava/lang/String;
-	public final fun component25 ()Ljava/lang/String;
-	public final fun component26 ()Ljava/lang/Integer;
-	public final fun component27 ()Ljava/lang/String;
-	public final fun component3 ()Ljava/lang/String;
-	public final fun component4 ()Ljava/lang/Integer;
-	public final fun component5 ()Z
-	public final fun component6 ()Ljava/lang/Boolean;
-	public final fun component7 ()Ljava/lang/Boolean;
-	public final fun component8 ()Ljava/lang/Integer;
-	public final fun component9 ()Ljava/lang/Integer;
-	public final fun copy (JLjava/lang/String;Ljava/lang/String;Ljava/lang/Integer;ZLjava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/User;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Lkotlinx/datetime/LocalDateTime;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;)Lio/github/kingg22/deezer/client/api/objects/Playlist;
-	public static synthetic fun copy$default (Lio/github/kingg22/deezer/client/api/objects/Playlist;JLjava/lang/String;Ljava/lang/String;Ljava/lang/Integer;ZLjava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/User;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Lkotlinx/datetime/LocalDateTime;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;ILjava/lang/Object;)Lio/github/kingg22/deezer/client/api/objects/Playlist;
+	public fun <init> (JLjava/lang/String;ZLjava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/User;)V
+	public fun <init> (JLjava/lang/String;ZLjava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/User;Ljava/lang/Boolean;)V
+	public fun <init> (JLjava/lang/String;ZLjava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/User;Ljava/lang/Boolean;Ljava/lang/Boolean;)V
+	public fun <init> (JLjava/lang/String;ZLjava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/User;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;)V
+	public fun <init> (JLjava/lang/String;ZLjava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/User;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Integer;)V
+	public fun <init> (JLjava/lang/String;ZLjava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/User;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;)V
+	public fun <init> (JLjava/lang/String;ZLjava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/User;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;)V
+	public fun <init> (JLjava/lang/String;ZLjava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/User;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;)V
+	public fun <init> (JLjava/lang/String;ZLjava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/User;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;)V
+	public fun <init> (JLjava/lang/String;ZLjava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/User;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public fun <init> (JLjava/lang/String;ZLjava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/User;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public fun <init> (JLjava/lang/String;ZLjava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/User;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public fun <init> (JLjava/lang/String;ZLjava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/User;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public fun <init> (JLjava/lang/String;ZLjava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/User;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public fun <init> (JLjava/lang/String;ZLjava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/User;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;)V
+	public fun <init> (JLjava/lang/String;ZLjava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/User;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Lkotlinx/datetime/LocalDateTime;)V
+	public fun <init> (JLjava/lang/String;ZLjava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/User;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Lkotlinx/datetime/LocalDateTime;Ljava/lang/String;)V
+	public fun <init> (JLjava/lang/String;ZLjava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/User;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Lkotlinx/datetime/LocalDateTime;Ljava/lang/String;Ljava/lang/String;)V
+	public fun <init> (JLjava/lang/String;ZLjava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/User;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Lkotlinx/datetime/LocalDateTime;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public fun <init> (JLjava/lang/String;ZLjava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/User;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Lkotlinx/datetime/LocalDateTime;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;)V
+	public fun <init> (JLjava/lang/String;ZLjava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/User;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Lkotlinx/datetime/LocalDateTime;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;)V
+	public synthetic fun <init> (JLjava/lang/String;ZLjava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/User;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Lkotlinx/datetime/LocalDateTime;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (JLjava/lang/String;ZLjava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/User;)V
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getChecksum ()Ljava/lang/String;
 	public final fun getCreationDate ()Lkotlinx/datetime/LocalDateTime;
@@ -890,21 +673,6 @@ public final class io/github/kingg22/deezer/client/api/objects/Podcast : io/gith
 	public fun <init> (JLjava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
 	public fun <init> (JLjava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
 	public synthetic fun <init> (JLjava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun component1 ()J
-	public final fun component10 ()Ljava/lang/String;
-	public final fun component11 ()Ljava/lang/String;
-	public final fun component12 ()Ljava/lang/String;
-	public final fun component13 ()Ljava/lang/String;
-	public final fun component2 ()Ljava/lang/String;
-	public final fun component3 ()Ljava/lang/String;
-	public final fun component4 ()Ljava/lang/Boolean;
-	public final fun component5 ()Ljava/lang/Integer;
-	public final fun component6 ()Ljava/lang/String;
-	public final fun component7 ()Ljava/lang/String;
-	public final fun component8 ()Ljava/lang/String;
-	public final fun component9 ()Ljava/lang/String;
-	public final fun copy (JLjava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lio/github/kingg22/deezer/client/api/objects/Podcast;
-	public static synthetic fun copy$default (Lio/github/kingg22/deezer/client/api/objects/Podcast;JLjava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lio/github/kingg22/deezer/client/api/objects/Podcast;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getDescription ()Ljava/lang/String;
 	public final fun getFans ()Ljava/lang/Integer;
@@ -953,20 +721,6 @@ public final class io/github/kingg22/deezer/client/api/objects/Radio : io/github
 	public fun <init> (JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
 	public fun <init> (JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
 	public synthetic fun <init> (JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun component1 ()J
-	public final fun component10 ()Ljava/lang/String;
-	public final fun component11 ()Ljava/lang/String;
-	public final fun component12 ()Ljava/lang/String;
-	public final fun component2 ()Ljava/lang/String;
-	public final fun component3 ()Ljava/lang/String;
-	public final fun component4 ()Ljava/lang/String;
-	public final fun component5 ()Ljava/lang/String;
-	public final fun component6 ()Ljava/lang/String;
-	public final fun component7 ()Ljava/lang/String;
-	public final fun component8 ()Ljava/lang/String;
-	public final fun component9 ()Ljava/lang/String;
-	public final fun copy (JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lio/github/kingg22/deezer/client/api/objects/Radio;
-	public static synthetic fun copy$default (Lio/github/kingg22/deezer/client/api/objects/Radio;JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lio/github/kingg22/deezer/client/api/objects/Radio;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getDescription ()Ljava/lang/String;
 	public fun getId ()J
@@ -1000,16 +754,10 @@ public final class io/github/kingg22/deezer/client/api/objects/Radio$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
-public abstract class io/github/kingg22/deezer/client/api/objects/Resource {
-	public static final field Companion Lio/github/kingg22/deezer/client/api/objects/Resource$Companion;
-	public fun <init> ()V
-	protected static final fun client ()Lio/github/kingg22/deezer/client/api/DeezerApiClient;
+public abstract interface class io/github/kingg22/deezer/client/api/objects/Resource {
 	public abstract fun getId ()J
 	public abstract fun getType ()Ljava/lang/String;
 	public abstract synthetic fun reload (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-}
-
-public final class io/github/kingg22/deezer/client/api/objects/Resource$Companion {
 }
 
 public final class io/github/kingg22/deezer/client/api/objects/Resources {
@@ -1059,14 +807,6 @@ public final class io/github/kingg22/deezer/client/api/objects/SearchUserHistory
 	public fun <init> (Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;)V
 	public fun <init> (Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;)V
 	public synthetic fun <init> (Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun component1 ()Ljava/util/List;
-	public final fun component2 ()Ljava/util/List;
-	public final fun component3 ()Ljava/util/List;
-	public final fun component4 ()Ljava/util/List;
-	public final fun component5 ()Ljava/util/List;
-	public final fun component6 ()Ljava/util/List;
-	public final fun copy (Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;)Lio/github/kingg22/deezer/client/api/objects/SearchUserHistory;
-	public static synthetic fun copy$default (Lio/github/kingg22/deezer/client/api/objects/SearchUserHistory;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;ILjava/lang/Object;)Lio/github/kingg22/deezer/client/api/objects/SearchUserHistory;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getAlbums ()Ljava/util/List;
 	public final fun getArtists ()Ljava/util/List;
@@ -1095,62 +835,30 @@ public final class io/github/kingg22/deezer/client/api/objects/SearchUserHistory
 
 public final class io/github/kingg22/deezer/client/api/objects/Track : io/github/kingg22/deezer/client/api/objects/Resource {
 	public static final field Companion Lio/github/kingg22/deezer/client/api/objects/Track$Companion;
-	public fun <init> (JLjava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;IIZLjava/lang/String;Lio/github/kingg22/deezer/client/api/objects/Artist;)V
-	public fun <init> (JLjava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;IIZLjava/lang/String;Lio/github/kingg22/deezer/client/api/objects/Artist;)V
-	public fun <init> (JLjava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;IIZLjava/lang/String;Lio/github/kingg22/deezer/client/api/objects/Artist;)V
-	public fun <init> (JLjava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;IIZLjava/lang/String;Lio/github/kingg22/deezer/client/api/objects/Artist;)V
-	public fun <init> (JLjava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;IIZLjava/lang/String;Lio/github/kingg22/deezer/client/api/objects/Artist;)V
-	public fun <init> (JLjava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;IIZLjava/lang/String;Lio/github/kingg22/deezer/client/api/objects/Artist;)V
-	public fun <init> (JLjava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Integer;IZLjava/lang/String;Lio/github/kingg22/deezer/client/api/objects/Artist;)V
-	public fun <init> (JLjava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Integer;Ljava/lang/Integer;ILkotlinx/datetime/LocalDate;ZLio/github/kingg22/deezer/client/api/objects/Explicit;Lio/github/kingg22/deezer/client/api/objects/Explicit;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/Artist;)V
-	public fun <init> (JLjava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Integer;Ljava/lang/Integer;ILkotlinx/datetime/LocalDate;ZLio/github/kingg22/deezer/client/api/objects/Explicit;Lio/github/kingg22/deezer/client/api/objects/Explicit;Ljava/lang/String;Ljava/lang/Float;Lio/github/kingg22/deezer/client/api/objects/Artist;)V
-	public fun <init> (JLjava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Integer;Ljava/lang/Integer;ILkotlinx/datetime/LocalDate;ZLio/github/kingg22/deezer/client/api/objects/Explicit;Lio/github/kingg22/deezer/client/api/objects/Explicit;Ljava/lang/String;Ljava/lang/Float;Ljava/lang/Float;Lio/github/kingg22/deezer/client/api/objects/Artist;)V
-	public fun <init> (JLjava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Integer;Ljava/lang/Integer;ILkotlinx/datetime/LocalDate;ZLio/github/kingg22/deezer/client/api/objects/Explicit;Lio/github/kingg22/deezer/client/api/objects/Explicit;Ljava/lang/String;Ljava/lang/Float;Ljava/lang/Float;Ljava/util/List;Lio/github/kingg22/deezer/client/api/objects/Artist;)V
-	public fun <init> (JLjava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Integer;Ljava/lang/Integer;ILkotlinx/datetime/LocalDate;ZLio/github/kingg22/deezer/client/api/objects/Explicit;Lio/github/kingg22/deezer/client/api/objects/Explicit;Ljava/lang/String;Ljava/lang/Float;Ljava/lang/Float;Ljava/util/List;Lio/github/kingg22/deezer/client/api/objects/Track;Lio/github/kingg22/deezer/client/api/objects/Artist;)V
-	public fun <init> (JLjava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Integer;Ljava/lang/Integer;ILkotlinx/datetime/LocalDate;ZLio/github/kingg22/deezer/client/api/objects/Explicit;Lio/github/kingg22/deezer/client/api/objects/Explicit;Ljava/lang/String;Ljava/lang/Float;Ljava/lang/Float;Ljava/util/List;Lio/github/kingg22/deezer/client/api/objects/Track;Ljava/util/List;Lio/github/kingg22/deezer/client/api/objects/Artist;)V
-	public fun <init> (JLjava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Integer;Ljava/lang/Integer;ILkotlinx/datetime/LocalDate;ZLio/github/kingg22/deezer/client/api/objects/Explicit;Lio/github/kingg22/deezer/client/api/objects/Explicit;Ljava/lang/String;Ljava/lang/Float;Ljava/lang/Float;Ljava/util/List;Lio/github/kingg22/deezer/client/api/objects/Track;Ljava/util/List;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/Artist;)V
-	public fun <init> (JLjava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Integer;Ljava/lang/Integer;ILkotlinx/datetime/LocalDate;ZLio/github/kingg22/deezer/client/api/objects/Explicit;Lio/github/kingg22/deezer/client/api/objects/Explicit;Ljava/lang/String;Ljava/lang/Float;Ljava/lang/Float;Ljava/util/List;Lio/github/kingg22/deezer/client/api/objects/Track;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/Artist;)V
-	public fun <init> (JLjava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Integer;Ljava/lang/Integer;ILkotlinx/datetime/LocalDate;ZLio/github/kingg22/deezer/client/api/objects/Explicit;Lio/github/kingg22/deezer/client/api/objects/Explicit;Ljava/lang/String;Ljava/lang/Float;Ljava/lang/Float;Ljava/util/List;Lio/github/kingg22/deezer/client/api/objects/Track;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/Artist;Lio/github/kingg22/deezer/client/api/objects/Album;)V
-	public fun <init> (JLjava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Integer;Ljava/lang/Integer;ILkotlinx/datetime/LocalDate;ZLio/github/kingg22/deezer/client/api/objects/Explicit;Lio/github/kingg22/deezer/client/api/objects/Explicit;Ljava/lang/String;Ljava/lang/Float;Ljava/lang/Float;Ljava/util/List;Lio/github/kingg22/deezer/client/api/objects/Track;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/Artist;Lio/github/kingg22/deezer/client/api/objects/Album;Ljava/lang/String;)V
-	public fun <init> (JLjava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Integer;Ljava/lang/Integer;ILkotlinx/datetime/LocalDate;ZLio/github/kingg22/deezer/client/api/objects/Explicit;Lio/github/kingg22/deezer/client/api/objects/Explicit;Ljava/lang/String;Ljava/lang/Float;Ljava/lang/Float;Ljava/util/List;Lio/github/kingg22/deezer/client/api/objects/Track;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/Artist;Lio/github/kingg22/deezer/client/api/objects/Album;Ljava/lang/String;Ljava/lang/Integer;)V
-	public fun <init> (JLjava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Integer;Ljava/lang/Integer;ILkotlinx/datetime/LocalDate;ZLio/github/kingg22/deezer/client/api/objects/Explicit;Lio/github/kingg22/deezer/client/api/objects/Explicit;Ljava/lang/String;Ljava/lang/Float;Ljava/lang/Float;Ljava/util/List;Lio/github/kingg22/deezer/client/api/objects/Track;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/Artist;Lio/github/kingg22/deezer/client/api/objects/Album;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Long;)V
-	public synthetic fun <init> (JLjava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Integer;Ljava/lang/Integer;ILkotlinx/datetime/LocalDate;ZLio/github/kingg22/deezer/client/api/objects/Explicit;Lio/github/kingg22/deezer/client/api/objects/Explicit;Ljava/lang/String;Ljava/lang/Float;Ljava/lang/Float;Ljava/util/List;Lio/github/kingg22/deezer/client/api/objects/Track;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/Artist;Lio/github/kingg22/deezer/client/api/objects/Album;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Long;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public fun <init> (JLjava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Integer;Ljava/lang/Integer;ILkotlinx/datetime/LocalDate;ZLio/github/kingg22/deezer/client/api/objects/Explicit;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/Artist;)V
-	public fun <init> (JLjava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Integer;Ljava/lang/Integer;ILkotlinx/datetime/LocalDate;ZLjava/lang/String;Lio/github/kingg22/deezer/client/api/objects/Artist;)V
-	public fun <init> (JLjava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Integer;Ljava/lang/Integer;IZLjava/lang/String;Lio/github/kingg22/deezer/client/api/objects/Artist;)V
-	public fun <init> (JLjava/lang/String;Ljava/lang/String;IIZLjava/lang/String;Lio/github/kingg22/deezer/client/api/objects/Artist;)V
-	public final fun component1 ()J
-	public final fun component10 ()I
-	public final fun component11 ()Ljava/lang/Integer;
-	public final fun component12 ()Ljava/lang/Integer;
-	public final fun component13 ()I
-	public final fun component14 ()Lkotlinx/datetime/LocalDate;
-	public final fun component15 ()Z
-	public final fun component16 ()Lio/github/kingg22/deezer/client/api/objects/Explicit;
-	public final fun component17 ()Lio/github/kingg22/deezer/client/api/objects/Explicit;
-	public final fun component18 ()Ljava/lang/String;
-	public final fun component19 ()Ljava/lang/Float;
-	public final fun component2 ()Ljava/lang/Boolean;
-	public final fun component20 ()Ljava/lang/Float;
-	public final fun component21 ()Ljava/util/List;
-	public final fun component22 ()Lio/github/kingg22/deezer/client/api/objects/Track;
-	public final fun component23 ()Ljava/util/List;
-	public final fun component24 ()Ljava/lang/String;
-	public final fun component25 ()Ljava/lang/String;
-	public final fun component26 ()Lio/github/kingg22/deezer/client/api/objects/Artist;
-	public final fun component27 ()Lio/github/kingg22/deezer/client/api/objects/Album;
-	public final fun component28 ()Ljava/lang/String;
-	public final fun component29 ()Ljava/lang/Integer;
-	public final fun component3 ()Ljava/lang/String;
-	public final fun component30 ()Ljava/lang/Long;
-	public final fun component4 ()Ljava/lang/String;
-	public final fun component5 ()Ljava/lang/String;
-	public final fun component6 ()Ljava/lang/Boolean;
-	public final fun component7 ()Ljava/lang/String;
-	public final fun component8 ()Ljava/lang/String;
-	public final fun component9 ()Ljava/lang/String;
-	public final fun copy (JLjava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Integer;Ljava/lang/Integer;ILkotlinx/datetime/LocalDate;ZLio/github/kingg22/deezer/client/api/objects/Explicit;Lio/github/kingg22/deezer/client/api/objects/Explicit;Ljava/lang/String;Ljava/lang/Float;Ljava/lang/Float;Ljava/util/List;Lio/github/kingg22/deezer/client/api/objects/Track;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/Artist;Lio/github/kingg22/deezer/client/api/objects/Album;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Long;)Lio/github/kingg22/deezer/client/api/objects/Track;
-	public static synthetic fun copy$default (Lio/github/kingg22/deezer/client/api/objects/Track;JLjava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Integer;Ljava/lang/Integer;ILkotlinx/datetime/LocalDate;ZLio/github/kingg22/deezer/client/api/objects/Explicit;Lio/github/kingg22/deezer/client/api/objects/Explicit;Ljava/lang/String;Ljava/lang/Float;Ljava/lang/Float;Ljava/util/List;Lio/github/kingg22/deezer/client/api/objects/Track;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/Artist;Lio/github/kingg22/deezer/client/api/objects/Album;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Long;ILjava/lang/Object;)Lio/github/kingg22/deezer/client/api/objects/Track;
+	public fun <init> (JLjava/lang/String;Ljava/lang/String;IILjava/lang/String;Lio/github/kingg22/deezer/client/api/objects/Artist;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Lkotlinx/datetime/LocalDate;Z)V
+	public fun <init> (JLjava/lang/String;Ljava/lang/String;IILjava/lang/String;Lio/github/kingg22/deezer/client/api/objects/Artist;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Lkotlinx/datetime/LocalDate;ZLio/github/kingg22/deezer/client/api/objects/Explicit;)V
+	public fun <init> (JLjava/lang/String;Ljava/lang/String;IILjava/lang/String;Lio/github/kingg22/deezer/client/api/objects/Artist;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Lkotlinx/datetime/LocalDate;ZLio/github/kingg22/deezer/client/api/objects/Explicit;Lio/github/kingg22/deezer/client/api/objects/Explicit;)V
+	public fun <init> (JLjava/lang/String;Ljava/lang/String;IILjava/lang/String;Lio/github/kingg22/deezer/client/api/objects/Artist;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Lkotlinx/datetime/LocalDate;ZLio/github/kingg22/deezer/client/api/objects/Explicit;Lio/github/kingg22/deezer/client/api/objects/Explicit;Ljava/lang/Float;)V
+	public fun <init> (JLjava/lang/String;Ljava/lang/String;IILjava/lang/String;Lio/github/kingg22/deezer/client/api/objects/Artist;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Lkotlinx/datetime/LocalDate;ZLio/github/kingg22/deezer/client/api/objects/Explicit;Lio/github/kingg22/deezer/client/api/objects/Explicit;Ljava/lang/Float;Ljava/lang/Float;)V
+	public fun <init> (JLjava/lang/String;Ljava/lang/String;IILjava/lang/String;Lio/github/kingg22/deezer/client/api/objects/Artist;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Lkotlinx/datetime/LocalDate;ZLio/github/kingg22/deezer/client/api/objects/Explicit;Lio/github/kingg22/deezer/client/api/objects/Explicit;Ljava/lang/Float;Ljava/lang/Float;Ljava/util/List;)V
+	public fun <init> (JLjava/lang/String;Ljava/lang/String;IILjava/lang/String;Lio/github/kingg22/deezer/client/api/objects/Artist;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Lkotlinx/datetime/LocalDate;ZLio/github/kingg22/deezer/client/api/objects/Explicit;Lio/github/kingg22/deezer/client/api/objects/Explicit;Ljava/lang/Float;Ljava/lang/Float;Ljava/util/List;Lio/github/kingg22/deezer/client/api/objects/Track;)V
+	public fun <init> (JLjava/lang/String;Ljava/lang/String;IILjava/lang/String;Lio/github/kingg22/deezer/client/api/objects/Artist;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Lkotlinx/datetime/LocalDate;ZLio/github/kingg22/deezer/client/api/objects/Explicit;Lio/github/kingg22/deezer/client/api/objects/Explicit;Ljava/lang/Float;Ljava/lang/Float;Ljava/util/List;Lio/github/kingg22/deezer/client/api/objects/Track;Ljava/util/List;)V
+	public fun <init> (JLjava/lang/String;Ljava/lang/String;IILjava/lang/String;Lio/github/kingg22/deezer/client/api/objects/Artist;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Lkotlinx/datetime/LocalDate;ZLio/github/kingg22/deezer/client/api/objects/Explicit;Lio/github/kingg22/deezer/client/api/objects/Explicit;Ljava/lang/Float;Ljava/lang/Float;Ljava/util/List;Lio/github/kingg22/deezer/client/api/objects/Track;Ljava/util/List;Ljava/lang/String;)V
+	public fun <init> (JLjava/lang/String;Ljava/lang/String;IILjava/lang/String;Lio/github/kingg22/deezer/client/api/objects/Artist;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Lkotlinx/datetime/LocalDate;ZLio/github/kingg22/deezer/client/api/objects/Explicit;Lio/github/kingg22/deezer/client/api/objects/Explicit;Ljava/lang/Float;Ljava/lang/Float;Ljava/util/List;Lio/github/kingg22/deezer/client/api/objects/Track;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;)V
+	public fun <init> (JLjava/lang/String;Ljava/lang/String;IILjava/lang/String;Lio/github/kingg22/deezer/client/api/objects/Artist;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Lkotlinx/datetime/LocalDate;ZLio/github/kingg22/deezer/client/api/objects/Explicit;Lio/github/kingg22/deezer/client/api/objects/Explicit;Ljava/lang/Float;Ljava/lang/Float;Ljava/util/List;Lio/github/kingg22/deezer/client/api/objects/Track;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/Album;)V
+	public fun <init> (JLjava/lang/String;Ljava/lang/String;IILjava/lang/String;Lio/github/kingg22/deezer/client/api/objects/Artist;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Lkotlinx/datetime/LocalDate;ZLio/github/kingg22/deezer/client/api/objects/Explicit;Lio/github/kingg22/deezer/client/api/objects/Explicit;Ljava/lang/Float;Ljava/lang/Float;Ljava/util/List;Lio/github/kingg22/deezer/client/api/objects/Track;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/Album;Ljava/lang/String;)V
+	public fun <init> (JLjava/lang/String;Ljava/lang/String;IILjava/lang/String;Lio/github/kingg22/deezer/client/api/objects/Artist;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Lkotlinx/datetime/LocalDate;ZLio/github/kingg22/deezer/client/api/objects/Explicit;Lio/github/kingg22/deezer/client/api/objects/Explicit;Ljava/lang/Float;Ljava/lang/Float;Ljava/util/List;Lio/github/kingg22/deezer/client/api/objects/Track;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/Album;Ljava/lang/String;Ljava/lang/Integer;)V
+	public fun <init> (JLjava/lang/String;Ljava/lang/String;IILjava/lang/String;Lio/github/kingg22/deezer/client/api/objects/Artist;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Lkotlinx/datetime/LocalDate;ZLio/github/kingg22/deezer/client/api/objects/Explicit;Lio/github/kingg22/deezer/client/api/objects/Explicit;Ljava/lang/Float;Ljava/lang/Float;Ljava/util/List;Lio/github/kingg22/deezer/client/api/objects/Track;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/Album;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Long;)V
+	public synthetic fun <init> (JLjava/lang/String;Ljava/lang/String;IILjava/lang/String;Lio/github/kingg22/deezer/client/api/objects/Artist;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Lkotlinx/datetime/LocalDate;ZLio/github/kingg22/deezer/client/api/objects/Explicit;Lio/github/kingg22/deezer/client/api/objects/Explicit;Ljava/lang/Float;Ljava/lang/Float;Ljava/util/List;Lio/github/kingg22/deezer/client/api/objects/Track;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/Album;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Long;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (JLjava/lang/String;Ljava/lang/String;IILjava/lang/String;Lio/github/kingg22/deezer/client/api/objects/Artist;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Z)V
+	public fun <init> (JLjava/lang/String;Ljava/lang/String;IILjava/lang/String;Lio/github/kingg22/deezer/client/api/objects/Artist;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Z)V
+	public fun <init> (JLjava/lang/String;Ljava/lang/String;IILjava/lang/String;Lio/github/kingg22/deezer/client/api/objects/Artist;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Z)V
+	public fun <init> (JLjava/lang/String;Ljava/lang/String;IILjava/lang/String;Lio/github/kingg22/deezer/client/api/objects/Artist;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Z)V
+	public fun <init> (JLjava/lang/String;Ljava/lang/String;IILjava/lang/String;Lio/github/kingg22/deezer/client/api/objects/Artist;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Z)V
+	public fun <init> (JLjava/lang/String;Ljava/lang/String;IILjava/lang/String;Lio/github/kingg22/deezer/client/api/objects/Artist;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Z)V
+	public fun <init> (JLjava/lang/String;Ljava/lang/String;IILjava/lang/String;Lio/github/kingg22/deezer/client/api/objects/Artist;Ljava/lang/Boolean;Ljava/lang/String;Z)V
+	public fun <init> (JLjava/lang/String;Ljava/lang/String;IILjava/lang/String;Lio/github/kingg22/deezer/client/api/objects/Artist;Ljava/lang/Boolean;Z)V
+	public fun <init> (JLjava/lang/String;Ljava/lang/String;IILjava/lang/String;Lio/github/kingg22/deezer/client/api/objects/Artist;Z)V
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getAlbum ()Lio/github/kingg22/deezer/client/api/objects/Album;
 	public final fun getAlternative ()Lio/github/kingg22/deezer/client/api/objects/Track;
@@ -1226,30 +934,6 @@ public final class io/github/kingg22/deezer/client/api/objects/User : io/github/
 	public fun <init> (JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Lkotlinx/datetime/LocalDate;Lkotlinx/datetime/LocalDate;Lio/github/kingg22/deezer/client/api/objects/User$Gender;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;)V
 	public fun <init> (JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Lkotlinx/datetime/LocalDate;Lkotlinx/datetime/LocalDate;Lio/github/kingg22/deezer/client/api/objects/User$Gender;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;)V
 	public synthetic fun <init> (JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Lkotlinx/datetime/LocalDate;Lkotlinx/datetime/LocalDate;Lio/github/kingg22/deezer/client/api/objects/User$Gender;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun component1 ()J
-	public final fun component10 ()Ljava/lang/String;
-	public final fun component11 ()Ljava/lang/String;
-	public final fun component12 ()Ljava/lang/String;
-	public final fun component13 ()Ljava/lang/String;
-	public final fun component14 ()Ljava/lang/String;
-	public final fun component15 ()Ljava/lang/String;
-	public final fun component16 ()Ljava/lang/String;
-	public final fun component17 ()Ljava/lang/String;
-	public final fun component18 ()Ljava/lang/Boolean;
-	public final fun component19 ()Ljava/lang/String;
-	public final fun component2 ()Ljava/lang/String;
-	public final fun component20 ()Ljava/util/List;
-	public final fun component21 ()Ljava/lang/String;
-	public final fun component22 ()Ljava/lang/String;
-	public final fun component3 ()Ljava/lang/String;
-	public final fun component4 ()Ljava/lang/String;
-	public final fun component5 ()Ljava/lang/String;
-	public final fun component6 ()Ljava/lang/Integer;
-	public final fun component7 ()Lkotlinx/datetime/LocalDate;
-	public final fun component8 ()Lkotlinx/datetime/LocalDate;
-	public final fun component9 ()Lio/github/kingg22/deezer/client/api/objects/User$Gender;
-	public final fun copy (JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Lkotlinx/datetime/LocalDate;Lkotlinx/datetime/LocalDate;Lio/github/kingg22/deezer/client/api/objects/User$Gender;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;)Lio/github/kingg22/deezer/client/api/objects/User;
-	public static synthetic fun copy$default (Lio/github/kingg22/deezer/client/api/objects/User;JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Lkotlinx/datetime/LocalDate;Lkotlinx/datetime/LocalDate;Lio/github/kingg22/deezer/client/api/objects/User$Gender;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lio/github/kingg22/deezer/client/api/objects/User;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getBirthday ()Lkotlinx/datetime/LocalDate;
 	public final fun getCountry ()Ljava/lang/String;
@@ -2226,267 +1910,12 @@ public abstract interface class io/github/kingg22/deezer/client/api/routes/UserR
 	public abstract fun getById (JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
-public final class io/github/kingg22/deezer/client/api/routes/_AlbumRoutesImpl : io/github/kingg22/deezer/client/api/routes/AlbumRoutes {
-	public fun <init> (Lde/jensklingenberg/ktorfit/Ktorfit;)V
-	public fun getById (JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun getByUpc (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun getFans (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun getTracks (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-}
-
-public final class io/github/kingg22/deezer/client/api/routes/_AlbumRoutesImplKt {
-	public static final fun createAlbumRoutes (Lde/jensklingenberg/ktorfit/Ktorfit;)Lio/github/kingg22/deezer/client/api/routes/AlbumRoutes;
-}
-
-public final class io/github/kingg22/deezer/client/api/routes/_AlbumRoutesProvider : de/jensklingenberg/ktorfit/internal/ClassProvider {
-	public fun <init> ()V
-	public fun create (Lde/jensklingenberg/ktorfit/Ktorfit;)Lio/github/kingg22/deezer/client/api/routes/AlbumRoutes;
-	public synthetic fun create (Lde/jensklingenberg/ktorfit/Ktorfit;)Ljava/lang/Object;
-}
-
-public final class io/github/kingg22/deezer/client/api/routes/_ArtistRoutesImpl : io/github/kingg22/deezer/client/api/routes/ArtistRoutes {
-	public fun <init> (Lde/jensklingenberg/ktorfit/Ktorfit;)V
-	public fun getAlbums (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun getById (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun getFans (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun getPlaylists (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun getRadio (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun getRelated (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun getTopTracks (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-}
-
-public final class io/github/kingg22/deezer/client/api/routes/_ArtistRoutesImplKt {
-	public static final fun createArtistRoutes (Lde/jensklingenberg/ktorfit/Ktorfit;)Lio/github/kingg22/deezer/client/api/routes/ArtistRoutes;
-}
-
-public final class io/github/kingg22/deezer/client/api/routes/_ArtistRoutesProvider : de/jensklingenberg/ktorfit/internal/ClassProvider {
-	public fun <init> ()V
-	public fun create (Lde/jensklingenberg/ktorfit/Ktorfit;)Lio/github/kingg22/deezer/client/api/routes/ArtistRoutes;
-	public synthetic fun create (Lde/jensklingenberg/ktorfit/Ktorfit;)Ljava/lang/Object;
-}
-
-public final class io/github/kingg22/deezer/client/api/routes/_ChartRoutesImpl : io/github/kingg22/deezer/client/api/routes/ChartRoutes {
-	public fun <init> (Lde/jensklingenberg/ktorfit/Ktorfit;)V
-	public fun getAlbums (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun getAll (Ljava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun getArtists (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun getById (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun getPlaylists (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun getPodcasts (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun getTracks (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-}
-
-public final class io/github/kingg22/deezer/client/api/routes/_ChartRoutesImplKt {
-	public static final fun createChartRoutes (Lde/jensklingenberg/ktorfit/Ktorfit;)Lio/github/kingg22/deezer/client/api/routes/ChartRoutes;
-}
-
-public final class io/github/kingg22/deezer/client/api/routes/_ChartRoutesProvider : de/jensklingenberg/ktorfit/internal/ClassProvider {
-	public fun <init> ()V
-	public fun create (Lde/jensklingenberg/ktorfit/Ktorfit;)Lio/github/kingg22/deezer/client/api/routes/ChartRoutes;
-	public synthetic fun create (Lde/jensklingenberg/ktorfit/Ktorfit;)Ljava/lang/Object;
-}
-
-public final class io/github/kingg22/deezer/client/api/routes/_EditorialRoutesImpl : io/github/kingg22/deezer/client/api/routes/EditorialRoutes {
-	public fun <init> (Lde/jensklingenberg/ktorfit/Ktorfit;)V
-	public fun getAll (Ljava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun getById (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun getCharts (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun getDeezerSelection (JLkotlinx/datetime/LocalDate;Ljava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun getReleases (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-}
-
-public final class io/github/kingg22/deezer/client/api/routes/_EditorialRoutesImplKt {
-	public static final fun createEditorialRoutes (Lde/jensklingenberg/ktorfit/Ktorfit;)Lio/github/kingg22/deezer/client/api/routes/EditorialRoutes;
-}
-
-public final class io/github/kingg22/deezer/client/api/routes/_EditorialRoutesProvider : de/jensklingenberg/ktorfit/internal/ClassProvider {
-	public fun <init> ()V
-	public fun create (Lde/jensklingenberg/ktorfit/Ktorfit;)Lio/github/kingg22/deezer/client/api/routes/EditorialRoutes;
-	public synthetic fun create (Lde/jensklingenberg/ktorfit/Ktorfit;)Ljava/lang/Object;
-}
-
-public final class io/github/kingg22/deezer/client/api/routes/_EpisodeRoutesImpl : io/github/kingg22/deezer/client/api/routes/EpisodeRoutes {
-	public fun <init> (Lde/jensklingenberg/ktorfit/Ktorfit;)V
-	public fun getById (JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
-}
-
-public final class io/github/kingg22/deezer/client/api/routes/_EpisodeRoutesImplKt {
-	public static final fun createEpisodeRoutes (Lde/jensklingenberg/ktorfit/Ktorfit;)Lio/github/kingg22/deezer/client/api/routes/EpisodeRoutes;
-}
-
-public final class io/github/kingg22/deezer/client/api/routes/_EpisodeRoutesProvider : de/jensklingenberg/ktorfit/internal/ClassProvider {
-	public fun <init> ()V
-	public fun create (Lde/jensklingenberg/ktorfit/Ktorfit;)Lio/github/kingg22/deezer/client/api/routes/EpisodeRoutes;
-	public synthetic fun create (Lde/jensklingenberg/ktorfit/Ktorfit;)Ljava/lang/Object;
-}
-
-public final class io/github/kingg22/deezer/client/api/routes/_GenreRoutesImpl : io/github/kingg22/deezer/client/api/routes/GenreRoutes {
-	public fun <init> (Lde/jensklingenberg/ktorfit/Ktorfit;)V
-	public fun getAll (Ljava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun getArtists (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun getById (JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun getPodcasts (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun getRadios (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-}
-
-public final class io/github/kingg22/deezer/client/api/routes/_GenreRoutesImplKt {
-	public static final fun createGenreRoutes (Lde/jensklingenberg/ktorfit/Ktorfit;)Lio/github/kingg22/deezer/client/api/routes/GenreRoutes;
-}
-
-public final class io/github/kingg22/deezer/client/api/routes/_GenreRoutesProvider : de/jensklingenberg/ktorfit/internal/ClassProvider {
-	public fun <init> ()V
-	public fun create (Lde/jensklingenberg/ktorfit/Ktorfit;)Lio/github/kingg22/deezer/client/api/routes/GenreRoutes;
-	public synthetic fun create (Lde/jensklingenberg/ktorfit/Ktorfit;)Ljava/lang/Object;
-}
-
-public final class io/github/kingg22/deezer/client/api/routes/_InfosRouteImpl : io/github/kingg22/deezer/client/api/routes/InfosRoute {
-	public fun <init> (Lde/jensklingenberg/ktorfit/Ktorfit;)V
-	public fun getInfos (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-}
-
-public final class io/github/kingg22/deezer/client/api/routes/_InfosRouteImplKt {
-	public static final fun createInfosRoute (Lde/jensklingenberg/ktorfit/Ktorfit;)Lio/github/kingg22/deezer/client/api/routes/InfosRoute;
-}
-
-public final class io/github/kingg22/deezer/client/api/routes/_InfosRouteProvider : de/jensklingenberg/ktorfit/internal/ClassProvider {
-	public fun <init> ()V
-	public fun create (Lde/jensklingenberg/ktorfit/Ktorfit;)Lio/github/kingg22/deezer/client/api/routes/InfosRoute;
-	public synthetic fun create (Lde/jensklingenberg/ktorfit/Ktorfit;)Ljava/lang/Object;
-}
-
-public final class io/github/kingg22/deezer/client/api/routes/_OptionsRouteImpl : io/github/kingg22/deezer/client/api/routes/OptionsRoute {
-	public fun <init> (Lde/jensklingenberg/ktorfit/Ktorfit;)V
-	public fun getOptions (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-}
-
-public final class io/github/kingg22/deezer/client/api/routes/_OptionsRouteImplKt {
-	public static final fun createOptionsRoute (Lde/jensklingenberg/ktorfit/Ktorfit;)Lio/github/kingg22/deezer/client/api/routes/OptionsRoute;
-}
-
-public final class io/github/kingg22/deezer/client/api/routes/_OptionsRouteProvider : de/jensklingenberg/ktorfit/internal/ClassProvider {
-	public fun <init> ()V
-	public fun create (Lde/jensklingenberg/ktorfit/Ktorfit;)Lio/github/kingg22/deezer/client/api/routes/OptionsRoute;
-	public synthetic fun create (Lde/jensklingenberg/ktorfit/Ktorfit;)Ljava/lang/Object;
-}
-
-public final class io/github/kingg22/deezer/client/api/routes/_PlaylistRoutesImpl : io/github/kingg22/deezer/client/api/routes/PlaylistRoutes {
-	public fun <init> (Lde/jensklingenberg/ktorfit/Ktorfit;)V
-	public fun getById (JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun getFans (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun getRadio (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun getTracks (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-}
-
-public final class io/github/kingg22/deezer/client/api/routes/_PlaylistRoutesImplKt {
-	public static final fun createPlaylistRoutes (Lde/jensklingenberg/ktorfit/Ktorfit;)Lio/github/kingg22/deezer/client/api/routes/PlaylistRoutes;
-}
-
-public final class io/github/kingg22/deezer/client/api/routes/_PlaylistRoutesProvider : de/jensklingenberg/ktorfit/internal/ClassProvider {
-	public fun <init> ()V
-	public fun create (Lde/jensklingenberg/ktorfit/Ktorfit;)Lio/github/kingg22/deezer/client/api/routes/PlaylistRoutes;
-	public synthetic fun create (Lde/jensklingenberg/ktorfit/Ktorfit;)Ljava/lang/Object;
-}
-
-public final class io/github/kingg22/deezer/client/api/routes/_PodcastRoutesImpl : io/github/kingg22/deezer/client/api/routes/PodcastRoutes {
-	public fun <init> (Lde/jensklingenberg/ktorfit/Ktorfit;)V
-	public fun getAll (Ljava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun getById (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun getEpisodes (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-}
-
-public final class io/github/kingg22/deezer/client/api/routes/_PodcastRoutesImplKt {
-	public static final fun createPodcastRoutes (Lde/jensklingenberg/ktorfit/Ktorfit;)Lio/github/kingg22/deezer/client/api/routes/PodcastRoutes;
-}
-
-public final class io/github/kingg22/deezer/client/api/routes/_PodcastRoutesProvider : de/jensklingenberg/ktorfit/internal/ClassProvider {
-	public fun <init> ()V
-	public fun create (Lde/jensklingenberg/ktorfit/Ktorfit;)Lio/github/kingg22/deezer/client/api/routes/PodcastRoutes;
-	public synthetic fun create (Lde/jensklingenberg/ktorfit/Ktorfit;)Ljava/lang/Object;
-}
-
-public final class io/github/kingg22/deezer/client/api/routes/_RadioRoutesImpl : io/github/kingg22/deezer/client/api/routes/RadioRoutes {
-	public fun <init> (Lde/jensklingenberg/ktorfit/Ktorfit;)V
-	public fun getAll (Ljava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun getAllSplitInGenres (Ljava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun getById (JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun getLists (Ljava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun getTop (Ljava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun getTracks (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-}
-
-public final class io/github/kingg22/deezer/client/api/routes/_RadioRoutesImplKt {
-	public static final fun createRadioRoutes (Lde/jensklingenberg/ktorfit/Ktorfit;)Lio/github/kingg22/deezer/client/api/routes/RadioRoutes;
-}
-
-public final class io/github/kingg22/deezer/client/api/routes/_RadioRoutesProvider : de/jensklingenberg/ktorfit/internal/ClassProvider {
-	public fun <init> ()V
-	public fun create (Lde/jensklingenberg/ktorfit/Ktorfit;)Lio/github/kingg22/deezer/client/api/routes/RadioRoutes;
-	public synthetic fun create (Lde/jensklingenberg/ktorfit/Ktorfit;)Ljava/lang/Object;
-}
-
-public final class io/github/kingg22/deezer/client/api/routes/_SearchRoutesImpl : io/github/kingg22/deezer/client/api/routes/SearchRoutes {
-	public fun <init> (Lde/jensklingenberg/ktorfit/Ktorfit;)V
-	public fun search (Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/SearchOrder;Ljava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun searchAlbum (Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/SearchOrder;Ljava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun searchArtist (Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/SearchOrder;Ljava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun searchHistory (Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/SearchOrder;Ljava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun searchPlaylist (Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/SearchOrder;Ljava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun searchPodcast (Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/SearchOrder;Ljava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun searchRadio (Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/SearchOrder;Ljava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun searchTrack (Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/SearchOrder;Ljava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun searchUser (Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/SearchOrder;Ljava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-}
-
-public final class io/github/kingg22/deezer/client/api/routes/_SearchRoutesImplKt {
-	public static final fun createSearchRoutes (Lde/jensklingenberg/ktorfit/Ktorfit;)Lio/github/kingg22/deezer/client/api/routes/SearchRoutes;
-}
-
-public final class io/github/kingg22/deezer/client/api/routes/_SearchRoutesProvider : de/jensklingenberg/ktorfit/internal/ClassProvider {
-	public fun <init> ()V
-	public fun create (Lde/jensklingenberg/ktorfit/Ktorfit;)Lio/github/kingg22/deezer/client/api/routes/SearchRoutes;
-	public synthetic fun create (Lde/jensklingenberg/ktorfit/Ktorfit;)Ljava/lang/Object;
-}
-
-public final class io/github/kingg22/deezer/client/api/routes/_TrackRoutesImpl : io/github/kingg22/deezer/client/api/routes/TrackRoutes {
-	public fun <init> (Lde/jensklingenberg/ktorfit/Ktorfit;)V
-	public fun getById (JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun getByIsrc (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-}
-
-public final class io/github/kingg22/deezer/client/api/routes/_TrackRoutesImplKt {
-	public static final fun createTrackRoutes (Lde/jensklingenberg/ktorfit/Ktorfit;)Lio/github/kingg22/deezer/client/api/routes/TrackRoutes;
-}
-
-public final class io/github/kingg22/deezer/client/api/routes/_TrackRoutesProvider : de/jensklingenberg/ktorfit/internal/ClassProvider {
-	public fun <init> ()V
-	public fun create (Lde/jensklingenberg/ktorfit/Ktorfit;)Lio/github/kingg22/deezer/client/api/routes/TrackRoutes;
-	public synthetic fun create (Lde/jensklingenberg/ktorfit/Ktorfit;)Ljava/lang/Object;
-}
-
-public final class io/github/kingg22/deezer/client/api/routes/_UserRoutesImpl : io/github/kingg22/deezer/client/api/routes/UserRoutes {
-	public fun <init> (Lde/jensklingenberg/ktorfit/Ktorfit;)V
-	public fun getById (JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
-}
-
-public final class io/github/kingg22/deezer/client/api/routes/_UserRoutesImplKt {
-	public static final fun createUserRoutes (Lde/jensklingenberg/ktorfit/Ktorfit;)Lio/github/kingg22/deezer/client/api/routes/UserRoutes;
-}
-
-public final class io/github/kingg22/deezer/client/api/routes/_UserRoutesProvider : de/jensklingenberg/ktorfit/internal/ClassProvider {
-	public fun <init> ()V
-	public fun create (Lde/jensklingenberg/ktorfit/Ktorfit;)Lio/github/kingg22/deezer/client/api/routes/UserRoutes;
-	public synthetic fun create (Lde/jensklingenberg/ktorfit/Ktorfit;)Ljava/lang/Object;
-}
-
 public final class io/github/kingg22/deezer/client/exceptions/DeezerApiException : io/github/kingg22/deezer/client/exceptions/DeezerClientException {
 	public fun <init> ()V
 	public fun <init> (Ljava/lang/Integer;)V
 	public fun <init> (Ljava/lang/Integer;Ljava/lang/String;)V
 	public fun <init> (Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/Throwable;)V
 	public synthetic fun <init> (Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/Throwable;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun component3 ()Ljava/lang/Throwable;
-	public final fun copy (Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/Throwable;)Lio/github/kingg22/deezer/client/exceptions/DeezerApiException;
-	public static synthetic fun copy$default (Lio/github/kingg22/deezer/client/exceptions/DeezerApiException;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/Throwable;ILjava/lang/Object;)Lio/github/kingg22/deezer/client/exceptions/DeezerApiException;
 	public fun equals (Ljava/lang/Object;)Z
 	public fun getCause ()Ljava/lang/Throwable;
 	public final fun getError ()Lio/github/kingg22/deezer/client/exceptions/DeezerApiException$DeezerErrorCode;
