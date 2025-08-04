@@ -195,15 +195,12 @@ Because the client needs to configure custom validators, throw exceptions; etc. 
 you can use it to configure some specs.
 The default constructor of the client expects you to add an engine on your dependencies, and that's it.
 
-> [!Note]
->
-> **Binary compatibility**
->
-> Currently, all resource objects are data class with JvmOverloads; new properties can break this.
-> I take the decision to use data class because immutability and equals are generated.
-> The idea of this api client is stateless, fetch what u need, and that's it.
->
-> [Read more about this here](https://kotlinlang.org/docs/api-guidelines-backward-compatibility.html#avoid-using-data-classes-in-your-api).
+**_Why not data class?_**
+
+[Read more about this here](https://kotlinlang.org/docs/api-guidelines-backward-compatibility.html#avoid-using-data-classes-in-your-api).
+I take the decision to use class with [Poko](https://github.com/drewhamilton/Poko) because immutability is guaranteed and equals are generated.
+The idea of this api client is stateless, fetch what u need, and that's it.
+Only `PaginatedResponse` is data class to easy duplicate and fetch data.
 
 ### 🆚 Differences between kotlin and java versions
 - Kotlin can't access to the java version and viceversa
@@ -224,6 +221,7 @@ The default constructor of the client expects you to add an engine on your depen
 Please include one of the following types in your issue title or description:
 - Serialization error – e.g. the JSON response missing required field, non-nullable property, etc.
 - Missing field in response – field present in official API but absent in models (or extra non‑official data)
+- Others
 
 Also state if the issue refers to an official Deezer change or unofficial additional field.
 
