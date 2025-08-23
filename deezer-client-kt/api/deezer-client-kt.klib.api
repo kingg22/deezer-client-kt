@@ -237,7 +237,7 @@ abstract interface io.github.kingg22.deezer.client.utils/LateInitClient { // io.
     abstract fun isInitialized(): kotlin/Boolean // io.github.kingg22.deezer.client.utils/LateInitClient.isInitialized|isInitialized(){}[0]
 }
 
-final class <#A: out kotlin/Any> io.github.kingg22.deezer.client.api.objects/PaginatedResponse { // io.github.kingg22.deezer.client.api.objects/PaginatedResponse|null[0]
+final class <#A: kotlin/Any> io.github.kingg22.deezer.client.api.objects/PaginatedResponse { // io.github.kingg22.deezer.client.api.objects/PaginatedResponse|null[0]
     constructor <init>(kotlin.collections/List<#A> = ..., kotlin/String? = ..., kotlin/Int? = ..., kotlin/String? = ..., kotlin/String? = ...) // io.github.kingg22.deezer.client.api.objects/PaginatedResponse.<init>|<init>(kotlin.collections.List<1:0>;kotlin.String?;kotlin.Int?;kotlin.String?;kotlin.String?){}[0]
 
     final val checksum // io.github.kingg22.deezer.client.api.objects/PaginatedResponse.checksum|{}checksum[0]

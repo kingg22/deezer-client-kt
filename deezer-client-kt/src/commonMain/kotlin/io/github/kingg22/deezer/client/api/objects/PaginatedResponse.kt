@@ -20,7 +20,7 @@ import kotlin.jvm.JvmSynthetic
  * @property next Link to the next page of the search
  */
 @Serializable
-data class PaginatedResponse<out T : @Serializable Any> @JvmOverloads constructor(
+data class PaginatedResponse<T : @Serializable Any> @JvmOverloads constructor(
     val data: List<T> = emptyList(),
     val checksum: String? = null,
     val total: Int? = null,
