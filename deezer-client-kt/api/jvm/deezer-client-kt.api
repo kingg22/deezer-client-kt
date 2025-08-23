@@ -1041,11 +1041,11 @@ public final class io/github/kingg22/deezer/client/api/routes/AlbumJavaRoutes$Co
 }
 
 public abstract interface class io/github/kingg22/deezer/client/api/routes/AlbumRoutes {
-	public abstract fun getById (JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public abstract fun getByUpc (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public abstract fun getFans (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract synthetic fun getById (JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract synthetic fun getByUpc (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract synthetic fun getFans (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun getFans$default (Lio/github/kingg22/deezer/client/api/routes/AlbumRoutes;JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
-	public abstract fun getTracks (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract synthetic fun getTracks (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun getTracks$default (Lio/github/kingg22/deezer/client/api/routes/AlbumRoutes;JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 }
 
@@ -1128,19 +1128,19 @@ public final class io/github/kingg22/deezer/client/api/routes/ArtistJavaRoutes$C
 }
 
 public abstract interface class io/github/kingg22/deezer/client/api/routes/ArtistRoutes {
-	public abstract fun getAlbums (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract synthetic fun getAlbums (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun getAlbums$default (Lio/github/kingg22/deezer/client/api/routes/ArtistRoutes;JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
-	public abstract fun getById (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract synthetic fun getById (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun getById$default (Lio/github/kingg22/deezer/client/api/routes/ArtistRoutes;JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
-	public abstract fun getFans (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract synthetic fun getFans (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun getFans$default (Lio/github/kingg22/deezer/client/api/routes/ArtistRoutes;JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
-	public abstract fun getPlaylists (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract synthetic fun getPlaylists (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun getPlaylists$default (Lio/github/kingg22/deezer/client/api/routes/ArtistRoutes;JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
-	public abstract fun getRadio (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract synthetic fun getRadio (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun getRadio$default (Lio/github/kingg22/deezer/client/api/routes/ArtistRoutes;JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
-	public abstract fun getRelated (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract synthetic fun getRelated (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun getRelated$default (Lio/github/kingg22/deezer/client/api/routes/ArtistRoutes;JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
-	public abstract fun getTopTracks (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract synthetic fun getTopTracks (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun getTopTracks$default (Lio/github/kingg22/deezer/client/api/routes/ArtistRoutes;JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 }
 
@@ -1238,19 +1238,19 @@ public final class io/github/kingg22/deezer/client/api/routes/ChartJavaRoutes$Co
 }
 
 public abstract interface class io/github/kingg22/deezer/client/api/routes/ChartRoutes {
-	public abstract fun getAlbums (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract synthetic fun getAlbums (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun getAlbums$default (Lio/github/kingg22/deezer/client/api/routes/ChartRoutes;JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
-	public abstract fun getAll (Ljava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract synthetic fun getAll (Ljava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun getAll$default (Lio/github/kingg22/deezer/client/api/routes/ChartRoutes;Ljava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
-	public abstract fun getArtists (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract synthetic fun getArtists (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun getArtists$default (Lio/github/kingg22/deezer/client/api/routes/ChartRoutes;JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
-	public abstract fun getById (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract synthetic fun getById (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun getById$default (Lio/github/kingg22/deezer/client/api/routes/ChartRoutes;JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
-	public abstract fun getPlaylists (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract synthetic fun getPlaylists (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun getPlaylists$default (Lio/github/kingg22/deezer/client/api/routes/ChartRoutes;JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
-	public abstract fun getPodcasts (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract synthetic fun getPodcasts (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun getPodcasts$default (Lio/github/kingg22/deezer/client/api/routes/ChartRoutes;JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
-	public abstract fun getTracks (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract synthetic fun getTracks (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun getTracks$default (Lio/github/kingg22/deezer/client/api/routes/ChartRoutes;JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 }
 
@@ -1328,15 +1328,15 @@ public final class io/github/kingg22/deezer/client/api/routes/EditorialJavaRoute
 }
 
 public abstract interface class io/github/kingg22/deezer/client/api/routes/EditorialRoutes {
-	public abstract fun getAll (Ljava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract synthetic fun getAll (Ljava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun getAll$default (Lio/github/kingg22/deezer/client/api/routes/EditorialRoutes;Ljava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
-	public abstract fun getById (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract synthetic fun getById (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun getById$default (Lio/github/kingg22/deezer/client/api/routes/EditorialRoutes;JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
-	public abstract fun getCharts (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract synthetic fun getCharts (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun getCharts$default (Lio/github/kingg22/deezer/client/api/routes/EditorialRoutes;JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
-	public abstract fun getDeezerSelection (JLkotlinx/datetime/LocalDate;Ljava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract synthetic fun getDeezerSelection (JLkotlinx/datetime/LocalDate;Ljava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun getDeezerSelection$default (Lio/github/kingg22/deezer/client/api/routes/EditorialRoutes;JLkotlinx/datetime/LocalDate;Ljava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
-	public abstract fun getReleases (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract synthetic fun getReleases (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun getReleases$default (Lio/github/kingg22/deezer/client/api/routes/EditorialRoutes;JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 }
 
@@ -1363,7 +1363,7 @@ public final class io/github/kingg22/deezer/client/api/routes/EpisodeJavaRoutes$
 }
 
 public abstract interface class io/github/kingg22/deezer/client/api/routes/EpisodeRoutes {
-	public abstract fun getById (JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract synthetic fun getById (JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
 public final class io/github/kingg22/deezer/client/api/routes/GenreJavaRoutes {
@@ -1423,14 +1423,14 @@ public final class io/github/kingg22/deezer/client/api/routes/GenreJavaRoutes$Co
 }
 
 public abstract interface class io/github/kingg22/deezer/client/api/routes/GenreRoutes {
-	public abstract fun getAll (Ljava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract synthetic fun getAll (Ljava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun getAll$default (Lio/github/kingg22/deezer/client/api/routes/GenreRoutes;Ljava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
-	public abstract fun getArtists (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract synthetic fun getArtists (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun getArtists$default (Lio/github/kingg22/deezer/client/api/routes/GenreRoutes;JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
-	public abstract fun getById (JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public abstract fun getPodcasts (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract synthetic fun getById (JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract synthetic fun getPodcasts (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun getPodcasts$default (Lio/github/kingg22/deezer/client/api/routes/GenreRoutes;JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
-	public abstract fun getRadios (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract synthetic fun getRadios (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun getRadios$default (Lio/github/kingg22/deezer/client/api/routes/GenreRoutes;JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 }
 
@@ -1456,7 +1456,7 @@ public final class io/github/kingg22/deezer/client/api/routes/InfosJavaRoute$Com
 }
 
 public abstract interface class io/github/kingg22/deezer/client/api/routes/InfosRoute {
-	public abstract fun getInfos (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract synthetic fun getInfos (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
 public final class io/github/kingg22/deezer/client/api/routes/OptionsJavaRoute {
@@ -1474,7 +1474,7 @@ public final class io/github/kingg22/deezer/client/api/routes/OptionsJavaRoute$C
 }
 
 public abstract interface class io/github/kingg22/deezer/client/api/routes/OptionsRoute {
-	public abstract fun getOptions (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract synthetic fun getOptions (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
 public final class io/github/kingg22/deezer/client/api/routes/PlaylistJavaRoutes {
@@ -1519,12 +1519,12 @@ public final class io/github/kingg22/deezer/client/api/routes/PlaylistJavaRoutes
 }
 
 public abstract interface class io/github/kingg22/deezer/client/api/routes/PlaylistRoutes {
-	public abstract fun getById (JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public abstract fun getFans (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract synthetic fun getById (JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract synthetic fun getFans (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun getFans$default (Lio/github/kingg22/deezer/client/api/routes/PlaylistRoutes;JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
-	public abstract fun getRadio (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract synthetic fun getRadio (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun getRadio$default (Lio/github/kingg22/deezer/client/api/routes/PlaylistRoutes;JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
-	public abstract fun getTracks (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract synthetic fun getTracks (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun getTracks$default (Lio/github/kingg22/deezer/client/api/routes/PlaylistRoutes;JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 }
 
@@ -1572,11 +1572,11 @@ public final class io/github/kingg22/deezer/client/api/routes/PodcastJavaRoutes$
 }
 
 public abstract interface class io/github/kingg22/deezer/client/api/routes/PodcastRoutes {
-	public abstract fun getAll (Ljava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract synthetic fun getAll (Ljava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun getAll$default (Lio/github/kingg22/deezer/client/api/routes/PodcastRoutes;Ljava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
-	public abstract fun getById (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract synthetic fun getById (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun getById$default (Lio/github/kingg22/deezer/client/api/routes/PodcastRoutes;JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
-	public abstract fun getEpisodes (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract synthetic fun getEpisodes (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun getEpisodes$default (Lio/github/kingg22/deezer/client/api/routes/PodcastRoutes;JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 }
 
@@ -1646,16 +1646,16 @@ public final class io/github/kingg22/deezer/client/api/routes/RadioJavaRoutes$Co
 }
 
 public abstract interface class io/github/kingg22/deezer/client/api/routes/RadioRoutes {
-	public abstract fun getAll (Ljava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract synthetic fun getAll (Ljava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun getAll$default (Lio/github/kingg22/deezer/client/api/routes/RadioRoutes;Ljava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
-	public abstract fun getAllSplitInGenres (Ljava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract synthetic fun getAllSplitInGenres (Ljava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun getAllSplitInGenres$default (Lio/github/kingg22/deezer/client/api/routes/RadioRoutes;Ljava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
-	public abstract fun getById (JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public abstract fun getLists (Ljava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract synthetic fun getById (JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract synthetic fun getLists (Ljava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun getLists$default (Lio/github/kingg22/deezer/client/api/routes/RadioRoutes;Ljava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
-	public abstract fun getTop (Ljava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract synthetic fun getTop (Ljava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun getTop$default (Lio/github/kingg22/deezer/client/api/routes/RadioRoutes;Ljava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
-	public abstract fun getTracks (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract synthetic fun getTracks (JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun getTracks$default (Lio/github/kingg22/deezer/client/api/routes/RadioRoutes;JLjava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 }
 
@@ -1798,23 +1798,23 @@ public abstract interface class io/github/kingg22/deezer/client/api/routes/Searc
 	public static final field Companion Lio/github/kingg22/deezer/client/api/routes/SearchRoutes$Companion;
 	public static fun buildAdvancedQuery ()Lio/github/kingg22/deezer/client/api/routes/SearchRoutes$AdvancedQueryBuilder;
 	public static fun buildAdvancedQuery (Ljava/lang/String;)Lio/github/kingg22/deezer/client/api/routes/SearchRoutes$AdvancedQueryBuilder;
-	public abstract fun search (Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/SearchOrder;Ljava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract synthetic fun search (Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/SearchOrder;Ljava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun search$default (Lio/github/kingg22/deezer/client/api/routes/SearchRoutes;Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/SearchOrder;Ljava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
-	public abstract fun searchAlbum (Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/SearchOrder;Ljava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract synthetic fun searchAlbum (Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/SearchOrder;Ljava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun searchAlbum$default (Lio/github/kingg22/deezer/client/api/routes/SearchRoutes;Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/SearchOrder;Ljava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
-	public abstract fun searchArtist (Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/SearchOrder;Ljava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract synthetic fun searchArtist (Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/SearchOrder;Ljava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun searchArtist$default (Lio/github/kingg22/deezer/client/api/routes/SearchRoutes;Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/SearchOrder;Ljava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
-	public abstract fun searchHistory (Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/SearchOrder;Ljava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract synthetic fun searchHistory (Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/SearchOrder;Ljava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun searchHistory$default (Lio/github/kingg22/deezer/client/api/routes/SearchRoutes;Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/SearchOrder;Ljava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
-	public abstract fun searchPlaylist (Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/SearchOrder;Ljava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract synthetic fun searchPlaylist (Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/SearchOrder;Ljava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun searchPlaylist$default (Lio/github/kingg22/deezer/client/api/routes/SearchRoutes;Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/SearchOrder;Ljava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
-	public abstract fun searchPodcast (Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/SearchOrder;Ljava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract synthetic fun searchPodcast (Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/SearchOrder;Ljava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun searchPodcast$default (Lio/github/kingg22/deezer/client/api/routes/SearchRoutes;Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/SearchOrder;Ljava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
-	public abstract fun searchRadio (Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/SearchOrder;Ljava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract synthetic fun searchRadio (Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/SearchOrder;Ljava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun searchRadio$default (Lio/github/kingg22/deezer/client/api/routes/SearchRoutes;Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/SearchOrder;Ljava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
-	public abstract fun searchTrack (Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/SearchOrder;Ljava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract synthetic fun searchTrack (Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/SearchOrder;Ljava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun searchTrack$default (Lio/github/kingg22/deezer/client/api/routes/SearchRoutes;Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/SearchOrder;Ljava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
-	public abstract fun searchUser (Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/SearchOrder;Ljava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract synthetic fun searchUser (Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/SearchOrder;Ljava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun searchUser$default (Lio/github/kingg22/deezer/client/api/routes/SearchRoutes;Ljava/lang/String;Ljava/lang/String;Lio/github/kingg22/deezer/client/api/objects/SearchOrder;Ljava/lang/Integer;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public static fun setStrict (Z)Ljava/lang/String;
 }
@@ -1888,8 +1888,8 @@ public final class io/github/kingg22/deezer/client/api/routes/TrackJavaRoutes$Co
 }
 
 public abstract interface class io/github/kingg22/deezer/client/api/routes/TrackRoutes {
-	public abstract fun getById (JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public abstract fun getByIsrc (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract synthetic fun getById (JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract synthetic fun getByIsrc (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
 public final class io/github/kingg22/deezer/client/api/routes/UserJavaRoutes {
@@ -1907,7 +1907,7 @@ public final class io/github/kingg22/deezer/client/api/routes/UserJavaRoutes$Com
 }
 
 public abstract interface class io/github/kingg22/deezer/client/api/routes/UserRoutes {
-	public abstract fun getById (JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract synthetic fun getById (JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
 public final class io/github/kingg22/deezer/client/exceptions/DeezerApiException : io/github/kingg22/deezer/client/exceptions/DeezerClientException {
