@@ -9,7 +9,7 @@ android-minSdk = "24"
 # https://github.com/Kotlin/dokka/releases
 dokka = "2.0.0"
 # https://github.com/touchlab/Kermit/releases
-kermit = "2.0.6"
+kermit = "2.0.8"
 # https://github.com/LemonAppDev/konsist/releases
 # konsist = "0.17.3"
 # https://github.com/kotest/kotest/releases
