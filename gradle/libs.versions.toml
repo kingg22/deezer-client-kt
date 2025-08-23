@@ -31,7 +31,7 @@ ksp = "2.2.0-2.0.2"
 # https://github.com/ktorio/ktor/releases
 ktor = "3.2.3"
 # https://github.com/kingg22/ktorgen/releases
-ktorgen = "0.2.0"
+ktorgen = "0.3.1"
 # https://github.com/pinterest/ktlint/releases
 ktlint-pinterest = "1.7.1"
 # https://github.com/jlleitschuh/ktlint-gradle/releases
