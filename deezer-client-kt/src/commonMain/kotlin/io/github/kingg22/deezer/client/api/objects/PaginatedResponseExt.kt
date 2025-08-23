@@ -1,4 +1,5 @@
 @file:JvmName("-PaginatedResponseExt")
+@file:JvmMultifileClass
 @file:OptIn(InternalDeezerClient::class)
 
 package io.github.kingg22.deezer.client.api.objects
@@ -10,8 +11,8 @@ import io.ktor.client.call.body
 import io.ktor.client.request.get
 import io.ktor.http.Url
 import kotlinx.serialization.Serializable
-import kotlin.collections.plus
 import kotlin.coroutines.cancellation.CancellationException
+import kotlin.jvm.JvmMultifileClass
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmSynthetic
 

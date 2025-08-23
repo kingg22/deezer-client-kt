@@ -1,4 +1,4 @@
-@file:OptIn(InternalDeezerClient::class)
+@file:OptIn(InternalDeezerClient::class, ExperimentalDeezerClient::class)
 
 package io.github.kingg22.deezer.client.api
 

@@ -13,11 +13,12 @@ import io.github.kingg22.deezer.client.utils.decodeOrNull
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.plugins.*
+import io.ktor.client.request.header
 import io.ktor.client.statement.*
 import io.ktor.http.*
+import kotlinx.coroutines.currentCoroutineContext
 import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.isActive
-import kotlin.coroutines.coroutineContext
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 import kotlin.jvm.JvmSynthetic
@@ -48,65 +49,66 @@ constructor(
     val httpClient = builder.copy().addCustomConfig {
         defaultRequest {
             url(API_DEEZER)
+            header("Accept", "application/json")
         }
         HttpResponseValidator(customValidators())
     }.build()
 
     /** All endpoints related to [io.github.kingg22.deezer.client.api.objects.Album] */
     @get:JvmSynthetic
-    val albums: AlbumRoutes = _AlbumRoutesImpl(httpClient)
+    val albums = AlbumRoutes(httpClient)
 
     /** All endpoints related to [io.github.kingg22.deezer.client.api.objects.Artist] */
     @get:JvmSynthetic
-    val artists: ArtistRoutes = _ArtistRoutesImpl(httpClient)
+    val artists = ArtistRoutes(httpClient)
 
     /** All endpoints related to [io.github.kingg22.deezer.client.api.objects.Chart] */
     @get:JvmSynthetic
-    val charts: ChartRoutes = _ChartRoutesImpl(httpClient)
+    val charts = ChartRoutes(httpClient)
 
     /** All endpoints related to [io.github.kingg22.deezer.client.api.objects.Editorial] */
     @get:JvmSynthetic
-    val editorials: EditorialRoutes = _EditorialRoutesImpl(httpClient)
+    val editorials = EditorialRoutes(httpClient)
 
     /** All endpoints related to [io.github.kingg22.deezer.client.api.objects.Episode] */
     @get:JvmSynthetic
-    val episodes: EpisodeRoutes = _EpisodeRoutesImpl(httpClient)
+    val episodes = EpisodeRoutes(httpClient)
 
     /** All endpoints related to [io.github.kingg22.deezer.client.api.objects.Genre] */
     @get:JvmSynthetic
-    val genres: GenreRoutes = _GenreRoutesImpl(httpClient)
+    val genres = GenreRoutes(httpClient)
 
     /** All endpoints related to [io.github.kingg22.deezer.client.api.objects.Infos] */
     @get:JvmSynthetic
-    val infos: InfosRoute = _InfosRouteImpl(httpClient)
+    val infos = InfosRoute(httpClient)
 
     /** All endpoints related to [io.github.kingg22.deezer.client.api.objects.Options] */
     @get:JvmSynthetic
-    val options: OptionsRoute = _OptionsRouteImpl(httpClient)
+    val options = OptionsRoute(httpClient)
 
     /** All endpoints related to [io.github.kingg22.deezer.client.api.objects.Playlist] */
     @get:JvmSynthetic
-    val playlists: PlaylistRoutes = _PlaylistRoutesImpl(httpClient)
+    val playlists = PlaylistRoutes(httpClient)
 
     /** All endpoints related to [io.github.kingg22.deezer.client.api.objects.Podcast] */
     @get:JvmSynthetic
-    val podcasts: PodcastRoutes = _PodcastRoutesImpl(httpClient)
+    val podcasts = PodcastRoutes(httpClient)
 
     /** All endpoints related to [io.github.kingg22.deezer.client.api.objects.Radio] */
     @get:JvmSynthetic
-    val radios: RadioRoutes = _RadioRoutesImpl(httpClient)
+    val radios = RadioRoutes(httpClient)
 
     /** All endpoints related to search */
     @get:JvmSynthetic
-    val searches: SearchRoutes = _SearchRoutesImpl(httpClient)
+    val searches = SearchRoutes(httpClient)
 
     /** All endpoints related to [io.github.kingg22.deezer.client.api.objects.Track] */
     @get:JvmSynthetic
-    val tracks: TrackRoutes = _TrackRoutesImpl(httpClient)
+    val tracks = TrackRoutes(httpClient)
 
     /** All endpoints related to [io.github.kingg22.deezer.client.api.objects.User] */
     @get:JvmSynthetic
-    val users: UserRoutes = _UserRoutesImpl(httpClient)
+    val users = UserRoutes(httpClient)
 
     init {
         require(httpClient.isActive) { "HttpClient is not active" }
@@ -134,7 +136,7 @@ constructor(
                     is ClientRequestException -> {
                         val errorBody = runCatching {
                             exception.response.body<ErrorContainer>().error
-                        }.onFailure { coroutineContext.ensureActive() }.getOrNull()
+                        }.onFailure { currentCoroutineContext().ensureActive() }.getOrNull()
 
                         throw DeezerApiException(
                             errorCode = errorBody?.code,
@@ -158,7 +160,7 @@ constructor(
                     }
 
                     else -> {
-                        coroutineContext.ensureActive()
+                        currentCoroutineContext().ensureActive()
                         throw DeezerApiException(cause = exception)
                     }
                 }
@@ -170,7 +172,7 @@ constructor(
                 val contentType = response.contentType()
                 if (contentType == ContentType.Application.Json) {
                     val body = runCatching { response.bodyAsText() }
-                        .onFailure { coroutineContext.ensureActive() }
+                        .onFailure { currentCoroutineContext().ensureActive() }
                         .getOrNull()
                         ?: return@validateResponse
 

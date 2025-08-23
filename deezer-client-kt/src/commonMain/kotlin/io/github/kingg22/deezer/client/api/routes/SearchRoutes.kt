@@ -1,6 +1,8 @@
 package io.github.kingg22.deezer.client.api.routes
 
 import io.github.kingg22.deezer.client.api.objects.*
+import io.github.kingg22.deezer.client.utils.InternalDeezerClient
+import io.github.kingg22.ktorgen.core.KtorGen
 import io.github.kingg22.ktorgen.http.GET
 import io.github.kingg22.ktorgen.http.Query
 import kotlin.jvm.JvmName
@@ -23,6 +25,11 @@ import kotlin.time.Duration.Companion.seconds
  * @see SearchRoutes.setStrict
  * @see SearchRoutes.AdvancedQueryBuilder
  */
+@KtorGen(
+    visibilityModifier = "internal",
+    functionAnnotations = [JvmSynthetic::class, InternalDeezerClient::class],
+    annotations = [InternalDeezerClient::class],
+)
 interface SearchRoutes {
     /** Search utilities */
     companion object {
@@ -143,6 +150,7 @@ interface SearchRoutes {
      * [Album.coverMedium], [Album.coverBig], [Album.coverXl] and [Album.type]
      */
     @GET("search")
+    @JvmSynthetic
     suspend fun search(
         @Query q: String,
         @Query strict: String? = null,
@@ -153,6 +161,7 @@ interface SearchRoutes {
 
     /** Search [Album] */
     @GET("search/album")
+    @JvmSynthetic
     suspend fun searchAlbum(
         @Query q: String,
         @Query strict: String? = null,
@@ -163,6 +172,7 @@ interface SearchRoutes {
 
     /** Search [Artist] */
     @GET("search/artist")
+    @JvmSynthetic
     suspend fun searchArtist(
         @Query q: String,
         @Query strict: String? = null,
@@ -177,6 +187,7 @@ interface SearchRoutes {
      * **Required** OAuth. **unsupported**
      */
     @GET("search/history")
+    @JvmSynthetic
     suspend fun searchHistory(
         @Query q: String,
         @Query strict: String? = null,
@@ -187,6 +198,7 @@ interface SearchRoutes {
 
     /** Search [Playlist] */
     @GET("search/playlist")
+    @JvmSynthetic
     suspend fun searchPlaylist(
         @Query q: String,
         @Query strict: String? = null,
@@ -197,6 +209,7 @@ interface SearchRoutes {
 
     /** Search [Podcast] */
     @GET("search/podcast")
+    @JvmSynthetic
     suspend fun searchPodcast(
         @Query q: String,
         @Query strict: String? = null,
@@ -207,6 +220,7 @@ interface SearchRoutes {
 
     /** Search [Radio] */
     @GET("search/radio")
+    @JvmSynthetic
     suspend fun searchRadio(
         @Query q: String,
         @Query strict: String? = null,
@@ -217,6 +231,7 @@ interface SearchRoutes {
 
     /** Search [Track] */
     @GET("search/track")
+    @JvmSynthetic
     suspend fun searchTrack(
         @Query q: String,
         @Query strict: String? = null,
@@ -227,6 +242,7 @@ interface SearchRoutes {
 
     /** Search [User] */
     @GET("search/user")
+    @JvmSynthetic
     suspend fun searchUser(
         @Query q: String,
         @Query strict: String? = null,
