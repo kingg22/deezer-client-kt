@@ -68,6 +68,7 @@ jobs:
           body: "¡Hey! A new version of _Unofficial_ Deezer Client Kotlin - Java was released"
           append_body: true
           prerelease: false
+          generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -80,5 +81,6 @@ jobs:
           body: "Pre release of _Unofficial_ Deezer Client Kotlin - Java was released"
           append_body: true
           prerelease: true
+          generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
