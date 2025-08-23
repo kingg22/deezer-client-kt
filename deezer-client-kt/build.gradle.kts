@@ -1,5 +1,6 @@
 @file:OptIn(ExperimentalKotlinGradlePluginApi::class, ExperimentalAbiValidation::class)
 
+import kotlinx.kover.gradle.plugin.dsl.CoverageUnit
 import org.jetbrains.dokka.gradle.engine.parameters.VisibilityModifier
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
@@ -19,7 +20,7 @@ plugins {
 }
 
 group = "io.github.kingg22"
-version = "2.0.0"
+version = "2.1.0"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
@@ -36,11 +37,6 @@ kotlin {
         enabled.set(true)
         klib {
             enabled.set(true)
-        }
-        filters {
-            excluded {
-                byNames.addAll("io.github.kingg22.deezer.client.api.routes._*")
-            }
         }
     }
 
@@ -102,25 +98,31 @@ dependencies {
 }
 
 kover {
-    reports.filters.excludes {
-        classes(
-            "$group.deezer.client.api.routes.*Impl",
-            "$group.deezer.client.api.routes.*ImplKt",
-            "$group.deezer.client.api.routes.*Impl.kt",
-            "$group.deezer.client.api.routes.*Provider",
-        )
-        inheritedFrom("$group.deezer.client.api.routes.*Routes")
+    reports.total {
+        verify {
+            rule("Basic Line Coverage") {
+                minBound(60, CoverageUnit.LINE)
+            }
+            rule("Basic Branch Coverage") {
+                minBound(20, CoverageUnit.BRANCH)
+            }
+        }
+        filters.excludes {
+            annotatedBy("$group.ktorgen.core.Generated")
+            // TODO when ktorgen Generated retention is binary or runtime to correct exclude
+            annotatedBy("$group.deezer.client.utils.InternalDeezerClient")
+        }
     }
 }
 
 dokka {
     dokkaSourceSets.configureEach {
-        skipEmptyPackages = true
-        skipDeprecated = false
-        reportUndocumented = true
-        enableJdkDocumentationLink = true
-        enableKotlinStdLibDocumentationLink = true
-        suppressedFiles.from(layout.buildDirectory.dir("generated"))
+        skipEmptyPackages.set(true)
+        skipDeprecated.set(false)
+        reportUndocumented.set(true)
+        enableJdkDocumentationLink.set(true)
+        enableKotlinStdLibDocumentationLink.set(true)
+        suppressGeneratedFiles.set(true)
         perPackageOption {
             matchingRegex.set("$group.deezer.client.api.objects")
             documentedVisibilities.addAll(VisibilityModifier.Internal, VisibilityModifier.Public)
@@ -139,6 +141,10 @@ dokka {
             register("ktor-client") {
                 url("https://api.ktor.io/ktor-client/")
                 packageListUrl("https://api.ktor.io/package-list")
+            }
+            register("ktorgen") {
+                url("https://kingg22.github.io/ktorgen/")
+                packageListUrl("https://kingg22.github.io/ktorgen/annotations/package-list")
             }
         }
     }
@@ -190,28 +196,28 @@ mavenPublishing {
     coordinates(group.toString(), "deezer-client-kt", version.toString())
 
     pom {
-        name = "Unofficial Deezer Client – Kotlin Multiplatform - Java library"
-        description = "A Kotlin Multiplatform library to use Deezer public API."
-        inceptionYear = "2025"
-        url = "https://github.com/kingg22/deezer-client-kt"
+        name.set("Unofficial Deezer Client – Kotlin Multiplatform - Java library")
+        description.set("A Kotlin Multiplatform library to use Deezer public API.")
+        inceptionYear.set("2025")
+        url.set("https://github.com/kingg22/deezer-client-kt")
         licenses {
             license {
-                name = "GNU Affero General Public License"
-                url = "https://www.gnu.org/licenses/agpl-3.0.en.html"
-                distribution = "repo"
+                name.set("GNU Affero General Public License")
+                url.set("https://www.gnu.org/licenses/agpl-3.0.en.html")
+                distribution.set("repo")
             }
         }
         developers {
             developer {
-                id = "kingg22"
-                name = "Rey Acosta (Kingg22)"
-                url = "https://github.com/kingg22"
+                id.set("kingg22")
+                name.set("Rey Acosta (Kingg22)")
+                url.set("https://github.com/kingg22")
             }
         }
         scm {
-            url = "https://github.com/kingg22/deezer-client-kt"
-            connection = "scm:git:git://github.com/kingg22/deezer-client-kt.git"
-            developerConnection = "scm:git:ssh://git@github.com/kingg22/deezer-client-kt.git"
+            url.set("https://github.com/kingg22/deezer-client-kt")
+            connection.set("scm:git:git://github.com/kingg22/deezer-client-kt.git")
+            developerConnection.set("scm:git:ssh://git@github.com/kingg22/deezer-client-kt.git")
         }
     }
 }
