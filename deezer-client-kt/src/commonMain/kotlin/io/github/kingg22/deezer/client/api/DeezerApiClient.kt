@@ -56,55 +56,55 @@ constructor(
 
     /** All endpoints related to [io.github.kingg22.deezer.client.api.objects.Album] */
     @get:JvmSynthetic
-    val albums = AlbumRoutes(httpClient)
+    val albums: AlbumRoutes = AlbumRoutes(httpClient)
 
     /** All endpoints related to [io.github.kingg22.deezer.client.api.objects.Artist] */
     @get:JvmSynthetic
-    val artists = ArtistRoutes(httpClient)
+    val artists: ArtistRoutes = ArtistRoutes(httpClient)
 
     /** All endpoints related to [io.github.kingg22.deezer.client.api.objects.Chart] */
     @get:JvmSynthetic
-    val charts = ChartRoutes(httpClient)
+    val charts: ChartRoutes = ChartRoutes(httpClient)
 
     /** All endpoints related to [io.github.kingg22.deezer.client.api.objects.Editorial] */
     @get:JvmSynthetic
-    val editorials = EditorialRoutes(httpClient)
+    val editorials: EditorialRoutes = EditorialRoutes(httpClient)
 
     /** All endpoints related to [io.github.kingg22.deezer.client.api.objects.Episode] */
     @get:JvmSynthetic
-    val episodes = EpisodeRoutes(httpClient)
+    val episodes: EpisodeRoutes = EpisodeRoutes(httpClient)
 
     /** All endpoints related to [io.github.kingg22.deezer.client.api.objects.Genre] */
     @get:JvmSynthetic
-    val genres = GenreRoutes(httpClient)
+    val genres: GenreRoutes = GenreRoutes(httpClient)
 
     /** All endpoints related to [io.github.kingg22.deezer.client.api.objects.Infos] */
     @get:JvmSynthetic
-    val infos = InfosRoute(httpClient)
+    val infos: InfosRoute = InfosRoute(httpClient)
 
     /** All endpoints related to [io.github.kingg22.deezer.client.api.objects.Options] */
     @get:JvmSynthetic
-    val options = OptionsRoute(httpClient)
+    val options: OptionsRoute = OptionsRoute(httpClient)
 
     /** All endpoints related to [io.github.kingg22.deezer.client.api.objects.Playlist] */
     @get:JvmSynthetic
-    val playlists = PlaylistRoutes(httpClient)
+    val playlists: PlaylistRoutes = PlaylistRoutes(httpClient)
 
     /** All endpoints related to [io.github.kingg22.deezer.client.api.objects.Podcast] */
     @get:JvmSynthetic
-    val podcasts = PodcastRoutes(httpClient)
+    val podcasts: PodcastRoutes = PodcastRoutes(httpClient)
 
     /** All endpoints related to [io.github.kingg22.deezer.client.api.objects.Radio] */
     @get:JvmSynthetic
-    val radios = RadioRoutes(httpClient)
+    val radios: RadioRoutes = RadioRoutes(httpClient)
 
     /** All endpoints related to search */
     @get:JvmSynthetic
-    val searches = SearchRoutes(httpClient)
+    val searches: SearchRoutes = SearchRoutes(httpClient)
 
     /** All endpoints related to [io.github.kingg22.deezer.client.api.objects.Track] */
     @get:JvmSynthetic
-    val tracks = TrackRoutes(httpClient)
+    val tracks: TrackRoutes = TrackRoutes(httpClient)
 
     /** All endpoints related to [io.github.kingg22.deezer.client.api.objects.User] */
     @get:JvmSynthetic
