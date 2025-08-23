@@ -83,19 +83,27 @@ slf4j-nop = { group = "org.slf4j", name = "slf4j-nop", version.ref = "slf4jNop" 
 
 # Libraries can be bundled together for easier import
 [bundles]
-kotlinx-ecosystem = ["kotlinx-datetime", "kotlinx-serialization", "kotlinx-coroutines"]
+kotlinx-ecosystem = [
+    "kotlinx-datetime",
+    # "kotlinx-serialization",
+    # "kotlinx-coroutines",
+]
 ktor-client = [
-    "ktor-client-core",
+    #"ktor-client-core",
     "ktor-client-content-negotiation",
     "ktor-json",
-    "ktor-client-logging"
+    "ktor-client-logging",
 ]
 testing = [
     "kotlin-test",
     "kotlinx-coroutines-test",
     "kotest-assertions-core",
 ]
-testing-ktor = ["ktor-client-mock", "kotlinx-resources", "kotest-assertions-json"]
+testing-ktor = [
+    "ktor-client-mock",
+    "kotlinx-resources",
+    "kotest-assertions-json",
+]
 
 [plugins]
 android-library = { id = "com.android.library", version.ref = "agp" }
