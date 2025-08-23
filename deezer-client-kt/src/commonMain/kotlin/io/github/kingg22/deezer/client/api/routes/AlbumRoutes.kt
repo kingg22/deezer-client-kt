@@ -18,6 +18,7 @@ import kotlin.jvm.JvmSynthetic
 @KtorGen(
     basePath = "album/",
     visibilityModifier = "internal",
+    classVisibilityModifier = "private",
     functionAnnotations = [JvmSynthetic::class, InternalDeezerClient::class],
     annotations = [InternalDeezerClient::class],
 )

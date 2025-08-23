@@ -17,6 +17,7 @@ import kotlin.jvm.JvmSynthetic
  */
 @KtorGen(
     visibilityModifier = "internal",
+    classVisibilityModifier = "private",
     functionAnnotations = [JvmSynthetic::class, InternalDeezerClient::class],
     annotations = [InternalDeezerClient::class],
 )

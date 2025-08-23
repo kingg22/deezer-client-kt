@@ -27,6 +27,7 @@ import kotlin.time.Duration.Companion.seconds
  */
 @KtorGen(
     visibilityModifier = "internal",
+    classVisibilityModifier = "private",
     functionAnnotations = [JvmSynthetic::class, InternalDeezerClient::class],
     annotations = [InternalDeezerClient::class],
 )
