@@ -33,9 +33,7 @@ constructor(
 
     /** Append links to repository and documentation */
     protected fun generateLinks() = buildString {
-        appendLine()
-        append("For more detail, see documentation: https://kingg22.github.io/deezer-client-kt/")
-        appendLine()
-        append("Or the repository: https://github.com/kingg22/deezer-client-kt")
+        appendLine("For more detail, see documentation: https://kingg22.github.io/deezer-client-kt/")
+        appendLine("Or the repository: https://github.com/kingg22/deezer-client-kt")
     }
 }

@@ -29,10 +29,8 @@ class DeezerApiException @JvmOverloads constructor(
         append("[Deezer API Exception]")
         // Don't call supper, generate a more detail message
         error?.let {
-            append(" [Error: ${it.description} (Code: ${it.code})]")
-            appendLine()
-            append("For more detail, see: https://developers.deezer.com/api/errors")
-            appendLine()
+            appendLine(" [Error: ${it.description} (Code: ${it.code})]")
+            appendLine("For more detail, see: https://developers.deezer.com/api/errors")
         }
         if (!errorMessage.isNullOrBlank()) append("Detail: $errorMessage")
         append("-------------")
