@@ -109,8 +109,6 @@ kover {
         }
         filters.excludes {
             annotatedBy("$group.ktorgen.core.Generated")
-            // TODO when ktorgen Generated retention is binary or runtime to correct exclude
-            annotatedBy("$group.deezer.client.utils.InternalDeezerClient")
         }
     }
 }
