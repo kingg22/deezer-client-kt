@@ -2,7 +2,7 @@
 
 ![Kotlin Multiplatform](https://img.shields.io/badge/Kotlin_Multiplatform-%237F52FF.svg?style=flat-square&logo=kotlin&logoColor=white)
 ![Ktor Client](https://img.shields.io/badge/Ktor_Client-D93FD1.svg?style=flat-square&logo=ktor&logoColor=white&link=https%3A%2F%2Fktor.io%2F)
-![Ktorfit](https://img.shields.io/badge/Ktorfit-CF561B.svg?style=flat-square&logo=ktor&logoColor=black)
+![KtorGen](https://img.shields.io/badge/KtorGen-CF561B.svg?style=flat-square&logo=ktor&logoColor=black)
 
 ![Maven Central Version](https://img.shields.io/maven-central/v/io.github.kingg22/deezer-client-kt)
 ![Maven Central Last Update](https://img.shields.io/maven-central/last-update/io.github.kingg22/deezer-client-kt)
@@ -213,6 +213,13 @@ Only `PaginatedResponse` is data class to easy duplicate and fetch data.
 ## 🛣 Roadmap
 - [ ] Support authenticated endpoints (user edit, user playlist edit, etc.)
 - [ ] OAuth flow and token refresh support
+
+### ⛓️‍💥 Dependencies
+- [ktor-client-content-negotiation-json](https://ktor.io/docs/client-serialization.html#k53369_158) with kotlinx-serialization
+- [ktor-client-logging](https://ktor.io/docs/client-logging.html) with Sf4lj Nop in runtime.
+- [kotlinx-datetime](https://github.com/Kotlin/kotlinx-datetime) for java is not supported easy less,
+  but can use long as seconds in some cases.
+- [Poko](https://github.com/drewhamilton/Poko) and [KtorGen](https://github.com/kingg22/ktorgen) in compile time.
 
 ### 📃 References
 - [Deezer Developer API](https://developers.deezer.com/api/)
