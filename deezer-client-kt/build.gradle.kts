@@ -20,7 +20,8 @@ plugins {
 }
 
 group = "io.github.kingg22"
-version = "2.1.0"
+description = "A Kotlin Multiplatform library to use Deezer public API."
+version = "2.1.1"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
@@ -195,7 +196,7 @@ mavenPublishing {
 
     pom {
         name.set("Unofficial Deezer Client – Kotlin Multiplatform - Java library")
-        description.set("A Kotlin Multiplatform library to use Deezer public API.")
+        description.set(project.description)
         inceptionYear.set("2025")
         url.set("https://github.com/kingg22/deezer-client-kt")
         licenses {
