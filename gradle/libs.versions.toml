@@ -39,7 +39,7 @@ ktlint-plugin = "13.0.0"
 # https://github.com/vanniktech/gradle-maven-publish-plugin/releases
 maven-publish = "0.34.0"
 # https://github.com/drewhamilton/Poko/releases
-poko = "0.19.3"
+poko = "0.20.0"
 # https://slf4j.org/download.html
 slf4jNop = "2.0.17"
 
