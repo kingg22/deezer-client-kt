@@ -1,0 +1,62 @@
+product:
+  type: lib
+  platforms: [jvm, android,linuxX64,linuxArm64,mingwX64]
+
+aliases:
+  - androidAndJvm: [jvm, android]
+
+dependencies:
+  - $libs.kotlinx.datetime:
+      exported: true
+      scope: all
+  - $libs.ktor.client.content.negotiation:
+      exported: true
+      scope: all
+  - $libs.ktor.json:
+      exported: true
+      scope: all
+  - $libs.ktor.client.logging:
+      exported: true
+      scope: all
+  - $libs.ktorgen.annotations: compile-only
+  - $libs.slf4j.nop:
+      exported: true
+      scope: runtime-only
+  - dev.drewhamilton.poko:poko-annotations:0.20.0: compile-only
+
+test-dependencies:
+  - $kotlin.test
+  - $libs.kotlinx.coroutines.test
+  - $libs.kotest.assertions.core
+  - $libs.ktor.client.mock
+  - $libs.kotlinx.resources
+  - $libs.kotest.assertions.json
+  - $libs.kermit
+
+test-dependencies@jvm:
+  - $libs.ktor.client.engine.cio
+
+settings:
+  kotlin:
+    version: 2.2.0
+    allWarningsAsErrors: true
+    freeCompilerArgs:
+      - -Wextra
+    ksp:
+      processors:
+        - $libs.ktorgen.compiler
+    serialization:
+      enabled: true
+      format: json
+  jvm:
+    release: 8
+  android:
+    minSdk: 24
+    compileSdk: 36
+    targetSdk: 36
+    namespace: io.github.kingg22.deezer.client
+
+settings@androidAndJvm:
+  kotlin:
+    freeCompilerArgs:
+      - -jvm-target=8
