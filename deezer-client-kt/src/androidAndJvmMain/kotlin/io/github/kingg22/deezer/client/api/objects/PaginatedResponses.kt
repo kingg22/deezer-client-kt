@@ -1,12 +1,9 @@
-@file:OptIn(ExperimentalDeezerClient::class, InternalDeezerClient::class, InternalSerializationApi::class)
-
 package io.github.kingg22.deezer.client.api.objects
 
 import io.github.kingg22.deezer.client.exceptions.DeezerApiException
 import io.github.kingg22.deezer.client.utils.AfterInitialize
 import io.github.kingg22.deezer.client.utils.ExperimentalDeezerClient
-import io.github.kingg22.deezer.client.utils.InternalDeezerClient
-import io.github.kingg22.deezer.client.utils.getJson
+import io.github.kingg22.deezer.client.utils.getDefaultJson
 import io.ktor.client.request.get
 import io.ktor.client.statement.bodyAsText
 import io.ktor.http.Url
@@ -34,6 +31,7 @@ import kotlin.coroutines.cancellation.CancellationException
  * For Kotlin users: **You don't need this, use the member function instead, this is only for Java**
  */
 @ExperimentalDeezerClient
+@InternalSerializationApi
 /*
 This is internal, for kotlin consumers can't access this, but Java consumers can access avoid internal stuff.
 Is PublishedApi to maintain binary compatibility.
@@ -66,7 +64,7 @@ internal object PaginatedResponses {
     @JvmStatic
     @Throws(IllegalArgumentException::class, DeezerApiException::class, CancellationException::class)
     fun <N : @Serializable Any> PaginatedResponse<N>.fetchNext(clazz: Class<N>, expand: Boolean = false) =
-        runBlocking { fetchNextJavaInternal(expand, clazz.kotlin.serializer()) }
+        runBlocking { fetchNextJava(expand, clazz.kotlin.serializer()) }
 
     /**
      * Fetch the next page of the search blocking the thread.
@@ -99,16 +97,16 @@ internal object PaginatedResponses {
         expand: Boolean = false,
         coroutineContext: CoroutineContext = EmptyCoroutineContext,
     ): CompletableFuture<PaginatedResponse<N>?> = CoroutineScope(coroutineContext).future {
-        fetchNextJavaInternal(expand, clazz.kotlin.serializer())
+        fetchNextJava(expand, clazz.kotlin.serializer())
     }
 
-    private suspend fun <N : @Serializable Any> PaginatedResponse<N>.fetchNextJavaInternal(
+    private suspend inline fun <N : @Serializable Any> PaginatedResponse<N>.fetchNextJava(
         expand: Boolean = false,
         serializer: KSerializer<N>,
     ): PaginatedResponse<N>? {
         if (next.isNullOrBlank()) return null
         val resultString = client().httpClient.get(Url(next)).bodyAsText()
-        val result = getJson().decodeFromString(PaginatedResponse.serializer(serializer), resultString)
+        val result = getDefaultJson().decodeFromString(PaginatedResponse.serializer(serializer), resultString)
 
         return if (expand && data.isNotEmpty()) {
             result.copy(data = data + result.data)
@@ -143,7 +141,7 @@ internal object PaginatedResponses {
     @JvmStatic
     @Throws(IllegalArgumentException::class, DeezerApiException::class, CancellationException::class)
     fun <P : @Serializable Any> PaginatedResponse<P>.fetchPrevious(clazz: Class<P>, expand: Boolean = false) =
-        runBlocking { fetchPreviousJavaInternal(expand, clazz.kotlin.serializer()) }
+        runBlocking { fetchPreviousJava(expand, clazz.kotlin.serializer()) }
 
     /**
      * Fetch the previous page of the search with [CompletableFuture].
@@ -176,16 +174,16 @@ internal object PaginatedResponses {
         expand: Boolean = false,
         coroutineContext: CoroutineContext = EmptyCoroutineContext,
     ): CompletableFuture<PaginatedResponse<P>?> = CoroutineScope(coroutineContext).future {
-        fetchPreviousJavaInternal(expand, clazz.kotlin.serializer())
+        fetchPreviousJava(expand, clazz.kotlin.serializer())
     }
 
-    private suspend fun <N : @Serializable Any> PaginatedResponse<N>.fetchPreviousJavaInternal(
+    private suspend inline fun <N : @Serializable Any> PaginatedResponse<N>.fetchPreviousJava(
         expand: Boolean = false,
         serializer: KSerializer<N>,
     ): PaginatedResponse<N>? {
         if (prev.isNullOrBlank()) return null
         val resultString = client().httpClient.get(Url(prev)).bodyAsText()
-        val result = getJson().decodeFromString(PaginatedResponse.serializer(serializer), resultString)
+        val result = getDefaultJson().decodeFromString(PaginatedResponse.serializer(serializer), resultString)
 
         return if (expand && data.isNotEmpty()) {
             result.copy(data = result.data + data)
