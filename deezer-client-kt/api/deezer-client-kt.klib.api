@@ -1150,7 +1150,7 @@ final class io.github.kingg22.deezer.client.api/DeezerApiClient { // io.github.k
         final fun <get-users>(): io.github.kingg22.deezer.client.api.routes/UserRoutes // io.github.kingg22.deezer.client.api/DeezerApiClient.users.<get-users>|<get-users>(){}[0]
 
     final object Companion { // io.github.kingg22.deezer.client.api/DeezerApiClient.Companion|null[0]
-        final fun initialize(io.github.kingg22.deezer.client.utils/HttpClientBuilder = ...): io.github.kingg22.deezer.client.api/DeezerApiClient // io.github.kingg22.deezer.client.api/DeezerApiClient.Companion.initialize|initialize(io.github.kingg22.deezer.client.utils.HttpClientBuilder){}[0]
+        final fun initialize(io.github.kingg22.deezer.client.utils/HttpClientBuilder = ..., kotlin/Boolean = ..., kotlin/Boolean = ...): io.github.kingg22.deezer.client.api/DeezerApiClient // io.github.kingg22.deezer.client.api/DeezerApiClient.Companion.initialize|initialize(io.github.kingg22.deezer.client.utils.HttpClientBuilder;kotlin.Boolean;kotlin.Boolean){}[0]
     }
 }
 
@@ -1257,9 +1257,7 @@ open class io.github.kingg22.deezer.client.exceptions/DeezerClientException : ko
     constructor <init>(kotlin/String? = ..., kotlin/Throwable? = ...) // io.github.kingg22.deezer.client.exceptions/DeezerClientException.<init>|<init>(kotlin.String?;kotlin.Throwable?){}[0]
 
     final val messageString // io.github.kingg22.deezer.client.exceptions/DeezerClientException.messageString|{}messageString[0]
-        final fun <get-messageString>(): kotlin/String? // io.github.kingg22.deezer.client.exceptions/DeezerClientException.messageString.<get-messageString>|<get-messageString>(){}[0]
-    open val cause // io.github.kingg22.deezer.client.exceptions/DeezerClientException.cause|{}cause[0]
-        open fun <get-cause>(): kotlin/Throwable? // io.github.kingg22.deezer.client.exceptions/DeezerClientException.cause.<get-cause>|<get-cause>(){}[0]
+        final fun <get-messageString>(): kotlin/String // io.github.kingg22.deezer.client.exceptions/DeezerClientException.messageString.<get-messageString>|<get-messageString>(){}[0]
     open val message // io.github.kingg22.deezer.client.exceptions/DeezerClientException.message|{}message[0]
         open fun <get-message>(): kotlin/String // io.github.kingg22.deezer.client.exceptions/DeezerClientException.message.<get-message>|<get-message>(){}[0]
 
@@ -1289,5 +1287,7 @@ final fun (io.ktor.http/Url).io.github.kingg22.deezer.client.api.objects/withIma
 final fun (io.ktor.http/Url).io.github.kingg22.deezer.client.api.objects/withImageSize(kotlin/Int): io.ktor.http/Url // io.github.kingg22.deezer.client.api.objects/withImageSize|withImageSize@io.ktor.http.Url(kotlin.Int){}[0]
 final fun (kotlin/String).io.github.kingg22.deezer.client.api.objects/withImageSize(io.github.kingg22.deezer.client.api.objects/ImageSizes): kotlin/String // io.github.kingg22.deezer.client.api.objects/withImageSize|withImageSize@kotlin.String(io.github.kingg22.deezer.client.api.objects.ImageSizes){}[0]
 final fun (kotlin/String).io.github.kingg22.deezer.client.api.objects/withImageSize(kotlin/Int): kotlin/String // io.github.kingg22.deezer.client.api.objects/withImageSize|withImageSize@kotlin.String(kotlin.Int){}[0]
+final fun io.github.kingg22.deezer.client.utils/getDefaultDeezerHeaders(): io.ktor.http/Headers // io.github.kingg22.deezer.client.utils/getDefaultDeezerHeaders|getDefaultDeezerHeaders(){}[0]
+final fun io.github.kingg22.deezer.client.utils/getDefaultJson(): kotlinx.serialization.json/Json // io.github.kingg22.deezer.client.utils/getDefaultJson|getDefaultJson(){}[0]
 final suspend inline fun <#A: reified kotlin/Any> (io.github.kingg22.deezer.client.api.objects/PaginatedResponse<#A>).io.github.kingg22.deezer.client.api.objects/fetchNext(kotlin/Boolean = ...): io.github.kingg22.deezer.client.api.objects/PaginatedResponse<#A>? // io.github.kingg22.deezer.client.api.objects/fetchNext|fetchNext@io.github.kingg22.deezer.client.api.objects.PaginatedResponse<0:0>(kotlin.Boolean){0§<kotlin.Any>}[0]
 final suspend inline fun <#A: reified kotlin/Any> (io.github.kingg22.deezer.client.api.objects/PaginatedResponse<#A>).io.github.kingg22.deezer.client.api.objects/fetchPrevious(kotlin/Boolean = ...): io.github.kingg22.deezer.client.api.objects/PaginatedResponse<#A>? // io.github.kingg22.deezer.client.api.objects/fetchPrevious|fetchPrevious@io.github.kingg22.deezer.client.api.objects.PaginatedResponse<0:0>(kotlin.Boolean){0§<kotlin.Any>}[0]

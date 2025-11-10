@@ -20,12 +20,16 @@ public final class io/github/kingg22/deezer/client/api/DeezerApiClient {
 	public final synthetic fun getUsers ()Lio/github/kingg22/deezer/client/api/routes/UserRoutes;
 	public static final fun initialize ()Lio/github/kingg22/deezer/client/api/DeezerApiClient;
 	public static final fun initialize (Lio/github/kingg22/deezer/client/utils/HttpClientBuilder;)Lio/github/kingg22/deezer/client/api/DeezerApiClient;
+	public static final fun initialize (Lio/github/kingg22/deezer/client/utils/HttpClientBuilder;Z)Lio/github/kingg22/deezer/client/api/DeezerApiClient;
+	public static final fun initialize (Lio/github/kingg22/deezer/client/utils/HttpClientBuilder;ZZ)Lio/github/kingg22/deezer/client/api/DeezerApiClient;
 }
 
 public final class io/github/kingg22/deezer/client/api/DeezerApiClient$Companion {
 	public final fun initialize ()Lio/github/kingg22/deezer/client/api/DeezerApiClient;
 	public final fun initialize (Lio/github/kingg22/deezer/client/utils/HttpClientBuilder;)Lio/github/kingg22/deezer/client/api/DeezerApiClient;
-	public static synthetic fun initialize$default (Lio/github/kingg22/deezer/client/api/DeezerApiClient$Companion;Lio/github/kingg22/deezer/client/utils/HttpClientBuilder;ILjava/lang/Object;)Lio/github/kingg22/deezer/client/api/DeezerApiClient;
+	public final fun initialize (Lio/github/kingg22/deezer/client/utils/HttpClientBuilder;Z)Lio/github/kingg22/deezer/client/api/DeezerApiClient;
+	public final fun initialize (Lio/github/kingg22/deezer/client/utils/HttpClientBuilder;ZZ)Lio/github/kingg22/deezer/client/api/DeezerApiClient;
+	public static synthetic fun initialize$default (Lio/github/kingg22/deezer/client/api/DeezerApiClient$Companion;Lio/github/kingg22/deezer/client/utils/HttpClientBuilder;ZZILjava/lang/Object;)Lio/github/kingg22/deezer/client/api/DeezerApiClient;
 }
 
 public final class io/github/kingg22/deezer/client/api/DeezerApiJavaClient {
@@ -45,13 +49,22 @@ public final class io/github/kingg22/deezer/client/api/DeezerApiJavaClient {
 	public final field tracks Lio/github/kingg22/deezer/client/api/routes/TrackJavaRoutes;
 	public final field users Lio/github/kingg22/deezer/client/api/routes/UserJavaRoutes;
 	public fun <init> ()V
+	public static final fun create (Lio/github/kingg22/deezer/client/api/DeezerApiClient;)Lio/github/kingg22/deezer/client/api/DeezerApiJavaClient;
 	public final fun getDelegate ()Lio/github/kingg22/deezer/client/api/DeezerApiClient;
+	public final fun getHttpClient ()Lio/ktor/client/HttpClient;
+	public static final fun initialize ()Lio/github/kingg22/deezer/client/api/DeezerApiJavaClient;
 	public static final fun initialize (Lio/github/kingg22/deezer/client/utils/HttpClientBuilder;)Lio/github/kingg22/deezer/client/api/DeezerApiJavaClient;
+	public static final fun initialize (Lio/github/kingg22/deezer/client/utils/HttpClientBuilder;Z)Lio/github/kingg22/deezer/client/api/DeezerApiJavaClient;
+	public static final fun initialize (Lio/github/kingg22/deezer/client/utils/HttpClientBuilder;ZZ)Lio/github/kingg22/deezer/client/api/DeezerApiJavaClient;
 }
 
 public final class io/github/kingg22/deezer/client/api/DeezerApiJavaClient$Companion {
+	public final fun create (Lio/github/kingg22/deezer/client/api/DeezerApiClient;)Lio/github/kingg22/deezer/client/api/DeezerApiJavaClient;
+	public final fun initialize ()Lio/github/kingg22/deezer/client/api/DeezerApiJavaClient;
 	public final fun initialize (Lio/github/kingg22/deezer/client/utils/HttpClientBuilder;)Lio/github/kingg22/deezer/client/api/DeezerApiJavaClient;
-	public static synthetic fun initialize$default (Lio/github/kingg22/deezer/client/api/DeezerApiJavaClient$Companion;Lio/github/kingg22/deezer/client/utils/HttpClientBuilder;ILjava/lang/Object;)Lio/github/kingg22/deezer/client/api/DeezerApiJavaClient;
+	public final fun initialize (Lio/github/kingg22/deezer/client/utils/HttpClientBuilder;Z)Lio/github/kingg22/deezer/client/api/DeezerApiJavaClient;
+	public final fun initialize (Lio/github/kingg22/deezer/client/utils/HttpClientBuilder;ZZ)Lio/github/kingg22/deezer/client/api/DeezerApiJavaClient;
+	public static synthetic fun initialize$default (Lio/github/kingg22/deezer/client/api/DeezerApiJavaClient$Companion;Lio/github/kingg22/deezer/client/utils/HttpClientBuilder;ZZILjava/lang/Object;)Lio/github/kingg22/deezer/client/api/DeezerApiJavaClient;
 }
 
 public final class io/github/kingg22/deezer/client/api/GlobalDeezerApiClient : io/github/kingg22/deezer/client/utils/LateInitClient {
@@ -1957,7 +1970,6 @@ public class io/github/kingg22/deezer/client/exceptions/DeezerClientException : 
 	public fun <init> (Ljava/lang/String;Ljava/lang/Throwable;)V
 	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Throwable;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	protected static final fun generateLinks ()Ljava/lang/String;
-	public fun getCause ()Ljava/lang/Throwable;
 	public fun getMessage ()Ljava/lang/String;
 	public final fun getMessageString ()Ljava/lang/String;
 }
@@ -2025,6 +2037,11 @@ public final class io/github/kingg22/deezer/client/utils/HttpClientBuilder$Compa
 	public static synthetic fun httpClient$default (Lio/github/kingg22/deezer/client/utils/HttpClientBuilder$Companion;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lio/ktor/client/HttpClient;
 	public final synthetic fun httpClientBuilder (Lkotlin/jvm/functions/Function1;)Lio/github/kingg22/deezer/client/utils/HttpClientBuilder;
 	public static synthetic fun httpClientBuilder$default (Lio/github/kingg22/deezer/client/utils/HttpClientBuilder$Companion;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lio/github/kingg22/deezer/client/utils/HttpClientBuilder;
+}
+
+public final class io/github/kingg22/deezer/client/utils/HttpClientProvider {
+	public static final fun getDefaultDeezerHeaders ()Lio/ktor/http/Headers;
+	public static final fun getDefaultJson ()Lkotlinx/serialization/json/Json;
 }
 
 public abstract interface annotation class io/github/kingg22/deezer/client/utils/InternalDeezerClient : java/lang/annotation/Annotation {
