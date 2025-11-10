@@ -17,20 +17,24 @@ open class DeezerClientException
 @JvmOverloads
 constructor(
     /** Message to help the developer find a solution */
-    val messageString: String? = null,
+    messageString: String? = null,
     /**
      * The throwable that caused this throwable to get thrown, or null if this
      * throwable was not caused by another throwable, or if the causative
      * throwable is unknown.
      */
-    override val cause: Throwable? = null,
-) : RuntimeException(messageString, cause) {
+    cause: Throwable? = null,
+) : RuntimeException(cause) {
     /** Specific details about the exception */
     override val message = buildString {
         append("[Deezer Client Exception]")
         messageString?.let { append(": $it") }
-        generateLinks()
+        append(generateLinks())
     }
+
+    @Suppress("unused", "kotlin:S1133") // planned to remove soon
+    @Deprecated("Use message or detailMessage of Exception", ReplaceWith("message"), DeprecationLevel.ERROR)
+    val messageString get() = message
 
     /** Utility functions to create this exception */
     companion object {
