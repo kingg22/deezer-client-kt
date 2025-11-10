@@ -49,7 +49,7 @@ jobs:
           validate-wrappers: false
 
       - name: Build documentation with dokka
-        run: ./gradlew dokkaGenerate
+        run: ./gradlew --no-daemon dokkaGenerate
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
