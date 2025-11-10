@@ -8,6 +8,7 @@ import io.ktor.client.plugins.*
 import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.plugins.cookies.*
 import io.ktor.client.plugins.logging.*
+import io.ktor.client.utils.buildHeaders
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
 import io.ktor.utils.io.charsets.*
@@ -59,7 +60,7 @@ internal fun getClient(
         }
         install(BodyProgress)
         install(ContentNegotiation) {
-            json(getJson())
+            json(getDefaultJson())
         }
         install(HttpTimeout) {
             requestTimeoutMillis = timeout.inWholeMilliseconds
@@ -73,26 +74,9 @@ internal fun getClient(
             format = LoggingFormat.OkHttp
             level = logLevel
         }
-        addDefaultResponseValidation()
-        expectSuccess = true
 
         defaultRequest {
             userAgent(userAgent)
-            headers {
-                append(HttpHeaders.Pragma, "no-cache")
-                append(HttpHeaders.Origin, "https://www.deezer.com")
-                append(HttpHeaders.AcceptEncoding, "gzip, deflate, br")
-                append(HttpHeaders.AcceptLanguage, "en-US,en;q=0.9")
-                append(HttpHeaders.Accept, "*/*")
-                append(HttpHeaders.CacheControl, "no-cache")
-                append(HttpHeaders.Connection, "keep-alive")
-                append(HttpHeaders.Referrer, "https://www.deezer.com")
-                append("X-Requested-With", "XMLHttpRequest")
-                append("DNT", "1")
-                append("Sec-Fetch-Dest", "empty")
-                append("Sec-Fetch-Mode", "cors")
-                append("Sec-Fetch-Site", "same-site")
-            }
         }
 
         Charsets {
@@ -106,12 +90,10 @@ internal fun getClient(
     return if (engine != null) HttpClient(engine, clientConfig) else HttpClient(clientConfig)
 }
 
-@JvmSynthetic
-internal const val API_DEEZER = "https://api.deezer.com/"
-
+/** Configure a [Json] with default configuration to be compatible with the Deezer API */
 @OptIn(ExperimentalSerializationApi::class)
-@JvmSynthetic
-internal fun getJson() = Json {
+@InternalDeezerClient
+fun getDefaultJson() = Json {
     encodeDefaults = true
     isLenient = true
     allowSpecialFloatingPointValues = true
@@ -122,6 +104,25 @@ internal fun getJson() = Json {
     explicitNulls = false
     decodeEnumsCaseInsensitive = true
     useArrayPolymorphism = true
+}
+
+/**
+ * Configure a [Headers] with default configuration to be compatible with the Deezer API,
+ * this is not needed in normal cases.
+ */
+@InternalDeezerClient
+fun getDefaultDeezerHeaders() = buildHeaders {
+    append(HttpHeaders.Origin, "https://www.deezer.com")
+    append(HttpHeaders.AcceptEncoding, "gzip, deflate, br")
+    append(HttpHeaders.AcceptLanguage, "en-US,en;q=0.9")
+    append(HttpHeaders.Accept, "*/*")
+    append(HttpHeaders.Connection, "keep-alive")
+    append(HttpHeaders.Referrer, "https://www.deezer.com")
+    append("X-Requested-With", "XMLHttpRequest")
+    append("DNT", "1")
+    append("Sec-Fetch-Dest", "empty")
+    append("Sec-Fetch-Mode", "cors")
+    append("Sec-Fetch-Site", "same-site")
 }
 
 @JvmSynthetic
