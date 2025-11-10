@@ -1,6 +1,6 @@
 package io.github.kingg22.deezer.client.api.objects
 
-import dev.drewhamilton.poko.Poko
+import io.github.kingg22.deezer.client.utils.DeezerApiPoko
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlin.jvm.JvmOverloads
@@ -25,7 +25,7 @@ import kotlin.jvm.JvmOverloads
  * @property isRadio Allows streaming the radio
  * @property type **unofficial** The type of object, usually the name of the class.
  */
-@Poko
+@DeezerApiPoko
 @Serializable
 class Options @JvmOverloads constructor(
     @SerialName("streaming") val isStreaming: Boolean,

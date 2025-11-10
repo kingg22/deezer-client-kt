@@ -1,9 +1,6 @@
-@file:OptIn(InternalDeezerClient::class)
-
 package io.github.kingg22.deezer.client.api.objects
 
-import dev.drewhamilton.poko.Poko
-import io.github.kingg22.deezer.client.utils.InternalDeezerClient
+import io.github.kingg22.deezer.client.utils.DeezerApiPoko
 import io.github.kingg22.deezer.client.utils.LocalDateTimeSerializer
 import kotlinx.datetime.LocalDateTime
 import kotlinx.serialization.ExperimentalSerializationApi
@@ -46,7 +43,7 @@ import kotlin.jvm.JvmSynthetic
  * @property position **unofficial only on charts** The position of the artist in the charts
  * @property tracklist **unofficial only on resumes** The url of the playlist's tracks
  */
-@Poko
+@DeezerApiPoko
 @Serializable
 @OptIn(ExperimentalSerializationApi::class)
 class Playlist @JvmOverloads constructor(

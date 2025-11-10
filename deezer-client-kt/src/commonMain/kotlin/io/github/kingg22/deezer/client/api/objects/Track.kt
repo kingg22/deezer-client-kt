@@ -1,6 +1,6 @@
 package io.github.kingg22.deezer.client.api.objects
 
-import dev.drewhamilton.poko.Poko
+import io.github.kingg22.deezer.client.utils.DeezerApiPoko
 import kotlinx.datetime.LocalDate
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -44,7 +44,7 @@ import kotlin.jvm.JvmSynthetic
  * @property position **only on charts** The position of the track in the charts
  * @property timeAdd **unofficial only on playlist**
  */
-@Poko
+@DeezerApiPoko
 @Serializable
 class Track @JvmOverloads constructor(
     override val id: Long,

@@ -1,6 +1,6 @@
 package io.github.kingg22.deezer.client.api.objects
 
-import dev.drewhamilton.poko.Poko
+import io.github.kingg22.deezer.client.utils.DeezerApiPoko
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -23,7 +23,7 @@ import kotlin.jvm.JvmSynthetic
  * @property type **unofficial** The type of object, usually the name of the class.
  * @property radios **unofficial _only on radio_** The radios of the genre
  */
-@Poko
+@DeezerApiPoko
 @Serializable
 @OptIn(ExperimentalSerializationApi::class)
 class Genre @JvmOverloads constructor(

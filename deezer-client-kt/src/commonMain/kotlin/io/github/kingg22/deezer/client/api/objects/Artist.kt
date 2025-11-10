@@ -1,6 +1,6 @@
 package io.github.kingg22.deezer.client.api.objects
 
-import dev.drewhamilton.poko.Poko
+import io.github.kingg22.deezer.client.utils.DeezerApiPoko
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlin.jvm.JvmOverloads
@@ -29,7 +29,7 @@ import kotlin.jvm.JvmSynthetic
  * @property role **unofficial _only on contributors_** The role of the artist on contributors ("Main", "Featured", ...)
  * @property position **unofficial _only on charts_** The position of the artist in the charts
  */
-@Poko
+@DeezerApiPoko
 @Serializable
 class Artist @JvmOverloads constructor(
     override val id: Long,

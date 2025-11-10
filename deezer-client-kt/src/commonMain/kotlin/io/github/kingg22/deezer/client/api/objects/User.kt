@@ -1,6 +1,6 @@
 package io.github.kingg22.deezer.client.api.objects
 
-import dev.drewhamilton.poko.Poko
+import io.github.kingg22.deezer.client.utils.DeezerApiPoko
 import kotlinx.datetime.LocalDate
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -35,7 +35,7 @@ import kotlin.jvm.JvmSynthetic
  * @property tracklist API Link to the flow of this user
  * @property type **unofficial** The type of object, usually the name of the class.
  */
-@Poko
+@DeezerApiPoko
 @Serializable
 class User @JvmOverloads constructor(
     override val id: Long,

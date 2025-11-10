@@ -1,6 +1,6 @@
 package io.github.kingg22.deezer.client.api.objects
 
-import dev.drewhamilton.poko.Poko
+import io.github.kingg22.deezer.client.utils.DeezerApiPoko
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonElement
@@ -25,7 +25,7 @@ import kotlin.jvm.JvmOverloads
  * @property ads **unofficial** Settings related to ads on the platform
  * @property hasPodcast **unofficial** Indicates whether the country has support for podcasts
  */
-@Poko
+@DeezerApiPoko
 @Serializable
 class Infos @JvmOverloads constructor(
     @SerialName("country_iso") val countryIso: String,
@@ -108,7 +108,7 @@ class Infos @JvmOverloads constructor(
      * The {0} parameter is likely to be dynamically replaced with region or server identifiers.
      * @property images Base URL to get images from the service, such as album covers, artists.
      */
-    @Poko
+    @DeezerApiPoko
     @Serializable
     class HostDetails @JvmOverloads constructor(val stream: String? = null, val images: String? = null)
 }

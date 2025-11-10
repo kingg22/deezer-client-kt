@@ -1,9 +1,6 @@
-@file:OptIn(InternalDeezerClient::class)
-
 package io.github.kingg22.deezer.client.api.objects
 
-import dev.drewhamilton.poko.Poko
-import io.github.kingg22.deezer.client.utils.InternalDeezerClient
+import io.github.kingg22.deezer.client.utils.DeezerApiPoko
 import io.github.kingg22.deezer.client.utils.LocalDateTimeSerializer
 import kotlinx.datetime.LocalDateTime
 import kotlinx.serialization.SerialName
@@ -32,7 +29,7 @@ import kotlin.jvm.JvmSynthetic
  * @property pictureXl The url of the episode's cover in size xl
  * @property trackToken The track token for media service
  */
-@Poko
+@DeezerApiPoko
 @Serializable
 class Episode @JvmOverloads constructor(
     override val id: Long,
