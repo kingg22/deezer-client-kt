@@ -1,6 +1,7 @@
 package io.github.kingg22.deezer.client.exceptions
 
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * General exception of the _Deezer Client_
@@ -31,9 +32,13 @@ constructor(
         generateLinks()
     }
 
-    /** Append links to repository and documentation */
-    protected fun generateLinks() = buildString {
-        appendLine("For more detail, see documentation: https://kingg22.github.io/deezer-client-kt/")
-        appendLine("Or the repository: https://github.com/kingg22/deezer-client-kt")
+    /** Utility functions to create this exception */
+    companion object {
+        /** Append links to repository and documentation */
+        @JvmStatic
+        protected fun generateLinks() = buildString {
+            appendLine("For more detail, see documentation: https://kingg22.github.io/deezer-client-kt/")
+            appendLine("Or the repository: https://github.com/kingg22/deezer-client-kt")
+        }
     }
 }
