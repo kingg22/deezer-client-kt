@@ -1,15 +1,13 @@
-@file:OptIn(InternalDeezerClient::class, ExperimentalDeezerClient::class)
-
 package io.github.kingg22.deezer.client.api
 
 import io.github.kingg22.deezer.client.api.objects.ErrorContainer
 import io.github.kingg22.deezer.client.api.routes.*
 import io.github.kingg22.deezer.client.exceptions.DeezerApiException
-import io.github.kingg22.deezer.client.utils.API_DEEZER
-import io.github.kingg22.deezer.client.utils.ExperimentalDeezerClient
 import io.github.kingg22.deezer.client.utils.HttpClientBuilder
 import io.github.kingg22.deezer.client.utils.InternalDeezerClient
 import io.github.kingg22.deezer.client.utils.decodeOrNull
+import io.github.kingg22.deezer.client.utils.getDefaultDeezerHeaders
+import io.github.kingg22.ktorgen.http.Header
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.plugins.*
@@ -35,6 +33,8 @@ class DeezerApiClient
 /**
  * Initialize with builder to create an [HttpClient].
  *
+ * Be careful if you expect the request to happen; look at all the [DeezerApiClient.initialize] options.
+ *
  * If needed, after init is set on [GlobalDeezerApiClient]
  *
  * @param builder Builder to create an [HttpClient]
@@ -44,12 +44,12 @@ class DeezerApiClient
 constructor(
     builder: HttpClientBuilder = HttpClientBuilder(),
 ) {
-    /** The current [HttpClient] using */
+    /** The current underlying [HttpClient] using */
     @InternalDeezerClient
     val httpClient = builder.copy().addCustomConfig {
         defaultRequest {
-            url(API_DEEZER)
-            header("Accept", "application/json")
+            url("https://api.deezer.com/")
+            header(HttpHeaders.Accept, Header.ContentTypes.Application.Json)
         }
         HttpResponseValidator(customValidators())
     }.build()
@@ -124,19 +124,41 @@ constructor(
          * Initialize an instance of [DeezerApiClient].
          *
          * @param builder Builder to create [HttpClient].
+         * Default [HttpClientBuilder]
+         * @param includeDefaultHeaders Whether to include the default headers to be compatible with the official API.
+         * See source code of [getDefaultDeezerHeaders].
+         * Default true
+         * @param expectSuccess Whether to expect a successful response.
+         * See [addDefaultResponseValidation].
+         * Default true.
          */
         @JvmStatic
         @JvmOverloads
-        fun initialize(builder: HttpClientBuilder = HttpClientBuilder()) = DeezerApiClient(builder)
+        fun initialize(
+            builder: HttpClientBuilder = HttpClientBuilder(),
+            includeDefaultHeaders: Boolean = true,
+            expectSuccess: Boolean = true,
+        ) = DeezerApiClient(
+            builder.copy().apply {
+                addCustomConfig {
+                    if (includeDefaultHeaders) headers { appendAll(getDefaultDeezerHeaders()) }
+                    if (expectSuccess) this.expectSuccess = true
+                }
+            },
+        )
 
+        @Suppress("kotlin:S3776") // simple validation in one method
         private fun customValidators(): HttpCallValidatorConfig.() -> Unit = {
             handleResponseException { exception, _ ->
                 when (exception) {
                     is DeezerApiException -> throw exception
                     is ClientRequestException -> {
-                        val errorBody = runCatching {
+                        val errorBody = try {
                             exception.response.body<ErrorContainer>().error
-                        }.onFailure { currentCoroutineContext().ensureActive() }.getOrNull()
+                        } catch (_: Exception) {
+                            currentCoroutineContext().ensureActive()
+                            null
+                        }
 
                         throw DeezerApiException(
                             errorCode = errorBody?.code,
@@ -170,11 +192,14 @@ constructor(
                 if (!response.status.isSuccess()) return@validateResponse
 
                 val contentType = response.contentType()
-                if (contentType == ContentType.Application.Json) {
-                    val body = runCatching { response.bodyAsText() }
-                        .onFailure { currentCoroutineContext().ensureActive() }
-                        .getOrNull()
-                        ?: return@validateResponse
+                if (contentType?.match(ContentType.Application.Json) == true) {
+                    val body = try {
+                        response.bodyAsText()
+                    } catch (_: Exception) {
+                        currentCoroutineContext().ensureActive()
+                        // Don't rethrow because is probable the error is caused by parsing, delegate to ktor
+                        return@validateResponse
+                    }
 
                     val error = decodeOrNull<ErrorContainer>(body)?.error
                     val asBoolean = decodeOrNull<Boolean>(body)
