@@ -1,4 +1,4 @@
-@file:OptIn(InternalDeezerClient::class, ExperimentalDeezerClient::class)
+@file:Suppress("kotlin:S1128") // False positive of unused import
 
 package io.github.kingg22.deezer.client.api
 
@@ -19,7 +19,9 @@ import io.github.kingg22.deezer.client.api.routes.UserJavaRoutes.Companion.asJav
 import io.github.kingg22.deezer.client.utils.ExperimentalDeezerClient
 import io.github.kingg22.deezer.client.utils.HttpClientBuilder
 import io.github.kingg22.deezer.client.utils.InternalDeezerClient
-import io.ktor.client.*
+import io.github.kingg22.deezer.client.utils.getDefaultDeezerHeaders
+import io.ktor.client.HttpClient
+import io.ktor.client.plugins.addDefaultResponseValidation
 import kotlinx.coroutines.isActive
 
 /**
@@ -51,11 +53,17 @@ internal constructor(
     /**
      * Initialize with builder to create an [HttpClient].
      *
+     * Be careful if you expect the request to happen; look at all the [DeezerApiJavaClient.initialize] options.
+     *
      * @param builder Builder to create an [HttpClient]
      * @see DeezerApiClient
      */
     @JvmOverloads
     internal constructor(builder: HttpClientBuilder = HttpClientBuilder()) : this(DeezerApiClient(builder))
+
+    /** The current underlying [HttpClient] using of delegate */
+    @property:InternalDeezerClient
+    val httpClient get() = delegate.httpClient
 
     init {
         require(delegate.httpClient.isActive) { "The http client of delegate isn't active" }
@@ -123,13 +131,29 @@ internal constructor(
      */
     companion object {
         /**
-         * Initialize an instance of [DeezerApiClient].
+         * Initialize an instance of [DeezerApiJavaClient].
          *
          * @param builder Builder to create [HttpClient].
-         * @see DeezerApiClient.initialize
+         * Default [HttpClientBuilder]
+         * @param includeDefaultHeaders Whether to include the default headers to be compatible with the official API.
+         * See source code of [getDefaultDeezerHeaders].
+         * Default true
+         * @param expectSuccess Whether to expect a successful response.
+         * See [addDefaultResponseValidation].
+         * Default true.
          */
         @PublishedApi
         @JvmStatic
-        internal fun initialize(builder: HttpClientBuilder = HttpClientBuilder()) = DeezerApiJavaClient(builder)
+        @JvmOverloads
+        internal fun initialize(
+            builder: HttpClientBuilder = HttpClientBuilder(),
+            includeDefaultHeaders: Boolean = true,
+            expectSuccess: Boolean = true,
+        ) = DeezerApiClient.initialize(builder, includeDefaultHeaders, expectSuccess).asJava()
+
+        @PublishedApi
+        @JvmStatic
+        @JvmName("create")
+        internal fun DeezerApiClient.asJava() = DeezerApiJavaClient(this)
     }
 }
