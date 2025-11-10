@@ -2,6 +2,7 @@ import kotlinx.kover.gradle.plugin.dsl.CoverageUnit
 import org.jetbrains.dokka.gradle.engine.parameters.VisibilityModifier
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
 import org.jetbrains.kotlin.gradle.dsl.abi.ExperimentalAbiValidation
 
 plugins {
@@ -11,7 +12,7 @@ plugins {
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.kotlinx.kover)
     alias(libs.plugins.kotlinx.resources)
-    alias(libs.plugins.ksp)
+    alias(libs.plugins.ksp) // Incompatible with android multiplatform library
     alias(libs.plugins.ktlint)
     alias(libs.plugins.maven.publish)
     alias(libs.plugins.poko)
@@ -30,6 +31,12 @@ kotlin {
     compilerOptions {
         extraWarnings.set(true)
         allWarningsAsErrors.set(true)
+        optIn.addAll(
+            "io.github.kingg22.deezer.client.utils.ExperimentalDeezerClient",
+            "io.github.kingg22.deezer.client.utils.InternalDeezerClient",
+        )
+        languageVersion.set(KotlinVersion.KOTLIN_2_0)
+        apiVersion.set(KotlinVersion.KOTLIN_2_0)
     }
 
     @OptIn(ExperimentalAbiValidation::class)
@@ -163,6 +170,14 @@ android {
 
 ktlint {
     version.set(libs.versions.ktlint.pinterest.get())
+}
+
+poko {
+    pokoAnnotation.set("io/github/kingg22/deezer/client/utils/DeezerApiPoko")
+}
+
+tasks.check {
+    dependsOn(tasks.checkLegacyAbi)
 }
 
 // Workaround kotlin multiplatform with ksp
