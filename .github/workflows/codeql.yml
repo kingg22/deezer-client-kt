@@ -88,6 +88,14 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Cache konan
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.konan/dependencies
+          key: ${{ runner.os }}-konan
+          restore-keys: ${{ runner.os }}-konan
+
       # If the analyze step fails for one of the languages you are analyzing with
       # "We were unable to automatically build your code", modify the matrix above
       # to set the build mode to "manual" for that language. Then modify this step
