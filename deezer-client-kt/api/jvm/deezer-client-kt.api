@@ -1951,14 +1951,18 @@ public final class io/github/kingg22/deezer/client/exceptions/DeezerApiException
 }
 
 public class io/github/kingg22/deezer/client/exceptions/DeezerClientException : java/lang/RuntimeException {
+	public static final field Companion Lio/github/kingg22/deezer/client/exceptions/DeezerClientException$Companion;
 	public fun <init> ()V
 	public fun <init> (Ljava/lang/String;)V
 	public fun <init> (Ljava/lang/String;Ljava/lang/Throwable;)V
 	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Throwable;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	protected final fun generateLinks ()Ljava/lang/String;
+	protected static final fun generateLinks ()Ljava/lang/String;
 	public fun getCause ()Ljava/lang/Throwable;
 	public fun getMessage ()Ljava/lang/String;
 	public final fun getMessageString ()Ljava/lang/String;
+}
+
+public final class io/github/kingg22/deezer/client/exceptions/DeezerClientException$Companion {
 }
 
 public abstract interface annotation class io/github/kingg22/deezer/client/utils/AfterInitialize : java/lang/annotation/Annotation {

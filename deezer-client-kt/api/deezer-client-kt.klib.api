@@ -1263,7 +1263,7 @@ open class io.github.kingg22.deezer.client.exceptions/DeezerClientException : ko
     open val message // io.github.kingg22.deezer.client.exceptions/DeezerClientException.message|{}message[0]
         open fun <get-message>(): kotlin/String // io.github.kingg22.deezer.client.exceptions/DeezerClientException.message.<get-message>|<get-message>(){}[0]
 
-    final fun generateLinks(): kotlin/String // io.github.kingg22.deezer.client.exceptions/DeezerClientException.generateLinks|generateLinks(){}[0]
+    final object Companion // io.github.kingg22.deezer.client.exceptions/DeezerClientException.Companion|null[0]
 }
 
 final object io.github.kingg22.deezer.client.api/GlobalDeezerApiClient : io.github.kingg22.deezer.client.utils/LateInitClient { // io.github.kingg22.deezer.client.api/GlobalDeezerApiClient|null[0]

@@ -2,7 +2,6 @@ import kotlinx.kover.gradle.plugin.dsl.CoverageUnit
 import org.jetbrains.dokka.gradle.engine.parameters.VisibilityModifier
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
 import org.jetbrains.kotlin.gradle.dsl.abi.ExperimentalAbiValidation
 
 plugins {
@@ -35,8 +34,6 @@ kotlin {
             "io.github.kingg22.deezer.client.utils.ExperimentalDeezerClient",
             "io.github.kingg22.deezer.client.utils.InternalDeezerClient",
         )
-        languageVersion.set(KotlinVersion.KOTLIN_2_0)
-        apiVersion.set(KotlinVersion.KOTLIN_2_0)
     }
 
     @OptIn(ExperimentalAbiValidation::class)
