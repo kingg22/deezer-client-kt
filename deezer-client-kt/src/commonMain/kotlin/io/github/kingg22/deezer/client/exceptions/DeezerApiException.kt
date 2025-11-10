@@ -1,6 +1,7 @@
 package io.github.kingg22.deezer.client.exceptions
 
-import dev.drewhamilton.poko.Poko
+import io.github.kingg22.deezer.client.utils.DeezerApiPoko
+import io.github.kingg22.deezer.client.utils.InternalDeezerClient
 import kotlinx.serialization.Serializable
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
@@ -12,30 +13,47 @@ import kotlin.jvm.JvmStatic
  * @see <a href="https://developers.deezer.com/api/errors">Deezer API errors</a>
  * @see DeezerApiException.DeezerErrorCode
  *
- * @param errorCode The code of the exception
- * @param errorMessage The messages to logger. Default description of the error code
- * @param cause The cause of the exception
  * @property error The [Deezer Error Code][DeezerApiException.DeezerErrorCode] if is set
  */
-@Poko
-class DeezerApiException @JvmOverloads constructor(
-    private val errorCode: Int? = null,
-    private val errorMessage: String? = null,
-    override val cause: Throwable? = null,
-) : DeezerClientException(errorMessage, cause) {
-    val error = errorCode?.let { DeezerErrorCode.fromCode(it) }
+@DeezerApiPoko
+class DeezerApiException private constructor(
+    val error: DeezerErrorCode?,
+    override val message: String,
+    override val cause: Throwable?,
+) : DeezerClientException(cause = cause) {
 
-    override val message = buildString {
-        append("[Deezer API Exception]")
-        // Don't call supper, generate a more detail message
-        error?.let {
-            appendLine(" [Error: ${it.description} (Code: ${it.code})]")
-            appendLine("For more detail, see: https://developers.deezer.com/api/errors")
-        }
-        if (!errorMessage.isNullOrBlank()) append("Detail: $errorMessage")
-        append("-------------")
-        append(generateLinks())
-    }
+    /**
+     * Create new instance of [DeezerApiException], this is an internal constructor.
+     * @param errorCode The code of the exception. See [DeezerErrorCode]
+     * @param errorMessage The messages to logger. Default description of the error code
+     * @param cause The cause of the exception
+     */
+    @InternalDeezerClient
+    @JvmOverloads
+    constructor(
+        errorCode: Int? = null,
+        errorMessage: String? = null,
+        cause: Throwable? = null,
+    ) : this(
+        error = errorCode?.let { DeezerErrorCode.fromCode(it) },
+        message = buildString {
+            append("[Deezer API Exception]")
+            errorCode?.let { intCode ->
+                val deezerError = DeezerErrorCode.fromCode(intCode)
+                if (deezerError != null) {
+                    appendLine(
+                        " [Error: ${deezerError.description} (Code: ${deezerError.code}, type: ${deezerError.type})]",
+                    )
+                } else {
+                    appendLine(" [Error: Unknown (Code: $intCode)]")
+                }
+                appendLine("For more detail, see: https://developers.deezer.com/api/errors")
+            }
+            if (!errorMessage.isNullOrBlank()) appendLine("Detail: $errorMessage")
+            append(generateLinks())
+        },
+        cause = cause,
+    )
 
     /**
      * [Deezer API](https://developers.deezer.com/api/) returns some error codes if the request failed.
@@ -48,7 +66,7 @@ class DeezerApiException @JvmOverloads constructor(
      * @author Kingg22
      * @see <a href="https://developers.deezer.com/api/errors">Deezer API errors</a>
      */
-    @Serializable
+    @Serializable // TODO remove this, enum is not used in serialization
     enum class DeezerErrorCode(val code: Int, val description: String, val type: String? = null) {
         /** Quota exceeded */
         QUOTA(4, "Quota exceeded", "Exception"),
