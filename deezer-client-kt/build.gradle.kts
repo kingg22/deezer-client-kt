@@ -1,5 +1,3 @@
-@file:OptIn(ExperimentalKotlinGradlePluginApi::class, ExperimentalAbiValidation::class)
-
 import kotlinx.kover.gradle.plugin.dsl.CoverageUnit
 import org.jetbrains.dokka.gradle.engine.parameters.VisibilityModifier
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
@@ -21,7 +19,7 @@ plugins {
 
 group = "io.github.kingg22"
 description = "A Kotlin Multiplatform library to use Deezer public API."
-version = "2.1.1"
+version = "2.2.0-SNAPSHOT"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
@@ -34,6 +32,7 @@ kotlin {
         allWarningsAsErrors.set(true)
     }
 
+    @OptIn(ExperimentalAbiValidation::class)
     abiValidation {
         enabled.set(true)
         klib {
@@ -63,6 +62,7 @@ kotlin {
     // tier 3
     mingwX64()
 
+    @OptIn(ExperimentalKotlinGradlePluginApi::class)
     applyDefaultHierarchyTemplate {
         common {
             group("androidAndJvm") {
