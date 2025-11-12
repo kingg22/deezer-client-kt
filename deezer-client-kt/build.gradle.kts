@@ -1,4 +1,5 @@
 import kotlinx.kover.gradle.plugin.dsl.CoverageUnit
+import org.jetbrains.dokka.gradle.engine.parameters.KotlinPlatform
 import org.jetbrains.dokka.gradle.engine.parameters.VisibilityModifier
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
@@ -60,12 +61,6 @@ kotlin {
         }
     }
 
-    // tier 2
-    linuxX64()
-    linuxArm64()
-    // tier 3
-    mingwX64()
-
     @OptIn(ExperimentalKotlinGradlePluginApi::class)
     applyDefaultHierarchyTemplate {
         common {
@@ -83,8 +78,7 @@ kotlin {
             dependencies {
                 api(libs.bundles.ktor.client)
                 api(libs.bundles.kotlinx.ecosystem)
-                implementation(libs.ktorgen.annotations)
-                runtimeOnly(libs.slf4j.nop)
+                compileOnly(libs.ktorgen.annotations)
             }
         }
         commonTest.dependencies {
@@ -126,10 +120,7 @@ dokka {
         enableJdkDocumentationLink.set(true)
         enableKotlinStdLibDocumentationLink.set(true)
         suppressGeneratedFiles.set(true)
-        perPackageOption {
-            matchingRegex.set("$group.deezer.client.api.objects")
-            documentedVisibilities.addAll(VisibilityModifier.Internal, VisibilityModifier.Public)
-        }
+        jdkVersion.set(8)
         externalDocumentationLinks {
             register("kotlinx.coroutines") {
                 url("https://kotlinlang.org/api/kotlinx.coroutines/")
@@ -147,9 +138,26 @@ dokka {
             }
             register("ktorgen") {
                 url("https://kingg22.github.io/ktorgen/")
-                packageListUrl("https://kingg22.github.io/ktorgen/annotations/package-list")
+                packageListUrl("https://kingg22.github.io/ktorgen/api/annotations/package-list")
             }
         }
+
+        // adds source links that lead to this repository, allowing readers
+        // to easily find source code for inspected declarations
+        sourceLink {
+            localDirectory.set(file("src"))
+            remoteUrl("https://github.com/kingg22/deezer-client-kt/tree/main/deezer-client-kt/src")
+            remoteLineSuffix.set("#L")
+        }
+    }
+    dokkaSourceSets.named("androidAndJvmMain") {
+        // This source set is designed for Java access
+        displayName.set("Java")
+        // In this source set have a trick with internal and published API to only java access ;)
+        documentedVisibilities.addAll(VisibilityModifier.Internal, VisibilityModifier.Public)
+        // Is android jvm, but we want to see Javadocs
+        // I recommend using kotlin in android
+        analysisPlatform.set(KotlinPlatform.JVM)
     }
 }
 
