@@ -12,7 +12,7 @@
 
 A Kotlin Multiplatform client for Deezer’s official REST API.
 Using [Ktor Client](https://ktor.io/).
-Supports Android (min SDK 24 / JVM 8+), JVM Java, Kotlin/JVM, Kotlin/Native platforms.
+Supports Android (min SDK 24 / JVM 8+), JVM Java, Kotlin/JVM.
 
 ## 🛠️ Instalación
 - Android **minSdk Version 24**
@@ -63,7 +63,7 @@ println("Artist: ${artist.name}") // Artist: Daft Punk
 - ⚠️ Java (Blocking)
 ```java
 public class Test {
-  public static void main(String[] args) {
+  static void main(String[] args) {
     final var client = new DeezerApiJavaClient();
     final Artist artist = client.artists.getById(27);
     System.out.println("Artist: " + artist.getName()); // Artist: Daft Punk
@@ -76,7 +76,7 @@ public class Test {
 import java.util.concurrent.CompletableFuture;
 
 public class Test {
-  public static void main(String[] args) {
+  static void main(String[] args) {
     final var client = new DeezerApiJavaClient();
     final CompletableFuture<Artist> future = client.artists.getByIdFuture(27);
     future.whenComplete((artist, err) -> {
@@ -105,7 +105,7 @@ import java.util.concurrent.CompletableFuture;
 import io.github.kingg22.deezer.client.api.objects.PaginatedResponses;
 
 public class Test {
-  public static void main(String[] args) {
+  static void main(String[] args) {
     final DeezerApiJavaClient client = "";// use the same client in the app
     final PaginatedResponse<Track> response = client.searches.search("eminem");
     final PaginatedResponse<Track> nextPage =
@@ -136,7 +136,7 @@ val freshEpisode: Episode = episode.reload() // suspend fun
 import java.util.concurrent.CompletableFuture;
 
 class Test {
-  public static void main(String[] args) {
+  static void main(String[] args) {
     final DeezerApiJavaClient client = "";// use the same client in the app
     final Episode episode = client.episodes.getById(526673645);
     final Episode freshEpisode = Resources.reload(tested); // blocking
@@ -174,7 +174,7 @@ import static io.github.kingg22.deezer.client.api.routes.SearchRoutes.buildAdvan
 import static io.github.kingg22.deezer.client.api.routes.SearchRoutes.setStrict;
 
 public class Test {
-  public static void main(String[] args) {
+  static void main(String[] args) {
     final DeezerApiJavaClient client = "";// use the same client in the app
     client.searches.searchAlbum(
       /* q =*/ buildAdvancedQuery(/* q = */ "King") // Only access to Java builder style
@@ -216,7 +216,7 @@ Only `PaginatedResponse` is data class to easy duplicate and fetch data.
 
 ### ⛓️‍💥 Dependencies
 - [ktor-client-content-negotiation-json](https://ktor.io/docs/client-serialization.html#k53369_158) with kotlinx-serialization
-- [ktor-client-logging](https://ktor.io/docs/client-logging.html) with Sf4lj Nop in runtime.
+- [ktor-client-logging](https://ktor.io/docs/client-logging.html).
 - [kotlinx-datetime](https://github.com/Kotlin/kotlinx-datetime) for java is not supported easy less,
   but can use long as seconds in some cases.
 - [Poko](https://github.com/drewhamilton/Poko) and [KtorGen](https://github.com/kingg22/ktorgen) in compile time.
