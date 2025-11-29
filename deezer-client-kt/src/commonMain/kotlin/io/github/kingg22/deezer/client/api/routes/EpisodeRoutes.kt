@@ -2,6 +2,7 @@
 
 package io.github.kingg22.deezer.client.api.routes
 
+import io.github.kingg22.deezer.client.api.DeezerApiClient.Companion.API_DEEZER_URL
 import io.github.kingg22.deezer.client.api.objects.Episode
 import io.github.kingg22.deezer.client.utils.InternalDeezerClient
 import io.github.kingg22.ktorgen.core.KtorGen
@@ -14,6 +15,7 @@ import kotlin.jvm.JvmSynthetic
  * @author Kingg22
  */
 @KtorGen(
+    basePath = "$API_DEEZER_URL/episode",
     visibilityModifier = "internal",
     classVisibilityModifier = "private",
     functionAnnotations = [JvmSynthetic::class, InternalDeezerClient::class],
@@ -21,7 +23,7 @@ import kotlin.jvm.JvmSynthetic
 )
 interface EpisodeRoutes {
     /** Retrieve an [io.github.kingg22.deezer.client.api.objects.Episode] by ID */
-    @GET("episode/{id}")
+    @GET("/{id}")
     @JvmSynthetic
     suspend fun getById(@Path id: Long): Episode
 }

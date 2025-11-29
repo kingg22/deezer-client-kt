@@ -1,5 +1,6 @@
 package io.github.kingg22.deezer.client.api.routes
 
+import io.github.kingg22.deezer.client.api.DeezerApiClient.Companion.API_DEEZER_URL
 import io.github.kingg22.deezer.client.api.objects.Album
 import io.github.kingg22.deezer.client.api.objects.Artist
 import io.github.kingg22.deezer.client.api.objects.Chart
@@ -21,6 +22,7 @@ import kotlin.jvm.JvmSynthetic
  * @author Kingg22
  */
 @KtorGen(
+    basePath = "$API_DEEZER_URL/chart",
     visibilityModifier = "internal",
     classVisibilityModifier = "private",
     functionAnnotations = [JvmSynthetic::class, InternalDeezerClient::class],
@@ -28,17 +30,17 @@ import kotlin.jvm.JvmSynthetic
 )
 interface ChartRoutes {
     /** Retrieve [Chart] */
-    @GET("chart")
+    @GET
     @JvmSynthetic
     suspend fun getAll(@Query index: Int? = null, @Query limit: Int? = null): Chart
 
     /** **Unofficial** Retrieve [Chart] by ID _maybe genre id?_ */
-    @GET("chart/{id}")
+    @GET("/{id}")
     @JvmSynthetic
     suspend fun getById(@Path id: Long, @Query index: Int? = null, @Query limit: Int? = null): Chart
 
     /** Retrieve the Top [Track] */
-    @GET("chart/{id}/tracks")
+    @GET("/{id}/tracks")
     @JvmSynthetic
     suspend fun getTracks(
         @Path id: Long = 0,
@@ -47,7 +49,7 @@ interface ChartRoutes {
     ): PaginatedResponse<Track>
 
     /** Retrieve the Top [Album] */
-    @GET("chart/{id}/albums")
+    @GET("/{id}/albums")
     @JvmSynthetic
     suspend fun getAlbums(
         @Path id: Long = 0,
@@ -56,7 +58,7 @@ interface ChartRoutes {
     ): PaginatedResponse<Album>
 
     /** Retrieve the Top [Artist] */
-    @GET("chart/{id}/artists")
+    @GET("/{id}/artists")
     @JvmSynthetic
     suspend fun getArtists(
         @Path id: Long = 0,
@@ -65,7 +67,7 @@ interface ChartRoutes {
     ): PaginatedResponse<Artist>
 
     /** Retrieve the Top [Playlist] */
-    @GET("chart/{id}/playlists")
+    @GET("/{id}/playlists")
     @JvmSynthetic
     suspend fun getPlaylists(
         @Path id: Long = 0,
@@ -74,7 +76,7 @@ interface ChartRoutes {
     ): PaginatedResponse<Playlist>
 
     /** Retrieve the Top [Podcast] */
-    @GET("chart/{id}/podcasts")
+    @GET("/{id}/podcasts")
     @JvmSynthetic
     suspend fun getPodcasts(
         @Path id: Long = 0,

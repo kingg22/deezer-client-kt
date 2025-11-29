@@ -1,5 +1,6 @@
 package io.github.kingg22.deezer.client.api.routes
 
+import io.github.kingg22.deezer.client.api.DeezerApiClient.Companion.API_DEEZER_URL
 import io.github.kingg22.deezer.client.api.objects.Album
 import io.github.kingg22.deezer.client.api.objects.Chart
 import io.github.kingg22.deezer.client.api.objects.Editorial
@@ -19,6 +20,7 @@ import kotlin.jvm.JvmSynthetic
  * @author Kingg22
  */
 @KtorGen(
+    basePath = "$API_DEEZER_URL/editorial",
     visibilityModifier = "internal",
     classVisibilityModifier = "private",
     functionAnnotations = [JvmSynthetic::class, InternalDeezerClient::class],
@@ -26,12 +28,12 @@ import kotlin.jvm.JvmSynthetic
 )
 interface EditorialRoutes {
     /** Retrieve all [Editorial] */
-    @GET("editorial")
+    @GET
     @JvmSynthetic
     suspend fun getAll(@Query index: Int? = null, @Query limit: Int? = null): PaginatedResponse<Editorial>
 
     /** Retrieve an [Editorial] by ID */
-    @GET("editorial/{id}")
+    @GET("/{id}")
     @JvmSynthetic
     suspend fun getById(@Path id: Long, @Query index: Int? = null, @Query limit: Int? = null): Editorial
 
@@ -45,7 +47,7 @@ interface EditorialRoutes {
      * (with id, name and link, **unofficial** tracklist and type).
      * **Unofficial**: [Album.md5Image], [Album.genreId], [Album.tracklist] and [Album.type]
      */
-    @GET("editorial/{id}/selection")
+    @GET("/{id}/selection")
     @JvmSynthetic
     suspend fun getDeezerSelection(
         @Path id: Long = 0,
@@ -55,12 +57,12 @@ interface EditorialRoutes {
     ): PaginatedResponse<Album>
 
     /** Retrieve [Chart] */
-    @GET("editorial/{id}/charts")
+    @GET("/{id}/charts")
     @JvmSynthetic
     suspend fun getCharts(@Path id: Long = 0, @Query index: Int? = null, @Query limit: Int? = null): Chart
 
     /** Retrieve [PaginatedResponse] with new [Album] releases per genre for the current country */
-    @GET("editorial/{id}/releases")
+    @GET("/{id}/releases")
     @JvmSynthetic
     suspend fun getReleases(
         @Path id: Long = 0,

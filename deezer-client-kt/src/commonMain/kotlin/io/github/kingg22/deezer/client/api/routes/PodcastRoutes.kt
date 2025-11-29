@@ -1,5 +1,6 @@
 package io.github.kingg22.deezer.client.api.routes
 
+import io.github.kingg22.deezer.client.api.DeezerApiClient.Companion.API_DEEZER_URL
 import io.github.kingg22.deezer.client.api.objects.Episode
 import io.github.kingg22.deezer.client.api.objects.PaginatedResponse
 import io.github.kingg22.deezer.client.api.objects.Podcast
@@ -15,6 +16,7 @@ import kotlin.jvm.JvmSynthetic
  * @author Kingg22
  */
 @KtorGen(
+    basePath = "$API_DEEZER_URL/podcast",
     visibilityModifier = "internal",
     classVisibilityModifier = "private",
     functionAnnotations = [JvmSynthetic::class, InternalDeezerClient::class],
@@ -26,17 +28,17 @@ interface PodcastRoutes {
      *
      * _Dev Note_: Always return an empty list?
      */
-    @GET("podcast")
+    @GET
     @JvmSynthetic
     suspend fun getAll(@Query index: Int? = null, @Query limit: Int? = null): PaginatedResponse<Podcast>
 
     /** Retrieve a [Podcast] by ID */
-    @GET("podcast/{id}")
+    @GET("/{id}")
     @JvmSynthetic
     suspend fun getById(@Path id: Long, @Query index: Int? = null, @Query limit: Int? = null): Podcast
 
     /** Retrieve a [PaginatedResponse] with all [Episode] of the podcast */
-    @GET("podcast/{id}/episodes")
+    @GET("/{id}/episodes")
     @JvmSynthetic
     suspend fun getEpisodes(
         @Path id: Long,

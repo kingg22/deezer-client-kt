@@ -1,5 +1,6 @@
 package io.github.kingg22.deezer.client.api.routes
 
+import io.github.kingg22.deezer.client.api.DeezerApiClient.Companion.API_DEEZER_URL
 import io.github.kingg22.deezer.client.api.objects.PaginatedResponse
 import io.github.kingg22.deezer.client.api.objects.Playlist
 import io.github.kingg22.deezer.client.api.objects.Track
@@ -16,7 +17,7 @@ import kotlin.jvm.JvmSynthetic
  * @author Kingg22
  */
 @KtorGen(
-    basePath = "playlist/",
+    basePath = "$API_DEEZER_URL/playlist/",
     visibilityModifier = "internal",
     classVisibilityModifier = "private",
     functionAnnotations = [JvmSynthetic::class, InternalDeezerClient::class],

@@ -1,5 +1,6 @@
 package io.github.kingg22.deezer.client.api.routes
 
+import io.github.kingg22.deezer.client.api.DeezerApiClient.Companion.API_DEEZER_URL
 import io.github.kingg22.deezer.client.api.objects.*
 import io.github.kingg22.deezer.client.utils.InternalDeezerClient
 import io.github.kingg22.ktorgen.core.KtorGen
@@ -26,6 +27,7 @@ import kotlin.time.Duration.Companion.seconds
  * @see SearchRoutes.AdvancedQueryBuilder
  */
 @KtorGen(
+    basePath = "$API_DEEZER_URL/search",
     visibilityModifier = "internal",
     classVisibilityModifier = "private",
     functionAnnotations = [JvmSynthetic::class, InternalDeezerClient::class],
@@ -150,7 +152,7 @@ interface SearchRoutes {
      * @property Track.album Album object containing: [Album.id], [Album.title], [Album.cover], [Album.coverSmall]
      * [Album.coverMedium], [Album.coverBig], [Album.coverXl] and [Album.type]
      */
-    @GET("search")
+    @GET
     @JvmSynthetic
     suspend fun search(
         @Query q: String,
@@ -161,7 +163,7 @@ interface SearchRoutes {
     ): PaginatedResponse<Track>
 
     /** Search [Album] */
-    @GET("search/album")
+    @GET("/album")
     @JvmSynthetic
     suspend fun searchAlbum(
         @Query q: String,
@@ -172,7 +174,7 @@ interface SearchRoutes {
     ): PaginatedResponse<Album>
 
     /** Search [Artist] */
-    @GET("search/artist")
+    @GET("/artist")
     @JvmSynthetic
     suspend fun searchArtist(
         @Query q: String,
@@ -187,7 +189,7 @@ interface SearchRoutes {
      *
      * **Required** OAuth. **unsupported**
      */
-    @GET("search/history")
+    @GET("/history")
     @JvmSynthetic
     suspend fun searchHistory(
         @Query q: String,
@@ -198,7 +200,7 @@ interface SearchRoutes {
     ): PaginatedResponse<SearchUserHistory>
 
     /** Search [Playlist] */
-    @GET("search/playlist")
+    @GET("/playlist")
     @JvmSynthetic
     suspend fun searchPlaylist(
         @Query q: String,
@@ -209,7 +211,7 @@ interface SearchRoutes {
     ): PaginatedResponse<Playlist>
 
     /** Search [Podcast] */
-    @GET("search/podcast")
+    @GET("/podcast")
     @JvmSynthetic
     suspend fun searchPodcast(
         @Query q: String,
@@ -220,7 +222,7 @@ interface SearchRoutes {
     ): PaginatedResponse<Podcast>
 
     /** Search [Radio] */
-    @GET("search/radio")
+    @GET("/radio")
     @JvmSynthetic
     suspend fun searchRadio(
         @Query q: String,
@@ -231,7 +233,7 @@ interface SearchRoutes {
     ): PaginatedResponse<Radio>
 
     /** Search [Track] */
-    @GET("search/track")
+    @GET("/track")
     @JvmSynthetic
     suspend fun searchTrack(
         @Query q: String,
@@ -242,7 +244,7 @@ interface SearchRoutes {
     ): PaginatedResponse<Track>
 
     /** Search [User] */
-    @GET("search/user")
+    @GET("/user")
     @JvmSynthetic
     suspend fun searchUser(
         @Query q: String,
@@ -278,9 +280,9 @@ interface SearchRoutes {
 
         @get:JvmSynthetic
         @set:JvmSynthetic
-        private var durationMax: Duration? = null
-        private var bpmMin: Int? = null
-        private var bpmMax: Int? = null
+        var durationMax: Duration? = null
+        var bpmMin: Int? = null
+        var bpmMax: Int? = null
 
         /**
          * Set a simple query

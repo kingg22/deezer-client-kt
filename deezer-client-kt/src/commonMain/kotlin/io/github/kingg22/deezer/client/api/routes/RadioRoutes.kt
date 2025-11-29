@@ -1,5 +1,6 @@
 package io.github.kingg22.deezer.client.api.routes
 
+import io.github.kingg22.deezer.client.api.DeezerApiClient.Companion.API_DEEZER_URL
 import io.github.kingg22.deezer.client.api.objects.Genre
 import io.github.kingg22.deezer.client.api.objects.PaginatedResponse
 import io.github.kingg22.deezer.client.api.objects.Radio
@@ -16,6 +17,7 @@ import kotlin.jvm.JvmSynthetic
  * @author Kingg22
  */
 @KtorGen(
+    basePath = "$API_DEEZER_URL/radio",
     visibilityModifier = "internal",
     classVisibilityModifier = "private",
     functionAnnotations = [JvmSynthetic::class, InternalDeezerClient::class],
@@ -23,27 +25,27 @@ import kotlin.jvm.JvmSynthetic
 )
 interface RadioRoutes {
     /** Retrieve all [Radio] */
-    @GET("radio")
+    @GET
     @JvmSynthetic
     suspend fun getAll(@Query index: Int? = null, @Query limit: Int? = null): PaginatedResponse<Radio>
 
     /** Retrieve a [Radio] by ID */
-    @GET("radio/{id}")
+    @GET("/{id}")
     @JvmSynthetic
     suspend fun getById(@Path id: Long): Radio
 
     /** Retrieve a [PaginatedResponse] with [Genre.radios] split by [Genre] */
-    @GET("radio/genres")
+    @GET("/genres")
     @JvmSynthetic
     suspend fun getAllSplitInGenres(@Query index: Int? = null, @Query limit: Int? = null): PaginatedResponse<Genre>
 
     /** Retrieve a [PaginatedResponse] with the top [Radio] (default to 25 radios) */
-    @GET("radio/top")
+    @GET("/top")
     @JvmSynthetic
     suspend fun getTop(@Query index: Int? = null, @Query limit: Int? = null): PaginatedResponse<Radio>
 
     /** Retrieve a [PaginatedResponse] with first 40 [Track] in the radio */
-    @GET("radio/{id}/tracks")
+    @GET("/{id}/tracks")
     @JvmSynthetic
     suspend fun getTracks(
         @Path id: Long,
@@ -52,7 +54,7 @@ interface RadioRoutes {
     ): PaginatedResponse<Track>
 
     /** Retrieve a [PaginatedResponse] with personal [Radio] split by genre (MIX in website) */
-    @GET("radio/lists")
+    @GET("/lists")
     @JvmSynthetic
     suspend fun getLists(@Query index: Int? = null, @Query limit: Int? = null): PaginatedResponse<Radio>
 }

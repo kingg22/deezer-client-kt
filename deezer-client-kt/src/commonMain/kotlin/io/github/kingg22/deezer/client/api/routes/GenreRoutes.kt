@@ -1,5 +1,6 @@
 package io.github.kingg22.deezer.client.api.routes
 
+import io.github.kingg22.deezer.client.api.DeezerApiClient.Companion.API_DEEZER_URL
 import io.github.kingg22.deezer.client.api.objects.Artist
 import io.github.kingg22.deezer.client.api.objects.Genre
 import io.github.kingg22.deezer.client.api.objects.PaginatedResponse
@@ -19,6 +20,7 @@ import kotlin.jvm.JvmSynthetic
  * @author Kingg22
  */
 @KtorGen(
+    basePath = "$API_DEEZER_URL/genre",
     visibilityModifier = "internal",
     classVisibilityModifier = "private",
     functionAnnotations = [JvmSynthetic::class, InternalDeezerClient::class],
@@ -26,17 +28,17 @@ import kotlin.jvm.JvmSynthetic
 )
 interface GenreRoutes {
     /** Retrieve all [io.github.kingg22.deezer.client.api.objects.Genre] */
-    @GET("genre")
+    @GET
     @JvmSynthetic
     suspend fun getAll(@Query index: Int? = null, @Query limit: Int? = null): PaginatedResponse<Genre>
 
     /** Retrieve a [Genre] by ID */
-    @GET("genre/{id}")
+    @GET("/{id}")
     @JvmSynthetic
     suspend fun getById(@Path id: Long): Genre
 
     /** Retrieve [PaginatedResponse] with all [Artist] for a genre */
-    @GET("genre/{id}/artists")
+    @GET("/{id}/artists")
     @JvmSynthetic
     suspend fun getArtists(
         @Path id: Long = 0,
@@ -45,7 +47,7 @@ interface GenreRoutes {
     ): PaginatedResponse<Artist>
 
     /** Retrieve [PaginatedResponse] with all [Podcast] for a genre */
-    @GET("genre/{id}/podcasts")
+    @GET("/{id}/podcasts")
     @JvmSynthetic
     suspend fun getPodcasts(
         @Path id: Long = 0,
@@ -54,7 +56,7 @@ interface GenreRoutes {
     ): PaginatedResponse<Podcast>
 
     /** Retrieve [PaginatedResponse] with all [Radio] for a genre */
-    @GET("genre/{id}/radios")
+    @GET("/{id}/radios")
     @JvmSynthetic
     suspend fun getRadios(
         @Path id: Long = 0,
