@@ -56,7 +56,11 @@ Maven
 ## 🧪 Usage
 - ✅ Kotlin
 ```kotlin
-val client = DeezerApiClient()
+val httpClient = HttpClient {
+  install(DeezerClientPlugin)
+  // Others configuration
+}
+val client = DeezerApiClient(httpClient)
 val artist: Artist = client.artists.getById(27) // suspend fun
 println("Artist: ${artist.name}") // Artist: Daft Punk
 ```
@@ -64,7 +68,11 @@ println("Artist: ${artist.name}") // Artist: Daft Punk
 ```java
 public class Test {
   static void main(String[] args) {
-    final var client = new DeezerApiJavaClient();
+    final HttpClient httpClient = HttpClient(builder -> {
+      builder.install(DeezerClientPlugin);
+      // Others configuration
+    });
+    final var client = new DeezerApiJavaClient(httpClient);
     final Artist artist = client.artists.getById(27);
     System.out.println("Artist: " + artist.getName()); // Artist: Daft Punk
   }
@@ -188,12 +196,6 @@ public class Test {
   }
 }
 ```
-
-**_But where is the http client of ktor?_**
-
-Because the client needs to configure custom validators, throw exceptions; etc. I create an `HttpClientBuilder`,
-you can use it to configure some specs.
-The default constructor of the client expects you to add an engine on your dependencies, and that's it.
 
 **_Why not data class?_**
 
