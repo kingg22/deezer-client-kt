@@ -1,4 +1,4 @@
-@file:Suppress("kotlin:S1128") // False positive of unused import
+@file:Suppress("kotlin:S1128", "DEPRECATION") // False positive of unused import
 
 package io.github.kingg22.deezer.client.api
 
@@ -27,8 +27,6 @@ import kotlinx.coroutines.isActive
 /**
  * Java Client for the official [Deezer API](https://developers.deezer.com/api/).
  *
- * You can start with [DeezerApiJavaClient.initialize] or constructors.
- *
  * For Kotlin: **You don't need this, use [DeezerApiClient] instead, this is only for Java**
  * @author Kingg22
  */
@@ -51,6 +49,12 @@ internal constructor(
     val delegate: DeezerApiClient,
 ) {
     /**
+     * Initialize the client with an active [HttpClient] and [DeezerClientPlugin] installed
+     * @param httpClient The Ktor Http Client to use
+     */
+    internal constructor(httpClient: HttpClient) : this(DeezerApiClient(httpClient))
+
+    /**
      * Initialize with builder to create an [HttpClient].
      *
      * Be careful if you expect the request to happen; look at all the [DeezerApiJavaClient.initialize] options.
@@ -58,6 +62,7 @@ internal constructor(
      * @param builder Builder to create an [HttpClient]
      * @see DeezerApiClient
      */
+    @Deprecated("Build a HttpClient instead, see HttpClientBuilder deprecation.", level = DeprecationLevel.WARNING)
     @JvmOverloads
     internal constructor(builder: HttpClientBuilder = HttpClientBuilder()) : this(DeezerApiClient(builder))
 
@@ -125,10 +130,7 @@ internal constructor(
     @JvmField
     val users = delegate.users.asJava()
 
-    /**
-     * Java Client for the Deezer API.
-     * @see io.github.kingg22.deezer.client.api.DeezerApiJavaClient.Companion.initialize
-     */
+    /** Java Client for the Deezer API. */
     companion object {
         /**
          * Initialize an instance of [DeezerApiJavaClient].
@@ -142,6 +144,7 @@ internal constructor(
          * See [addDefaultResponseValidation].
          * Default true.
          */
+        @Deprecated("Build a HttpClient instead, see HttpClientBuilder deprecation.", level = DeprecationLevel.WARNING)
         @PublishedApi
         @JvmStatic
         @JvmOverloads
