@@ -24,7 +24,7 @@ class DeezerApiClientJavaTest {
 
     @BeforeEach
     void setup() {
-        client = DeezerApiJavaClient.initialize(KtorEngineMocked.createHttpBuilderMock());
+        client = new DeezerApiJavaClient(KtorEngineMocked.createHttpClientMock());
         assertNotNull(GlobalDeezerApiClient.instance);
     }
 

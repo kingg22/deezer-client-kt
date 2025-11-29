@@ -20,7 +20,7 @@ class PodcastRoutesTest {
 
     @BeforeTest
     fun setup() {
-        client = DeezerApiClient.initialize(KtorEngineMocked.createHttpBuilderMock())
+        client = DeezerApiClient(KtorEngineMocked.createHttpClientMock())
     }
 
     // This endpoint always returns empty?

@@ -17,7 +17,7 @@ class UserRoutesTest {
 
     @BeforeTest
     fun setup() {
-        client = DeezerApiClient.initialize(KtorEngineMocked.createHttpBuilderMock())
+        client = DeezerApiClient(KtorEngineMocked.createHttpClientMock())
     }
 
     @Test

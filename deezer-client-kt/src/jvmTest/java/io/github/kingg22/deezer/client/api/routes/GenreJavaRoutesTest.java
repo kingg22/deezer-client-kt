@@ -23,7 +23,7 @@ class GenreJavaRoutesTest {
 
     @BeforeEach
     void setup() {
-        client = new DeezerApiJavaClient(KtorEngineMocked.createHttpBuilderMock());
+        client = new DeezerApiJavaClient(KtorEngineMocked.createHttpClientMock());
     }
 
     @Test

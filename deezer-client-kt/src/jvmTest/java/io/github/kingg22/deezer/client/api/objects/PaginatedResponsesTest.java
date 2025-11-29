@@ -1,5 +1,6 @@
 package io.github.kingg22.deezer.client.api.objects;
 
+import io.github.kingg22.deezer.client.api.GlobalDeezerApiClient;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,7 +16,8 @@ import io.github.kingg22.deezer.client.api.DeezerApiClient;
 class PaginatedResponsesTest {
     @BeforeEach
     void setup() {
-        DeezerApiClient.initialize(KtorEngineMocked.createHttpBuilderMock());
+        new DeezerApiClient(KtorEngineMocked.createHttpClientMock());
+        Assertions.assertNotNull(GlobalDeezerApiClient.instance);
     }
 
     @Test
@@ -39,7 +41,7 @@ class PaginatedResponsesTest {
 
     @Test
     void fetchNextWithDataSuccess() {
-        final PaginatedResponse<Track> paging2 = new PaginatedResponse<>(List.of(PaginatedResponseTest.emptyTrack), null, null, null, PaginatedResponseTest.TRACK_LINK);
+        final PaginatedResponse<Track> paging2 = new PaginatedResponse<>(Collections.singletonList(PaginatedResponseTest.emptyTrack), null, null, null, PaginatedResponseTest.TRACK_LINK);
 
         Assertions.assertDoesNotThrow(() -> {
             final List<PaginatedResponse<Track>> results = Arrays.asList(
@@ -78,7 +80,7 @@ class PaginatedResponsesTest {
 
     @Test
     void fetchPreviousWithDataSuccess() {
-        final PaginatedResponse<Track> paging2 = new PaginatedResponse<>(List.of(PaginatedResponseTest.emptyTrack), null, null, PaginatedResponseTest.TRACK_LINK);
+        final PaginatedResponse<Track> paging2 = new PaginatedResponse<>(Collections.singletonList(PaginatedResponseTest.emptyTrack), null, null, PaginatedResponseTest.TRACK_LINK);
 
         Assertions.assertDoesNotThrow(() -> {
             final List<PaginatedResponse<Track>> results = Arrays.asList(

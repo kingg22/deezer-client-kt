@@ -2,7 +2,11 @@ package io.github.kingg22.deezer.client.api.objects;
 
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
+import io.github.kingg22.deezer.client.KtorEngineMocked;
+import io.github.kingg22.deezer.client.api.DeezerApiClient;
+import io.github.kingg22.deezer.client.api.GlobalDeezerApiClient;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.Duration;
@@ -10,6 +14,12 @@ import java.time.Duration;
 import kotlinx.datetime.LocalDateTime;
 
 class ResourcesTest {
+    @BeforeEach
+    void setup() {
+        new DeezerApiClient(KtorEngineMocked.createHttpClientMock());
+        Assertions.assertNotNull(GlobalDeezerApiClient.instance);
+    }
+
     @Test
     void testReload() {
         final Episode tested = new Episode(
