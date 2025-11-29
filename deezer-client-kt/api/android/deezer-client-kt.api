@@ -1,8 +1,10 @@
 public final class io/github/kingg22/deezer/client/api/DeezerApiClient {
+	public static final field API_DEEZER_URL Ljava/lang/String;
 	public static final field Companion Lio/github/kingg22/deezer/client/api/DeezerApiClient$Companion;
 	public fun <init> ()V
 	public fun <init> (Lio/github/kingg22/deezer/client/utils/HttpClientBuilder;)V
 	public synthetic fun <init> (Lio/github/kingg22/deezer/client/utils/HttpClientBuilder;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Lio/ktor/client/HttpClient;)V
 	public final synthetic fun getAlbums ()Lio/github/kingg22/deezer/client/api/routes/AlbumRoutes;
 	public final synthetic fun getArtists ()Lio/github/kingg22/deezer/client/api/routes/ArtistRoutes;
 	public final synthetic fun getCharts ()Lio/github/kingg22/deezer/client/api/routes/ChartRoutes;
@@ -65,6 +67,30 @@ public final class io/github/kingg22/deezer/client/api/DeezerApiJavaClient$Compa
 	public final fun initialize (Lio/github/kingg22/deezer/client/utils/HttpClientBuilder;Z)Lio/github/kingg22/deezer/client/api/DeezerApiJavaClient;
 	public final fun initialize (Lio/github/kingg22/deezer/client/utils/HttpClientBuilder;ZZ)Lio/github/kingg22/deezer/client/api/DeezerApiJavaClient;
 	public static synthetic fun initialize$default (Lio/github/kingg22/deezer/client/api/DeezerApiJavaClient$Companion;Lio/github/kingg22/deezer/client/utils/HttpClientBuilder;ZZILjava/lang/Object;)Lio/github/kingg22/deezer/client/api/DeezerApiJavaClient;
+}
+
+public final class io/github/kingg22/deezer/client/api/DeezerClientPlugin : io/ktor/client/plugins/api/ClientPlugin {
+	public static final field INSTANCE Lio/github/kingg22/deezer/client/api/DeezerClientPlugin;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getKey ()Lio/ktor/util/AttributeKey;
+	public fun hashCode ()I
+	public fun install (Lio/ktor/client/plugins/api/ClientPluginInstance;Lio/ktor/client/HttpClient;)V
+	public synthetic fun install (Ljava/lang/Object;Lio/ktor/client/HttpClient;)V
+	public fun prepare (Lkotlin/jvm/functions/Function1;)Lio/ktor/client/plugins/api/ClientPluginInstance;
+	public synthetic fun prepare (Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class io/github/kingg22/deezer/client/api/DeezerPluginConfig {
+	public fun <init> ()V
+	public fun <init> (Ljava/util/Set;Z)V
+	public synthetic fun <init> (Ljava/util/Set;ZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAllowedHosts ()Ljava/util/Set;
+	public final fun getIncludeDefaultHeaders ()Z
+	public fun hashCode ()I
+	public final fun setIncludeDefaultHeaders (Z)V
+	public fun toString ()Ljava/lang/String;
 }
 
 public final class io/github/kingg22/deezer/client/api/GlobalDeezerApiClient : io/github/kingg22/deezer/client/utils/LateInitClient {
@@ -1845,6 +1871,9 @@ public final class io/github/kingg22/deezer/client/api/routes/SearchRoutes$Advan
 	public final synthetic fun durationMin-BwNAW2A (Lkotlin/time/Duration;)Lio/github/kingg22/deezer/client/api/routes/SearchRoutes$AdvancedQueryBuilder;
 	public final fun getAlbum ()Ljava/lang/String;
 	public final fun getArtist ()Ljava/lang/String;
+	public final fun getBpmMax ()Ljava/lang/Integer;
+	public final fun getBpmMin ()Ljava/lang/Integer;
+	public final synthetic fun getDurationMax-FghU774 ()Lkotlin/time/Duration;
 	public final synthetic fun getDurationMin-FghU774 ()Lkotlin/time/Duration;
 	public final fun getLabel ()Ljava/lang/String;
 	public final fun getQ ()Ljava/lang/String;
@@ -1853,6 +1882,9 @@ public final class io/github/kingg22/deezer/client/api/routes/SearchRoutes$Advan
 	public final fun q (Ljava/lang/String;)Lio/github/kingg22/deezer/client/api/routes/SearchRoutes$AdvancedQueryBuilder;
 	public final fun setAlbum (Ljava/lang/String;)V
 	public final fun setArtist (Ljava/lang/String;)V
+	public final fun setBpmMax (Ljava/lang/Integer;)V
+	public final fun setBpmMin (Ljava/lang/Integer;)V
+	public final synthetic fun setDurationMax-BwNAW2A (Lkotlin/time/Duration;)V
 	public final synthetic fun setDurationMin-BwNAW2A (Lkotlin/time/Duration;)V
 	public final fun setLabel (Ljava/lang/String;)V
 	public final fun setQ (Ljava/lang/String;)V
