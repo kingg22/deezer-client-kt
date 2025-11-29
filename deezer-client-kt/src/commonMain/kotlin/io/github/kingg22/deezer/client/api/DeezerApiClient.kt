@@ -1,58 +1,56 @@
+// TODO add Poko to this class
+@file:Suppress("DEPRECATION")
+
 package io.github.kingg22.deezer.client.api
 
-import io.github.kingg22.deezer.client.api.objects.ErrorContainer
 import io.github.kingg22.deezer.client.api.routes.*
-import io.github.kingg22.deezer.client.exceptions.DeezerApiException
 import io.github.kingg22.deezer.client.utils.HttpClientBuilder
 import io.github.kingg22.deezer.client.utils.InternalDeezerClient
-import io.github.kingg22.deezer.client.utils.decodeOrNull
 import io.github.kingg22.deezer.client.utils.getDefaultDeezerHeaders
-import io.github.kingg22.ktorgen.http.Header
 import io.ktor.client.*
-import io.ktor.client.call.*
 import io.ktor.client.plugins.*
-import io.ktor.client.request.header
-import io.ktor.client.statement.*
+import io.ktor.client.request.accept
 import io.ktor.http.*
-import kotlinx.coroutines.currentCoroutineContext
-import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.isActive
-import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
-import kotlin.jvm.JvmSynthetic
 
 /**
  * Client for the official [Deezer API](https://developers.deezer.com/api/).
- *
- * You can start with [DeezerApiClient.initialize] or constructor.
  *
  * For Java: **This is unusable, use the _Java Client_ instead, this is only for kotlin.**
  * @author Kingg22
  */
 class DeezerApiClient
 /**
- * Initialize with builder to create an [HttpClient].
- *
- * Be careful if you expect the request to happen; look at all the [DeezerApiClient.initialize] options.
- *
- * If needed, after init is set on [GlobalDeezerApiClient]
- *
- * @param builder Builder to create an [HttpClient]
- * @see GlobalDeezerApiClient.initIfNeeded
+ * Initialize the client with an active [HttpClient] and [DeezerClientPlugin] installed
+ * @param httpClient The Ktor Http Client to use
  */
-@JvmOverloads
 constructor(
-    builder: HttpClientBuilder = HttpClientBuilder(),
-) {
     /** The current underlying [HttpClient] using */
-    @InternalDeezerClient
-    val httpClient = builder.copy().addCustomConfig {
-        defaultRequest {
-            url("https://api.deezer.com/")
-            header(HttpHeaders.Accept, Header.ContentTypes.Application.Json)
-        }
-        HttpResponseValidator(customValidators())
-    }.build()
+    @property:InternalDeezerClient val httpClient: HttpClient,
+) {
+    /**
+     * Initialize with builder to create an [HttpClient].
+     *
+     * Be careful if you expect the request to happen; look at all the [DeezerApiClient.initialize] options.
+     *
+     * If needed, after init is set on [GlobalDeezerApiClient]
+     *
+     * @param builder Builder to create an [HttpClient]
+     * @see GlobalDeezerApiClient.initIfNeeded
+     */
+    @Deprecated("Build a HttpClient instead, see HttpClientBuilder deprecation.", level = DeprecationLevel.WARNING)
+    @JvmOverloads
+    constructor(
+        builder: HttpClientBuilder = HttpClientBuilder(),
+    ) : this(
+        builder.copy().addCustomConfig {
+            install(DeezerClientPlugin)
+            defaultRequest {
+                url(API_DEEZER_URL)
+                accept(ContentType.Application.Json)
+            }
+        }.build(),
+    )
 
     /** All endpoints related to [io.github.kingg22.deezer.client.api.objects.Album] */
     @get:JvmSynthetic
@@ -108,18 +106,19 @@ constructor(
 
     /** All endpoints related to [io.github.kingg22.deezer.client.api.objects.User] */
     @get:JvmSynthetic
-    val users = UserRoutes(httpClient)
+    val users: UserRoutes = UserRoutes(httpClient)
 
     init {
         require(httpClient.isActive) { "HttpClient is not active" }
+        httpClient.plugin(DeezerClientPlugin) // Invoke this function to ensure the plugin is installed
         GlobalDeezerApiClient.initIfNeeded(this)
     }
 
-    /**
-     * Client for the Deezer API.
-     * @see io.github.kingg22.deezer.client.api.DeezerApiClient.Companion.initialize
-     */
+    /** Client for the Deezer API. */
     companion object {
+        /** URL Host for Deezer API: `https://api.deezer.com` */
+        const val API_DEEZER_URL = "https://api.deezer.com"
+
         /**
          * Initialize an instance of [DeezerApiClient].
          *
@@ -132,6 +131,7 @@ constructor(
          * See [addDefaultResponseValidation].
          * Default true.
          */
+        @Deprecated("Build a HttpClient instead, see HttpClientBuilder deprecation.", level = DeprecationLevel.WARNING)
         @JvmStatic
         @JvmOverloads
         fun initialize(
@@ -146,76 +146,5 @@ constructor(
                 }
             },
         )
-
-        @Suppress("kotlin:S3776") // simple validation in one method
-        private fun customValidators(): HttpCallValidatorConfig.() -> Unit = {
-            handleResponseException { exception, _ ->
-                when (exception) {
-                    is DeezerApiException -> throw exception
-                    is ClientRequestException -> {
-                        val errorBody = try {
-                            exception.response.body<ErrorContainer>().error
-                        } catch (_: Exception) {
-                            currentCoroutineContext().ensureActive()
-                            null
-                        }
-
-                        throw DeezerApiException(
-                            errorCode = errorBody?.code,
-                            errorMessage = errorBody?.message,
-                            cause = exception,
-                        )
-                    }
-
-                    is HttpRequestTimeoutException -> {
-                        throw DeezerApiException(
-                            errorMessage = "Deezer API took too long to respond. Try again later.",
-                            cause = exception,
-                        )
-                    }
-
-                    is ServerResponseException -> {
-                        throw DeezerApiException(
-                            errorMessage = "Deezer API unavailable",
-                            cause = exception,
-                        )
-                    }
-
-                    else -> {
-                        currentCoroutineContext().ensureActive()
-                        throw DeezerApiException(cause = exception)
-                    }
-                }
-            }
-
-            validateResponse { response ->
-                if (!response.status.isSuccess()) return@validateResponse
-
-                val contentType = response.contentType()
-                if (contentType?.match(ContentType.Application.Json) == true) {
-                    val body = try {
-                        response.bodyAsText()
-                    } catch (_: Exception) {
-                        currentCoroutineContext().ensureActive()
-                        // Don't rethrow because is probable the error is caused by parsing, delegate to ktor
-                        return@validateResponse
-                    }
-
-                    val error = decodeOrNull<ErrorContainer>(body)?.error
-                    val asBoolean = decodeOrNull<Boolean>(body)
-
-                    when {
-                        asBoolean != null -> throw DeezerApiException(
-                            errorMessage = "API responded with boolean: $asBoolean",
-                        )
-
-                        error != null -> throw DeezerApiException(
-                            errorCode = error.code,
-                            errorMessage = error.message,
-                        )
-                    }
-                }
-            }
-        }
     }
 }
