@@ -13,24 +13,11 @@ import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
 import io.ktor.utils.io.charsets.*
 import kotlinx.serialization.ExperimentalSerializationApi
-import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmSynthetic
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
-
-@JvmSynthetic
-internal const val DEFAULT_USER_AGENT = "Mozilla/5.0 (X11; Linux i686; rv:135.0) Gecko/20100101 Firefox/135.0"
-
-@JvmSynthetic
-internal const val DEFAULT_MAX_RETRY_ATTEMPTS = 3
-
-@JvmSynthetic
-internal val DEFAULT_MAX_RETRY_TIMEOUT = 20.seconds
-
-@JvmSynthetic
-internal val DEFAULT_COOKIE_STORAGE: CookiesStorage = AcceptAllCookiesStorage()
 
 /**
  * @throws IllegalArgumentException If the retry count is less than zero.
@@ -40,15 +27,16 @@ internal val DEFAULT_COOKIE_STORAGE: CookiesStorage = AcceptAllCookiesStorage()
 @Suppress("kotlin:S107")
 @JvmSynthetic
 @Throws(IllegalArgumentException::class)
+@Deprecated("")
 internal fun getClient(
-    userAgent: String = DEFAULT_USER_AGENT,
-    maxRetryCount: Int = DEFAULT_MAX_RETRY_ATTEMPTS,
-    timeout: Duration = DEFAULT_MAX_RETRY_TIMEOUT,
-    engine: HttpClientEngine? = null,
-    cookiesStorage: CookiesStorage = DEFAULT_COOKIE_STORAGE,
-    logLevel: LogLevel = LogLevel.INFO,
+    userAgent: String,
+    maxRetryCount: Int,
+    timeout: Duration,
+    engine: HttpClientEngine?,
+    cookiesStorage: CookiesStorage,
+    logLevel: LogLevel,
     httpLogger: Logger,
-    modifiers: List<HttpClientConfig<*>.() -> Unit> = emptyList(),
+    modifiers: List<HttpClientConfig<*>.() -> Unit>,
 ): HttpClient {
     require(userAgent.isNotBlank())
     require(timeout >= 0.seconds)
@@ -107,8 +95,9 @@ fun getDefaultJson() = Json {
 }
 
 /**
- * Configure a [Headers] with default configuration to be compatible with the Deezer API,
+ * _Advanced_ Configure a [Headers] with default configuration to be compatible with the Deezer API,
  * this is not needed in normal cases.
+ * @see io.github.kingg22.deezer.client.api.DeezerPluginConfig.includeDefaultHeaders
  */
 @InternalDeezerClient
 fun getDefaultDeezerHeaders() = buildHeaders {
@@ -124,7 +113,3 @@ fun getDefaultDeezerHeaders() = buildHeaders {
     append("Sec-Fetch-Mode", "cors")
     append("Sec-Fetch-Site", "same-site")
 }
-
-@JvmSynthetic
-internal inline fun <reified T : @Serializable Any> decodeOrNull(json: String): T? =
-    runCatching { Json.decodeFromString<T>(json) }.getOrNull()
