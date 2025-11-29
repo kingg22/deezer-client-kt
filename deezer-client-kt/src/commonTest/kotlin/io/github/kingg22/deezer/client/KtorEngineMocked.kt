@@ -1,18 +1,21 @@
 package io.github.kingg22.deezer.client
 
 import com.goncalossilva.resources.Resource
-import io.github.kingg22.deezer.client.utils.ExperimentalDeezerClient
-import io.github.kingg22.deezer.client.utils.HttpClientBuilder
+import io.github.kingg22.deezer.client.api.DeezerClientPlugin
+import io.ktor.client.*
 import io.ktor.client.engine.*
 import io.ktor.client.engine.mock.*
+import io.ktor.client.plugins.*
+import io.ktor.client.plugins.contentnegotiation.*
+import io.ktor.client.plugins.cookies.*
 import io.ktor.client.plugins.logging.*
 import io.ktor.http.*
+import io.ktor.serialization.kotlinx.json.*
+import io.ktor.utils.io.charsets.*
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import org.intellij.lang.annotations.Language
-import kotlin.jvm.JvmField
-import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
+import kotlin.time.Duration.Companion.seconds
 import co.touchlab.kermit.Logger as KermitLogger
 import io.ktor.client.plugins.logging.Logger as KtorLogger
 
@@ -30,21 +33,45 @@ object KtorEngineMocked {
     @JvmStatic
     private fun readResourceFile(path: String) = Resource("src/commonTest/resources$path").readText()
 
-    @OptIn(ExperimentalDeezerClient::class)
     @JvmStatic
-    fun createHttpBuilderMock() = HttpClientBuilder().httpEngine(createMockEngine()).addCustomConfig {
-        Logging {
-            logger = object : KtorLogger {
+    fun createHttpClientMock() = createHttpClient(createMockEngine())
+
+    @JvmStatic
+    fun createHttpClient(engine: HttpClientEngine) = HttpClient(engine) {
+        this.install(HttpCookies)
+        this.install(BodyProgress)
+        this.install(ContentNegotiation) {
+            this.json(jsonSerializer)
+        }
+        this.install(HttpTimeout) {
+            this.requestTimeoutMillis = 20.seconds.inWholeMilliseconds
+        }
+        this.install(HttpRequestRetry) {
+            this.maxRetries = 3
+            this.exponentialDelay()
+        }
+        this.install(Logging) {
+            this.logger = object : KtorLogger {
                 override fun log(message: String) {
                     KermitLogger.d("HttpClient") { message }
                 }
             }
+            this.format = LoggingFormat.OkHttp
+            this.level = LogLevel.HEADERS
+        }
+        this.install(DeezerClientPlugin) {
+            includeDefaultHeaders = true
+        }
+        this.Charsets {
+            this.register(Charsets.UTF_8)
+            this.sendCharset = Charsets.UTF_8
+            this.responseCharsetFallback = Charsets.UTF_8
         }
     }
 
     @JvmStatic
-    private fun createMockEngine(): HttpClientEngine = MockEngine {
-        val fullPath = it.url.fullPath
+    private fun createMockEngine(): HttpClientEngine = MockEngine { request ->
+        val fullPath = request.url.fullPath
         respond(
             content = getJsonFromPath(fullPath, true),
             status = HttpStatusCode.OK,
