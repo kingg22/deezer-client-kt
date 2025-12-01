@@ -1,4 +1,3 @@
-@file:OptIn(InternalDeezerClient::class)
 @file:Suppress("DEPRECATION", "kotlin:S1133")
 
 package io.github.kingg22.deezer.client.utils
@@ -62,15 +61,6 @@ import kotlin.time.Duration.Companion.seconds
             responseCharsetFallback = Charsets.UTF_8
         }
     }""",
-        "io.ktor.client.*",
-        "io.ktor.client.engine.*",
-        "io.ktor.client.plugins.*",
-        "io.ktor.client.plugins.contentnegotiation.*",
-        "io.ktor.client.plugins.cookies.*",
-        "io.ktor.client.plugins.logging.*",
-        "io.ktor.http.*",
-        "io.ktor.serialization.kotlinx.json.*",
-        "io.ktor.utils.io.charsets.*",
         "kotlinx.serialization.json.Json",
     ),
     level = DeprecationLevel.WARNING,
