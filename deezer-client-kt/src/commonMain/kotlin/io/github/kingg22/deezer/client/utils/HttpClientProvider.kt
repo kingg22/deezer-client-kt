@@ -102,12 +102,7 @@ fun getDefaultJson() = Json {
 @InternalDeezerClient
 fun getDefaultDeezerHeaders() = buildHeaders {
     append(HttpHeaders.Origin, "https://www.deezer.com")
-    append(HttpHeaders.AcceptEncoding, "gzip, deflate, br")
-    append(HttpHeaders.AcceptLanguage, "en-US,en;q=0.9")
-    append(HttpHeaders.Accept, "*/*")
-    append(HttpHeaders.Connection, "keep-alive")
     append(HttpHeaders.Referrer, "https://www.deezer.com")
-    append("X-Requested-With", "XMLHttpRequest")
     append("DNT", "1")
     append("Sec-Fetch-Dest", "empty")
     append("Sec-Fetch-Mode", "cors")
