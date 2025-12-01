@@ -7,15 +7,10 @@ import kotlin.jvm.JvmStatic
  * General exception of the _Deezer Client_
  *
  * This is a design open to expanding in the future.
+ *
+ * @constructor Initialize with a message and cause if exist
  */
-open class DeezerClientException
-/**
- * Initialize with a message and cause if exist
- * @param messageString a message to help the developer find a solution
- * @param cause when a cause is external
- */
-@JvmOverloads
-constructor(
+open class DeezerClientException @JvmOverloads constructor(
     /** Message to help the developer find a solution */
     messageString: String? = null,
     /**
@@ -25,7 +20,6 @@ constructor(
      */
     cause: Throwable? = null,
 ) : RuntimeException(cause) {
-    /** Specific details about the exception */
     override val message = buildString {
         append("[Deezer Client Exception]")
         messageString?.let { append(": $it") }
