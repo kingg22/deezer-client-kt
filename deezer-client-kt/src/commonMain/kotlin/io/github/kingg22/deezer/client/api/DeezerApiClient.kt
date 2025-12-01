@@ -18,13 +18,9 @@ import kotlinx.coroutines.isActive
  *
  * For Java: **This is unusable, use the _Java Client_ instead, this is only for kotlin.**
  * @author Kingg22
+ * @constructor Initialize the client with an active [HttpClient] and [DeezerClientPlugin] installed
  */
-class DeezerApiClient
-/**
- * Initialize the client with an active [HttpClient] and [DeezerClientPlugin] installed
- * @param httpClient The Ktor Http Client to use
- */
-constructor(
+class DeezerApiClient(
     /** The current underlying [HttpClient] using */
     @property:InternalDeezerClient val httpClient: HttpClient,
 ) {
@@ -139,9 +135,9 @@ constructor(
             includeDefaultHeaders: Boolean = true,
             expectSuccess: Boolean = true,
         ) = DeezerApiClient(
-            builder.copy().apply {
+            builder.apply {
                 addCustomConfig {
-                    if (includeDefaultHeaders) headers { appendAll(getDefaultDeezerHeaders()) }
+                    if (includeDefaultHeaders) defaultRequest { this.headers.appendAll(getDefaultDeezerHeaders()) }
                     if (expectSuccess) this.expectSuccess = true
                 }
             },
