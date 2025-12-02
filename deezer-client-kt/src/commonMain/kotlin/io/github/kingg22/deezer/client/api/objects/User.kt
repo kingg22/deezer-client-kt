@@ -1,11 +1,10 @@
 package io.github.kingg22.deezer.client.api.objects
 
+import io.github.kingg22.deezer.client.api.DeezerApiClient
 import io.github.kingg22.deezer.client.utils.DeezerApiPoko
 import kotlinx.datetime.LocalDate
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmSynthetic
 
 /**
  * Represents an User object of [Deezer API](https://developers.deezer.com/api/).
@@ -84,7 +83,7 @@ class User @JvmOverloads constructor(
     }
 
     @JvmSynthetic
-    override suspend fun reload() = client().users.getById(this.id)
+    override suspend fun reload(client: DeezerApiClient) = client.users.getById(this.id)
 
     companion object
 }

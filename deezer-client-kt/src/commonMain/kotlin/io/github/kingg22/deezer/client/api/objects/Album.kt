@@ -1,11 +1,10 @@
 package io.github.kingg22.deezer.client.api.objects
 
+import io.github.kingg22.deezer.client.api.DeezerApiClient
 import io.github.kingg22.deezer.client.utils.DeezerApiPoko
 import kotlinx.datetime.LocalDate
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmSynthetic
 
 /**
  * Represents an Album object of [Deezer API](https://developers.deezer.com/api/).
@@ -109,7 +108,7 @@ class Album @JvmOverloads constructor(
     override val type: String = "album",
 ) : Resource {
     @JvmSynthetic
-    override suspend fun reload() = client().albums.getById(this.id)
+    override suspend fun reload(client: DeezerApiClient) = client.albums.getById(this.id)
 
     companion object
 }

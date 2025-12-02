@@ -1,11 +1,10 @@
 package io.github.kingg22.deezer.client.api.objects
 
+import io.github.kingg22.deezer.client.api.DeezerApiClient
 import io.github.kingg22.deezer.client.utils.DeezerApiPoko
 import kotlinx.datetime.LocalDate
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmSynthetic
 
 /**
  * Represents a Track object of [Deezer API](https://developers.deezer.com/api/).
@@ -112,7 +111,7 @@ class Track @JvmOverloads constructor(
     @SerialName("time_add") val timeAdd: Long? = null,
 ) : Resource {
     @JvmSynthetic
-    override suspend fun reload() = client().tracks.getById(this.id)
+    override suspend fun reload(client: DeezerApiClient) = client.tracks.getById(this.id)
 
     companion object
 }

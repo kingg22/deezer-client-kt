@@ -1,12 +1,11 @@
 package io.github.kingg22.deezer.client.api.objects
 
+import io.github.kingg22.deezer.client.api.DeezerApiClient
 import io.github.kingg22.deezer.client.utils.DeezerApiPoko
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonNames
-import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmSynthetic
 
 /**
  * Represents an Genre object of [Deezer API](https://developers.deezer.com/api/).
@@ -38,7 +37,7 @@ class Genre @JvmOverloads constructor(
     val radios: List<Radio>? = null,
 ) : Resource {
     @JvmSynthetic
-    override suspend fun reload() = client().genres.getById(this.id)
+    override suspend fun reload(client: DeezerApiClient) = client.genres.getById(this.id)
 
     companion object
 }
