@@ -1,10 +1,6 @@
 package io.github.kingg22.deezer.client.api.objects
 
-import io.github.kingg22.deezer.client.api.GlobalDeezerApiClient
-import io.github.kingg22.deezer.client.utils.AfterInitialize
 import kotlinx.serialization.Serializable
-import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmSynthetic
 
 /**
  * **Unofficial** Represent a response of [Deezer API](https://developers.deezer.com/api/).
@@ -20,16 +16,11 @@ import kotlin.jvm.JvmSynthetic
  * @property next Link to the next page of the search
  */
 @Serializable
-data class PaginatedResponse<T : @Serializable Any> @JvmOverloads constructor(
+data class PaginatedResponse<T : @Serializable Any> // TODO make out T
+@JvmOverloads constructor(
     val data: List<T> = emptyList(),
     val checksum: String? = null,
     val total: Int? = null,
     val prev: String? = null,
     val next: String? = null,
-) {
-    /** The [io.github.kingg22.deezer.client.api.DeezerApiClient] to make operations easy */
-    @AfterInitialize
-    @PublishedApi
-    @JvmSynthetic
-    internal fun client() = GlobalDeezerApiClient.requireInstance()
-}
+)
