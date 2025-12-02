@@ -1,13 +1,10 @@
-@file:OptIn(ExperimentalDeezerClient::class, InternalDeezerClient::class)
+@file:Suppress("DEPRECATION")
 
 package io.github.kingg22.deezer.client.api
 
-import io.github.kingg22.deezer.client.utils.ExperimentalDeezerClient
-import io.github.kingg22.deezer.client.utils.InternalDeezerClient
+import io.github.kingg22.deezer.client.api.GlobalDeezerApiClient.reset
 import io.github.kingg22.deezer.client.utils.LateInitClient
 import kotlinx.coroutines.isActive
-import kotlin.jvm.JvmField
-import kotlin.jvm.JvmStatic
 
 /**
  * Object to get an instance of [DeezerApiClient].
@@ -21,6 +18,7 @@ import kotlin.jvm.JvmStatic
  * @see [io.github.kingg22.deezer.client.api.objects.fetchNext]
  * @see [io.github.kingg22.deezer.client.api.objects.fetchPrevious]
  */
+@Deprecated("Create and store a DeezerApiClient by yourself", level = DeprecationLevel.WARNING)
 object GlobalDeezerApiClient : LateInitClient {
     /**
      * The actual instance of [DeezerApiClient]
