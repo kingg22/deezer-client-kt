@@ -1,12 +1,15 @@
 package io.github.kingg22.deezer.client.api.objects
 
+import io.github.kingg22.deezer.client.api.DeezerApiClient
+import io.github.kingg22.deezer.client.api.DeezerApiJavaClient
 import io.github.kingg22.deezer.client.exceptions.DeezerApiException
 import io.github.kingg22.deezer.client.utils.AfterInitialize
 import io.github.kingg22.deezer.client.utils.ExperimentalDeezerClient
 import io.github.kingg22.deezer.client.utils.getDefaultJson
-import io.ktor.client.request.get
-import io.ktor.client.statement.bodyAsText
-import io.ktor.http.Url
+import io.ktor.client.*
+import io.ktor.client.request.*
+import io.ktor.client.statement.*
+import io.ktor.http.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.future.future
 import kotlinx.coroutines.runBlocking
@@ -26,10 +29,12 @@ import kotlin.coroutines.cancellation.CancellationException
  * Includes methods to fetch the next and previous pages of a paginated resource
  * using synchronous blocking or asynchronous operations.
  *
- * **Is experimental** because use internal api of serialization and aren't tested with external classes, inheritance, etc.
+ * **Is experimental** because use internal api of serialization and aren't tested with external classes,
+ * inheritance, java classes, etc.
  *
- * For Kotlin users: **You don't need this, use the member function instead, this is only for Java**
+ * For Kotlin users: **You don't need this, use the extension function instead, this is only for Java**
  */
+@Suppress("unused")
 @ExperimentalDeezerClient
 @InternalSerializationApi
 /*
@@ -38,6 +43,313 @@ Is PublishedApi to maintain binary compatibility.
  */
 @PublishedApi
 internal object PaginatedResponses {
+    /* -- Implementation Zone -- */
+    private suspend inline fun <N : @Serializable Any> PaginatedResponse<N>.fetchNext(
+        httpClient: HttpClient,
+        expand: Boolean,
+        serializer: KSerializer<N>,
+    ): PaginatedResponse<N>? {
+        if (next.isNullOrBlank()) return null
+        val resultString = httpClient.get(Url(next)).bodyAsText()
+        val result = getDefaultJson().decodeFromString(PaginatedResponse.serializer(serializer), resultString)
+        return if (expand && data.isNotEmpty()) {
+            result.copy(data = data + result.data)
+        } else {
+            result
+        }
+    }
+
+    private suspend inline fun <N : @Serializable Any> PaginatedResponse<N>.fetchPrevious(
+        httpClient: HttpClient,
+        expand: Boolean,
+        serializer: KSerializer<N>,
+    ): PaginatedResponse<N>? {
+        if (prev.isNullOrBlank()) return null
+        val resultString = httpClient.get(Url(prev)).bodyAsText()
+        val result = getDefaultJson().decodeFromString(PaginatedResponse.serializer(serializer), resultString)
+        return if (expand && data.isNotEmpty()) {
+            result.copy(data = result.data + data)
+        } else {
+            result
+        }
+    }
+
+    private suspend inline fun <N : @Serializable Any> PaginatedResponse<N>.fetchNext(
+        client: DeezerApiClient,
+        expand: Boolean,
+        serializer: KSerializer<N>,
+    ): PaginatedResponse<N>? = this.fetchNext(client.httpClient, expand, serializer)
+
+    private suspend inline fun <N : @Serializable Any> PaginatedResponse<N>.fetchPrevious(
+        client: DeezerApiClient,
+        expand: Boolean,
+        serializer: KSerializer<N>,
+    ): PaginatedResponse<N>? = this.fetchPrevious(client.httpClient, expand, serializer)
+
+    /*
+    -- Public Zone --
+    -- Fetch Next ZONE --
+     */
+
+    /**
+     * Fetch the next page of the search blocking the thread.
+     *
+     * Usage:
+     * ```java
+     * DeezerApiJavaClient client; // Initialized somewhere
+     * PaginatedResponse<User> page; // Can be retrieved from other methods
+     * PaginatedResponse<User> nextPage = PaginatedResponses.fetchNext(client, page, User.class));
+     * ```
+     *
+     * @param N Type of the response. Required to parse the response, and expand the [PaginatedResponse.data] with a new result.
+     * @param client The [DeezerApiJavaClient] to use to fetch the next page
+     * @param paginatedResponse The current [PaginatedResponse] to fetch the next page from
+     * @param clazz The KSerializer of the type [N]. Required to parse the response.
+     * @param expand true to expand [PaginatedResponse.data] with a new result. Default `false`.
+     * @param coroutineContext the [CoroutineContext] to pass in [CoroutineScope], can be a [kotlinx.coroutines.Dispatchers].
+     * Default [EmptyCoroutineContext].
+     * @return Null if [PaginatedResponse.next] is null else a `PaginatedResponse`
+     */
+    @Blocking
+    @JvmOverloads
+    @JvmStatic
+    fun <N : @Serializable Any> fetchNext(
+        client: DeezerApiJavaClient,
+        paginatedResponse: PaginatedResponse<N>,
+        clazz: Class<N>,
+        expand: Boolean = false,
+        coroutineContext: CoroutineContext = EmptyCoroutineContext,
+    ): PaginatedResponse<N>? = runBlocking(coroutineContext) {
+        paginatedResponse.fetchNext(client.delegate, expand, clazz.kotlin.serializer())
+    }
+
+    /**
+     * Fetch the next page of the search blocking the thread.
+     *
+     * Usage:
+     * ```java
+     * DeezerApiClient client; // Initialized somewhere
+     * PaginatedResponse<User> page; // Can be retrieved from other methods
+     * PaginatedResponse<User> nextPage = PaginatedResponses.fetchNext(client, page, User.class));
+     * ```
+     *
+     * @param N Type of the response. Required to parse the response, and expand the [PaginatedResponse.data] with a new result.
+     * @param client The [DeezerApiClient] to use to fetch the next page
+     * @param paginatedResponse The current [PaginatedResponse] to fetch the next page from
+     * @param clazz The KSerializer of the type [N]. Required to parse the response.
+     * @param expand true to expand [PaginatedResponse.data] with a new result
+     * @param coroutineContext the [CoroutineContext] to pass in [CoroutineScope], can be a [kotlinx.coroutines.Dispatchers].
+     * @return Null if [PaginatedResponse.next] is null else a `PaginatedResponse`
+     */
+    @Blocking
+    @JvmOverloads
+    @JvmStatic
+    fun <N : @Serializable Any> fetchNext(
+        client: DeezerApiClient,
+        paginatedResponse: PaginatedResponse<N>,
+        clazz: Class<N>,
+        expand: Boolean = false,
+        coroutineContext: CoroutineContext = EmptyCoroutineContext,
+    ): PaginatedResponse<N>? = runBlocking(coroutineContext) {
+        paginatedResponse.fetchNext(client, expand, clazz.kotlin.serializer())
+    }
+
+    /* -- Fetch next FUTURE zone -- */
+
+    /**
+     * Fetch the next page of the search using [CompletableFuture].
+     *
+     * Usage:
+     * ```java
+     * DeezerApiJavaClient client; // Initialized somewhere
+     * PaginatedResponse<User> page; // Can be retrieved from other methods
+     * CompletableFuture<PaginatedResponse<User>> nextPage = PaginatedResponses.fetchNextFuture(client, page, User.class));
+     * ```
+     *
+     * @param N Type of the response. Required to parse the response, and expand the [PaginatedResponse.data] with a new result.
+     * @param client The [DeezerApiJavaClient] to use to fetch the next page
+     * @param paginatedResponse The current [PaginatedResponse] to fetch the next page from
+     * @param clazz The KSerializer of the type [N]. Required to parse the response.
+     * @param expand true to expand [PaginatedResponse.data] with a new result. Default `false`.
+     * @param coroutineContext the [CoroutineContext] to pass in [CoroutineScope], can be a [kotlinx.coroutines.Dispatchers].
+     * Default [EmptyCoroutineContext].
+     * @return Null if [PaginatedResponse.next] is null else a `PaginatedResponse`
+     */
+    @JvmOverloads
+    @JvmStatic
+    fun <N : @Serializable Any> fetchNextFuture(
+        client: DeezerApiJavaClient,
+        paginatedResponse: PaginatedResponse<N>,
+        clazz: Class<N>,
+        expand: Boolean = false,
+        coroutineContext: CoroutineContext = EmptyCoroutineContext,
+    ): CompletableFuture<PaginatedResponse<N>?> = CoroutineScope(coroutineContext).future {
+        paginatedResponse.fetchNext(client.delegate, expand, clazz.kotlin.serializer())
+    }
+
+    /**
+     * Fetch the next page of the search using [CompletableFuture].
+     *
+     * Usage:
+     * ```java
+     * DeezerApiJavaClient client; // Initialized somewhere
+     * PaginatedResponse<User> page; // Can be retrieved from other methods
+     * CompletableFuture<PaginatedResponse<User>> nextPage = PaginatedResponses.fetchNextFuture(client, page, User.class));
+     * ```
+     *
+     * @param N Type of the response. Required to parse the response, and expand the [PaginatedResponse.data] with a new result.
+     * @param client The [DeezerApiClient] to use to fetch the next page
+     * @param paginatedResponse The current [PaginatedResponse] to fetch the next page from
+     * @param clazz The KSerializer of the type [N]. Required to parse the response.
+     * @param expand true to expand [PaginatedResponse.data] with a new result. Default `false`.
+     * @param coroutineContext the [CoroutineContext] to pass in [CoroutineScope], can be a [kotlinx.coroutines.Dispatchers].
+     * Default [EmptyCoroutineContext].
+     * @return Null if [PaginatedResponse.next] is null else a `PaginatedResponse`
+     */
+    @JvmOverloads
+    @JvmStatic
+    fun <N : @Serializable Any> fetchNextFuture(
+        client: DeezerApiClient,
+        paginatedResponse: PaginatedResponse<N>,
+        clazz: Class<N>,
+        expand: Boolean = false,
+        coroutineContext: CoroutineContext = EmptyCoroutineContext,
+    ): CompletableFuture<PaginatedResponse<N>?> = CoroutineScope(coroutineContext).future {
+        paginatedResponse.fetchNext(client, expand, clazz.kotlin.serializer())
+    }
+
+    /* -- Fetch previous ZONE -- */
+
+    /**
+     * Fetch the previous page of the search blocking the thread.
+     *
+     * Usage:
+     * ```java
+     * DeezerApiClient client; // Initialized somewhere
+     * PaginatedResponse<User> page; // Can be retrieved from other methods
+     * PaginatedResponse<User> previousPage = PaginatedResponses.fetchPrevious(client, page, User.class));
+     * ```
+     *
+     * @param P Type of the response. Required to parse the response, and expand the [PaginatedResponse.data] with a new result.
+     * @param client The [DeezerApiClient] to use to fetch the next page
+     * @param paginatedResponse The current [PaginatedResponse] to fetch the next page from
+     * @param clazz The KSerializer of the type [P]. Required to parse the response.
+     * @param expand true to expand [PaginatedResponse.data] with a new result. Default `false`.
+     * @param coroutineContext the [CoroutineContext] to pass in [CoroutineScope], can be a [kotlinx.coroutines.Dispatchers].
+     * Default [EmptyCoroutineContext].
+     * @return Null if [PaginatedResponse.next] is null else [PaginatedResponse]
+     */
+    @Blocking
+    @JvmOverloads
+    @JvmStatic
+    fun <P : @Serializable Any> fetchPrevious(
+        client: DeezerApiJavaClient,
+        paginatedResponse: PaginatedResponse<P>,
+        clazz: Class<P>,
+        expand: Boolean = false,
+        coroutineContext: CoroutineContext = EmptyCoroutineContext,
+    ): PaginatedResponse<P>? = runBlocking(coroutineContext) {
+        paginatedResponse.fetchPrevious(client.delegate, expand, clazz.kotlin.serializer())
+    }
+
+    /**
+     * Fetch the previous page of the search blocking the thread.
+     *
+     * Usage:
+     * ```java
+     * DeezerApiClient client; // Initialized somewhere
+     * PaginatedResponse<User> page; // Can be retrieved from other methods
+     * PaginatedResponse<User> previousPage = PaginatedResponses.fetchPrevious(client, page, User.class));
+     * ```
+     *
+     * @param P Type of the response. Required to parse the response, and expand the [PaginatedResponse.data] with a new result.
+     * @param client The [DeezerApiJavaClient] to use to fetch the next page
+     * @param paginatedResponse The current [PaginatedResponse] to fetch the next page from
+     * @param clazz The KSerializer of the type [P]. Required to parse the response.
+     * @param expand true to expand [PaginatedResponse.data] with a new result. Default `false`.
+     * @param coroutineContext the [CoroutineContext] to pass in [CoroutineScope], can be a [kotlinx.coroutines.Dispatchers].
+     * Default [EmptyCoroutineContext].
+     * @return Null if [PaginatedResponse.next] is null else [PaginatedResponse]
+     */
+    @Blocking
+    @JvmOverloads
+    @JvmStatic
+    fun <P : @Serializable Any> fetchPrevious(
+        client: DeezerApiClient,
+        paginatedResponse: PaginatedResponse<P>,
+        clazz: Class<P>,
+        expand: Boolean = false,
+        coroutineContext: CoroutineContext = EmptyCoroutineContext,
+    ): PaginatedResponse<P>? = runBlocking(coroutineContext) {
+        paginatedResponse.fetchPrevious(client, expand, clazz.kotlin.serializer())
+    }
+
+    /* -- Fetch previous FUTURE zone -- */
+
+    /**
+     * Fetch the previous page of the search with [CompletableFuture].
+     *
+     * Usage:
+     * ```java
+     * DeezerApiClient client; // Initialized somewhere
+     * PaginatedResponse<User> page; // Can be retrieved from other methods
+     * CompletableFuture<PaginatedResponse<User>> previousPage = PaginatedResponses.fetchPreviousFuture(client, page, User.class));
+     * ```
+     *
+     * @param P Type of the response. Required to parse the response, and expand the [PaginatedResponse.data] with a new result.
+     * @param client The [DeezerApiJavaClient] to use to fetch the next page
+     * @param paginatedResponse The current [PaginatedResponse] to fetch the next page from
+     * @param clazz The KSerializer of the type [P]. Required to parse the response.
+     * @param expand true to expand [PaginatedResponse.data] with a new result. Default `false`.
+     * @param coroutineContext the [CoroutineContext] to pass in [CoroutineScope], can be a [kotlinx.coroutines.Dispatchers].
+     * Default [EmptyCoroutineContext].
+     * @return Null if [PaginatedResponse.next] is null else [PaginatedResponse]
+     */
+    @JvmOverloads
+    @JvmStatic
+    fun <P : @Serializable Any> fetchPreviousFuture(
+        client: DeezerApiJavaClient,
+        paginatedResponse: PaginatedResponse<P>,
+        clazz: Class<P>,
+        expand: Boolean = false,
+        coroutineContext: CoroutineContext = EmptyCoroutineContext,
+    ): CompletableFuture<PaginatedResponse<P>?> = CoroutineScope(coroutineContext).future {
+        paginatedResponse.fetchPrevious(client.delegate, expand, clazz.kotlin.serializer())
+    }
+
+    /**
+     * Fetch the previous page of the search with [CompletableFuture].
+     *
+     * Usage:
+     * ```java
+     * DeezerApiClient client; // Initialized somewhere
+     * PaginatedResponse<User> page; // Can be retrieved from other methods
+     * CompletableFuture<PaginatedResponse<User>> previousPage = PaginatedResponses.fetchPreviousFuture(client, page, User.class));
+     * ```
+     *
+     * @param P Type of the response. Required to parse the response, and expand the [PaginatedResponse.data] with a new result.
+     * @param client The [DeezerApiClient] to use to fetch the next page
+     * @param paginatedResponse The current [PaginatedResponse] to fetch the next page from
+     * @param clazz The KSerializer of the type [P]. Required to parse the response.
+     * @param expand true to expand [PaginatedResponse.data] with a new result. Default `false`.
+     * @param coroutineContext the [CoroutineContext] to pass in [CoroutineScope], can be a [kotlinx.coroutines.Dispatchers].
+     * Default [EmptyCoroutineContext].
+     * @return Null if [PaginatedResponse.next] is null else [PaginatedResponse]
+     */
+    @JvmOverloads
+    @JvmStatic
+    fun <P : @Serializable Any> fetchPreviousFuture(
+        client: DeezerApiClient,
+        paginatedResponse: PaginatedResponse<P>,
+        clazz: Class<P>,
+        expand: Boolean = false,
+        coroutineContext: CoroutineContext = EmptyCoroutineContext,
+    ): CompletableFuture<PaginatedResponse<P>?> = CoroutineScope(coroutineContext).future {
+        paginatedResponse.fetchPrevious(client, expand, clazz.kotlin.serializer())
+    }
+
+    /* -- DEPRECATED ZONE -- */
+
     /**
      * Fetch the next page of the search blocking the thread.
      *
@@ -58,13 +370,27 @@ internal object PaginatedResponses {
      * @return Null if [PaginatedResponse.next] is null else a `PaginatedResponse`
      * @throws IllegalArgumentException if [PaginatedResponse.data] is not empty and types [N] != `T` (original type)
      */
+    @Deprecated(
+        "Use fetchNext(DeezerApiClient, PaginatedResponse, Class, Boolean, CoroutineContext) instead. Pass a client explicitly and optionally a coroutineContext.",
+        ReplaceWith("fetchNext(client, paginatedResponse, clazz, expand, coroutineContext)"),
+        level = DeprecationLevel.WARNING,
+    )
+    @Suppress("DEPRECATION")
     @AfterInitialize
     @Blocking
     @JvmOverloads
     @JvmStatic
     @Throws(IllegalArgumentException::class, DeezerApiException::class, CancellationException::class)
-    fun <N : @Serializable Any> PaginatedResponse<N>.fetchNext(clazz: Class<N>, expand: Boolean = false) =
-        runBlocking { fetchNextJava(expand, clazz.kotlin.serializer()) }
+    fun <N : @Serializable Any> PaginatedResponse<N>.fetchNext(
+        clazz: Class<N>,
+        expand: Boolean = false,
+    ): PaginatedResponse<N>? = runBlocking {
+        fetchNext(
+            io.github.kingg22.deezer.client.api.GlobalDeezerApiClient.requireInstance(),
+            expand,
+            clazz.kotlin.serializer(),
+        )
+    }
 
     /**
      * Fetch the next page of the search blocking the thread.
@@ -88,6 +414,12 @@ internal object PaginatedResponses {
      * @return Null if [PaginatedResponse.next] is null else a `PaginatedResponse`
      * @throws IllegalArgumentException if [PaginatedResponse.data] is not empty and types [N] != `T` (original type)
      */
+    @Deprecated(
+        "Use fetchNextFuture(DeezerApiClient, PaginatedResponse, Class, Boolean, CoroutineContext) instead. Pass a client explicitly and optionally a coroutineContext.",
+        ReplaceWith("fetchNextFuture(client, paginatedResponse, clazz, expand, coroutineContext)"),
+        level = DeprecationLevel.WARNING,
+    )
+    @Suppress("DEPRECATION")
     @AfterInitialize
     @JvmOverloads
     @JvmStatic
@@ -97,22 +429,11 @@ internal object PaginatedResponses {
         expand: Boolean = false,
         coroutineContext: CoroutineContext = EmptyCoroutineContext,
     ): CompletableFuture<PaginatedResponse<N>?> = CoroutineScope(coroutineContext).future {
-        fetchNextJava(expand, clazz.kotlin.serializer())
-    }
-
-    private suspend inline fun <N : @Serializable Any> PaginatedResponse<N>.fetchNextJava(
-        expand: Boolean = false,
-        serializer: KSerializer<N>,
-    ): PaginatedResponse<N>? {
-        if (next.isNullOrBlank()) return null
-        val resultString = client().httpClient.get(Url(next)).bodyAsText()
-        val result = getDefaultJson().decodeFromString(PaginatedResponse.serializer(serializer), resultString)
-
-        return if (expand && data.isNotEmpty()) {
-            result.copy(data = data + result.data)
-        } else {
-            result
-        }
+        fetchNext(
+            io.github.kingg22.deezer.client.api.GlobalDeezerApiClient.requireInstance(),
+            expand,
+            clazz.kotlin.serializer(),
+        )
     }
 
     /**
@@ -135,13 +456,27 @@ internal object PaginatedResponses {
      * @return Null if [PaginatedResponse.next] is null else [PaginatedResponse]
      * @throws IllegalArgumentException if [PaginatedResponse.data] is not empty and types [P] != `T` (original type)
      */
+    @Deprecated(
+        "Use fetchPrevious(DeezerApiClient, PaginatedResponse, Class, Boolean, CoroutineContext) instead. Pass a client explicitly and optionally a coroutineContext.",
+        ReplaceWith("fetchPrevious(client, paginatedResponse, clazz, expand, coroutineContext)"),
+        level = DeprecationLevel.WARNING,
+    )
+    @Suppress("DEPRECATION")
     @AfterInitialize
     @Blocking
     @JvmOverloads
     @JvmStatic
     @Throws(IllegalArgumentException::class, DeezerApiException::class, CancellationException::class)
-    fun <P : @Serializable Any> PaginatedResponse<P>.fetchPrevious(clazz: Class<P>, expand: Boolean = false) =
-        runBlocking { fetchPreviousJava(expand, clazz.kotlin.serializer()) }
+    fun <P : @Serializable Any> PaginatedResponse<P>.fetchPrevious(
+        clazz: Class<P>,
+        expand: Boolean = false,
+    ): PaginatedResponse<P>? = runBlocking {
+        fetchPrevious(
+            io.github.kingg22.deezer.client.api.GlobalDeezerApiClient.requireInstance(),
+            expand,
+            clazz.kotlin.serializer(),
+        )
+    }
 
     /**
      * Fetch the previous page of the search with [CompletableFuture].
@@ -165,6 +500,12 @@ internal object PaginatedResponses {
      * @return Null if [PaginatedResponse.next] is null else [PaginatedResponse]
      * @throws IllegalArgumentException if [PaginatedResponse.data] is not empty and types [P] != `T` (original type)
      */
+    @Deprecated(
+        "Use fetchPreviousFuture(DeezerApiClient, PaginatedResponse, Class, Boolean, CoroutineContext) instead. Pass a client explicitly and optionally a coroutineContext.",
+        ReplaceWith("fetchPreviousFuture(client, paginatedResponse, clazz, expand, coroutineContext)"),
+        level = DeprecationLevel.WARNING,
+    )
+    @Suppress("DEPRECATION")
     @AfterInitialize
     @JvmOverloads
     @JvmStatic
@@ -174,21 +515,10 @@ internal object PaginatedResponses {
         expand: Boolean = false,
         coroutineContext: CoroutineContext = EmptyCoroutineContext,
     ): CompletableFuture<PaginatedResponse<P>?> = CoroutineScope(coroutineContext).future {
-        fetchPreviousJava(expand, clazz.kotlin.serializer())
-    }
-
-    private suspend inline fun <N : @Serializable Any> PaginatedResponse<N>.fetchPreviousJava(
-        expand: Boolean = false,
-        serializer: KSerializer<N>,
-    ): PaginatedResponse<N>? {
-        if (prev.isNullOrBlank()) return null
-        val resultString = client().httpClient.get(Url(prev)).bodyAsText()
-        val result = getDefaultJson().decodeFromString(PaginatedResponse.serializer(serializer), resultString)
-
-        return if (expand && data.isNotEmpty()) {
-            result.copy(data = result.data + data)
-        } else {
-            result
-        }
+        fetchPrevious(
+            io.github.kingg22.deezer.client.api.GlobalDeezerApiClient.requireInstance(),
+            expand,
+            clazz.kotlin.serializer(),
+        )
     }
 }
