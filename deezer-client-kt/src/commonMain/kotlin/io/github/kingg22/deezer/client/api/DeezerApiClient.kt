@@ -9,7 +9,7 @@ import io.github.kingg22.deezer.client.utils.InternalDeezerClient
 import io.github.kingg22.deezer.client.utils.getDefaultDeezerHeaders
 import io.ktor.client.*
 import io.ktor.client.plugins.*
-import io.ktor.client.request.accept
+import io.ktor.client.request.*
 import io.ktor.http.*
 import kotlinx.coroutines.isActive
 
@@ -29,10 +29,7 @@ class DeezerApiClient(
      *
      * Be careful if you expect the request to happen; look at all the [DeezerApiClient.initialize] options.
      *
-     * If needed, after init is set on [GlobalDeezerApiClient]
-     *
      * @param builder Builder to create an [HttpClient]
-     * @see GlobalDeezerApiClient.initIfNeeded
      */
     @Deprecated("Build a HttpClient instead, see HttpClientBuilder deprecation.", level = DeprecationLevel.WARNING)
     @JvmOverloads

@@ -3,7 +3,7 @@ package io.github.kingg22.deezer.client.api
 import io.github.kingg22.deezer.client.api.objects.ErrorContainer
 import io.github.kingg22.deezer.client.exceptions.DeezerApiException
 import io.github.kingg22.deezer.client.utils.getDefaultDeezerHeaders
-import io.ktor.client.call.body
+import io.ktor.client.call.*
 import io.ktor.client.plugins.api.*
 import io.ktor.client.statement.*
 import kotlinx.coroutines.currentCoroutineContext
@@ -20,14 +20,14 @@ private suspend inline fun <reified T : Any> HttpResponse.bodyOrNull(): T? = try
 // Expose as a kotlin object to easy access from java
 @Suppress("ktlint:standard:backing-property-naming")
 private val _DeezerClientPlugin = createClientPlugin("DeezerValidationPlugin", ::DeezerPluginConfig) {
-    /** Add default Deezer headers if enabled */
+    /* Add default Deezer headers if enabled */
     on(SetupRequest) { request ->
         if (request.url.host in pluginConfig.allowedHosts && pluginConfig.includeDefaultHeaders) {
             request.headers.appendAll(getDefaultDeezerHeaders())
         }
     }
 
-    /* Validate boolean weird case of responde and errors */
+    /* Validate a boolean (unique case) response and errors */
     on(Send) { request ->
         val call = proceed(request)
 

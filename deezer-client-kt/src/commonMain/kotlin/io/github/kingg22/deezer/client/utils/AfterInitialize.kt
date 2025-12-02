@@ -1,10 +1,8 @@
 package io.github.kingg22.deezer.client.utils
 
 /**
- * Indicate the function **need** to be called **after** the `initialize` method of the client.
- *
+ * Indicate the function **need** to be called **after** the class/resource/client/state was initialized
  * @author Kingg22
- * @see io.github.kingg22.deezer.client.api.DeezerApiClient.initialize
  */
 @Retention(AnnotationRetention.SOURCE)
 @MustBeDocumented

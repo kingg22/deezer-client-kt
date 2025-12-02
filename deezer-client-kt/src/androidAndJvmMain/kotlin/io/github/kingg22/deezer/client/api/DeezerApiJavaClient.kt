@@ -20,14 +20,20 @@ import io.github.kingg22.deezer.client.utils.ExperimentalDeezerClient
 import io.github.kingg22.deezer.client.utils.HttpClientBuilder
 import io.github.kingg22.deezer.client.utils.InternalDeezerClient
 import io.github.kingg22.deezer.client.utils.getDefaultDeezerHeaders
-import io.ktor.client.HttpClient
-import io.ktor.client.plugins.addDefaultResponseValidation
+import io.ktor.client.*
+import io.ktor.client.plugins.*
 import kotlinx.coroutines.isActive
 
 /**
  * Java Client for the official [Deezer API](https://developers.deezer.com/api/).
  *
  * For Kotlin: **You don't need this, use [DeezerApiClient] instead, this is only for Java**
+ *
+ * @constructor _Experimental_ Initialize with a [Deezer API Kotlin Client][DeezerApiClient]
+ *
+ * @property delegate the [DeezerApiClient] to wrap all operations with it
+ * @throws IllegalArgumentException If the [HttpClient] of the delegate is not active
+ *
  * @author Kingg22
  */
 @PublishedApi
@@ -36,12 +42,6 @@ This is internal, for kotlin consumers can't access this, but Java consumers can
 Is PublishedApi to maintain binary compatibility.
  */
 internal class DeezerApiJavaClient
-/**
- * Initialize with a [Deezer API Kotlin Client][DeezerApiClient]
- *
- * @param delegate the [DeezerApiClient] to wrap all operations with it
- * @throws IllegalArgumentException If the [HttpClient] of the delegate is not active
- */
 @ExperimentalDeezerClient
 internal constructor(
     /** The current kotlin client is used to delegate all operations of this java client. */
