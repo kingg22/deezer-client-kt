@@ -170,6 +170,7 @@ public final class io/github/kingg22/deezer/client/api/objects/Album : io/github
 	public fun hashCode ()I
 	public final fun isAvailable ()Ljava/lang/Boolean;
 	public final fun isExplicitLyrics ()Ljava/lang/Boolean;
+	public synthetic fun reload (Lio/github/kingg22/deezer/client/api/DeezerApiClient;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public synthetic fun reload (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public fun toString ()Ljava/lang/String;
 }
@@ -225,6 +226,7 @@ public final class io/github/kingg22/deezer/client/api/objects/Artist : io/githu
 	public fun getType ()Ljava/lang/String;
 	public fun hashCode ()I
 	public final fun isRadio ()Ljava/lang/Boolean;
+	public synthetic fun reload (Lio/github/kingg22/deezer/client/api/DeezerApiClient;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public synthetic fun reload (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public fun toString ()Ljava/lang/String;
 }
@@ -298,6 +300,7 @@ public final class io/github/kingg22/deezer/client/api/objects/Editorial : io/gi
 	public final fun getPictureXl ()Ljava/lang/String;
 	public fun getType ()Ljava/lang/String;
 	public fun hashCode ()I
+	public synthetic fun reload (Lio/github/kingg22/deezer/client/api/DeezerApiClient;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public synthetic fun reload (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public fun toString ()Ljava/lang/String;
 }
@@ -351,6 +354,7 @@ public final class io/github/kingg22/deezer/client/api/objects/Episode : io/gith
 	public fun getType ()Ljava/lang/String;
 	public fun hashCode ()I
 	public final fun isAvailable ()Ljava/lang/Boolean;
+	public synthetic fun reload (Lio/github/kingg22/deezer/client/api/DeezerApiClient;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public synthetic fun reload (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public fun toString ()Ljava/lang/String;
 }
@@ -414,6 +418,7 @@ public final class io/github/kingg22/deezer/client/api/objects/Genre : io/github
 	public final fun getRadios ()Ljava/util/List;
 	public fun getType ()Ljava/lang/String;
 	public fun hashCode ()I
+	public synthetic fun reload (Lio/github/kingg22/deezer/client/api/DeezerApiClient;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public synthetic fun reload (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public fun toString ()Ljava/lang/String;
 }
@@ -571,7 +576,6 @@ public final class io/github/kingg22/deezer/client/api/objects/PaginatedResponse
 	public fun <init> (Ljava/util/List;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;)V
 	public fun <init> (Ljava/util/List;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;)V
 	public synthetic fun <init> (Ljava/util/List;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final synthetic fun client ()Lio/github/kingg22/deezer/client/api/DeezerApiClient;
 	public final fun component1 ()Ljava/util/List;
 	public final fun component2 ()Ljava/lang/String;
 	public final fun component3 ()Ljava/lang/Integer;
@@ -606,19 +610,51 @@ public final class io/github/kingg22/deezer/client/api/objects/PaginatedResponse
 
 public final class io/github/kingg22/deezer/client/api/objects/PaginatedResponses {
 	public static final field INSTANCE Lio/github/kingg22/deezer/client/api/objects/PaginatedResponses;
+	public static final fun fetchNext (Lio/github/kingg22/deezer/client/api/DeezerApiClient;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Ljava/lang/Class;)Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;
+	public static final fun fetchNext (Lio/github/kingg22/deezer/client/api/DeezerApiClient;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Ljava/lang/Class;Z)Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;
+	public static final fun fetchNext (Lio/github/kingg22/deezer/client/api/DeezerApiClient;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Ljava/lang/Class;ZLkotlin/coroutines/CoroutineContext;)Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;
+	public static final fun fetchNext (Lio/github/kingg22/deezer/client/api/DeezerApiJavaClient;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Ljava/lang/Class;)Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;
+	public static final fun fetchNext (Lio/github/kingg22/deezer/client/api/DeezerApiJavaClient;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Ljava/lang/Class;Z)Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;
+	public static final fun fetchNext (Lio/github/kingg22/deezer/client/api/DeezerApiJavaClient;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Ljava/lang/Class;ZLkotlin/coroutines/CoroutineContext;)Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;
 	public static final fun fetchNext (Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Ljava/lang/Class;)Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;
 	public static final fun fetchNext (Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Ljava/lang/Class;Z)Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;
+	public static synthetic fun fetchNext$default (Lio/github/kingg22/deezer/client/api/DeezerApiClient;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Ljava/lang/Class;ZLkotlin/coroutines/CoroutineContext;ILjava/lang/Object;)Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;
+	public static synthetic fun fetchNext$default (Lio/github/kingg22/deezer/client/api/DeezerApiJavaClient;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Ljava/lang/Class;ZLkotlin/coroutines/CoroutineContext;ILjava/lang/Object;)Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;
 	public static synthetic fun fetchNext$default (Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Ljava/lang/Class;ZILjava/lang/Object;)Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;
+	public static final fun fetchNextFuture (Lio/github/kingg22/deezer/client/api/DeezerApiClient;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Ljava/lang/Class;)Ljava/util/concurrent/CompletableFuture;
+	public static final fun fetchNextFuture (Lio/github/kingg22/deezer/client/api/DeezerApiClient;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Ljava/lang/Class;Z)Ljava/util/concurrent/CompletableFuture;
+	public static final fun fetchNextFuture (Lio/github/kingg22/deezer/client/api/DeezerApiClient;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Ljava/lang/Class;ZLkotlin/coroutines/CoroutineContext;)Ljava/util/concurrent/CompletableFuture;
+	public static final fun fetchNextFuture (Lio/github/kingg22/deezer/client/api/DeezerApiJavaClient;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Ljava/lang/Class;)Ljava/util/concurrent/CompletableFuture;
+	public static final fun fetchNextFuture (Lio/github/kingg22/deezer/client/api/DeezerApiJavaClient;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Ljava/lang/Class;Z)Ljava/util/concurrent/CompletableFuture;
+	public static final fun fetchNextFuture (Lio/github/kingg22/deezer/client/api/DeezerApiJavaClient;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Ljava/lang/Class;ZLkotlin/coroutines/CoroutineContext;)Ljava/util/concurrent/CompletableFuture;
 	public static final fun fetchNextFuture (Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Ljava/lang/Class;)Ljava/util/concurrent/CompletableFuture;
 	public static final fun fetchNextFuture (Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Ljava/lang/Class;Z)Ljava/util/concurrent/CompletableFuture;
 	public static final fun fetchNextFuture (Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Ljava/lang/Class;ZLkotlin/coroutines/CoroutineContext;)Ljava/util/concurrent/CompletableFuture;
+	public static synthetic fun fetchNextFuture$default (Lio/github/kingg22/deezer/client/api/DeezerApiClient;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Ljava/lang/Class;ZLkotlin/coroutines/CoroutineContext;ILjava/lang/Object;)Ljava/util/concurrent/CompletableFuture;
+	public static synthetic fun fetchNextFuture$default (Lio/github/kingg22/deezer/client/api/DeezerApiJavaClient;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Ljava/lang/Class;ZLkotlin/coroutines/CoroutineContext;ILjava/lang/Object;)Ljava/util/concurrent/CompletableFuture;
 	public static synthetic fun fetchNextFuture$default (Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Ljava/lang/Class;ZLkotlin/coroutines/CoroutineContext;ILjava/lang/Object;)Ljava/util/concurrent/CompletableFuture;
+	public static final fun fetchPrevious (Lio/github/kingg22/deezer/client/api/DeezerApiClient;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Ljava/lang/Class;)Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;
+	public static final fun fetchPrevious (Lio/github/kingg22/deezer/client/api/DeezerApiClient;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Ljava/lang/Class;Z)Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;
+	public static final fun fetchPrevious (Lio/github/kingg22/deezer/client/api/DeezerApiClient;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Ljava/lang/Class;ZLkotlin/coroutines/CoroutineContext;)Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;
+	public static final fun fetchPrevious (Lio/github/kingg22/deezer/client/api/DeezerApiJavaClient;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Ljava/lang/Class;)Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;
+	public static final fun fetchPrevious (Lio/github/kingg22/deezer/client/api/DeezerApiJavaClient;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Ljava/lang/Class;Z)Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;
+	public static final fun fetchPrevious (Lio/github/kingg22/deezer/client/api/DeezerApiJavaClient;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Ljava/lang/Class;ZLkotlin/coroutines/CoroutineContext;)Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;
 	public static final fun fetchPrevious (Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Ljava/lang/Class;)Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;
 	public static final fun fetchPrevious (Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Ljava/lang/Class;Z)Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;
+	public static synthetic fun fetchPrevious$default (Lio/github/kingg22/deezer/client/api/DeezerApiClient;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Ljava/lang/Class;ZLkotlin/coroutines/CoroutineContext;ILjava/lang/Object;)Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;
+	public static synthetic fun fetchPrevious$default (Lio/github/kingg22/deezer/client/api/DeezerApiJavaClient;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Ljava/lang/Class;ZLkotlin/coroutines/CoroutineContext;ILjava/lang/Object;)Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;
 	public static synthetic fun fetchPrevious$default (Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Ljava/lang/Class;ZILjava/lang/Object;)Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;
+	public static final fun fetchPreviousFuture (Lio/github/kingg22/deezer/client/api/DeezerApiClient;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Ljava/lang/Class;)Ljava/util/concurrent/CompletableFuture;
+	public static final fun fetchPreviousFuture (Lio/github/kingg22/deezer/client/api/DeezerApiClient;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Ljava/lang/Class;Z)Ljava/util/concurrent/CompletableFuture;
+	public static final fun fetchPreviousFuture (Lio/github/kingg22/deezer/client/api/DeezerApiClient;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Ljava/lang/Class;ZLkotlin/coroutines/CoroutineContext;)Ljava/util/concurrent/CompletableFuture;
+	public static final fun fetchPreviousFuture (Lio/github/kingg22/deezer/client/api/DeezerApiJavaClient;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Ljava/lang/Class;)Ljava/util/concurrent/CompletableFuture;
+	public static final fun fetchPreviousFuture (Lio/github/kingg22/deezer/client/api/DeezerApiJavaClient;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Ljava/lang/Class;Z)Ljava/util/concurrent/CompletableFuture;
+	public static final fun fetchPreviousFuture (Lio/github/kingg22/deezer/client/api/DeezerApiJavaClient;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Ljava/lang/Class;ZLkotlin/coroutines/CoroutineContext;)Ljava/util/concurrent/CompletableFuture;
 	public static final fun fetchPreviousFuture (Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Ljava/lang/Class;)Ljava/util/concurrent/CompletableFuture;
 	public static final fun fetchPreviousFuture (Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Ljava/lang/Class;Z)Ljava/util/concurrent/CompletableFuture;
 	public static final fun fetchPreviousFuture (Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Ljava/lang/Class;ZLkotlin/coroutines/CoroutineContext;)Ljava/util/concurrent/CompletableFuture;
+	public static synthetic fun fetchPreviousFuture$default (Lio/github/kingg22/deezer/client/api/DeezerApiClient;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Ljava/lang/Class;ZLkotlin/coroutines/CoroutineContext;ILjava/lang/Object;)Ljava/util/concurrent/CompletableFuture;
+	public static synthetic fun fetchPreviousFuture$default (Lio/github/kingg22/deezer/client/api/DeezerApiJavaClient;Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Ljava/lang/Class;ZLkotlin/coroutines/CoroutineContext;ILjava/lang/Object;)Ljava/util/concurrent/CompletableFuture;
 	public static synthetic fun fetchPreviousFuture$default (Lio/github/kingg22/deezer/client/api/objects/PaginatedResponse;Ljava/lang/Class;ZLkotlin/coroutines/CoroutineContext;ILjava/lang/Object;)Ljava/util/concurrent/CompletableFuture;
 }
 
@@ -677,6 +713,7 @@ public final class io/github/kingg22/deezer/client/api/objects/Playlist : io/git
 	public final fun isCollaborative ()Ljava/lang/Boolean;
 	public final fun isLovedTrack ()Ljava/lang/Boolean;
 	public final fun isPublic ()Z
+	public synthetic fun reload (Lio/github/kingg22/deezer/client/api/DeezerApiClient;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public synthetic fun reload (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public fun toString ()Ljava/lang/String;
 }
@@ -727,6 +764,7 @@ public final class io/github/kingg22/deezer/client/api/objects/Podcast : io/gith
 	public fun getType ()Ljava/lang/String;
 	public fun hashCode ()I
 	public final fun isAvailable ()Ljava/lang/Boolean;
+	public synthetic fun reload (Lio/github/kingg22/deezer/client/api/DeezerApiClient;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public synthetic fun reload (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public fun toString ()Ljava/lang/String;
 }
@@ -774,6 +812,7 @@ public final class io/github/kingg22/deezer/client/api/objects/Radio : io/github
 	public final fun getTracklist ()Ljava/lang/String;
 	public fun getType ()Ljava/lang/String;
 	public fun hashCode ()I
+	public synthetic fun reload (Lio/github/kingg22/deezer/client/api/DeezerApiClient;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public synthetic fun reload (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public fun toString ()Ljava/lang/String;
 }
@@ -796,14 +835,27 @@ public final class io/github/kingg22/deezer/client/api/objects/Radio$Companion {
 public abstract interface class io/github/kingg22/deezer/client/api/objects/Resource {
 	public abstract fun getId ()J
 	public abstract fun getType ()Ljava/lang/String;
-	public abstract synthetic fun reload (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract synthetic fun reload (Lio/github/kingg22/deezer/client/api/DeezerApiClient;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public synthetic fun reload (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
 public final class io/github/kingg22/deezer/client/api/objects/Resources {
 	public static final field INSTANCE Lio/github/kingg22/deezer/client/api/objects/Resources;
+	public static final fun reload (Lio/github/kingg22/deezer/client/api/DeezerApiClient;Lio/github/kingg22/deezer/client/api/objects/Resource;)Lio/github/kingg22/deezer/client/api/objects/Resource;
+	public static final fun reload (Lio/github/kingg22/deezer/client/api/DeezerApiClient;Lio/github/kingg22/deezer/client/api/objects/Resource;Lkotlin/coroutines/CoroutineContext;)Lio/github/kingg22/deezer/client/api/objects/Resource;
+	public static final fun reload (Lio/github/kingg22/deezer/client/api/DeezerApiJavaClient;Lio/github/kingg22/deezer/client/api/objects/Resource;)Lio/github/kingg22/deezer/client/api/objects/Resource;
+	public static final fun reload (Lio/github/kingg22/deezer/client/api/DeezerApiJavaClient;Lio/github/kingg22/deezer/client/api/objects/Resource;Lkotlin/coroutines/CoroutineContext;)Lio/github/kingg22/deezer/client/api/objects/Resource;
 	public static final fun reload (Lio/github/kingg22/deezer/client/api/objects/Resource;)Lio/github/kingg22/deezer/client/api/objects/Resource;
+	public static synthetic fun reload$default (Lio/github/kingg22/deezer/client/api/DeezerApiClient;Lio/github/kingg22/deezer/client/api/objects/Resource;Lkotlin/coroutines/CoroutineContext;ILjava/lang/Object;)Lio/github/kingg22/deezer/client/api/objects/Resource;
+	public static synthetic fun reload$default (Lio/github/kingg22/deezer/client/api/DeezerApiJavaClient;Lio/github/kingg22/deezer/client/api/objects/Resource;Lkotlin/coroutines/CoroutineContext;ILjava/lang/Object;)Lio/github/kingg22/deezer/client/api/objects/Resource;
+	public static final fun reloadFuture (Lio/github/kingg22/deezer/client/api/DeezerApiClient;Lio/github/kingg22/deezer/client/api/objects/Resource;)Ljava/util/concurrent/CompletableFuture;
+	public static final fun reloadFuture (Lio/github/kingg22/deezer/client/api/DeezerApiClient;Lio/github/kingg22/deezer/client/api/objects/Resource;Lkotlin/coroutines/CoroutineContext;)Ljava/util/concurrent/CompletableFuture;
+	public static final fun reloadFuture (Lio/github/kingg22/deezer/client/api/DeezerApiJavaClient;Lio/github/kingg22/deezer/client/api/objects/Resource;)Ljava/util/concurrent/CompletableFuture;
+	public static final fun reloadFuture (Lio/github/kingg22/deezer/client/api/DeezerApiJavaClient;Lio/github/kingg22/deezer/client/api/objects/Resource;Lkotlin/coroutines/CoroutineContext;)Ljava/util/concurrent/CompletableFuture;
 	public static final fun reloadFuture (Lio/github/kingg22/deezer/client/api/objects/Resource;)Ljava/util/concurrent/CompletableFuture;
 	public static final fun reloadFuture (Lio/github/kingg22/deezer/client/api/objects/Resource;Lkotlin/coroutines/CoroutineContext;)Ljava/util/concurrent/CompletableFuture;
+	public static synthetic fun reloadFuture$default (Lio/github/kingg22/deezer/client/api/DeezerApiClient;Lio/github/kingg22/deezer/client/api/objects/Resource;Lkotlin/coroutines/CoroutineContext;ILjava/lang/Object;)Ljava/util/concurrent/CompletableFuture;
+	public static synthetic fun reloadFuture$default (Lio/github/kingg22/deezer/client/api/DeezerApiJavaClient;Lio/github/kingg22/deezer/client/api/objects/Resource;Lkotlin/coroutines/CoroutineContext;ILjava/lang/Object;)Ljava/util/concurrent/CompletableFuture;
 	public static synthetic fun reloadFuture$default (Lio/github/kingg22/deezer/client/api/objects/Resource;Lkotlin/coroutines/CoroutineContext;ILjava/lang/Object;)Ljava/util/concurrent/CompletableFuture;
 }
 
@@ -930,6 +982,7 @@ public final class io/github/kingg22/deezer/client/api/objects/Track : io/github
 	public final fun isExplicitLyrics ()Z
 	public final fun isReadable ()Ljava/lang/Boolean;
 	public final fun isUnseen ()Ljava/lang/Boolean;
+	public synthetic fun reload (Lio/github/kingg22/deezer/client/api/DeezerApiClient;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public synthetic fun reload (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public fun toString ()Ljava/lang/String;
 }
@@ -997,6 +1050,7 @@ public final class io/github/kingg22/deezer/client/api/objects/User : io/github/
 	public fun getType ()Ljava/lang/String;
 	public fun hashCode ()I
 	public final fun isKid ()Ljava/lang/Boolean;
+	public synthetic fun reload (Lio/github/kingg22/deezer/client/api/DeezerApiClient;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public synthetic fun reload (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public fun toString ()Ljava/lang/String;
 }
@@ -1992,7 +2046,6 @@ public final class io/github/kingg22/deezer/client/exceptions/DeezerApiException
 
 public final class io/github/kingg22/deezer/client/exceptions/DeezerApiException$DeezerErrorCode$Companion {
 	public final fun fromCode (I)Lio/github/kingg22/deezer/client/exceptions/DeezerApiException$DeezerErrorCode;
-	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
 public class io/github/kingg22/deezer/client/exceptions/DeezerClientException : java/lang/RuntimeException {
@@ -2002,8 +2055,6 @@ public class io/github/kingg22/deezer/client/exceptions/DeezerClientException : 
 	public fun <init> (Ljava/lang/String;Ljava/lang/Throwable;)V
 	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Throwable;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	protected static final fun generateLinks ()Ljava/lang/String;
-	public fun getMessage ()Ljava/lang/String;
-	public final fun getMessageString ()Ljava/lang/String;
 }
 
 public final class io/github/kingg22/deezer/client/exceptions/DeezerClientException$Companion {
