@@ -2,9 +2,6 @@ package io.github.kingg22.deezer.client.exceptions
 
 import io.github.kingg22.deezer.client.utils.DeezerApiPoko
 import io.github.kingg22.deezer.client.utils.InternalDeezerClient
-import kotlinx.serialization.Serializable
-import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * Represents an exception specific to the [Deezer API](https://developers.deezer.com/api/).
@@ -66,7 +63,6 @@ class DeezerApiException private constructor(
      * @author Kingg22
      * @see <a href="https://developers.deezer.com/api/errors">Deezer API errors</a>
      */
-    @Serializable // TODO remove this, enum is not used in serialization
     enum class DeezerErrorCode(val code: Int, val description: String, val type: String? = null) {
         /** Quota exceeded */
         QUOTA(4, "Quota exceeded", "Exception"),
