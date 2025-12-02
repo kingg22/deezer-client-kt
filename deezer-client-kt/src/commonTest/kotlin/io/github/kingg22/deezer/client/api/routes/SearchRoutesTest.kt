@@ -19,7 +19,7 @@ import kotlin.test.assertNull
 import kotlin.time.Duration.Companion.seconds
 
 class SearchRoutesTest {
-    lateinit var client: DeezerApiClient
+    private lateinit var client: DeezerApiClient
 
     @BeforeTest
     fun setup() {

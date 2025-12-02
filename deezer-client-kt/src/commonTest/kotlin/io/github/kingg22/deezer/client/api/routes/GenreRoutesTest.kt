@@ -15,7 +15,7 @@ import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
 class GenreRoutesTest {
-    lateinit var client: DeezerApiClient
+    private lateinit var client: DeezerApiClient
 
     @BeforeTest
     fun setup() {
@@ -45,7 +45,7 @@ class GenreRoutesTest {
     @Test
     fun reload_genre() = runTest {
         val tested = Genre(12, "")
-        val genre = tested.reload()
+        val genre = tested.reload(client)
         val json = getJsonFromPath("/genre/12")
         assertNotEquals(tested, genre)
         json shouldEqualJson jsonSerializer.encodeToString(genre)

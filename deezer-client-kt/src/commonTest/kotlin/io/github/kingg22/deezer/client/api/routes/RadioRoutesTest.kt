@@ -15,7 +15,7 @@ import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 
 class RadioRoutesTest {
-    lateinit var client: DeezerApiClient
+    private lateinit var client: DeezerApiClient
 
     @BeforeTest
     fun setup() {
@@ -45,7 +45,7 @@ class RadioRoutesTest {
     @Test
     fun reload_radio() = runTest {
         val tested = Radio(1236, "")
-        val radio = tested.reload()
+        val radio = tested.reload(client)
         val json = getJsonFromPath("/radio/1236")
         assertNotEquals(tested, radio)
         json shouldEqualJson jsonSerializer.encodeToString(radio)

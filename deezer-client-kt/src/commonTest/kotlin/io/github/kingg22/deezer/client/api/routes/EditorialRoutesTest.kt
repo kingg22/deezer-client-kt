@@ -15,7 +15,7 @@ import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 
 class EditorialRoutesTest {
-    lateinit var client: DeezerApiClient
+    private lateinit var client: DeezerApiClient
 
     @BeforeTest
     fun setup() {
@@ -45,7 +45,7 @@ class EditorialRoutesTest {
     @Test
     fun reload_editorial() = runTest {
         val tested = Editorial(3, "")
-        val editorial = tested.reload()
+        val editorial = tested.reload(client)
         val json = getJsonFromPath("/editorial/3")
         assertNotEquals(tested, editorial)
         json shouldEqualJson jsonSerializer.encodeToString(editorial)

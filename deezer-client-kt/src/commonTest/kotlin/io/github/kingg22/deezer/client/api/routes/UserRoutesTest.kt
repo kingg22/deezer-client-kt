@@ -13,7 +13,7 @@ import kotlin.test.assertEquals
 import kotlin.test.assertNotEquals
 
 class UserRoutesTest {
-    lateinit var client: DeezerApiClient
+    private lateinit var client: DeezerApiClient
 
     @BeforeTest
     fun setup() {
@@ -31,7 +31,7 @@ class UserRoutesTest {
     @Test
     fun reload_user() = runTest {
         val tested = User(2616835602, "")
-        val user = tested.reload()
+        val user = tested.reload(client)
         val json = getJsonFromPath("/user/2616835602")
         assertNotEquals(tested, user)
         json shouldEqualJson jsonSerializer.encodeToString(user)

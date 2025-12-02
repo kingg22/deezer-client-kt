@@ -17,7 +17,7 @@ import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 
 class PlaylistRoutesTest {
-    lateinit var client: DeezerApiClient
+    private lateinit var client: DeezerApiClient
 
     @BeforeTest
     fun setup() {
@@ -48,7 +48,7 @@ class PlaylistRoutesTest {
             link = "",
             creator = User(0, ""),
         )
-        val playlist = tested.reload()
+        val playlist = tested.reload(client)
         val json = getJsonFromPath("/playlist/908622995")
         assertNotEquals(tested, playlist)
         json shouldEqualJson jsonSerializer.encodeToString(playlist)

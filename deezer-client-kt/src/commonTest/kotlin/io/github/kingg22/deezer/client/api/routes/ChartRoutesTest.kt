@@ -14,7 +14,7 @@ import kotlin.test.assertTrue
 
 // NOTE: Chart uses playlist.user and not creator
 class ChartRoutesTest {
-    lateinit var client: DeezerApiClient
+    private lateinit var client: DeezerApiClient
 
     @BeforeTest
     fun setup() {

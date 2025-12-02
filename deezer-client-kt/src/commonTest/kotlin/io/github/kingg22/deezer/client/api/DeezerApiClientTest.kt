@@ -20,7 +20,7 @@ import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
 class DeezerApiClientTest {
-    lateinit var client: DeezerApiClient
+    private lateinit var client: DeezerApiClient
 
     @BeforeTest
     fun setup() {
@@ -55,7 +55,7 @@ class DeezerApiClientTest {
             releaseDate = LocalDateTime.parse("2019-09-09T00:00:00"),
             duration = 0,
         )
-        val episode = tested.reload()
+        val episode = tested.reload(client)
         val json = getJsonFromPath("/episode/526673645")
         assertNotEquals(tested, episode)
         json shouldEqualJson jsonSerializer.encodeToString(episode)

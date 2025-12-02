@@ -15,7 +15,7 @@ import kotlin.test.assertNotEquals
 import kotlin.test.assertNotNull
 
 class TrackRoutesTest {
-    lateinit var client: DeezerApiClient
+    private lateinit var client: DeezerApiClient
 
     @BeforeTest
     fun setup() {
@@ -59,7 +59,7 @@ class TrackRoutesTest {
             preview = "",
             artist = Artist(0, ""),
         )
-        val track = tested.reload()
+        val track = tested.reload(client)
         val json = getJsonFromPath("/track/3135556")
         assertNotEquals(tested, track)
         json shouldEqualJson jsonSerializer.encodeToString(track)
