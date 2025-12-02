@@ -1,8 +1,5 @@
-@file:OptIn(InternalDeezerClient::class)
-
 package io.github.kingg22.deezer.client.api.objects
 
-import io.github.kingg22.deezer.client.utils.InternalDeezerClient
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.descriptors.PrimitiveKind
@@ -10,7 +7,6 @@ import kotlinx.serialization.descriptors.PrimitiveSerialDescriptor
 import kotlinx.serialization.descriptors.SerialDescriptor
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
-import kotlin.jvm.JvmStatic
 
 /**
  * Represent the explicit levels of [Deezer API](https://developers.deezer.com/api/).
@@ -51,13 +47,14 @@ enum class Explicit(val value: Int) {
     PARTIALLY_NO_ADVICE_AVAILABLE(7),
     ;
 
+    /** Helper for Explicit enum */
     companion object {
+        /** Find a [Explicit] from its [value] Or null if not found. */
         @JvmStatic
         fun fromValue(value: Int) = entries.firstOrNull { it.value == value }
     }
 
-    @InternalDeezerClient
-    internal object ExplicitSerializer : KSerializer<Explicit> {
+    private object ExplicitSerializer : KSerializer<Explicit> {
         override val descriptor: SerialDescriptor =
             PrimitiveSerialDescriptor("io.github.kingg22.deezerSdk.api.objects.Explicit", PrimitiveKind.INT)
 
