@@ -2,7 +2,9 @@ import kotlinx.kover.gradle.plugin.dsl.CoverageUnit
 import org.jetbrains.dokka.gradle.engine.parameters.KotlinPlatform
 import org.jetbrains.dokka.gradle.engine.parameters.VisibilityModifier
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
+import org.jetbrains.kotlin.gradle.dsl.JvmDefaultMode
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
 import org.jetbrains.kotlin.gradle.dsl.abi.ExperimentalAbiValidation
 
 plugins {
@@ -20,7 +22,7 @@ plugins {
 
 group = "io.github.kingg22"
 description = "A Kotlin Multiplatform library to use Deezer public API."
-version = "2.4.0"
+version = "3.0.0"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
@@ -35,6 +37,9 @@ kotlin {
             "io.github.kingg22.deezer.client.utils.ExperimentalDeezerClient",
             "io.github.kingg22.deezer.client.utils.InternalDeezerClient",
         )
+        freeCompilerArgs.addAll("-Xexpect-actual-classes")
+        apiVersion.set(KotlinVersion.KOTLIN_2_0)
+        languageVersion.set(apiVersion)
     }
 
     @OptIn(ExperimentalAbiValidation::class)
@@ -49,12 +54,14 @@ kotlin {
         publishLibraryVariants("release")
         compilerOptions {
             jvmTarget.set(JvmTarget.JVM_1_8)
+            jvmDefault.set(JvmDefaultMode.NO_COMPATIBILITY)
         }
     }
 
     jvm {
         compilerOptions {
             jvmTarget.set(JvmTarget.JVM_1_8)
+            jvmDefault.set(JvmDefaultMode.NO_COMPATIBILITY)
         }
         testRuns["test"].executionTask.configure {
             useJUnitPlatform()
