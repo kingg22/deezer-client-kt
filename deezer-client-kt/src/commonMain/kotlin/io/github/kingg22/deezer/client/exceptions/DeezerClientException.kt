@@ -1,8 +1,5 @@
 package io.github.kingg22.deezer.client.exceptions
 
-import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
-
 /**
  * General exception of the _Deezer Client_
  *
@@ -19,17 +16,14 @@ open class DeezerClientException @JvmOverloads constructor(
      * throwable is unknown.
      */
     cause: Throwable? = null,
-) : RuntimeException(cause) {
-    override val message = buildString {
+) : RuntimeException(
+    buildString {
         append("[Deezer Client Exception]")
         messageString?.let { append(": $it") }
         append(generateLinks())
-    }
-
-    @Suppress("unused", "kotlin:S1133") // planned to remove soon
-    @Deprecated("Use message or detailMessage of Exception", ReplaceWith("message"), DeprecationLevel.ERROR)
-    val messageString get() = message
-
+    },
+    cause,
+) {
     /** Utility functions to create this exception */
     companion object {
         /** Append links to repository and documentation */
