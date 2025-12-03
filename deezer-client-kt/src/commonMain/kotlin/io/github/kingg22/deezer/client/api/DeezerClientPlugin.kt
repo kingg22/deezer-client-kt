@@ -1,3 +1,5 @@
+@file:JvmName("-DeezerClientPlugin")
+
 package io.github.kingg22.deezer.client.api
 
 import io.github.kingg22.deezer.client.api.objects.ErrorContainer

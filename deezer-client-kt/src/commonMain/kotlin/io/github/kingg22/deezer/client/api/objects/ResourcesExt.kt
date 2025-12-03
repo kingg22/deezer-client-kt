@@ -1,5 +1,4 @@
 @file:JvmName("ResourcesUtil")
-@file:JvmMultifileClass
 
 package io.github.kingg22.deezer.client.api.objects
 
