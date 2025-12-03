@@ -22,7 +22,7 @@ plugins {
 
 group = "io.github.kingg22"
 description = "A Kotlin Multiplatform library to use Deezer public API."
-version = "3.0.0-SNAPSHOT"
+version = "3.0.0"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8

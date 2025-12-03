@@ -14,6 +14,13 @@ A Kotlin Multiplatform client for Deezer’s official REST API.
 Using [Ktor Client](https://ktor.io/).
 Supports Android (min SDK 24 / JVM 8+), JVM Java, Kotlin/JVM.
 
+> [!IMPORTANT]
+> Only supports the official Deezer API with JSON Content Type and Kotlinx Serialization JSON.
+>
+> It's recommended to configure [Content Encoding](https://ktor.io/docs/client-content-encoding.html) to reduce the size of the response.
+>
+> If you consume a lot of images, consider using [Caching](https://ktor.io/docs/client-caching.html)
+
 ## 🛠️ Instalación
 - Android **minSdk Version 24**
 - JVM target **Java 8+** / Kotlin JVM 1.8
@@ -68,9 +75,10 @@ println("Artist: ${artist.name}") // Artist: Daft Punk
 ```java
 public class Test {
   static void main(String[] args) {
-    final HttpClient httpClient = HttpClient(builder -> {
-      builder.install(DeezerClientPlugin);
-      // Others configuration
+    final HttpClient httpClient = HttpClientKt.HttpClient(CIO.INSTANCE.create(unused -> null), builder -> {
+      builder.install(DeezerClientPlugin.INSTANCE, unused -> null);
+      // Other configuration
+      return null;
     });
     final var client = new DeezerApiJavaClient(httpClient);
     final Artist artist = client.artists.getById(27);
@@ -85,7 +93,12 @@ import java.util.concurrent.CompletableFuture;
 
 public class Test {
   static void main(String[] args) {
-    final var client = new DeezerApiJavaClient();
+    final HttpClient httpClient = HttpClientKt.HttpClient(CIO.INSTANCE.create(unused -> null), builder -> {
+      builder.install(DeezerClientPlugin.INSTANCE, unused -> null);
+      // Other configuration
+      return null;
+    });
+    final var client = new DeezerApiJavaClient(httpClient);
     final CompletableFuture<Artist> future = client.artists.getByIdFuture(27);
     future.whenComplete((artist, err) -> {
       if (err != null) err.printStackTrace();
@@ -101,7 +114,7 @@ public class Test {
 val client: DeezerApiClient // use the same client in the app
 val result: PaginatedResponse<Track> = client.searches.search("eminem")
 checkNotNull(result.next)
-val nextPage: PaginatedResponse<Track> = checkNotNull(tested.fetchNext(expand=true))
+val nextPage: PaginatedResponse<Track> = checkNotNull(tested.fetchNext(client, expand=true))
 // because the next is not null, fetchNext don't return null
 // expand means the previous data (List<Track>) going to expand with the new response
 // fetchNext is an extension function*
@@ -110,20 +123,18 @@ val nextPage: PaginatedResponse<Track> = checkNotNull(tested.fetchNext(expand=tr
 
 ```java
 import java.util.concurrent.CompletableFuture;
-import io.github.kingg22.deezer.client.api.objects.PaginatedResponses;
 
 public class Test {
   static void main(String[] args) {
-    final DeezerApiJavaClient client = "";// use the same client in the app
+    final DeezerApiJavaClient client; // use the same client in the app
     final PaginatedResponse<Track> response = client.searches.search("eminem");
-    final PaginatedResponse<Track> nextPage =
-      // Import the java helper
-      // Blocking
-      PaginatedResponses.fetchNext(response, Track.class, /* expand */ true);
 
+    // Blocking
+    final PaginatedResponse<Track> nextPage = response.fetchNext(client, Track.class, /* expand */ true);
+
+    // async
     final CompletableFuture<PaginatedResponse<Track>> nextPageFuture =
-      // async
-      PaginatedResponses.fetchNextFuture(response, Track.class, /* expand */ true);
+      response.fetchNextFuture(client, Track.class, /* expand */ true);
 
     // Null type is the same, but in java isn't a mandatory check, is recommended!
   }
@@ -136,9 +147,9 @@ public class Test {
 val client: DeezerApiClient // use the same client in the app
 val episode: Episode = client.episodes.getById(526673645) // suspend fun
 // after do things ...
-val freshEpisode: Episode = episode.reload() // suspend fun
+val freshEpisode: Episode = episode.reload(client) // suspend fun
 ```
-**Java**
+**Java** (_Needs explicit cast, because of abstract Resource_)
 
 ```java
 import java.util.concurrent.CompletableFuture;
@@ -147,8 +158,9 @@ class Test {
   static void main(String[] args) {
     final DeezerApiJavaClient client = "";// use the same client in the app
     final Episode episode = client.episodes.getById(526673645);
-    final Episode freshEpisode = Resources.reload(tested); // blocking
-    final CompletableFuture<Episode> freshEpisodeFuture = Resources.reloadFuture(tested); // async
+    final Episode freshEpisode = (Episode) episode.reload(client); // blocking
+    final CompletableFuture<Episode> freshEpisodeFuture =
+      (CompletableFuture<Episode>) episode.reloadFuture(client); // async
   }
 }
 ```
@@ -202,15 +214,14 @@ public class Test {
 [Read more about this here](https://kotlinlang.org/docs/api-guidelines-backward-compatibility.html#avoid-using-data-classes-in-your-api).
 I take the decision to use class with [Poko](https://github.com/drewhamilton/Poko) because immutability is guaranteed and equals are generated.
 The idea of this api client is stateless, fetch what u need, and that's it.
-Only `PaginatedResponse` is data class to easy duplicate and fetch data.
 
 ### 🆚 Differences between kotlin and java versions
 - Kotlin can't access to the java version and viceversa
-- Kotlin extensions vs. an external object with static methods (helpers / utility class)
+- ~~Kotlin extensions vs. an external object with static methods (helpers / utility class)~~
 - Java can't access some kotlin specific like DSL, reified types, suspend methods, function with kotlin duration
 - Java wrappers of kotlin stuffs, so kotlin is a priority and dictates the route
 - Java needs to use kotlin datetime LocalDate and LocalDateTime when get dates :/
-- _Similitude_ kotlin suspend and java blocking it reads the same >_<
+- _Similitude_ kotlin suspend and java blocking it **reads** the same >_<
 
 ## 🛣 Roadmap
 - [ ] Support authenticated endpoints (user edit, user playlist edit, etc.)
