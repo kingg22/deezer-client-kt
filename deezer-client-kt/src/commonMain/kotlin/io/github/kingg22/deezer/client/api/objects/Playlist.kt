@@ -80,7 +80,7 @@ class Playlist @JvmOverloads constructor(
     override val type: String = "playlist",
     val position: Int? = null,
     val tracklist: String? = null,
-) : Resource {
+) : Resource() {
     @JvmSynthetic
     override suspend fun reload(client: DeezerApiClient) = client.playlists.getById(this.id)
 

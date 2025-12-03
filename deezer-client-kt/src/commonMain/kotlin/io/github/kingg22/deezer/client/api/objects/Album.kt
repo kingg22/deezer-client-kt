@@ -106,7 +106,7 @@ class Album @JvmOverloads constructor(
      */
     val tracks: PaginatedResponse<Track>? = null,
     override val type: String = "album",
-) : Resource {
+) : Resource() {
     @JvmSynthetic
     override suspend fun reload(client: DeezerApiClient) = client.albums.getById(this.id)
 

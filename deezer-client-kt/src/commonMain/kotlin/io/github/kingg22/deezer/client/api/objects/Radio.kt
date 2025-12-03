@@ -38,7 +38,7 @@ class Radio @JvmOverloads constructor(
     val tracklist: String? = null,
     @SerialName("md5_image") val md5Image: String? = null,
     override val type: String = "radio",
-) : Resource {
+) : Resource() {
     @JvmSynthetic
     override suspend fun reload(client: DeezerApiClient) = client.radios.getById(this.id)
 

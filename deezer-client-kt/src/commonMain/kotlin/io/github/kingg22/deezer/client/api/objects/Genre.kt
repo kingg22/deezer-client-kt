@@ -35,7 +35,7 @@ class Genre @JvmOverloads constructor(
     @SerialName("picture_xl") val pictureXl: String? = null,
     override val type: String = "genre",
     val radios: List<Radio>? = null,
-) : Resource {
+) : Resource() {
     @JvmSynthetic
     override suspend fun reload(client: DeezerApiClient) = client.genres.getById(this.id)
 

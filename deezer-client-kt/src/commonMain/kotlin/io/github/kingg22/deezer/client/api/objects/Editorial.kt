@@ -30,7 +30,7 @@ class Editorial @JvmOverloads constructor(
     @SerialName("picture_big") val pictureBig: String? = null,
     @SerialName("picture_xl") val pictureXl: String? = null,
     override val type: String = "editorial",
-) : Resource {
+) : Resource() {
     @JvmSynthetic
     override suspend fun reload(client: DeezerApiClient) = client.editorials.getById(this.id)
 

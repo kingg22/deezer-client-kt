@@ -60,7 +60,7 @@ class Episode @JvmOverloads constructor(
      */
     val podcast: Podcast? = null,
     override val type: String = "episode",
-) : Resource {
+) : Resource() {
     @JvmSynthetic
     override suspend fun reload(client: DeezerApiClient) = client.episodes.getById(this.id)
 

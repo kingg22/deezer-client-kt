@@ -40,7 +40,7 @@ class Podcast @JvmOverloads constructor(
     @SerialName("picture_big") val pictureBig: String? = null,
     @SerialName("picture_xl") val pictureXl: String? = null,
     override val type: String = "podcast",
-) : Resource {
+) : Resource() {
     @JvmSynthetic
     override suspend fun reload(client: DeezerApiClient) = client.podcasts.getById(this.id)
 

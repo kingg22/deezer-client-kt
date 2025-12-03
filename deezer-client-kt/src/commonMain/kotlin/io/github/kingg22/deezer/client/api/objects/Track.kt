@@ -109,7 +109,7 @@ class Track @JvmOverloads constructor(
     override val type: String = "track",
     val position: Int? = null,
     @SerialName("time_add") val timeAdd: Long? = null,
-) : Resource {
+) : Resource() {
     @JvmSynthetic
     override suspend fun reload(client: DeezerApiClient) = client.tracks.getById(this.id)
 

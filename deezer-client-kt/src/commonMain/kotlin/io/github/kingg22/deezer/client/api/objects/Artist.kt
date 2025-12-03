@@ -47,7 +47,7 @@ class Artist @JvmOverloads constructor(
     override val type: String = "artist",
     val role: String? = null,
     val position: Int? = null,
-) : Resource {
+) : Resource() {
     @JvmSynthetic
     override suspend fun reload(client: DeezerApiClient) = client.artists.getById(this.id)
 

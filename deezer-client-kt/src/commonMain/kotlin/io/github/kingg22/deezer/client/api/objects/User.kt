@@ -60,7 +60,7 @@ class User @JvmOverloads constructor(
     val explicitContentLevelsAvailable: List<ExplicitContentLevels>? = null,
     val tracklist: String? = null,
     override val type: String = "user",
-) : Resource {
+) : Resource() {
     @Serializable
     enum class Gender {
         @SerialName("M")
