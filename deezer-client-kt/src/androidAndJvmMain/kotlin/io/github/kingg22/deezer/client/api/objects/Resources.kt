@@ -3,9 +3,6 @@ package io.github.kingg22.deezer.client.api.objects
 import io.github.kingg22.deezer.client.api.DeezerApiClient
 import io.github.kingg22.deezer.client.api.DeezerApiJavaClient
 import io.github.kingg22.deezer.client.utils.ExperimentalDeezerClient
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.future.future
-import kotlinx.coroutines.runBlocking
 import org.jetbrains.annotations.Blocking
 import java.util.concurrent.CompletableFuture
 import kotlin.coroutines.CoroutineContext
@@ -35,7 +32,7 @@ internal object Resources {
         client: DeezerApiJavaClient,
         resource: T,
         coroutineContext: CoroutineContext = EmptyCoroutineContext,
-    ): T = runBlocking(coroutineContext) { resource.reload(client.delegate) as T }
+    ): T = resource.reload(client.delegate, coroutineContext) as T
 
     /**
      * Reloads the resource from the API with [CompletableFuture],
@@ -47,7 +44,7 @@ internal object Resources {
         client: DeezerApiJavaClient,
         resource: T,
         coroutineContext: CoroutineContext = EmptyCoroutineContext,
-    ): CompletableFuture<T> = CoroutineScope(coroutineContext).future { resource.reload(client.delegate) as T }
+    ): CompletableFuture<T> = resource.reloadFuture(client.delegate, coroutineContext) as CompletableFuture<T>
 
     /** Reloads the resource from the API, getting all of its full properties if it was initially obtained partially, or it's outdated */
     @Blocking
@@ -57,7 +54,7 @@ internal object Resources {
         client: DeezerApiClient,
         resource: T,
         coroutineContext: CoroutineContext = EmptyCoroutineContext,
-    ): T = runBlocking(coroutineContext) { resource.reload(client) as T }
+    ): T = resource.reload(client, coroutineContext) as T
 
     /**
      * Reloads the resource from the API with [CompletableFuture],
@@ -69,7 +66,7 @@ internal object Resources {
         client: DeezerApiClient,
         resource: T,
         coroutineContext: CoroutineContext = EmptyCoroutineContext,
-    ): CompletableFuture<T> = CoroutineScope(coroutineContext).future { resource.reload(client) as T }
+    ): CompletableFuture<T> = resource.reloadFuture(client, coroutineContext) as CompletableFuture<T>
 
     /** Reloads the resource from the API, getting all of its full properties if it was initially obtained partially, or it's outdated */
     @Deprecated(
@@ -80,7 +77,7 @@ internal object Resources {
     @Suppress("DEPRECATION", "DEPRECATION_ERROR")
     @Blocking
     @JvmStatic
-    fun <T : Resource> reload(resource: T): T = runBlocking { resource.reload() as T }
+    fun <T : Resource> reload(resource: T): T = resource.reloadBlocking() as T
 
     /**
      * Reloads the resource from the API with [CompletableFuture],
@@ -97,5 +94,5 @@ internal object Resources {
     fun <T : Resource> reloadFuture(
         resource: T,
         coroutineContext: CoroutineContext = EmptyCoroutineContext,
-    ): CompletableFuture<T> = CoroutineScope(coroutineContext).future { resource.reload() as T }
+    ): CompletableFuture<T> = resource.reloadFuture() as CompletableFuture<T>
 }

@@ -158,8 +158,7 @@ actual class PaginatedResponse<out T : @Serializable Any> @JvmOverloads actual c
         clazz: Class<@UnsafeVariance T>,
         expand: Boolean = false,
         coroutineContext: CoroutineContext = EmptyCoroutineContext,
-    ): CompletableFuture<PaginatedResponse<@UnsafeVariance T>?> =
-        fetchNextFuture(client.delegate, clazz, expand, coroutineContext)
+    ): CompletableFuture<out PaginatedResponse<T>?> = fetchNextFuture(client.delegate, clazz, expand, coroutineContext)
 
     /**
      * Fetch the next page of the search using [CompletableFuture].
@@ -186,7 +185,7 @@ actual class PaginatedResponse<out T : @Serializable Any> @JvmOverloads actual c
         clazz: Class<@UnsafeVariance T>,
         expand: Boolean = false,
         coroutineContext: CoroutineContext = EmptyCoroutineContext,
-    ): CompletableFuture<PaginatedResponse<@UnsafeVariance T>?> = CoroutineScope(coroutineContext).future {
+    ): CompletableFuture<out PaginatedResponse<T>?> = CoroutineScope(coroutineContext).future {
         fetchNext(client.httpClient, expand, clazz.kotlin.serializer())
     }
 
@@ -277,7 +276,7 @@ actual class PaginatedResponse<out T : @Serializable Any> @JvmOverloads actual c
         clazz: Class<@UnsafeVariance T>,
         expand: Boolean = false,
         coroutineContext: CoroutineContext = EmptyCoroutineContext,
-    ): CompletableFuture<PaginatedResponse<@UnsafeVariance T>?> =
+    ): CompletableFuture<out PaginatedResponse<T>?> =
         fetchPreviousFuture(client.delegate, clazz, expand, coroutineContext)
 
     /**
@@ -305,7 +304,7 @@ actual class PaginatedResponse<out T : @Serializable Any> @JvmOverloads actual c
         clazz: Class<@UnsafeVariance T>,
         expand: Boolean = false,
         coroutineContext: CoroutineContext = EmptyCoroutineContext,
-    ): CompletableFuture<PaginatedResponse<@UnsafeVariance T>?> = CoroutineScope(coroutineContext).future {
+    ): CompletableFuture<out PaginatedResponse<T>?> = CoroutineScope(coroutineContext).future {
         fetchPrevious(client.httpClient, expand, clazz.kotlin.serializer())
     }
 }

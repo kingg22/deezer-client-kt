@@ -5,16 +5,8 @@ import io.github.kingg22.deezer.client.api.DeezerApiJavaClient
 import io.github.kingg22.deezer.client.exceptions.DeezerApiException
 import io.github.kingg22.deezer.client.utils.AfterInitialize
 import io.github.kingg22.deezer.client.utils.ExperimentalDeezerClient
-import io.github.kingg22.deezer.client.utils.getDefaultJson
-import io.ktor.client.*
-import io.ktor.client.request.*
-import io.ktor.client.statement.*
-import io.ktor.http.*
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.future.future
-import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.InternalSerializationApi
-import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.serializer
 import org.jetbrains.annotations.Blocking
@@ -44,49 +36,6 @@ Is PublishedApi to maintain binary compatibility.
  */
 @PublishedApi
 internal object PaginatedResponses {
-    /* -- Implementation Zone -- */
-    private suspend inline fun <N : @Serializable Any> PaginatedResponse<N>.fetchNext(
-        httpClient: HttpClient,
-        expand: Boolean,
-        serializer: KSerializer<N>,
-    ): PaginatedResponse<N>? {
-        if (next.isNullOrBlank()) return null
-        val resultString = httpClient.get(Url(next)).bodyAsText()
-        val result = getDefaultJson().decodeFromString(PaginatedResponse.serializer(serializer), resultString)
-        return if (expand && data.isNotEmpty()) {
-            result.copy(data = data + result.data)
-        } else {
-            result
-        }
-    }
-
-    private suspend inline fun <N : @Serializable Any> PaginatedResponse<N>.fetchPrevious(
-        httpClient: HttpClient,
-        expand: Boolean,
-        serializer: KSerializer<N>,
-    ): PaginatedResponse<N>? {
-        if (prev.isNullOrBlank()) return null
-        val resultString = httpClient.get(Url(prev)).bodyAsText()
-        val result = getDefaultJson().decodeFromString(PaginatedResponse.serializer(serializer), resultString)
-        return if (expand && data.isNotEmpty()) {
-            result.copy(data = result.data + data)
-        } else {
-            result
-        }
-    }
-
-    private suspend inline fun <N : @Serializable Any> PaginatedResponse<N>.fetchNext(
-        client: DeezerApiClient,
-        expand: Boolean,
-        serializer: KSerializer<N>,
-    ): PaginatedResponse<N>? = this.fetchNext(client.httpClient, expand, serializer)
-
-    private suspend inline fun <N : @Serializable Any> PaginatedResponse<N>.fetchPrevious(
-        client: DeezerApiClient,
-        expand: Boolean,
-        serializer: KSerializer<N>,
-    ): PaginatedResponse<N>? = this.fetchPrevious(client.httpClient, expand, serializer)
-
     /*
     -- Public Zone --
     -- Fetch Next ZONE --
@@ -120,9 +69,7 @@ internal object PaginatedResponses {
         clazz: Class<N>,
         expand: Boolean = false,
         coroutineContext: CoroutineContext = EmptyCoroutineContext,
-    ): PaginatedResponse<N>? = runBlocking(coroutineContext) {
-        paginatedResponse.fetchNext(client.delegate, expand, clazz.kotlin.serializer())
-    }
+    ): PaginatedResponse<N>? = paginatedResponse.fetchNext(client, clazz, expand, coroutineContext)
 
     /**
      * Fetch the next page of the search blocking the thread.
@@ -151,9 +98,7 @@ internal object PaginatedResponses {
         clazz: Class<N>,
         expand: Boolean = false,
         coroutineContext: CoroutineContext = EmptyCoroutineContext,
-    ): PaginatedResponse<N>? = runBlocking(coroutineContext) {
-        paginatedResponse.fetchNext(client, expand, clazz.kotlin.serializer())
-    }
+    ): PaginatedResponse<N>? = paginatedResponse.fetchNext(client, clazz, expand, coroutineContext)
 
     /* -- Fetch next FUTURE zone -- */
 
@@ -184,9 +129,8 @@ internal object PaginatedResponses {
         clazz: Class<N>,
         expand: Boolean = false,
         coroutineContext: CoroutineContext = EmptyCoroutineContext,
-    ): CompletableFuture<PaginatedResponse<N>?> = CoroutineScope(coroutineContext).future {
-        paginatedResponse.fetchNext(client.delegate, expand, clazz.kotlin.serializer())
-    }
+    ): CompletableFuture<out PaginatedResponse<N>?> =
+        paginatedResponse.fetchNextFuture(client, clazz, expand, coroutineContext)
 
     /**
      * Fetch the next page of the search using [CompletableFuture].
@@ -215,9 +159,8 @@ internal object PaginatedResponses {
         clazz: Class<N>,
         expand: Boolean = false,
         coroutineContext: CoroutineContext = EmptyCoroutineContext,
-    ): CompletableFuture<PaginatedResponse<N>?> = CoroutineScope(coroutineContext).future {
-        paginatedResponse.fetchNext(client, expand, clazz.kotlin.serializer())
-    }
+    ): CompletableFuture<out PaginatedResponse<N>?> =
+        paginatedResponse.fetchNextFuture(client, clazz, expand, coroutineContext)
 
     /* -- Fetch previous ZONE -- */
 
@@ -249,9 +192,7 @@ internal object PaginatedResponses {
         clazz: Class<P>,
         expand: Boolean = false,
         coroutineContext: CoroutineContext = EmptyCoroutineContext,
-    ): PaginatedResponse<P>? = runBlocking(coroutineContext) {
-        paginatedResponse.fetchPrevious(client.delegate, expand, clazz.kotlin.serializer())
-    }
+    ): PaginatedResponse<P>? = paginatedResponse.fetchPrevious(client, clazz, expand, coroutineContext)
 
     /**
      * Fetch the previous page of the search blocking the thread.
@@ -281,9 +222,7 @@ internal object PaginatedResponses {
         clazz: Class<P>,
         expand: Boolean = false,
         coroutineContext: CoroutineContext = EmptyCoroutineContext,
-    ): PaginatedResponse<P>? = runBlocking(coroutineContext) {
-        paginatedResponse.fetchPrevious(client, expand, clazz.kotlin.serializer())
-    }
+    ): PaginatedResponse<P>? = paginatedResponse.fetchPrevious(client, clazz, expand, coroutineContext)
 
     /* -- Fetch previous FUTURE zone -- */
 
@@ -314,9 +253,8 @@ internal object PaginatedResponses {
         clazz: Class<P>,
         expand: Boolean = false,
         coroutineContext: CoroutineContext = EmptyCoroutineContext,
-    ): CompletableFuture<PaginatedResponse<P>?> = CoroutineScope(coroutineContext).future {
-        paginatedResponse.fetchPrevious(client.delegate, expand, clazz.kotlin.serializer())
-    }
+    ): CompletableFuture<out PaginatedResponse<P>?> =
+        paginatedResponse.fetchPreviousFuture(client, clazz, expand, coroutineContext)
 
     /**
      * Fetch the previous page of the search with [CompletableFuture].
@@ -345,9 +283,8 @@ internal object PaginatedResponses {
         clazz: Class<P>,
         expand: Boolean = false,
         coroutineContext: CoroutineContext = EmptyCoroutineContext,
-    ): CompletableFuture<PaginatedResponse<P>?> = CoroutineScope(coroutineContext).future {
-        paginatedResponse.fetchPrevious(client, expand, clazz.kotlin.serializer())
-    }
+    ): CompletableFuture<out PaginatedResponse<P>?> =
+        paginatedResponse.fetchPreviousFuture(client, clazz, expand, coroutineContext)
 
     /* -- DEPRECATED ZONE -- */
 
@@ -385,13 +322,11 @@ internal object PaginatedResponses {
     fun <N : @Serializable Any> PaginatedResponse<N>.fetchNext(
         clazz: Class<N>,
         expand: Boolean = false,
-    ): PaginatedResponse<N>? = runBlocking {
-        fetchNext(
-            io.github.kingg22.deezer.client.api.GlobalDeezerApiClient.requireInstance(),
-            expand,
-            clazz.kotlin.serializer(),
-        )
-    }
+    ): PaginatedResponse<N>? = this.fetchNext(
+        io.github.kingg22.deezer.client.api.GlobalDeezerApiClient.requireInstance(),
+        clazz,
+        expand,
+    )
 
     /**
      * Fetch the next page of the search blocking the thread.
@@ -429,13 +364,12 @@ internal object PaginatedResponses {
         clazz: Class<N>,
         expand: Boolean = false,
         coroutineContext: CoroutineContext = EmptyCoroutineContext,
-    ): CompletableFuture<PaginatedResponse<N>?> = CoroutineScope(coroutineContext).future {
-        fetchNext(
-            io.github.kingg22.deezer.client.api.GlobalDeezerApiClient.requireInstance(),
-            expand,
-            clazz.kotlin.serializer(),
-        )
-    }
+    ): CompletableFuture<out PaginatedResponse<N>?> = this.fetchNextFuture(
+        io.github.kingg22.deezer.client.api.GlobalDeezerApiClient.requireInstance(),
+        clazz,
+        expand,
+        coroutineContext,
+    )
 
     /**
      * Fetch the previous page of the search blocking the thread.
@@ -471,13 +405,11 @@ internal object PaginatedResponses {
     fun <P : @Serializable Any> PaginatedResponse<P>.fetchPrevious(
         clazz: Class<P>,
         expand: Boolean = false,
-    ): PaginatedResponse<P>? = runBlocking {
-        fetchPrevious(
-            io.github.kingg22.deezer.client.api.GlobalDeezerApiClient.requireInstance(),
-            expand,
-            clazz.kotlin.serializer(),
-        )
-    }
+    ): PaginatedResponse<P>? = this.fetchPrevious(
+        io.github.kingg22.deezer.client.api.GlobalDeezerApiClient.requireInstance(),
+        clazz,
+        expand,
+    )
 
     /**
      * Fetch the previous page of the search with [CompletableFuture].
@@ -515,11 +447,10 @@ internal object PaginatedResponses {
         clazz: Class<P>,
         expand: Boolean = false,
         coroutineContext: CoroutineContext = EmptyCoroutineContext,
-    ): CompletableFuture<PaginatedResponse<P>?> = CoroutineScope(coroutineContext).future {
-        fetchPrevious(
-            io.github.kingg22.deezer.client.api.GlobalDeezerApiClient.requireInstance(),
-            expand,
-            clazz.kotlin.serializer(),
-        )
-    }
+    ): CompletableFuture<out PaginatedResponse<P>?> = this.fetchPreviousFuture(
+        io.github.kingg22.deezer.client.api.GlobalDeezerApiClient.requireInstance(),
+        clazz,
+        expand,
+        coroutineContext,
+    )
 }
