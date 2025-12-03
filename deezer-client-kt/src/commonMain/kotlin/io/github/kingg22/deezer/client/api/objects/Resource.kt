@@ -2,7 +2,6 @@ package io.github.kingg22.deezer.client.api.objects
 
 import io.github.kingg22.deezer.client.api.DeezerApiClient
 import io.github.kingg22.deezer.client.exceptions.DeezerApiException
-import io.github.kingg22.deezer.client.utils.AfterInitialize
 import kotlin.coroutines.cancellation.CancellationException
 
 /**
@@ -11,10 +10,9 @@ import kotlin.coroutines.cancellation.CancellationException
  * Inspired in [Deezer Python Resource](https://github.com/browniebroke/deezer-python/blob/06065d357be3761e895e3605fdc0619783685b7c/src/deezer/resources/resource.py)
  * @author Kingg22
  */
-@JvmDefaultWithoutCompatibility
-interface Resource {
-    val id: Long
-    val type: String
+expect abstract class Resource() {
+    abstract val id: Long
+    abstract val type: String
 
     /**
      * Reloads the current resource from the API,
@@ -23,7 +21,7 @@ interface Resource {
      */
     @JvmSynthetic
     @Throws(DeezerApiException::class, CancellationException::class)
-    suspend fun reload(client: DeezerApiClient): Resource
+    abstract suspend fun reload(client: DeezerApiClient): Resource
 
     /**
      * Reloads the current resource from the API,
@@ -33,10 +31,10 @@ interface Resource {
     @Deprecated(
         "Use reload(client: DeezerApiClient) instead, pass a client explicitly",
         ReplaceWith("reload(client)"),
-        level = DeprecationLevel.WARNING,
+        level = DeprecationLevel.ERROR,
     )
-    @AfterInitialize
+    @io.github.kingg22.deezer.client.utils.AfterInitialize
     @JvmSynthetic
     @Throws(DeezerApiException::class, CancellationException::class)
-    suspend fun reload(): Resource = reload(io.github.kingg22.deezer.client.api.GlobalDeezerApiClient.requireInstance())
+    open suspend fun reload(): Resource
 }

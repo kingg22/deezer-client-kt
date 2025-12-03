@@ -16,11 +16,25 @@ import kotlinx.serialization.Serializable
  * @property next Link to the next page of the search
  */
 @Serializable
-data class PaginatedResponse<T : @Serializable Any> // TODO make out T
-@JvmOverloads constructor(
-    val data: List<T> = emptyList(),
-    val checksum: String? = null,
-    val total: Int? = null,
-    val prev: String? = null,
-    val next: String? = null,
-)
+expect class PaginatedResponse<out T : @Serializable Any> { // actual classes need to have Poko!!
+    @JvmOverloads constructor(
+        data: List<T> = emptyList(),
+        checksum: String? = null,
+        total: Int? = null,
+        prev: String? = null,
+        next: String? = null,
+    )
+    val data: List<T>
+    val checksum: String?
+    val total: Int?
+    val prev: String?
+    val next: String?
+
+    fun copy(
+        data: List<@UnsafeVariance T> = this.data,
+        checksum: String? = this.checksum,
+        total: Int? = this.total,
+        prev: String? = this.prev,
+        next: String? = this.next,
+    ): PaginatedResponse<T>
+}
