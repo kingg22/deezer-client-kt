@@ -3,6 +3,7 @@ package io.github.kingg22.deezer.client.api.objects;
 import io.github.kingg22.deezer.client.KtorEngineMocked;
 import io.github.kingg22.deezer.client.api.DeezerApiClient;
 import io.github.kingg22.deezer.client.api.GlobalDeezerApiClient;
+import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -18,8 +19,8 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTimeout;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class PaginatedResponsesTest {
-    private DeezerApiClient client;
+class PaginatedResponseJavaTest {
+    private @NotNull DeezerApiClient client;
 
     @BeforeEach
     void setup() {
@@ -33,10 +34,10 @@ class PaginatedResponsesTest {
 
         assertDoesNotThrow(() -> {
             final List<PaginatedResponse<Track>> results = Arrays.asList(
-                PaginatedResponses.fetchNext(client, paging2, Track.class, true),
+                paging2.fetchNext(client, Track.class, true),
                 assertTimeout(
                     Duration.ofMinutes(1),
-                    () -> PaginatedResponses.fetchNextFuture(client, paging2, Track.class, true).get()
+                    () -> paging2.fetchNextFuture(client, Track.class, true).get()
                 )
             );
 
@@ -55,10 +56,10 @@ class PaginatedResponsesTest {
 
         assertDoesNotThrow(() -> {
             final List<PaginatedResponse<Track>> results = Arrays.asList(
-                PaginatedResponses.fetchNext(client, paging2, Track.class, true),
+                paging2.fetchNext(client, Track.class, true),
                 assertTimeout(
                     Duration.ofMinutes(1),
-                    () -> PaginatedResponses.fetchNextFuture(client, paging2, Track.class, true).get()
+                    () -> paging2.fetchNextFuture(client, Track.class, true).get()
                 )
             );
 
@@ -78,10 +79,10 @@ class PaginatedResponsesTest {
 
         assertDoesNotThrow(() -> {
             final List<PaginatedResponse<Track>> results = Arrays.asList(
-                PaginatedResponses.fetchPrevious(client, paging2, Track.class, true),
+                paging2.fetchPrevious(client, Track.class, true),
                 assertTimeout(
                     Duration.ofMinutes(1),
-                    () -> PaginatedResponses.fetchPreviousFuture(client, paging2, Track.class, true).get()
+                    () -> paging2.fetchPreviousFuture(client, Track.class, true).get()
                 )
             );
 
@@ -100,10 +101,10 @@ class PaginatedResponsesTest {
 
         assertDoesNotThrow(() -> {
             final List<PaginatedResponse<Track>> results = Arrays.asList(
-                PaginatedResponses.fetchPrevious(client, paging2, Track.class, true),
+                paging2.fetchPrevious(client, Track.class, true),
                 assertTimeout(
                     Duration.ofMinutes(1),
-                    () -> PaginatedResponses.fetchPreviousFuture(client, paging2, Track.class, true).get()
+                    () -> paging2.fetchPreviousFuture(client, Track.class, true).get()
                 )
             );
 
