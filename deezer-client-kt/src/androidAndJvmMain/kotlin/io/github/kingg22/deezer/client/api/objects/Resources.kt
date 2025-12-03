@@ -18,6 +18,7 @@ import kotlin.coroutines.EmptyCoroutineContext
  *
  * For Kotlin users: **You don't need this, use the member function instead, this is only for Java**
  */
+@Deprecated("Use the member function instead")
 @Suppress("unused", "UNCHECKED_CAST")
 @ExperimentalDeezerClient
 /*
@@ -74,9 +75,9 @@ internal object Resources {
     @Deprecated(
         "Use reload(client, resource, coroutineContext) instead, pass a client explicitly and optionally a coroutine context to use",
         ReplaceWith("reload(client, resource)"),
-        DeprecationLevel.WARNING,
+        DeprecationLevel.ERROR,
     )
-    @Suppress("DEPRECATION")
+    @Suppress("DEPRECATION", "DEPRECATION_ERROR")
     @Blocking
     @JvmStatic
     fun <T : Resource> reload(resource: T): T = runBlocking { resource.reload() as T }
@@ -88,9 +89,9 @@ internal object Resources {
     @Deprecated(
         "Use reloadFuture(client, resource, coroutineContext) instead, pass a client explicitly",
         ReplaceWith("reloadFuture(client, resource)"),
-        DeprecationLevel.WARNING,
+        DeprecationLevel.ERROR,
     )
-    @Suppress("DEPRECATION")
+    @Suppress("DEPRECATION", "DEPRECATION_ERROR")
     @JvmOverloads
     @JvmStatic
     fun <T : Resource> reloadFuture(

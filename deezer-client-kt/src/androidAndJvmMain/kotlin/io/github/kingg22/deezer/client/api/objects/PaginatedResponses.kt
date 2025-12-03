@@ -34,6 +34,7 @@ import kotlin.coroutines.cancellation.CancellationException
  *
  * For Kotlin users: **You don't need this, use the extension function instead, this is only for Java**
  */
+@Deprecated("Use the member function instead")
 @Suppress("unused")
 @ExperimentalDeezerClient
 @InternalSerializationApi
@@ -373,9 +374,9 @@ internal object PaginatedResponses {
     @Deprecated(
         "Use fetchNext(DeezerApiClient, PaginatedResponse, Class, Boolean, CoroutineContext) instead. Pass a client explicitly and optionally a coroutineContext.",
         ReplaceWith("fetchNext(client, paginatedResponse, clazz, expand, coroutineContext)"),
-        level = DeprecationLevel.WARNING,
+        level = DeprecationLevel.ERROR,
     )
-    @Suppress("DEPRECATION")
+    @Suppress("DEPRECATION", "DEPRECATION_ERROR")
     @AfterInitialize
     @Blocking
     @JvmOverloads
@@ -417,9 +418,9 @@ internal object PaginatedResponses {
     @Deprecated(
         "Use fetchNextFuture(DeezerApiClient, PaginatedResponse, Class, Boolean, CoroutineContext) instead. Pass a client explicitly and optionally a coroutineContext.",
         ReplaceWith("fetchNextFuture(client, paginatedResponse, clazz, expand, coroutineContext)"),
-        level = DeprecationLevel.WARNING,
+        level = DeprecationLevel.ERROR,
     )
-    @Suppress("DEPRECATION")
+    @Suppress("DEPRECATION", "DEPRECATION_ERROR")
     @AfterInitialize
     @JvmOverloads
     @JvmStatic
@@ -459,9 +460,9 @@ internal object PaginatedResponses {
     @Deprecated(
         "Use fetchPrevious(DeezerApiClient, PaginatedResponse, Class, Boolean, CoroutineContext) instead. Pass a client explicitly and optionally a coroutineContext.",
         ReplaceWith("fetchPrevious(client, paginatedResponse, clazz, expand, coroutineContext)"),
-        level = DeprecationLevel.WARNING,
+        level = DeprecationLevel.ERROR,
     )
-    @Suppress("DEPRECATION")
+    @Suppress("DEPRECATION", "DEPRECATION_ERROR")
     @AfterInitialize
     @Blocking
     @JvmOverloads
@@ -503,9 +504,9 @@ internal object PaginatedResponses {
     @Deprecated(
         "Use fetchPreviousFuture(DeezerApiClient, PaginatedResponse, Class, Boolean, CoroutineContext) instead. Pass a client explicitly and optionally a coroutineContext.",
         ReplaceWith("fetchPreviousFuture(client, paginatedResponse, clazz, expand, coroutineContext)"),
-        level = DeprecationLevel.WARNING,
+        level = DeprecationLevel.ERROR,
     )
-    @Suppress("DEPRECATION")
+    @Suppress("DEPRECATION", "DEPRECATION_ERROR")
     @AfterInitialize
     @JvmOverloads
     @JvmStatic
