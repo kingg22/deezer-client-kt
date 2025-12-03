@@ -1,5 +1,5 @@
 // TODO add Poko to this class
-@file:Suppress("DEPRECATION")
+@file:Suppress("DEPRECATION", "DEPRECATION_ERROR")
 
 package io.github.kingg22.deezer.client.api
 
@@ -31,7 +31,7 @@ class DeezerApiClient(
      *
      * @param builder Builder to create an [HttpClient]
      */
-    @Deprecated("Build a HttpClient instead, see HttpClientBuilder deprecation.", level = DeprecationLevel.WARNING)
+    @Deprecated("Build a HttpClient instead, see HttpClientBuilder deprecation.", level = DeprecationLevel.ERROR)
     @JvmOverloads
     constructor(
         builder: HttpClientBuilder = HttpClientBuilder(),
@@ -124,7 +124,7 @@ class DeezerApiClient(
          * See [addDefaultResponseValidation].
          * Default true.
          */
-        @Deprecated("Build a HttpClient instead, see HttpClientBuilder deprecation.", level = DeprecationLevel.WARNING)
+        @Deprecated("Build a HttpClient instead, see HttpClientBuilder deprecation.", level = DeprecationLevel.ERROR)
         @JvmStatic
         @JvmOverloads
         fun initialize(

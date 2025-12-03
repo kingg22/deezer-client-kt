@@ -1,4 +1,4 @@
-@file:Suppress("kotlin:S1128", "DEPRECATION") // False positive of unused import
+@file:Suppress("kotlin:S1128", "DEPRECATION", "DEPRECATION_ERROR") // False positive of unused import
 
 package io.github.kingg22.deezer.client.api
 
@@ -62,7 +62,7 @@ internal constructor(
      * @param builder Builder to create an [HttpClient]
      * @see DeezerApiClient
      */
-    @Deprecated("Build a HttpClient instead, see HttpClientBuilder deprecation.", level = DeprecationLevel.WARNING)
+    @Deprecated("Build a HttpClient instead, see HttpClientBuilder deprecation.", level = DeprecationLevel.ERROR)
     @JvmOverloads
     internal constructor(builder: HttpClientBuilder = HttpClientBuilder()) : this(DeezerApiClient(builder))
 
@@ -144,7 +144,7 @@ internal constructor(
          * See [addDefaultResponseValidation].
          * Default true.
          */
-        @Deprecated("Build a HttpClient instead, see HttpClientBuilder deprecation.", level = DeprecationLevel.WARNING)
+        @Deprecated("Build a HttpClient instead, see HttpClientBuilder deprecation.", level = DeprecationLevel.ERROR)
         @PublishedApi
         @JvmStatic
         @JvmOverloads

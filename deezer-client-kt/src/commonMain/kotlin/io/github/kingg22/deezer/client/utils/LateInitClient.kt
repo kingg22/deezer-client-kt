@@ -8,7 +8,7 @@ package io.github.kingg22.deezer.client.utils
  * Define an `initialize` and [isInitialized] method.
  * @author Kingg22
  */
-@Deprecated("Since GlobalDeezerClient are deprecated, this is not needed anymore.", level = DeprecationLevel.WARNING)
+@Deprecated("Since GlobalDeezerClient are deprecated, this is not needed anymore.", level = DeprecationLevel.ERROR)
 interface LateInitClient {
     /**
      * Indicate if the client is already initialized.

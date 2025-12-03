@@ -1,5 +1,4 @@
 @file:JvmName("-PaginatedResponseExt")
-@file:JvmMultifileClass
 
 package io.github.kingg22.deezer.client.api.objects
 
@@ -31,7 +30,7 @@ suspend inline fun <reified N : @Serializable Any> PaginatedResponse<N>.fetchNex
     expand: Boolean = false,
 ): PaginatedResponse<N>? {
     if (next.isNullOrBlank()) return null
-    val result = httpClient.get(Url(next)).body<PaginatedResponse<N>>()
+    val result = httpClient.get(Url(next!!)).body<PaginatedResponse<N>>()
     return if (expand && data.isNotEmpty()) {
         return result.copy(data = data + result.data)
     } else {
@@ -56,7 +55,7 @@ suspend inline fun <reified P : @Serializable Any> PaginatedResponse<P>.fetchPre
     expand: Boolean = false,
 ): PaginatedResponse<P>? {
     if (prev.isNullOrBlank()) return null
-    val result = httpClient.get(Url(prev)).body<PaginatedResponse<P>>()
+    val result = httpClient.get(Url(prev!!)).body<PaginatedResponse<P>>()
     return if (expand && data.isNotEmpty()) {
         result.copy(data = result.data + data)
     } else {
@@ -101,11 +100,11 @@ suspend inline fun <reified P : @Serializable Any> PaginatedResponse<P>.fetchPre
  * @param expand true to expand [PaginatedResponse.data] with a new result
  * @return Null if [PaginatedResponse.next] is null else a `PaginatedResponse`
  */
-@Suppress("DEPRECATION")
+@Suppress("DEPRECATION", "DEPRECATION_ERROR")
 @Deprecated(
     "Use fetchNext(client: DeezerApiClient, expand: Boolean) instead, pass a client explicitly",
     ReplaceWith("fetchNext(client, expand)", "io.github.kingg22.deezer.client.api.objects.fetchNext"),
-    level = DeprecationLevel.WARNING,
+    level = DeprecationLevel.ERROR,
 )
 @AfterInitialize
 @JvmSynthetic
@@ -122,11 +121,11 @@ suspend inline fun <reified N : @Serializable Any> PaginatedResponse<N>.fetchNex
  * @param expand true to expand [PaginatedResponse.data] with a new result
  * @return Null if [PaginatedResponse.next] is null else [PaginatedResponse]
  */
-@Suppress("DEPRECATION")
+@Suppress("DEPRECATION", "DEPRECATION_ERROR")
 @Deprecated(
     "Use fetchPrevious(client: DeezerApiClient, expand: Boolean) instead, pass a client explicitly",
     ReplaceWith("fetchPrevious(client, expand)", "io.github.kingg22.deezer.client.api.objects.fetchPrevious"),
-    level = DeprecationLevel.WARNING,
+    level = DeprecationLevel.ERROR,
 )
 @AfterInitialize
 @JvmSynthetic

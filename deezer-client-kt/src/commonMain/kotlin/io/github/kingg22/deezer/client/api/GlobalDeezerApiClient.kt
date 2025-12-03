@@ -1,9 +1,5 @@
-@file:Suppress("DEPRECATION")
-
 package io.github.kingg22.deezer.client.api
 
-import io.github.kingg22.deezer.client.api.GlobalDeezerApiClient.reset
-import io.github.kingg22.deezer.client.utils.LateInitClient
 import kotlinx.coroutines.isActive
 
 /**
@@ -18,8 +14,9 @@ import kotlinx.coroutines.isActive
  * @see [io.github.kingg22.deezer.client.api.objects.fetchNext]
  * @see [io.github.kingg22.deezer.client.api.objects.fetchPrevious]
  */
-@Deprecated("Create and store a DeezerApiClient by yourself", level = DeprecationLevel.WARNING)
-object GlobalDeezerApiClient : LateInitClient {
+@Suppress("DEPRECATION", "DEPRECATION_ERROR")
+@Deprecated("Create and store a DeezerApiClient by yourself", level = DeprecationLevel.ERROR)
+object GlobalDeezerApiClient : io.github.kingg22.deezer.client.utils.LateInitClient {
     /**
      * The actual instance of [DeezerApiClient]
      *

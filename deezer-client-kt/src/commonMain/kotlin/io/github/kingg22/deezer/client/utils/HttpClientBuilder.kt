@@ -1,15 +1,11 @@
-@file:Suppress("DEPRECATION", "kotlin:S1133")
+@file:Suppress("DEPRECATION", "kotlin:S1133", "DEPRECATION_ERROR")
 
 package io.github.kingg22.deezer.client.utils
 
-import io.ktor.client.HttpClientConfig
-import io.ktor.client.engine.HttpClientEngine
-import io.ktor.client.plugins.cookies.AcceptAllCookiesStorage
-import io.ktor.client.plugins.cookies.CookiesStorage
-import io.ktor.client.plugins.logging.LogLevel
-import io.ktor.client.plugins.logging.Logger
-import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmSynthetic
+import io.ktor.client.*
+import io.ktor.client.engine.*
+import io.ktor.client.plugins.cookies.*
+import io.ktor.client.plugins.logging.*
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 
@@ -63,7 +59,7 @@ import kotlin.time.Duration.Companion.seconds
     }""",
         "kotlinx.serialization.json.Json",
     ),
-    level = DeprecationLevel.WARNING,
+    level = DeprecationLevel.ERROR,
 )
 data class HttpClientBuilder @JvmOverloads constructor(
     /** Sets a custom user-agent for the HttpClient. */
