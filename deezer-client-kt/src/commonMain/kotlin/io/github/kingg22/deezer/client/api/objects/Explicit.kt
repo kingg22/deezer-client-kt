@@ -7,6 +7,7 @@ import kotlinx.serialization.descriptors.PrimitiveSerialDescriptor
 import kotlinx.serialization.descriptors.SerialDescriptor
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
+import kotlin.jvm.JvmStatic
 
 /**
  * Represent the explicit levels of [Deezer API](https://developers.deezer.com/api/).
@@ -54,7 +55,7 @@ enum class Explicit(val value: Int) {
         fun fromValue(value: Int) = entries.firstOrNull { it.value == value }
     }
 
-    private object ExplicitSerializer : KSerializer<Explicit> {
+    internal object ExplicitSerializer : KSerializer<Explicit> {
         override val descriptor: SerialDescriptor =
             PrimitiveSerialDescriptor("io.github.kingg22.deezerSdk.api.objects.Explicit", PrimitiveKind.INT)
 
