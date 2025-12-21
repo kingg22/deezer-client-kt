@@ -6,6 +6,8 @@ import io.ktor.client.*
 import io.ktor.client.engine.*
 import io.ktor.client.plugins.cookies.*
 import io.ktor.client.plugins.logging.*
+import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmSynthetic
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 
@@ -59,7 +61,7 @@ import kotlin.time.Duration.Companion.seconds
     }""",
         "kotlinx.serialization.json.Json",
     ),
-    level = DeprecationLevel.ERROR,
+    level = DeprecationLevel.HIDDEN,
 )
 data class HttpClientBuilder @JvmOverloads constructor(
     /** Sets a custom user-agent for the HttpClient. */
