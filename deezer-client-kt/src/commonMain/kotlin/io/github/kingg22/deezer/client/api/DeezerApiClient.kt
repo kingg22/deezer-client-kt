@@ -12,6 +12,9 @@ import io.ktor.client.plugins.*
 import io.ktor.client.request.*
 import io.ktor.http.*
 import kotlinx.coroutines.isActive
+import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
+import kotlin.jvm.JvmSynthetic
 
 /**
  * Client for the official [Deezer API](https://developers.deezer.com/api/).
@@ -31,7 +34,7 @@ class DeezerApiClient(
      *
      * @param builder Builder to create an [HttpClient]
      */
-    @Deprecated("Build a HttpClient instead, see HttpClientBuilder deprecation.", level = DeprecationLevel.ERROR)
+    @Deprecated("Build a HttpClient instead, see HttpClientBuilder deprecation.", level = DeprecationLevel.HIDDEN)
     @JvmOverloads
     constructor(
         builder: HttpClientBuilder = HttpClientBuilder(),
@@ -43,7 +46,9 @@ class DeezerApiClient(
                 accept(ContentType.Application.Json)
             }
         }.build(),
-    )
+    ) {
+        throw NotImplementedError("Build a HttpClient with DeezerClientPlugin installed instead.")
+    }
 
     /** All endpoints related to [io.github.kingg22.deezer.client.api.objects.Album] */
     @get:JvmSynthetic
@@ -124,20 +129,15 @@ class DeezerApiClient(
          * See [addDefaultResponseValidation].
          * Default true.
          */
-        @Deprecated("Build a HttpClient instead, see HttpClientBuilder deprecation.", level = DeprecationLevel.ERROR)
+        @Deprecated("Build a HttpClient instead, see HttpClientBuilder deprecation.", level = DeprecationLevel.HIDDEN)
         @JvmStatic
         @JvmOverloads
         fun initialize(
             builder: HttpClientBuilder = HttpClientBuilder(),
             includeDefaultHeaders: Boolean = true,
             expectSuccess: Boolean = true,
-        ) = DeezerApiClient(
-            builder.apply {
-                addCustomConfig {
-                    if (includeDefaultHeaders) defaultRequest { this.headers.appendAll(getDefaultDeezerHeaders()) }
-                    if (expectSuccess) this.expectSuccess = true
-                }
-            },
+        ): DeezerApiClient = throw NotImplementedError(
+            "Build a HttpClient with DeezerClientPlugin installed and use the constructor instead.",
         )
     }
 }

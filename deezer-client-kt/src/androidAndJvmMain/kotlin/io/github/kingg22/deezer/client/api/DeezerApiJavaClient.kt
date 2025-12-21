@@ -62,9 +62,11 @@ internal constructor(
      * @param builder Builder to create an [HttpClient]
      * @see DeezerApiClient
      */
-    @Deprecated("Build a HttpClient instead, see HttpClientBuilder deprecation.", level = DeprecationLevel.ERROR)
+    @Deprecated("Build a HttpClient instead, see HttpClientBuilder deprecation.", level = DeprecationLevel.HIDDEN)
     @JvmOverloads
-    internal constructor(builder: HttpClientBuilder = HttpClientBuilder()) : this(DeezerApiClient(builder))
+    internal constructor(builder: HttpClientBuilder = HttpClientBuilder()) : this(DeezerApiClient(builder.build())) {
+        throw NotImplementedError("Build a HttpClient and use the constructor instead.")
+    }
 
     /** The current underlying [HttpClient] using of delegate */
     @property:InternalDeezerClient
@@ -144,7 +146,7 @@ internal constructor(
          * See [addDefaultResponseValidation].
          * Default true.
          */
-        @Deprecated("Build a HttpClient instead, see HttpClientBuilder deprecation.", level = DeprecationLevel.ERROR)
+        @Deprecated("Build a HttpClient instead, see HttpClientBuilder deprecation.", level = DeprecationLevel.HIDDEN)
         @PublishedApi
         @JvmStatic
         @JvmOverloads
@@ -152,7 +154,9 @@ internal constructor(
             builder: HttpClientBuilder = HttpClientBuilder(),
             includeDefaultHeaders: Boolean = true,
             expectSuccess: Boolean = true,
-        ) = DeezerApiClient.initialize(builder, includeDefaultHeaders, expectSuccess).asJava()
+        ): DeezerApiJavaClient = throw NotImplementedError(
+            "Build a HttpClient with DeezerClientPlugin installed and use the constructor instead.",
+        )
 
         @PublishedApi
         @JvmStatic
