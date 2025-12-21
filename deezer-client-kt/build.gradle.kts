@@ -9,9 +9,9 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
 import org.jetbrains.kotlin.gradle.dsl.abi.ExperimentalAbiValidation
 import org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlugin
-import org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootEnvSpec
+import org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootExtension
 import org.jetbrains.kotlin.gradle.targets.wasm.yarn.WasmYarnPlugin
-import org.jetbrains.kotlin.gradle.targets.wasm.yarn.WasmYarnRootEnvSpec
+import org.jetbrains.kotlin.gradle.targets.wasm.yarn.WasmYarnRootExtension
 
 plugins {
     alias(libs.plugins.android.multiplatform.library)
@@ -254,17 +254,17 @@ tasks.named("dokkaGeneratePublicationHtml") {
     dependsOn("compileReleaseJavaWithJavac", "releaseAssetsCopyForAGP", "compileJvmMainJava")
 }
 
-plugins.withType<YarnPlugin> {
-    the<YarnRootEnvSpec>().apply {
-        if (System.getenv("CHROME_BIN") == null) {
+rootProject.plugins.withType<YarnPlugin> {
+    rootProject.the<YarnRootExtension>().apply {
+        if (System.getenv("CHROME_BIN").isNullOrBlank()) {
             ignoreScripts = false
         }
     }
 }
 
-plugins.withType<WasmYarnPlugin> {
-    the<WasmYarnRootEnvSpec>().apply {
-        if (System.getenv("CHROME_BIN") == null) {
+rootProject.plugins.withType<WasmYarnPlugin> {
+    rootProject.the<WasmYarnRootExtension>().apply {
+        if (System.getenv("CHROME_BIN").isNullOrBlank()) {
             ignoreScripts = false
         }
     }
