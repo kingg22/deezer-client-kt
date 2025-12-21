@@ -1,4 +1,6 @@
+import com.android.build.api.dsl.KotlinMultiplatformAndroidLibraryTarget
 import kotlinx.kover.gradle.plugin.dsl.CoverageUnit
+import org.gradle.kotlin.dsl.the
 import org.jetbrains.dokka.gradle.engine.parameters.KotlinPlatform
 import org.jetbrains.dokka.gradle.engine.parameters.VisibilityModifier
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
@@ -6,15 +8,19 @@ import org.jetbrains.kotlin.gradle.dsl.JvmDefaultMode
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
 import org.jetbrains.kotlin.gradle.dsl.abi.ExperimentalAbiValidation
+import org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlugin
+import org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootEnvSpec
+import org.jetbrains.kotlin.gradle.targets.wasm.yarn.WasmYarnPlugin
+import org.jetbrains.kotlin.gradle.targets.wasm.yarn.WasmYarnRootEnvSpec
 
 plugins {
-    alias(libs.plugins.android.library)
+    alias(libs.plugins.android.multiplatform.library)
     alias(libs.plugins.dokka)
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.kotlinx.kover)
     alias(libs.plugins.kotlinx.resources)
-    alias(libs.plugins.ksp) // Incompatible with android multiplatform library
+    alias(libs.plugins.ksp)
     alias(libs.plugins.ktlint)
     alias(libs.plugins.maven.publish)
     alias(libs.plugins.poko)
@@ -22,7 +28,7 @@ plugins {
 
 group = "io.github.kingg22"
 description = "A Kotlin Multiplatform library to use Deezer public API."
-version = "3.0.0"
+version = "3.1.0"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
@@ -38,7 +44,7 @@ kotlin {
             "io.github.kingg22.deezer.client.utils.InternalDeezerClient",
         )
         freeCompilerArgs.addAll("-Xexpect-actual-classes")
-        apiVersion.set(KotlinVersion.KOTLIN_2_0)
+        apiVersion.set(KotlinVersion.KOTLIN_2_1)
         languageVersion.set(apiVersion)
     }
 
@@ -50,11 +56,19 @@ kotlin {
         }
     }
 
-    androidTarget {
-        publishLibraryVariants("release")
+    androidLibrary {
+        namespace = "$group.deezer.client"
+        compileSdk = libs.versions.android.compileSdk.get().toInt()
+        minSdk = libs.versions.android.minSdk.get().toInt()
         compilerOptions {
             jvmTarget.set(JvmTarget.JVM_1_8)
             jvmDefault.set(JvmDefaultMode.NO_COMPATIBILITY)
+        }
+        withHostTest {}
+        @Suppress("UnstableApiUsage")
+        with(optimization.consumerKeepRules) {
+            publish = true
+            files.add(project.file("consumer-rules.pro"))
         }
     }
 
@@ -68,12 +82,46 @@ kotlin {
         }
     }
 
+    js {
+        browser {
+            testTask {
+                useKarma {
+                    useChromeHeadless()
+                    useConfigDirectory(project.file("karma"))
+                }
+            }
+        }
+        nodejs()
+        binaries.library()
+    }
+
+    @OptIn(org.jetbrains.kotlin.gradle.ExperimentalWasmDsl::class)
+    wasmJs {
+        browser {
+            testTask {
+                useKarma {
+                    useChromeHeadless()
+                    useConfigDirectory(project.file("karma"))
+                }
+            }
+        }
+        nodejs()
+        binaries.library()
+    }
+
     @OptIn(ExperimentalKotlinGradlePluginApi::class)
     applyDefaultHierarchyTemplate {
         common {
             group("androidAndJvm") {
                 withAndroidTarget()
+                // The default `withAndroidTarget` doesn't include the target created by the new KMP Android plugin.
+                withCompilations { it.target is KotlinMultiplatformAndroidLibraryTarget }
                 withJvm()
+            }
+            group("nonJvm") {
+                withJs()
+                withWasmJs()
+                // add all nonJvm targets
             }
         }
     }
@@ -85,7 +133,7 @@ kotlin {
             dependencies {
                 api(libs.bundles.ktor.client)
                 api(libs.bundles.kotlinx.ecosystem)
-                compileOnly(libs.ktorgen.annotations)
+                implementation(libs.ktorgen.annotations)
             }
         }
         commonTest.dependencies {
@@ -95,6 +143,10 @@ kotlin {
         }
         jvmTest.dependencies {
             implementation(libs.ktor.client.engine.cio)
+        }
+        webTest.dependencies {
+            // Puppeteer is used to install Chrome for tests
+            implementation(npm("puppeteer", libs.versions.puppeteer.get()))
         }
     }
 }
@@ -168,18 +220,6 @@ dokka {
     }
 }
 
-android {
-    namespace = "$group.deezer.client"
-    compileSdk = libs.versions.android.compileSdk.get().toInt()
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-    defaultConfig {
-        minSdk = libs.versions.android.minSdk.get().toInt()
-    }
-}
-
 ktlint {
     version.set(libs.versions.ktlint.pinterest.get())
 }
@@ -212,6 +252,22 @@ tasks.named("sourcesJar") {
 
 tasks.named("dokkaGeneratePublicationHtml") {
     dependsOn("compileReleaseJavaWithJavac", "releaseAssetsCopyForAGP", "compileJvmMainJava")
+}
+
+plugins.withType<YarnPlugin> {
+    the<YarnRootEnvSpec>().apply {
+        if (System.getenv("CHROME_BIN") == null) {
+            ignoreScripts = false
+        }
+    }
+}
+
+plugins.withType<WasmYarnPlugin> {
+    the<WasmYarnRootEnvSpec>().apply {
+        if (System.getenv("CHROME_BIN") == null) {
+            ignoreScripts = false
+        }
+    }
 }
 
 mavenPublishing {
