@@ -15,6 +15,9 @@ import io.ktor.utils.io.charsets.*
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import org.intellij.lang.annotations.Language
+import kotlin.jvm.JvmField
+import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 import kotlin.time.Duration.Companion.seconds
 import co.touchlab.kermit.Logger as KermitLogger
 import io.ktor.client.plugins.logging.Logger as KtorLogger
@@ -31,7 +34,7 @@ object KtorEngineMocked {
 
     /** Remember to add `/` at start */
     @JvmStatic
-    private fun readResourceFile(path: String) = Resource("src/commonTest/resources$path").readText()
+    private fun readResourceFile(path: String): String = Resource(path.removeRange(0, 1)).readText()
 
     @JvmStatic
     fun createHttpClientMock() = createHttpClient(createMockEngine())
