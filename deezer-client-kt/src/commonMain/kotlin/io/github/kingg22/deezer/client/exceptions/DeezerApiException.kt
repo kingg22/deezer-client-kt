@@ -2,6 +2,8 @@ package io.github.kingg22.deezer.client.exceptions
 
 import io.github.kingg22.deezer.client.utils.DeezerApiPoko
 import io.github.kingg22.deezer.client.utils.InternalDeezerClient
+import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * Represents an exception specific to the [Deezer API](https://developers.deezer.com/api/).

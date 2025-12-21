@@ -2,6 +2,8 @@
 
 package io.github.kingg22.deezer.client.api.objects
 
+import kotlin.jvm.JvmName
+
 private const val CDN_IMAGES_DEEZER = "https://cdn-images.dzcdn.net/images/cover/"
 private val MD5_NOT_FOUND_MSG = { "MD5 image not found" }
 

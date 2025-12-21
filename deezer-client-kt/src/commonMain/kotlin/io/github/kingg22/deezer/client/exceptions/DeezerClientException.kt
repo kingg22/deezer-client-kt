@@ -1,5 +1,8 @@
 package io.github.kingg22.deezer.client.exceptions
 
+import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
+
 /**
  * General exception of the _Deezer Client_
  *

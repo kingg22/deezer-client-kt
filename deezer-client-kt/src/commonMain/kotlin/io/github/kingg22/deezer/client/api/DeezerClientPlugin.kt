@@ -10,6 +10,7 @@ import io.ktor.client.plugins.api.*
 import io.ktor.client.statement.*
 import kotlinx.coroutines.currentCoroutineContext
 import kotlinx.coroutines.ensureActive
+import kotlin.jvm.JvmName
 
 @Suppress("kotlin:S6312")
 private suspend inline fun <reified T : Any> HttpResponse.bodyOrNull(): T? = try {

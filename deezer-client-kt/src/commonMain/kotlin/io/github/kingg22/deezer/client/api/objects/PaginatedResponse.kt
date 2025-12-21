@@ -1,6 +1,7 @@
 package io.github.kingg22.deezer.client.api.objects
 
 import kotlinx.serialization.Serializable
+import kotlin.jvm.JvmOverloads
 
 /**
  * **Unofficial** Represent a response of [Deezer API](https://developers.deezer.com/api/).
@@ -17,7 +18,8 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 expect class PaginatedResponse<out T : @Serializable Any> { // actual classes need to have Poko!!
-    @JvmOverloads constructor(
+    @JvmOverloads
+    constructor(
         data: List<T> = emptyList(),
         checksum: String? = null,
         total: Int? = null,
