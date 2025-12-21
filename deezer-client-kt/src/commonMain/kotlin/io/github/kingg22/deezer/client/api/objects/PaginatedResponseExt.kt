@@ -12,6 +12,8 @@ import io.ktor.client.request.*
 import io.ktor.http.*
 import kotlinx.serialization.Serializable
 import kotlin.coroutines.cancellation.CancellationException
+import kotlin.jvm.JvmName
+import kotlin.jvm.JvmSynthetic
 
 /**
  * _Experimental_ Fetch the next page of the search
@@ -32,7 +34,7 @@ suspend inline fun <reified N : @Serializable Any> PaginatedResponse<N>.fetchNex
     if (next.isNullOrBlank()) return null
     val result = httpClient.get(Url(next!!)).body<PaginatedResponse<N>>()
     return if (expand && data.isNotEmpty()) {
-        return result.copy(data = data + result.data)
+        result.copy(data = data + result.data)
     } else {
         result
     }
@@ -104,7 +106,7 @@ suspend inline fun <reified P : @Serializable Any> PaginatedResponse<P>.fetchPre
 @Deprecated(
     "Use fetchNext(client: DeezerApiClient, expand: Boolean) instead, pass a client explicitly",
     ReplaceWith("fetchNext(client, expand)", "io.github.kingg22.deezer.client.api.objects.fetchNext"),
-    level = DeprecationLevel.ERROR,
+    level = DeprecationLevel.HIDDEN,
 )
 @AfterInitialize
 @JvmSynthetic
@@ -125,7 +127,7 @@ suspend inline fun <reified N : @Serializable Any> PaginatedResponse<N>.fetchNex
 @Deprecated(
     "Use fetchPrevious(client: DeezerApiClient, expand: Boolean) instead, pass a client explicitly",
     ReplaceWith("fetchPrevious(client, expand)", "io.github.kingg22.deezer.client.api.objects.fetchPrevious"),
-    level = DeprecationLevel.ERROR,
+    level = DeprecationLevel.HIDDEN,
 )
 @AfterInitialize
 @JvmSynthetic
