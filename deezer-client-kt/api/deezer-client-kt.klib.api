@@ -1,5 +1,5 @@
 // Klib ABI Dump
-// Targets: [linuxArm64, linuxX64, mingwX64]
+// Targets: [js, wasmJs]
 // Rendering settings:
 // - Signature version: 2
 // - Show manifest properties: true
@@ -81,15 +81,6 @@ final enum class io.github.kingg22.deezer.client.api.objects/SearchOrder : kotli
         final fun serializer(): kotlinx.serialization/KSerializer<io.github.kingg22.deezer.client.api.objects/SearchOrder> // io.github.kingg22.deezer.client.api.objects/SearchOrder.Companion.serializer|serializer(){}[0]
         final fun serializer(kotlin/Array<out kotlinx.serialization/KSerializer<*>>...): kotlinx.serialization/KSerializer<*> // io.github.kingg22.deezer.client.api.objects/SearchOrder.Companion.serializer|serializer(kotlin.Array<out|kotlinx.serialization.KSerializer<*>>...){}[0]
     }
-}
-
-abstract interface io.github.kingg22.deezer.client.api.objects/Resource { // io.github.kingg22.deezer.client.api.objects/Resource|null[0]
-    abstract val id // io.github.kingg22.deezer.client.api.objects/Resource.id|{}id[0]
-        abstract fun <get-id>(): kotlin/Long // io.github.kingg22.deezer.client.api.objects/Resource.id.<get-id>|<get-id>(){}[0]
-    abstract val type // io.github.kingg22.deezer.client.api.objects/Resource.type|{}type[0]
-        abstract fun <get-type>(): kotlin/String // io.github.kingg22.deezer.client.api.objects/Resource.type.<get-type>|<get-type>(){}[0]
-
-    abstract suspend fun reload(): io.github.kingg22.deezer.client.api.objects/Resource // io.github.kingg22.deezer.client.api.objects/Resource.reload|reload(){}[0]
 }
 
 abstract interface io.github.kingg22.deezer.client.api.routes/AlbumRoutes { // io.github.kingg22.deezer.client.api.routes/AlbumRoutes|null[0]
@@ -189,6 +180,15 @@ abstract interface io.github.kingg22.deezer.client.api.routes/SearchRoutes { // 
         final var artist // io.github.kingg22.deezer.client.api.routes/SearchRoutes.AdvancedQueryBuilder.artist|{}artist[0]
             final fun <get-artist>(): kotlin/String? // io.github.kingg22.deezer.client.api.routes/SearchRoutes.AdvancedQueryBuilder.artist.<get-artist>|<get-artist>(){}[0]
             final fun <set-artist>(kotlin/String?) // io.github.kingg22.deezer.client.api.routes/SearchRoutes.AdvancedQueryBuilder.artist.<set-artist>|<set-artist>(kotlin.String?){}[0]
+        final var bpmMax // io.github.kingg22.deezer.client.api.routes/SearchRoutes.AdvancedQueryBuilder.bpmMax|{}bpmMax[0]
+            final fun <get-bpmMax>(): kotlin/Int? // io.github.kingg22.deezer.client.api.routes/SearchRoutes.AdvancedQueryBuilder.bpmMax.<get-bpmMax>|<get-bpmMax>(){}[0]
+            final fun <set-bpmMax>(kotlin/Int?) // io.github.kingg22.deezer.client.api.routes/SearchRoutes.AdvancedQueryBuilder.bpmMax.<set-bpmMax>|<set-bpmMax>(kotlin.Int?){}[0]
+        final var bpmMin // io.github.kingg22.deezer.client.api.routes/SearchRoutes.AdvancedQueryBuilder.bpmMin|{}bpmMin[0]
+            final fun <get-bpmMin>(): kotlin/Int? // io.github.kingg22.deezer.client.api.routes/SearchRoutes.AdvancedQueryBuilder.bpmMin.<get-bpmMin>|<get-bpmMin>(){}[0]
+            final fun <set-bpmMin>(kotlin/Int?) // io.github.kingg22.deezer.client.api.routes/SearchRoutes.AdvancedQueryBuilder.bpmMin.<set-bpmMin>|<set-bpmMin>(kotlin.Int?){}[0]
+        final var durationMax // io.github.kingg22.deezer.client.api.routes/SearchRoutes.AdvancedQueryBuilder.durationMax|{}durationMax[0]
+            final fun <get-durationMax>(): kotlin.time/Duration? // io.github.kingg22.deezer.client.api.routes/SearchRoutes.AdvancedQueryBuilder.durationMax.<get-durationMax>|<get-durationMax>(){}[0]
+            final fun <set-durationMax>(kotlin.time/Duration?) // io.github.kingg22.deezer.client.api.routes/SearchRoutes.AdvancedQueryBuilder.durationMax.<set-durationMax>|<set-durationMax>(kotlin.time.Duration?){}[0]
         final var durationMin // io.github.kingg22.deezer.client.api.routes/SearchRoutes.AdvancedQueryBuilder.durationMin|{}durationMin[0]
             final fun <get-durationMin>(): kotlin.time/Duration? // io.github.kingg22.deezer.client.api.routes/SearchRoutes.AdvancedQueryBuilder.durationMin.<get-durationMin>|<get-durationMin>(){}[0]
             final fun <set-durationMin>(kotlin.time/Duration?) // io.github.kingg22.deezer.client.api.routes/SearchRoutes.AdvancedQueryBuilder.durationMin.<set-durationMin>|<set-durationMin>(kotlin.time.Duration?){}[0]
@@ -237,7 +237,19 @@ abstract interface io.github.kingg22.deezer.client.utils/LateInitClient { // io.
     abstract fun isInitialized(): kotlin/Boolean // io.github.kingg22.deezer.client.utils/LateInitClient.isInitialized|isInitialized(){}[0]
 }
 
-final class <#A: kotlin/Any> io.github.kingg22.deezer.client.api.objects/PaginatedResponse { // io.github.kingg22.deezer.client.api.objects/PaginatedResponse|null[0]
+abstract class io.github.kingg22.deezer.client.api.objects/Resource { // io.github.kingg22.deezer.client.api.objects/Resource|null[0]
+    constructor <init>() // io.github.kingg22.deezer.client.api.objects/Resource.<init>|<init>(){}[0]
+
+    abstract val id // io.github.kingg22.deezer.client.api.objects/Resource.id|{}id[0]
+        abstract fun <get-id>(): kotlin/Long // io.github.kingg22.deezer.client.api.objects/Resource.id.<get-id>|<get-id>(){}[0]
+    abstract val type // io.github.kingg22.deezer.client.api.objects/Resource.type|{}type[0]
+        abstract fun <get-type>(): kotlin/String // io.github.kingg22.deezer.client.api.objects/Resource.type.<get-type>|<get-type>(){}[0]
+
+    abstract suspend fun reload(io.github.kingg22.deezer.client.api/DeezerApiClient): io.github.kingg22.deezer.client.api.objects/Resource // io.github.kingg22.deezer.client.api.objects/Resource.reload|reload(io.github.kingg22.deezer.client.api.DeezerApiClient){}[0]
+    open suspend fun reload(): io.github.kingg22.deezer.client.api.objects/Resource // io.github.kingg22.deezer.client.api.objects/Resource.reload|reload(){}[0]
+}
+
+final class <#A: out kotlin/Any> io.github.kingg22.deezer.client.api.objects/PaginatedResponse { // io.github.kingg22.deezer.client.api.objects/PaginatedResponse|null[0]
     constructor <init>(kotlin.collections/List<#A> = ..., kotlin/String? = ..., kotlin/Int? = ..., kotlin/String? = ..., kotlin/String? = ...) // io.github.kingg22.deezer.client.api.objects/PaginatedResponse.<init>|<init>(kotlin.collections.List<1:0>;kotlin.String?;kotlin.Int?;kotlin.String?;kotlin.String?){}[0]
 
     final val checksum // io.github.kingg22.deezer.client.api.objects/PaginatedResponse.checksum|{}checksum[0]
@@ -251,12 +263,6 @@ final class <#A: kotlin/Any> io.github.kingg22.deezer.client.api.objects/Paginat
     final val total // io.github.kingg22.deezer.client.api.objects/PaginatedResponse.total|{}total[0]
         final fun <get-total>(): kotlin/Int? // io.github.kingg22.deezer.client.api.objects/PaginatedResponse.total.<get-total>|<get-total>(){}[0]
 
-    final fun client(): io.github.kingg22.deezer.client.api/DeezerApiClient // io.github.kingg22.deezer.client.api.objects/PaginatedResponse.client|client(){}[0]
-    final fun component1(): kotlin.collections/List<#A> // io.github.kingg22.deezer.client.api.objects/PaginatedResponse.component1|component1(){}[0]
-    final fun component2(): kotlin/String? // io.github.kingg22.deezer.client.api.objects/PaginatedResponse.component2|component2(){}[0]
-    final fun component3(): kotlin/Int? // io.github.kingg22.deezer.client.api.objects/PaginatedResponse.component3|component3(){}[0]
-    final fun component4(): kotlin/String? // io.github.kingg22.deezer.client.api.objects/PaginatedResponse.component4|component4(){}[0]
-    final fun component5(): kotlin/String? // io.github.kingg22.deezer.client.api.objects/PaginatedResponse.component5|component5(){}[0]
     final fun copy(kotlin.collections/List<#A> = ..., kotlin/String? = ..., kotlin/Int? = ..., kotlin/String? = ..., kotlin/String? = ...): io.github.kingg22.deezer.client.api.objects/PaginatedResponse<#A> // io.github.kingg22.deezer.client.api.objects/PaginatedResponse.copy|copy(kotlin.collections.List<1:0>;kotlin.String?;kotlin.Int?;kotlin.String?;kotlin.String?){}[0]
     final fun equals(kotlin/Any?): kotlin/Boolean // io.github.kingg22.deezer.client.api.objects/PaginatedResponse.equals|equals(kotlin.Any?){}[0]
     final fun hashCode(): kotlin/Int // io.github.kingg22.deezer.client.api.objects/PaginatedResponse.hashCode|hashCode(){}[0]
@@ -353,7 +359,7 @@ final class io.github.kingg22.deezer.client.api.objects/Album : io.github.kingg2
     final fun equals(kotlin/Any?): kotlin/Boolean // io.github.kingg22.deezer.client.api.objects/Album.equals|equals(kotlin.Any?){}[0]
     final fun hashCode(): kotlin/Int // io.github.kingg22.deezer.client.api.objects/Album.hashCode|hashCode(){}[0]
     final fun toString(): kotlin/String // io.github.kingg22.deezer.client.api.objects/Album.toString|toString(){}[0]
-    final suspend fun reload(): io.github.kingg22.deezer.client.api.objects/Album // io.github.kingg22.deezer.client.api.objects/Album.reload|reload(){}[0]
+    final suspend fun reload(io.github.kingg22.deezer.client.api/DeezerApiClient): io.github.kingg22.deezer.client.api.objects/Album // io.github.kingg22.deezer.client.api.objects/Album.reload|reload(io.github.kingg22.deezer.client.api.DeezerApiClient){}[0]
 
     final object $serializer : kotlinx.serialization.internal/GeneratedSerializer<io.github.kingg22.deezer.client.api.objects/Album> { // io.github.kingg22.deezer.client.api.objects/Album.$serializer|null[0]
         final val descriptor // io.github.kingg22.deezer.client.api.objects/Album.$serializer.descriptor|{}descriptor[0]
@@ -410,7 +416,7 @@ final class io.github.kingg22.deezer.client.api.objects/Artist : io.github.kingg
     final fun equals(kotlin/Any?): kotlin/Boolean // io.github.kingg22.deezer.client.api.objects/Artist.equals|equals(kotlin.Any?){}[0]
     final fun hashCode(): kotlin/Int // io.github.kingg22.deezer.client.api.objects/Artist.hashCode|hashCode(){}[0]
     final fun toString(): kotlin/String // io.github.kingg22.deezer.client.api.objects/Artist.toString|toString(){}[0]
-    final suspend fun reload(): io.github.kingg22.deezer.client.api.objects/Artist // io.github.kingg22.deezer.client.api.objects/Artist.reload|reload(){}[0]
+    final suspend fun reload(io.github.kingg22.deezer.client.api/DeezerApiClient): io.github.kingg22.deezer.client.api.objects/Artist // io.github.kingg22.deezer.client.api.objects/Artist.reload|reload(io.github.kingg22.deezer.client.api.DeezerApiClient){}[0]
 
     final object $serializer : kotlinx.serialization.internal/GeneratedSerializer<io.github.kingg22.deezer.client.api.objects/Artist> { // io.github.kingg22.deezer.client.api.objects/Artist.$serializer|null[0]
         final val descriptor // io.github.kingg22.deezer.client.api.objects/Artist.$serializer.descriptor|{}descriptor[0]
@@ -483,7 +489,7 @@ final class io.github.kingg22.deezer.client.api.objects/Editorial : io.github.ki
     final fun equals(kotlin/Any?): kotlin/Boolean // io.github.kingg22.deezer.client.api.objects/Editorial.equals|equals(kotlin.Any?){}[0]
     final fun hashCode(): kotlin/Int // io.github.kingg22.deezer.client.api.objects/Editorial.hashCode|hashCode(){}[0]
     final fun toString(): kotlin/String // io.github.kingg22.deezer.client.api.objects/Editorial.toString|toString(){}[0]
-    final suspend fun reload(): io.github.kingg22.deezer.client.api.objects/Editorial // io.github.kingg22.deezer.client.api.objects/Editorial.reload|reload(){}[0]
+    final suspend fun reload(io.github.kingg22.deezer.client.api/DeezerApiClient): io.github.kingg22.deezer.client.api.objects/Editorial // io.github.kingg22.deezer.client.api.objects/Editorial.reload|reload(io.github.kingg22.deezer.client.api.DeezerApiClient){}[0]
 
     final object $serializer : kotlinx.serialization.internal/GeneratedSerializer<io.github.kingg22.deezer.client.api.objects/Editorial> { // io.github.kingg22.deezer.client.api.objects/Editorial.$serializer|null[0]
         final val descriptor // io.github.kingg22.deezer.client.api.objects/Editorial.$serializer.descriptor|{}descriptor[0]
@@ -538,7 +544,7 @@ final class io.github.kingg22.deezer.client.api.objects/Episode : io.github.king
     final fun equals(kotlin/Any?): kotlin/Boolean // io.github.kingg22.deezer.client.api.objects/Episode.equals|equals(kotlin.Any?){}[0]
     final fun hashCode(): kotlin/Int // io.github.kingg22.deezer.client.api.objects/Episode.hashCode|hashCode(){}[0]
     final fun toString(): kotlin/String // io.github.kingg22.deezer.client.api.objects/Episode.toString|toString(){}[0]
-    final suspend fun reload(): io.github.kingg22.deezer.client.api.objects/Episode // io.github.kingg22.deezer.client.api.objects/Episode.reload|reload(){}[0]
+    final suspend fun reload(io.github.kingg22.deezer.client.api/DeezerApiClient): io.github.kingg22.deezer.client.api.objects/Episode // io.github.kingg22.deezer.client.api.objects/Episode.reload|reload(io.github.kingg22.deezer.client.api.DeezerApiClient){}[0]
 
     final object $serializer : kotlinx.serialization.internal/GeneratedSerializer<io.github.kingg22.deezer.client.api.objects/Episode> { // io.github.kingg22.deezer.client.api.objects/Episode.$serializer|null[0]
         final val descriptor // io.github.kingg22.deezer.client.api.objects/Episode.$serializer.descriptor|{}descriptor[0]
@@ -579,7 +585,7 @@ final class io.github.kingg22.deezer.client.api.objects/Genre : io.github.kingg2
     final fun equals(kotlin/Any?): kotlin/Boolean // io.github.kingg22.deezer.client.api.objects/Genre.equals|equals(kotlin.Any?){}[0]
     final fun hashCode(): kotlin/Int // io.github.kingg22.deezer.client.api.objects/Genre.hashCode|hashCode(){}[0]
     final fun toString(): kotlin/String // io.github.kingg22.deezer.client.api.objects/Genre.toString|toString(){}[0]
-    final suspend fun reload(): io.github.kingg22.deezer.client.api.objects/Genre // io.github.kingg22.deezer.client.api.objects/Genre.reload|reload(){}[0]
+    final suspend fun reload(io.github.kingg22.deezer.client.api/DeezerApiClient): io.github.kingg22.deezer.client.api.objects/Genre // io.github.kingg22.deezer.client.api.objects/Genre.reload|reload(io.github.kingg22.deezer.client.api.DeezerApiClient){}[0]
 
     final object $serializer : kotlinx.serialization.internal/GeneratedSerializer<io.github.kingg22.deezer.client.api.objects/Genre> { // io.github.kingg22.deezer.client.api.objects/Genre.$serializer|null[0]
         final val descriptor // io.github.kingg22.deezer.client.api.objects/Genre.$serializer.descriptor|{}descriptor[0]
@@ -778,7 +784,7 @@ final class io.github.kingg22.deezer.client.api.objects/Playlist : io.github.kin
     final fun equals(kotlin/Any?): kotlin/Boolean // io.github.kingg22.deezer.client.api.objects/Playlist.equals|equals(kotlin.Any?){}[0]
     final fun hashCode(): kotlin/Int // io.github.kingg22.deezer.client.api.objects/Playlist.hashCode|hashCode(){}[0]
     final fun toString(): kotlin/String // io.github.kingg22.deezer.client.api.objects/Playlist.toString|toString(){}[0]
-    final suspend fun reload(): io.github.kingg22.deezer.client.api.objects/Playlist // io.github.kingg22.deezer.client.api.objects/Playlist.reload|reload(){}[0]
+    final suspend fun reload(io.github.kingg22.deezer.client.api/DeezerApiClient): io.github.kingg22.deezer.client.api.objects/Playlist // io.github.kingg22.deezer.client.api.objects/Playlist.reload|reload(io.github.kingg22.deezer.client.api.DeezerApiClient){}[0]
 
     final object $serializer : kotlinx.serialization.internal/GeneratedSerializer<io.github.kingg22.deezer.client.api.objects/Playlist> { // io.github.kingg22.deezer.client.api.objects/Playlist.$serializer|null[0]
         final val descriptor // io.github.kingg22.deezer.client.api.objects/Playlist.$serializer.descriptor|{}descriptor[0]
@@ -829,7 +835,7 @@ final class io.github.kingg22.deezer.client.api.objects/Podcast : io.github.king
     final fun equals(kotlin/Any?): kotlin/Boolean // io.github.kingg22.deezer.client.api.objects/Podcast.equals|equals(kotlin.Any?){}[0]
     final fun hashCode(): kotlin/Int // io.github.kingg22.deezer.client.api.objects/Podcast.hashCode|hashCode(){}[0]
     final fun toString(): kotlin/String // io.github.kingg22.deezer.client.api.objects/Podcast.toString|toString(){}[0]
-    final suspend fun reload(): io.github.kingg22.deezer.client.api.objects/Podcast // io.github.kingg22.deezer.client.api.objects/Podcast.reload|reload(){}[0]
+    final suspend fun reload(io.github.kingg22.deezer.client.api/DeezerApiClient): io.github.kingg22.deezer.client.api.objects/Podcast // io.github.kingg22.deezer.client.api.objects/Podcast.reload|reload(io.github.kingg22.deezer.client.api.DeezerApiClient){}[0]
 
     final object $serializer : kotlinx.serialization.internal/GeneratedSerializer<io.github.kingg22.deezer.client.api.objects/Podcast> { // io.github.kingg22.deezer.client.api.objects/Podcast.$serializer|null[0]
         final val descriptor // io.github.kingg22.deezer.client.api.objects/Podcast.$serializer.descriptor|{}descriptor[0]
@@ -876,7 +882,7 @@ final class io.github.kingg22.deezer.client.api.objects/Radio : io.github.kingg2
     final fun equals(kotlin/Any?): kotlin/Boolean // io.github.kingg22.deezer.client.api.objects/Radio.equals|equals(kotlin.Any?){}[0]
     final fun hashCode(): kotlin/Int // io.github.kingg22.deezer.client.api.objects/Radio.hashCode|hashCode(){}[0]
     final fun toString(): kotlin/String // io.github.kingg22.deezer.client.api.objects/Radio.toString|toString(){}[0]
-    final suspend fun reload(): io.github.kingg22.deezer.client.api.objects/Radio // io.github.kingg22.deezer.client.api.objects/Radio.reload|reload(){}[0]
+    final suspend fun reload(io.github.kingg22.deezer.client.api/DeezerApiClient): io.github.kingg22.deezer.client.api.objects/Radio // io.github.kingg22.deezer.client.api.objects/Radio.reload|reload(io.github.kingg22.deezer.client.api.DeezerApiClient){}[0]
 
     final object $serializer : kotlinx.serialization.internal/GeneratedSerializer<io.github.kingg22.deezer.client.api.objects/Radio> { // io.github.kingg22.deezer.client.api.objects/Radio.$serializer|null[0]
         final val descriptor // io.github.kingg22.deezer.client.api.objects/Radio.$serializer.descriptor|{}descriptor[0]
@@ -995,7 +1001,7 @@ final class io.github.kingg22.deezer.client.api.objects/Track : io.github.kingg2
     final fun equals(kotlin/Any?): kotlin/Boolean // io.github.kingg22.deezer.client.api.objects/Track.equals|equals(kotlin.Any?){}[0]
     final fun hashCode(): kotlin/Int // io.github.kingg22.deezer.client.api.objects/Track.hashCode|hashCode(){}[0]
     final fun toString(): kotlin/String // io.github.kingg22.deezer.client.api.objects/Track.toString|toString(){}[0]
-    final suspend fun reload(): io.github.kingg22.deezer.client.api.objects/Track // io.github.kingg22.deezer.client.api.objects/Track.reload|reload(){}[0]
+    final suspend fun reload(io.github.kingg22.deezer.client.api/DeezerApiClient): io.github.kingg22.deezer.client.api.objects/Track // io.github.kingg22.deezer.client.api.objects/Track.reload|reload(io.github.kingg22.deezer.client.api.DeezerApiClient){}[0]
 
     final object $serializer : kotlinx.serialization.internal/GeneratedSerializer<io.github.kingg22.deezer.client.api.objects/Track> { // io.github.kingg22.deezer.client.api.objects/Track.$serializer|null[0]
         final val descriptor // io.github.kingg22.deezer.client.api.objects/Track.$serializer.descriptor|{}descriptor[0]
@@ -1064,7 +1070,7 @@ final class io.github.kingg22.deezer.client.api.objects/User : io.github.kingg22
     final fun equals(kotlin/Any?): kotlin/Boolean // io.github.kingg22.deezer.client.api.objects/User.equals|equals(kotlin.Any?){}[0]
     final fun hashCode(): kotlin/Int // io.github.kingg22.deezer.client.api.objects/User.hashCode|hashCode(){}[0]
     final fun toString(): kotlin/String // io.github.kingg22.deezer.client.api.objects/User.toString|toString(){}[0]
-    final suspend fun reload(): io.github.kingg22.deezer.client.api.objects/User // io.github.kingg22.deezer.client.api.objects/User.reload|reload(){}[0]
+    final suspend fun reload(io.github.kingg22.deezer.client.api/DeezerApiClient): io.github.kingg22.deezer.client.api.objects/User // io.github.kingg22.deezer.client.api.objects/User.reload|reload(io.github.kingg22.deezer.client.api.DeezerApiClient){}[0]
 
     final enum class ExplicitContentLevels : kotlin/Enum<io.github.kingg22.deezer.client.api.objects/User.ExplicitContentLevels> { // io.github.kingg22.deezer.client.api.objects/User.ExplicitContentLevels|null[0]
         enum entry EXPLICIT_DISPLAY // io.github.kingg22.deezer.client.api.objects/User.ExplicitContentLevels.EXPLICIT_DISPLAY|null[0]
@@ -1117,6 +1123,7 @@ final class io.github.kingg22.deezer.client.api.objects/User : io.github.kingg22
 
 final class io.github.kingg22.deezer.client.api/DeezerApiClient { // io.github.kingg22.deezer.client.api/DeezerApiClient|null[0]
     constructor <init>(io.github.kingg22.deezer.client.utils/HttpClientBuilder = ...) // io.github.kingg22.deezer.client.api/DeezerApiClient.<init>|<init>(io.github.kingg22.deezer.client.utils.HttpClientBuilder){}[0]
+    constructor <init>(io.ktor.client/HttpClient) // io.github.kingg22.deezer.client.api/DeezerApiClient.<init>|<init>(io.ktor.client.HttpClient){}[0]
 
     final val albums // io.github.kingg22.deezer.client.api/DeezerApiClient.albums|{}albums[0]
         final fun <get-albums>(): io.github.kingg22.deezer.client.api.routes/AlbumRoutes // io.github.kingg22.deezer.client.api/DeezerApiClient.albums.<get-albums>|<get-albums>(){}[0]
@@ -1150,8 +1157,26 @@ final class io.github.kingg22.deezer.client.api/DeezerApiClient { // io.github.k
         final fun <get-users>(): io.github.kingg22.deezer.client.api.routes/UserRoutes // io.github.kingg22.deezer.client.api/DeezerApiClient.users.<get-users>|<get-users>(){}[0]
 
     final object Companion { // io.github.kingg22.deezer.client.api/DeezerApiClient.Companion|null[0]
+        final const val API_DEEZER_URL // io.github.kingg22.deezer.client.api/DeezerApiClient.Companion.API_DEEZER_URL|{}API_DEEZER_URL[0]
+            final fun <get-API_DEEZER_URL>(): kotlin/String // io.github.kingg22.deezer.client.api/DeezerApiClient.Companion.API_DEEZER_URL.<get-API_DEEZER_URL>|<get-API_DEEZER_URL>(){}[0]
+
         final fun initialize(io.github.kingg22.deezer.client.utils/HttpClientBuilder = ..., kotlin/Boolean = ..., kotlin/Boolean = ...): io.github.kingg22.deezer.client.api/DeezerApiClient // io.github.kingg22.deezer.client.api/DeezerApiClient.Companion.initialize|initialize(io.github.kingg22.deezer.client.utils.HttpClientBuilder;kotlin.Boolean;kotlin.Boolean){}[0]
     }
+}
+
+final class io.github.kingg22.deezer.client.api/DeezerPluginConfig { // io.github.kingg22.deezer.client.api/DeezerPluginConfig|null[0]
+    constructor <init>(kotlin.collections/MutableSet<kotlin/String> = ..., kotlin/Boolean = ...) // io.github.kingg22.deezer.client.api/DeezerPluginConfig.<init>|<init>(kotlin.collections.MutableSet<kotlin.String>;kotlin.Boolean){}[0]
+
+    final val allowedHosts // io.github.kingg22.deezer.client.api/DeezerPluginConfig.allowedHosts|{}allowedHosts[0]
+        final fun <get-allowedHosts>(): kotlin.collections/MutableSet<kotlin/String> // io.github.kingg22.deezer.client.api/DeezerPluginConfig.allowedHosts.<get-allowedHosts>|<get-allowedHosts>(){}[0]
+
+    final var includeDefaultHeaders // io.github.kingg22.deezer.client.api/DeezerPluginConfig.includeDefaultHeaders|{}includeDefaultHeaders[0]
+        final fun <get-includeDefaultHeaders>(): kotlin/Boolean // io.github.kingg22.deezer.client.api/DeezerPluginConfig.includeDefaultHeaders.<get-includeDefaultHeaders>|<get-includeDefaultHeaders>(){}[0]
+        final fun <set-includeDefaultHeaders>(kotlin/Boolean) // io.github.kingg22.deezer.client.api/DeezerPluginConfig.includeDefaultHeaders.<set-includeDefaultHeaders>|<set-includeDefaultHeaders>(kotlin.Boolean){}[0]
+
+    final fun equals(kotlin/Any?): kotlin/Boolean // io.github.kingg22.deezer.client.api/DeezerPluginConfig.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // io.github.kingg22.deezer.client.api/DeezerPluginConfig.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // io.github.kingg22.deezer.client.api/DeezerPluginConfig.toString|toString(){}[0]
 }
 
 final class io.github.kingg22.deezer.client.exceptions/DeezerApiException : io.github.kingg22.deezer.client.exceptions/DeezerClientException { // io.github.kingg22.deezer.client.exceptions/DeezerApiException|null[0]
@@ -1192,10 +1217,8 @@ final class io.github.kingg22.deezer.client.exceptions/DeezerApiException : io.g
         final fun valueOf(kotlin/String): io.github.kingg22.deezer.client.exceptions/DeezerApiException.DeezerErrorCode // io.github.kingg22.deezer.client.exceptions/DeezerApiException.DeezerErrorCode.valueOf|valueOf#static(kotlin.String){}[0]
         final fun values(): kotlin/Array<io.github.kingg22.deezer.client.exceptions/DeezerApiException.DeezerErrorCode> // io.github.kingg22.deezer.client.exceptions/DeezerApiException.DeezerErrorCode.values|values#static(){}[0]
 
-        final object Companion : kotlinx.serialization.internal/SerializerFactory { // io.github.kingg22.deezer.client.exceptions/DeezerApiException.DeezerErrorCode.Companion|null[0]
+        final object Companion { // io.github.kingg22.deezer.client.exceptions/DeezerApiException.DeezerErrorCode.Companion|null[0]
             final fun fromCode(kotlin/Int): io.github.kingg22.deezer.client.exceptions/DeezerApiException.DeezerErrorCode? // io.github.kingg22.deezer.client.exceptions/DeezerApiException.DeezerErrorCode.Companion.fromCode|fromCode(kotlin.Int){}[0]
-            final fun serializer(): kotlinx.serialization/KSerializer<io.github.kingg22.deezer.client.exceptions/DeezerApiException.DeezerErrorCode> // io.github.kingg22.deezer.client.exceptions/DeezerApiException.DeezerErrorCode.Companion.serializer|serializer(){}[0]
-            final fun serializer(kotlin/Array<out kotlinx.serialization/KSerializer<*>>...): kotlinx.serialization/KSerializer<*> // io.github.kingg22.deezer.client.exceptions/DeezerApiException.DeezerErrorCode.Companion.serializer|serializer(kotlin.Array<out|kotlinx.serialization.KSerializer<*>>...){}[0]
         }
     }
 }
@@ -1256,12 +1279,18 @@ final class io.github.kingg22.deezer.client.utils/HttpClientBuilder { // io.gith
 open class io.github.kingg22.deezer.client.exceptions/DeezerClientException : kotlin/RuntimeException { // io.github.kingg22.deezer.client.exceptions/DeezerClientException|null[0]
     constructor <init>(kotlin/String? = ..., kotlin/Throwable? = ...) // io.github.kingg22.deezer.client.exceptions/DeezerClientException.<init>|<init>(kotlin.String?;kotlin.Throwable?){}[0]
 
-    final val messageString // io.github.kingg22.deezer.client.exceptions/DeezerClientException.messageString|{}messageString[0]
-        final fun <get-messageString>(): kotlin/String // io.github.kingg22.deezer.client.exceptions/DeezerClientException.messageString.<get-messageString>|<get-messageString>(){}[0]
-    open val message // io.github.kingg22.deezer.client.exceptions/DeezerClientException.message|{}message[0]
-        open fun <get-message>(): kotlin/String // io.github.kingg22.deezer.client.exceptions/DeezerClientException.message.<get-message>|<get-message>(){}[0]
-
     final object Companion // io.github.kingg22.deezer.client.exceptions/DeezerClientException.Companion|null[0]
+}
+
+final object io.github.kingg22.deezer.client.api/DeezerClientPlugin : io.ktor.client.plugins.api/ClientPlugin<io.github.kingg22.deezer.client.api/DeezerPluginConfig> { // io.github.kingg22.deezer.client.api/DeezerClientPlugin|null[0]
+    final val key // io.github.kingg22.deezer.client.api/DeezerClientPlugin.key|{}key[0]
+        final fun <get-key>(): io.ktor.util/AttributeKey<io.ktor.client.plugins.api/ClientPluginInstance<io.github.kingg22.deezer.client.api/DeezerPluginConfig>> // io.github.kingg22.deezer.client.api/DeezerClientPlugin.key.<get-key>|<get-key>(){}[0]
+
+    final fun equals(kotlin/Any?): kotlin/Boolean // io.github.kingg22.deezer.client.api/DeezerClientPlugin.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // io.github.kingg22.deezer.client.api/DeezerClientPlugin.hashCode|hashCode(){}[0]
+    final fun install(io.ktor.client.plugins.api/ClientPluginInstance<io.github.kingg22.deezer.client.api/DeezerPluginConfig>, io.ktor.client/HttpClient) // io.github.kingg22.deezer.client.api/DeezerClientPlugin.install|install(io.ktor.client.plugins.api.ClientPluginInstance<io.github.kingg22.deezer.client.api.DeezerPluginConfig>;io.ktor.client.HttpClient){}[0]
+    final fun prepare(kotlin/Function1<io.github.kingg22.deezer.client.api/DeezerPluginConfig, kotlin/Unit>): io.ktor.client.plugins.api/ClientPluginInstance<io.github.kingg22.deezer.client.api/DeezerPluginConfig> // io.github.kingg22.deezer.client.api/DeezerClientPlugin.prepare|prepare(kotlin.Function1<io.github.kingg22.deezer.client.api.DeezerPluginConfig,kotlin.Unit>){}[0]
+    final fun toString(): kotlin/String // io.github.kingg22.deezer.client.api/DeezerClientPlugin.toString|toString(){}[0]
 }
 
 final object io.github.kingg22.deezer.client.api/GlobalDeezerApiClient : io.github.kingg22.deezer.client.utils/LateInitClient { // io.github.kingg22.deezer.client.api/GlobalDeezerApiClient|null[0]
@@ -1289,5 +1318,9 @@ final fun (kotlin/String).io.github.kingg22.deezer.client.api.objects/withImageS
 final fun (kotlin/String).io.github.kingg22.deezer.client.api.objects/withImageSize(kotlin/Int): kotlin/String // io.github.kingg22.deezer.client.api.objects/withImageSize|withImageSize@kotlin.String(kotlin.Int){}[0]
 final fun io.github.kingg22.deezer.client.utils/getDefaultDeezerHeaders(): io.ktor.http/Headers // io.github.kingg22.deezer.client.utils/getDefaultDeezerHeaders|getDefaultDeezerHeaders(){}[0]
 final fun io.github.kingg22.deezer.client.utils/getDefaultJson(): kotlinx.serialization.json/Json // io.github.kingg22.deezer.client.utils/getDefaultJson|getDefaultJson(){}[0]
+final suspend inline fun <#A: reified kotlin/Any> (io.github.kingg22.deezer.client.api.objects/PaginatedResponse<#A>).io.github.kingg22.deezer.client.api.objects/fetchNext(io.github.kingg22.deezer.client.api/DeezerApiClient, kotlin/Boolean = ...): io.github.kingg22.deezer.client.api.objects/PaginatedResponse<#A>? // io.github.kingg22.deezer.client.api.objects/fetchNext|fetchNext@io.github.kingg22.deezer.client.api.objects.PaginatedResponse<0:0>(io.github.kingg22.deezer.client.api.DeezerApiClient;kotlin.Boolean){0§<kotlin.Any>}[0]
+final suspend inline fun <#A: reified kotlin/Any> (io.github.kingg22.deezer.client.api.objects/PaginatedResponse<#A>).io.github.kingg22.deezer.client.api.objects/fetchNext(io.ktor.client/HttpClient, kotlin/Boolean = ...): io.github.kingg22.deezer.client.api.objects/PaginatedResponse<#A>? // io.github.kingg22.deezer.client.api.objects/fetchNext|fetchNext@io.github.kingg22.deezer.client.api.objects.PaginatedResponse<0:0>(io.ktor.client.HttpClient;kotlin.Boolean){0§<kotlin.Any>}[0]
 final suspend inline fun <#A: reified kotlin/Any> (io.github.kingg22.deezer.client.api.objects/PaginatedResponse<#A>).io.github.kingg22.deezer.client.api.objects/fetchNext(kotlin/Boolean = ...): io.github.kingg22.deezer.client.api.objects/PaginatedResponse<#A>? // io.github.kingg22.deezer.client.api.objects/fetchNext|fetchNext@io.github.kingg22.deezer.client.api.objects.PaginatedResponse<0:0>(kotlin.Boolean){0§<kotlin.Any>}[0]
+final suspend inline fun <#A: reified kotlin/Any> (io.github.kingg22.deezer.client.api.objects/PaginatedResponse<#A>).io.github.kingg22.deezer.client.api.objects/fetchPrevious(io.github.kingg22.deezer.client.api/DeezerApiClient, kotlin/Boolean = ...): io.github.kingg22.deezer.client.api.objects/PaginatedResponse<#A>? // io.github.kingg22.deezer.client.api.objects/fetchPrevious|fetchPrevious@io.github.kingg22.deezer.client.api.objects.PaginatedResponse<0:0>(io.github.kingg22.deezer.client.api.DeezerApiClient;kotlin.Boolean){0§<kotlin.Any>}[0]
+final suspend inline fun <#A: reified kotlin/Any> (io.github.kingg22.deezer.client.api.objects/PaginatedResponse<#A>).io.github.kingg22.deezer.client.api.objects/fetchPrevious(io.ktor.client/HttpClient, kotlin/Boolean = ...): io.github.kingg22.deezer.client.api.objects/PaginatedResponse<#A>? // io.github.kingg22.deezer.client.api.objects/fetchPrevious|fetchPrevious@io.github.kingg22.deezer.client.api.objects.PaginatedResponse<0:0>(io.ktor.client.HttpClient;kotlin.Boolean){0§<kotlin.Any>}[0]
 final suspend inline fun <#A: reified kotlin/Any> (io.github.kingg22.deezer.client.api.objects/PaginatedResponse<#A>).io.github.kingg22.deezer.client.api.objects/fetchPrevious(kotlin/Boolean = ...): io.github.kingg22.deezer.client.api.objects/PaginatedResponse<#A>? // io.github.kingg22.deezer.client.api.objects/fetchPrevious|fetchPrevious@io.github.kingg22.deezer.client.api.objects.PaginatedResponse<0:0>(kotlin.Boolean){0§<kotlin.Any>}[0]
