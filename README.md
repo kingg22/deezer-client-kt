@@ -1,23 +1,28 @@
 # 🎧 Unofficial Deezer Client KMP
 
-![Kotlin Multiplatform](https://img.shields.io/badge/Kotlin_Multiplatform-%237F52FF.svg?style=flat-square&logo=kotlin&logoColor=white)
-![Ktor Client](https://img.shields.io/badge/Ktor_Client-D93FD1.svg?style=flat-square&logo=ktor&logoColor=white&link=https%3A%2F%2Fktor.io%2F)
-![KtorGen](https://img.shields.io/badge/KtorGen-CF561B.svg?style=flat-square&logo=ktor&logoColor=black)
 
-![Maven Central Version](https://img.shields.io/maven-central/v/io.github.kingg22/deezer-client-kt)
-![Maven Central Last Update](https://img.shields.io/maven-central/last-update/io.github.kingg22/deezer-client-kt)
+[![Kotlin Multiplatform](https://img.shields.io/badge/Kotlin_Multiplatform-%237F52FF.svg?style=flat-square&logo=kotlin&logoColor=white)](https://www.jetbrains.com/kotlin-multiplatform/)
+[![Ktor Client](https://img.shields.io/badge/Ktor_Client-D93FD1.svg?style=flat-square&logo=ktor&logoColor=white&link=https%3A%2F%2Fktor.io%2F)](https://ktor.io/)
+[![KtorGen](https://img.shields.io/badge/KtorGen-CF561B.svg?style=flat-square&logo=ktor&logoColor=black)](https://github.com/kingg22/ktorgen)
 
-![GitHub License](https://img.shields.io/github/license/kingg22/deezer-client-kt)
-![GitHub last commit (branch)](https://img.shields.io/github/last-commit/kingg22/deezer-client-kt/main)
+[![Maven Central Version](https://img.shields.io/maven-central/v/io.github.kingg22/deezer-client-kt)](https://mvnrepository.com/artifact/io.github.kingg22/deezer-client-kt)
+[![Maven Central Last Update](https://img.shields.io/maven-central/last-update/io.github.kingg22/deezer-client-kt)](https://mvnrepository.com/artifact/io.github.kingg22/deezer-client-kt)
+
+[![GitHub License](https://img.shields.io/github/license/kingg22/deezer-client-kt)](https://github.com/kingg22/deezer-client-kt/blob/main/LICENSE.txt)
+[![GitHub last commit (branch)](https://img.shields.io/github/last-commit/kingg22/deezer-client-kt/main)](https://github.com/kingg22/deezer-client-kt/commits/main/)
 
 A Kotlin Multiplatform client for Deezer’s official REST API.
 Using [Ktor Client](https://ktor.io/).
-Supports Android (min SDK 24 / JVM 8+), JVM Java, Kotlin/JVM.
+Supports Android (min SDK 24 / JVM 8+), JVM Java, Kotlin/JVM, Kotlin/JS, Kotlin/WasmJs.
 
 > [!IMPORTANT]
 > Only supports the official Deezer API with JSON Content Type and Kotlinx Serialization JSON.
 >
-> It's recommended to configure [Content Encoding](https://ktor.io/docs/client-content-encoding.html) to reduce the size of the response.
+> To introduce support for Js and WasmJs version 3.1.0, bump kotlin to 2.3.0, but you can still use version 3.0.0
+> if you don't need those targets and can't update to the latest kotlin version.
+>
+> It's recommended to configure [Content Encoding](https://ktor.io/docs/client-content-encoding.html)
+> to reduce the size of the response.
 >
 > If you consume a lot of images, consider using [Caching](https://ktor.io/docs/client-caching.html)
 
@@ -25,7 +30,7 @@ Supports Android (min SDK 24 / JVM 8+), JVM Java, Kotlin/JVM.
 - Android **minSdk Version 24**
 - JVM target **Java 8+** / Kotlin JVM 1.8
 
-![Maven Central Version](https://img.shields.io/maven-central/v/io.github.kingg22/deezer-client-kt)
+[![Maven Central Version](https://img.shields.io/maven-central/v/io.github.kingg22/deezer-client-kt)](https://mvnrepository.com/artifact/io.github.kingg22/deezer-client-kt)
 
 **Gradle**
 ```kotlin
@@ -43,7 +48,7 @@ implementation("io.github.kingg22:deezer-client-kt:<latest-version>")
 
 **Install a Ktor client engine**, [see detail](https://ktor.io/docs/client-engines.html).
 
-![Ktor Maven Central Version](https://img.shields.io/maven-central/v/io.ktor/ktor-client?label=Ktor%20client%20version)
+[![Ktor Maven Central Version](https://img.shields.io/maven-central/v/io.ktor/ktor-client?label=Ktor%20client%20version)](https://mvnrepository.com/artifact/io.ktor/ktor-client-core)
 
 Example with CIO (Coroutines based):
 
