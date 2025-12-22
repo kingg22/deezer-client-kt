@@ -21,7 +21,7 @@ kotlinx-datetime = "0.7.1"
 # https://github.com/goncalossilva/kotlinx-resources/releases
 kotlinx-resource = "0.14.0"
 # https://github.com/Kotlin/kotlinx-kover/releases
-kover = "0.9.3"
+kover = "0.9.4"
 # https://github.com/google/ksp/releases
 ksp = "2.3.1"
 # https://github.com/ktorio/ktor/releases
