@@ -35,7 +35,7 @@ ktlint-plugin = "14.0.1"
 # https://github.com/vanniktech/gradle-maven-publish-plugin/releases
 maven-publish = "0.35.0"
 # https://github.com/drewhamilton/Poko/releases
-poko = "0.20.2"
+poko = "0.21.0"
 puppeteer = "24.16.1"
 
 [libraries]
