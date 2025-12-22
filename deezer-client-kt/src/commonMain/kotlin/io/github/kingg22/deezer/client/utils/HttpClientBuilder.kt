@@ -4,8 +4,13 @@ package io.github.kingg22.deezer.client.utils
 
 import io.ktor.client.*
 import io.ktor.client.engine.*
+import io.ktor.client.plugins.*
+import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.plugins.cookies.*
 import io.ktor.client.plugins.logging.*
+import io.ktor.http.*
+import io.ktor.serialization.kotlinx.json.*
+import io.ktor.utils.io.charsets.*
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmSynthetic
 import kotlin.time.Duration
@@ -227,16 +232,45 @@ data class HttpClientBuilder @JvmOverloads constructor(
      * @throws IllegalArgumentException If the provided User-Agent string is empty.
      */
     @Throws(IllegalArgumentException::class)
-    fun build() = getClient(
-        userAgent,
-        maxRetryCount,
-        timeout.seconds,
-        httpEngine,
-        cookiesStorage,
-        httpLogLevel,
-        logger,
-        customHttpConfig,
-    )
+    fun build(): HttpClient {
+        require(userAgent.isNotBlank())
+        require(timeout.seconds >= 0.seconds)
+        require(maxRetryCount > 0)
+        val clientConfig: HttpClientConfig<*>.() -> Unit = {
+            this.install(HttpCookies) {
+                storage = cookiesStorage
+            }
+            this.install(BodyProgress)
+            this.install(ContentNegotiation) {
+                json(getDefaultJson())
+            }
+            this.install(HttpTimeout) {
+                requestTimeoutMillis = timeout.seconds.inWholeMilliseconds
+            }
+            this.install(HttpRequestRetry) {
+                maxRetries = maxRetryCount
+                exponentialDelay()
+            }
+            this.install(Logging) {
+                this.logger = logger
+                format = LoggingFormat.OkHttp
+                level = httpLogLevel
+            }
+
+            defaultRequest {
+                this.userAgent(userAgent)
+            }
+
+            Charsets {
+                register(Charsets.UTF_8)
+                sendCharset = Charsets.UTF_8
+                responseCharsetFallback = Charsets.UTF_8
+            }
+
+            customHttpConfig.forEach { it(this) }
+        }
+        return if (httpEngine != null) HttpClient(httpEngine!!, clientConfig) else HttpClient(clientConfig)
+    }
 
     /** Utilities for HttpClientBuilder */
     @Deprecated("See HttpClientBuilder deprecation")
