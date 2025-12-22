@@ -87,7 +87,6 @@ kotlin {
             testTask {
                 useKarma {
                     useChromeHeadless()
-                    useConfigDirectory(project.file("karma"))
                 }
             }
         }
@@ -101,7 +100,6 @@ kotlin {
             testTask {
                 useKarma {
                     useChromeHeadless()
-                    useConfigDirectory(project.file("karma"))
                 }
             }
         }
