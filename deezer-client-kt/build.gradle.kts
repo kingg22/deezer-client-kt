@@ -177,6 +177,7 @@ dokka {
         enableJdkDocumentationLink.set(true)
         enableKotlinStdLibDocumentationLink.set(true)
         suppressGeneratedFiles.set(true)
+        enableAndroidDocumentationLink.set(false)
         jdkVersion.set(8)
         externalDocumentationLinks {
             register("kotlinx.coroutines") {
@@ -214,7 +215,7 @@ dokka {
         documentedVisibilities.addAll(VisibilityModifier.Internal, VisibilityModifier.Public)
         // Is android jvm, but we want to see Javadocs
         // I recommend using kotlin in android
-        analysisPlatform.set(KotlinPlatform.JVM)
+        analysisPlatform.set(KotlinPlatform.AndroidJVM)
     }
 }
 
@@ -249,7 +250,7 @@ tasks.named("sourcesJar") {
 }
 
 tasks.named("dokkaGeneratePublicationHtml") {
-    dependsOn("compileReleaseJavaWithJavac", "releaseAssetsCopyForAGP", "compileJvmMainJava")
+    dependsOn("compileJvmMainJava")
 }
 
 rootProject.plugins.withType<YarnPlugin> {
