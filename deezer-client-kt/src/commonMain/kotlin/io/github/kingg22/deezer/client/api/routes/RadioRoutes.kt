@@ -18,9 +18,8 @@ import kotlin.jvm.JvmSynthetic
  */
 @KtorGen(
     basePath = "$API_DEEZER_URL/radio",
-    visibilityModifier = "internal",
-    classVisibilityModifier = "private",
-    functionAnnotations = [JvmSynthetic::class, InternalDeezerClient::class],
+    generateTopLevelFunction = false,
+    classVisibilityModifier = "internal",
     annotations = [InternalDeezerClient::class],
 )
 interface RadioRoutes {

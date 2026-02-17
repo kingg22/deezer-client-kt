@@ -14,9 +14,8 @@ import kotlin.jvm.JvmSynthetic
  */
 @KtorGen(
     basePath = "$API_DEEZER_URL/track/",
-    visibilityModifier = "internal",
-    classVisibilityModifier = "private",
-    functionAnnotations = [JvmSynthetic::class, InternalDeezerClient::class],
+    generateTopLevelFunction = false,
+    classVisibilityModifier = "internal",
     annotations = [InternalDeezerClient::class],
 )
 interface TrackRoutes {
