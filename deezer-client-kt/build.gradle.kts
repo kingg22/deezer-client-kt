@@ -111,7 +111,9 @@ kotlin {
 }
 
 dependencies {
-    kspCommonMainMetadata(libs.ktorgen.compiler)
+    // kspCommonMainMetadata(libs.ktorgen.compiler)
+    add("kspAndroid", libs.ktorgen.compiler)
+    add("kspJvm", libs.ktorgen.compiler)
 }
 
 kover {
@@ -181,7 +183,7 @@ dokka {
 }
 
 ktlint {
-    version.set(libs.versions.ktlint.pinterest.get())
+    version.set(libs.versions.ktlint.pinterest)
 }
 
 poko {
@@ -192,13 +194,13 @@ tasks.check {
     dependsOn(tasks.checkLegacyAbi)
 }
 
-// Workaround kotlin multiplatform with ksp
+/* Workaround kotlin multiplatform with ksp
 tasks.matching { it.name != "kspCommonMainKotlinMetadata" && it.name.startsWith("ksp") }
     .configureEach {
         dependsOn("kspCommonMainKotlinMetadata")
     }
 
-tasks.named("runKtlintCheckOverCommonMainSourceSet") {
+tasks.runKtlintCheckOverCommonMainSourceSet {
     dependsOn("kspCommonMainKotlinMetadata")
 }
 
@@ -206,11 +208,12 @@ tasks.named("jvmSourcesJar") {
     dependsOn("kspCommonMainKotlinMetadata")
 }
 
-tasks.named("sourcesJar") {
+tasks.sourcesJar {
     dependsOn("kspCommonMainKotlinMetadata")
 }
+ */
 
-tasks.named("dokkaGeneratePublicationHtml") {
+tasks.dokkaGeneratePublicationHtml {
     dependsOn("compileJvmMainJava")
 }
 
