@@ -25,7 +25,7 @@ kover = "0.9.7"
 # https://github.com/google/ksp/releases
 ksp = "2.3.5"
 # https://github.com/ktorio/ktor/releases
-ktor = "3.2.3"
+ktor = "3.4.0"
 # https://github.com/kingg22/ktorgen/releases
 ktorgen = "0.6.0"
 # https://github.com/pinterest/ktlint/releases
