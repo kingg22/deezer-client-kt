@@ -1,6 +1,5 @@
 import com.android.build.api.dsl.KotlinMultiplatformAndroidLibraryTarget
 import kotlinx.kover.gradle.plugin.dsl.CoverageUnit
-import org.gradle.kotlin.dsl.the
 import org.jetbrains.dokka.gradle.engine.parameters.KotlinPlatform
 import org.jetbrains.dokka.gradle.engine.parameters.VisibilityModifier
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
@@ -8,10 +7,6 @@ import org.jetbrains.kotlin.gradle.dsl.JvmDefaultMode
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
 import org.jetbrains.kotlin.gradle.dsl.abi.ExperimentalAbiValidation
-import org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlugin
-import org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootExtension
-import org.jetbrains.kotlin.gradle.targets.wasm.yarn.WasmYarnPlugin
-import org.jetbrains.kotlin.gradle.targets.wasm.yarn.WasmYarnRootExtension
 
 plugins {
     alias(libs.plugins.android.multiplatform.library)
@@ -28,7 +23,7 @@ plugins {
 
 group = "io.github.kingg22"
 description = "A Kotlin Multiplatform library to use Deezer public API."
-version = "3.1.0"
+version = "3.2.0"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
@@ -82,31 +77,6 @@ kotlin {
         }
     }
 
-    js {
-        browser {
-            testTask {
-                useKarma {
-                    useChromeHeadless()
-                }
-            }
-        }
-        nodejs()
-        binaries.library()
-    }
-
-    @OptIn(org.jetbrains.kotlin.gradle.ExperimentalWasmDsl::class)
-    wasmJs {
-        browser {
-            testTask {
-                useKarma {
-                    useChromeHeadless()
-                }
-            }
-        }
-        nodejs()
-        binaries.library()
-    }
-
     @OptIn(ExperimentalKotlinGradlePluginApi::class)
     applyDefaultHierarchyTemplate {
         common {
@@ -115,11 +85,6 @@ kotlin {
                 // The default `withAndroidTarget` doesn't include the target created by the new KMP Android plugin.
                 withCompilations { it.target is KotlinMultiplatformAndroidLibraryTarget }
                 withJvm()
-            }
-            group("nonJvm") {
-                withJs()
-                withWasmJs()
-                // add all nonJvm targets
             }
         }
     }
@@ -141,10 +106,6 @@ kotlin {
         }
         jvmTest.dependencies {
             implementation(libs.ktor.client.engine.cio)
-        }
-        webTest.dependencies {
-            // Puppeteer is used to install Chrome for tests
-            implementation(npm("puppeteer", libs.versions.puppeteer.get()))
         }
     }
 }
@@ -251,22 +212,6 @@ tasks.named("sourcesJar") {
 
 tasks.named("dokkaGeneratePublicationHtml") {
     dependsOn("compileJvmMainJava")
-}
-
-rootProject.plugins.withType<YarnPlugin> {
-    rootProject.the<YarnRootExtension>().apply {
-        if (System.getenv("CHROME_BIN").isNullOrBlank()) {
-            ignoreScripts = false
-        }
-    }
-}
-
-rootProject.plugins.withType<WasmYarnPlugin> {
-    rootProject.the<WasmYarnRootExtension>().apply {
-        if (System.getenv("CHROME_BIN").isNullOrBlank()) {
-            ignoreScripts = false
-        }
-    }
 }
 
 mavenPublishing {

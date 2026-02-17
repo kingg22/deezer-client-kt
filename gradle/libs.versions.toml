@@ -36,7 +36,6 @@ ktlint-plugin = "14.0.1"
 maven-publish = "0.35.0"
 # https://github.com/drewhamilton/Poko/releases
 poko = "0.20.2"
-puppeteer = "24.16.1"
 
 [libraries]
 # Kotlin - Kotlinx essentials

@@ -15,11 +15,7 @@ A Kotlin Multiplatform client for Deezer’s official REST API.
 Using [Ktor Client](https://ktor.io/).
 Supports Android (min SDK 24 / JVM 8+), JVM Java, Kotlin/JVM, Kotlin/JS, Kotlin/WasmJs.
 
-> [!IMPORTANT]
-> Only supports the official Deezer API with JSON Content Type and Kotlinx Serialization JSON.
->
-> To introduce support for Js and WasmJs version 3.1.0, bump kotlin to 2.3.0, but you can still use version 3.0.0
-> if you don't need those targets and can't update to the latest kotlin version.
+> [!TIP]
 >
 > It's recommended to configure [Content Encoding](https://ktor.io/docs/client-content-encoding.html)
 > to reduce the size of the response.
