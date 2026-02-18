@@ -29,7 +29,7 @@ import kotlin.time.Duration.Companion.seconds
 @KtorGen(
     basePath = "$API_DEEZER_URL/search",
     generateTopLevelFunction = false,
-    classVisibilityModifier = "internal",
+    classVisibilityModifier = "private",
     annotations = [InternalDeezerClient::class],
 )
 interface SearchRoutes {

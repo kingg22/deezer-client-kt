@@ -18,7 +18,7 @@ import kotlin.jvm.JvmSynthetic
 @KtorGen(
     basePath = "$API_DEEZER_URL/podcast",
     generateTopLevelFunction = false,
-    classVisibilityModifier = "internal",
+    classVisibilityModifier = "private",
     annotations = [InternalDeezerClient::class],
 )
 interface PodcastRoutes {

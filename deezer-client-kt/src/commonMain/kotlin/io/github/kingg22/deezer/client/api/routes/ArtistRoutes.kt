@@ -21,7 +21,7 @@ import kotlin.jvm.JvmSynthetic
 @KtorGen(
     basePath = "$API_DEEZER_URL/artist/",
     generateTopLevelFunction = false,
-    classVisibilityModifier = "internal",
+    classVisibilityModifier = "private",
     annotations = [InternalDeezerClient::class],
 )
 interface ArtistRoutes {
