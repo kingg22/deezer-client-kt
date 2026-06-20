@@ -46,13 +46,6 @@ object KtorEngineMocked {
         this.install(ContentNegotiation) {
             this.json(jsonSerializer)
         }
-        this.install(HttpTimeout) {
-            this.requestTimeoutMillis = 20.seconds.inWholeMilliseconds
-        }
-        this.install(HttpRequestRetry) {
-            this.maxRetries = 3
-            this.exponentialDelay()
-        }
         this.install(Logging) {
             this.logger = object : KtorLogger {
                 override fun log(message: String) {
