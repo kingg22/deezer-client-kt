@@ -49,7 +49,7 @@ object KtorEngineMocked {
         this.install(Logging) {
             this.logger = object : KtorLogger {
                 override fun log(message: String) {
-                    KermitLogger.d("HttpClient") { message }
+                    KermitLogger.d(tag = "HttpClient") { message }
                 }
             }
             this.format = LoggingFormat.OkHttp

@@ -14,7 +14,7 @@ import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.EmptyCoroutineContext
 
 @Suppress("unused")
-actual abstract class Resource {
+actual abstract class Resource actual constructor() {
     actual abstract val id: Long
     actual abstract val type: String
 
