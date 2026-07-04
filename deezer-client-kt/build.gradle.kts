@@ -51,7 +51,7 @@ kotlin {
         }
     }
 
-    androidLibrary {
+    android {
         namespace = "$group.deezer.client"
         compileSdk = libs.versions.android.compileSdk.get().toInt()
         minSdk = libs.versions.android.minSdk.get().toInt()
@@ -90,14 +90,10 @@ kotlin {
     }
 
     sourceSets {
-        commonMain {
-            // indicate to KMP plugin compile the metadata of ksp
-            kotlin.srcDir("build/generated/ksp/metadata/commonMain/kotlin")
-            dependencies {
-                api(libs.bundles.ktor.client)
-                api(libs.bundles.kotlinx.ecosystem)
-                implementation(libs.ktorgen.annotations)
-            }
+        commonMain.dependencies {
+            api(libs.bundles.ktor.client)
+            api(libs.bundles.kotlinx.ecosystem)
+            implementation(libs.ktorgen.annotations)
         }
         commonTest.dependencies {
             implementation(libs.bundles.testing)
@@ -111,9 +107,8 @@ kotlin {
 }
 
 dependencies {
-    // kspCommonMainMetadata(libs.ktorgen.compiler)
-    add("kspAndroid", libs.ktorgen.compiler)
-    add("kspJvm", libs.ktorgen.compiler)
+    kspAndroid(libs.ktorgen.compiler)
+    "kspJvm"(libs.ktorgen.compiler)
 }
 
 kover {
@@ -191,27 +186,8 @@ poko {
 }
 
 tasks.check {
-    dependsOn(tasks.checkLegacyAbi)
+    dependsOn(tasks.checkKotlinAbi, tasks.checkLegacyAbi)
 }
-
-/* Workaround kotlin multiplatform with ksp
-tasks.matching { it.name != "kspCommonMainKotlinMetadata" && it.name.startsWith("ksp") }
-    .configureEach {
-        dependsOn("kspCommonMainKotlinMetadata")
-    }
-
-tasks.runKtlintCheckOverCommonMainSourceSet {
-    dependsOn("kspCommonMainKotlinMetadata")
-}
-
-tasks.named("jvmSourcesJar") {
-    dependsOn("kspCommonMainKotlinMetadata")
-}
-
-tasks.sourcesJar {
-    dependsOn("kspCommonMainKotlinMetadata")
-}
- */
 
 tasks.dokkaGeneratePublicationHtml {
     dependsOn("compileJvmMainJava")
