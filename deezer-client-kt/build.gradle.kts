@@ -77,6 +77,16 @@ kotlin {
         }
     }
 
+    listOf(
+        iosArm64(),
+        iosSimulatorArm64(),
+    ).forEach { iosTarget ->
+        iosTarget.binaries.framework {
+            baseName = "deezer-client"
+            isStatic = true
+        }
+    }
+
     @OptIn(ExperimentalKotlinGradlePluginApi::class)
     applyDefaultHierarchyTemplate {
         common {
@@ -109,6 +119,8 @@ kotlin {
 dependencies {
     kspAndroid(libs.ktorgen.compiler)
     "kspJvm"(libs.ktorgen.compiler)
+    "kspIosArm64"(libs.ktorgen.compiler)
+    "kspIosSimulatorArm64"(libs.ktorgen.compiler)
 }
 
 kover {
