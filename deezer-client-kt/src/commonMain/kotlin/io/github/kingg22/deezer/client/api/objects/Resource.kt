@@ -20,7 +20,6 @@ expect abstract class Resource() {
      * getting all of its full properties if it was initially obtained partially, or it's outdated
      * @param client The Deezer API client to use
      */
-    @JvmSynthetic
     @Throws(DeezerApiException::class, CancellationException::class)
     abstract suspend fun reload(client: DeezerApiClient): Resource
 
@@ -35,7 +34,6 @@ expect abstract class Resource() {
         level = DeprecationLevel.HIDDEN,
     )
     @io.github.kingg22.deezer.client.utils.AfterInitialize
-    @JvmSynthetic
     @Throws(DeezerApiException::class, CancellationException::class)
     open suspend fun reload(): Resource
 }

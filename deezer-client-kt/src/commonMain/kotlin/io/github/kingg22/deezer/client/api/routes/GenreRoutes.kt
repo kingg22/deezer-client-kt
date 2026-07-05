@@ -11,7 +11,6 @@ import io.github.kingg22.ktorgen.core.KtorGen
 import io.github.kingg22.ktorgen.http.GET
 import io.github.kingg22.ktorgen.http.Path
 import io.github.kingg22.ktorgen.http.Query
-import kotlin.jvm.JvmSynthetic
 
 /**
  * Defines all endpoints related to [io.github.kingg22.deezer.client.api.objects.Genre]
@@ -28,17 +27,14 @@ import kotlin.jvm.JvmSynthetic
 interface GenreRoutes {
     /** Retrieve all [io.github.kingg22.deezer.client.api.objects.Genre] */
     @GET
-    @JvmSynthetic
     suspend fun getAll(@Query index: Int? = null, @Query limit: Int? = null): PaginatedResponse<Genre>
 
     /** Retrieve a [Genre] by ID */
     @GET("/{id}")
-    @JvmSynthetic
     suspend fun getById(@Path id: Long): Genre
 
     /** Retrieve [PaginatedResponse] with all [Artist] for a genre */
     @GET("/{id}/artists")
-    @JvmSynthetic
     suspend fun getArtists(
         @Path id: Long = 0,
         @Query index: Int? = null,
@@ -47,7 +43,6 @@ interface GenreRoutes {
 
     /** Retrieve [PaginatedResponse] with all [Podcast] for a genre */
     @GET("/{id}/podcasts")
-    @JvmSynthetic
     suspend fun getPodcasts(
         @Path id: Long = 0,
         @Query index: Int? = null,
@@ -56,7 +51,6 @@ interface GenreRoutes {
 
     /** Retrieve [PaginatedResponse] with all [Radio] for a genre */
     @GET("/{id}/radios")
-    @JvmSynthetic
     suspend fun getRadios(
         @Path id: Long = 0,
         @Query index: Int? = null,

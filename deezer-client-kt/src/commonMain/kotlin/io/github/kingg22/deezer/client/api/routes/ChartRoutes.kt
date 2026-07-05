@@ -13,7 +13,6 @@ import io.github.kingg22.ktorgen.core.KtorGen
 import io.github.kingg22.ktorgen.http.GET
 import io.github.kingg22.ktorgen.http.Path
 import io.github.kingg22.ktorgen.http.Query
-import kotlin.jvm.JvmSynthetic
 
 /**
  * Defines all endpoints related to [io.github.kingg22.deezer.client.api.objects.Chart]
@@ -30,17 +29,14 @@ import kotlin.jvm.JvmSynthetic
 interface ChartRoutes {
     /** Retrieve [Chart] */
     @GET
-    @JvmSynthetic
     suspend fun getAll(@Query index: Int? = null, @Query limit: Int? = null): Chart
 
     /** **Unofficial** Retrieve [Chart] by ID _maybe genre id?_ */
     @GET("/{id}")
-    @JvmSynthetic
     suspend fun getById(@Path id: Long, @Query index: Int? = null, @Query limit: Int? = null): Chart
 
     /** Retrieve the Top [Track] */
     @GET("/{id}/tracks")
-    @JvmSynthetic
     suspend fun getTracks(
         @Path id: Long = 0,
         @Query index: Int? = null,
@@ -49,7 +45,6 @@ interface ChartRoutes {
 
     /** Retrieve the Top [Album] */
     @GET("/{id}/albums")
-    @JvmSynthetic
     suspend fun getAlbums(
         @Path id: Long = 0,
         @Query index: Int? = null,
@@ -58,7 +53,6 @@ interface ChartRoutes {
 
     /** Retrieve the Top [Artist] */
     @GET("/{id}/artists")
-    @JvmSynthetic
     suspend fun getArtists(
         @Path id: Long = 0,
         @Query index: Int? = null,
@@ -67,7 +61,6 @@ interface ChartRoutes {
 
     /** Retrieve the Top [Playlist] */
     @GET("/{id}/playlists")
-    @JvmSynthetic
     suspend fun getPlaylists(
         @Path id: Long = 0,
         @Query index: Int? = null,
@@ -76,7 +69,6 @@ interface ChartRoutes {
 
     /** Retrieve the Top [Podcast] */
     @GET("/{id}/podcasts")
-    @JvmSynthetic
     suspend fun getPodcasts(
         @Path id: Long = 0,
         @Query index: Int? = null,

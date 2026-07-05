@@ -52,7 +52,7 @@ interface SearchRoutes {
          * @param bpmMin The track's minimum bpm (example: 120)
          * @param bpmMax The track's maximum bpm (example: 200)
          */
-        @JvmSynthetic
+
         @Throws(IllegalArgumentException::class, IllegalStateException::class)
         @Suppress("kotlin:S107")
         fun buildAdvancedQuery(
@@ -101,7 +101,7 @@ interface SearchRoutes {
          * @throws IllegalArgumentException if not provided any arguments
          * @throws IllegalStateException if the query is blank after built
          */
-        @JvmSynthetic
+
         @Throws(IllegalArgumentException::class, IllegalStateException::class)
         fun buildAdvancedQuery(block: AdvancedQueryBuilder.() -> Unit) = AdvancedQueryBuilder().apply(block).build()
 
@@ -152,7 +152,6 @@ interface SearchRoutes {
      * [Album.coverMedium], [Album.coverBig], [Album.coverXl] and [Album.type]
      */
     @GET
-    @JvmSynthetic
     suspend fun search(
         @Query q: String,
         @Query strict: String? = null,
@@ -163,7 +162,6 @@ interface SearchRoutes {
 
     /** Search [Album] */
     @GET("/album")
-    @JvmSynthetic
     suspend fun searchAlbum(
         @Query q: String,
         @Query strict: String? = null,
@@ -174,7 +172,6 @@ interface SearchRoutes {
 
     /** Search [Artist] */
     @GET("/artist")
-    @JvmSynthetic
     suspend fun searchArtist(
         @Query q: String,
         @Query strict: String? = null,
@@ -189,7 +186,6 @@ interface SearchRoutes {
      * **Required** OAuth. **unsupported**
      */
     @GET("/history")
-    @JvmSynthetic
     suspend fun searchHistory(
         @Query q: String,
         @Query strict: String? = null,
@@ -200,7 +196,6 @@ interface SearchRoutes {
 
     /** Search [Playlist] */
     @GET("/playlist")
-    @JvmSynthetic
     suspend fun searchPlaylist(
         @Query q: String,
         @Query strict: String? = null,
@@ -211,7 +206,6 @@ interface SearchRoutes {
 
     /** Search [Podcast] */
     @GET("/podcast")
-    @JvmSynthetic
     suspend fun searchPodcast(
         @Query q: String,
         @Query strict: String? = null,
@@ -222,7 +216,6 @@ interface SearchRoutes {
 
     /** Search [Radio] */
     @GET("/radio")
-    @JvmSynthetic
     suspend fun searchRadio(
         @Query q: String,
         @Query strict: String? = null,
@@ -233,7 +226,6 @@ interface SearchRoutes {
 
     /** Search [Track] */
     @GET("/track")
-    @JvmSynthetic
     suspend fun searchTrack(
         @Query q: String,
         @Query strict: String? = null,
@@ -244,7 +236,6 @@ interface SearchRoutes {
 
     /** Search [User] */
     @GET("/user")
-    @JvmSynthetic
     suspend fun searchUser(
         @Query q: String,
         @Query strict: String? = null,
@@ -317,14 +308,14 @@ interface SearchRoutes {
          * Set the track's minimum duration in seconds (example: 300)
          * @param durationMin min duration in seconds
          */
-        @JvmSynthetic
+
         fun durationMin(durationMin: Duration?) = apply { this.durationMin = durationMin }
 
         /**
          * Set the track's minimum duration in seconds (example: 300)
          * @param durationMax max duration in seconds
          */
-        @JvmSynthetic
+
         fun durationMax(durationMax: Duration?) = apply { this.durationMax = durationMax }
 
         /**

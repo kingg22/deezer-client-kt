@@ -9,7 +9,6 @@ import io.github.kingg22.ktorgen.core.KtorGen
 import io.github.kingg22.ktorgen.http.GET
 import io.github.kingg22.ktorgen.http.Path
 import io.github.kingg22.ktorgen.http.Query
-import kotlin.jvm.JvmSynthetic
 
 /**
  * Defines all endpoints related to [io.github.kingg22.deezer.client.api.objects.Podcast]
@@ -28,17 +27,14 @@ interface PodcastRoutes {
      * _Dev Note_: Always return an empty list?
      */
     @GET
-    @JvmSynthetic
     suspend fun getAll(@Query index: Int? = null, @Query limit: Int? = null): PaginatedResponse<Podcast>
 
     /** Retrieve a [Podcast] by ID */
     @GET("/{id}")
-    @JvmSynthetic
     suspend fun getById(@Path id: Long, @Query index: Int? = null, @Query limit: Int? = null): Podcast
 
     /** Retrieve a [PaginatedResponse] with all [Episode] of the podcast */
     @GET("/{id}/episodes")
-    @JvmSynthetic
     suspend fun getEpisodes(
         @Path id: Long,
         @Query index: Int? = null,

@@ -11,7 +11,6 @@ import io.github.kingg22.ktorgen.http.GET
 import io.github.kingg22.ktorgen.http.Path
 import io.github.kingg22.ktorgen.http.Query
 import kotlinx.datetime.LocalDate
-import kotlin.jvm.JvmSynthetic
 
 /**
  * Defines all endpoints related to [io.github.kingg22.deezer.client.api.objects.Editorial]
@@ -28,12 +27,10 @@ import kotlin.jvm.JvmSynthetic
 interface EditorialRoutes {
     /** Retrieve all [Editorial] */
     @GET
-    @JvmSynthetic
     suspend fun getAll(@Query index: Int? = null, @Query limit: Int? = null): PaginatedResponse<Editorial>
 
     /** Retrieve an [Editorial] by ID */
     @GET("/{id}")
-    @JvmSynthetic
     suspend fun getById(@Path id: Long, @Query index: Int? = null, @Query limit: Int? = null): Editorial
 
     /**
@@ -47,7 +44,6 @@ interface EditorialRoutes {
      * **Unofficial**: [Album.md5Image], [Album.genreId], [Album.tracklist] and [Album.type]
      */
     @GET("/{id}/selection")
-    @JvmSynthetic
     suspend fun getDeezerSelection(
         @Path id: Long = 0,
         @Query date: LocalDate? = null,
@@ -57,12 +53,10 @@ interface EditorialRoutes {
 
     /** Retrieve [Chart] */
     @GET("/{id}/charts")
-    @JvmSynthetic
     suspend fun getCharts(@Path id: Long = 0, @Query index: Int? = null, @Query limit: Int? = null): Chart
 
     /** Retrieve [PaginatedResponse] with new [Album] releases per genre for the current country */
     @GET("/{id}/releases")
-    @JvmSynthetic
     suspend fun getReleases(
         @Path id: Long = 0,
         @Query index: Int? = null,

@@ -8,7 +8,6 @@ import io.github.kingg22.deezer.client.utils.InternalDeezerClient
 import io.github.kingg22.ktorgen.core.KtorGen
 import io.github.kingg22.ktorgen.http.GET
 import io.github.kingg22.ktorgen.http.Path
-import kotlin.jvm.JvmSynthetic
 
 /**
  * Defines all endpoints related to [io.github.kingg22.deezer.client.api.objects.Episode]
@@ -23,6 +22,5 @@ import kotlin.jvm.JvmSynthetic
 interface EpisodeRoutes {
     /** Retrieve an [io.github.kingg22.deezer.client.api.objects.Episode] by ID */
     @GET("/{id}")
-    @JvmSynthetic
     suspend fun getById(@Path id: Long): Episode
 }
