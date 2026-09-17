@@ -35,7 +35,7 @@ ktlint-plugin = "14.2.0"
 # https://github.com/vanniktech/gradle-maven-publish-plugin/releases
 maven-publish = "0.37.0"
 # https://github.com/drewhamilton/Poko/releases
-poko = "0.22.1"
+poko = "0.23.2"
 
 [libraries]
 # Kotlin - Kotlinx essentials
